@@ -3,11 +3,10 @@ import Navigation from './Navigation';
 
 const Header = () => {
   return (
-    <div>
+    <header className='flex justify-between'>
       Header
-      <button className='btn btn-primary'>Button</button>
       <Navigation />
-    </div>
+    </header>
   );
 };
 
