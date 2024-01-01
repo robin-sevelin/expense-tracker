@@ -5,6 +5,7 @@ const Header = () => {
   return (
     <div>
       Header
+      <button className='btn btn-primary'>Button</button>
       <Navigation />
     </div>
   );
