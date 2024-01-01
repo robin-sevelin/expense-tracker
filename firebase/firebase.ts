@@ -1,18 +1,21 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAhSFg6fEBoDtEjwsYXrA5cU7OT1a1RfC0',
-  authDomain: 'expense-tracker-fc31e.firebaseapp.com',
-  projectId: 'expense-tracker-fc31e',
-  storageBucket: 'expense-tracker-fc31e.appspot.com',
-  messagingSenderId: '277895219169',
-  appId: '1:277895219169:web:91bb9e41ca324c267974a0',
-  measurementId: 'G-8V7NPZQP6H',
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGE_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
 
 // firebase login
 // firebase init
