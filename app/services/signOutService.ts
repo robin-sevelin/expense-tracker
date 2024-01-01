@@ -1,4 +1,4 @@
-import { auth } from '@/firebase/firebase';
+import { auth } from '@/firebase/auth';
 import { signOut } from 'firebase/auth';
 
 export const logOut = async () => {
