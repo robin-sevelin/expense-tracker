@@ -1,13 +1,16 @@
-import React from 'react';
+'use client';
+
 import Navigation from './Navigation';
+import { useAtom } from 'jotai/react';
+import { loggedInAtom } from '../store/atoms';
 
 const Header = () => {
+  const [isLoggedIn] = useAtom(loggedInAtom);
   return (
-    <div>
+    <header className='flex justify-between'>
       Header
-      <button className='btn btn-primary'>Button</button>
-      <Navigation />
-    </div>
+      {isLoggedIn && <Navigation />}
+    </header>
   );
 };
 

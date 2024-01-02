@@ -1,25 +1,17 @@
+'use client';
+
 import Link from 'next/link';
-import React from 'react';
+import { ROUTES } from '../constants/constants';
 
 const Navigation = () => {
   return (
     <nav>
       <ul>
-        <li>
-          <Link href={'/'}>Home</Link>
-        </li>
-        <li>
-          <Link href={'/pages/graph'}>Graph</Link>
-        </li>
-        <li>
-          <Link href={'/pages/profile'}>Profile</Link>
-        </li>
-        <li>
-          <Link href={'/pages/viewTransactions'}>View transactions</Link>
-        </li>
-        <li>
-          <Link href={'/pages/addTransactions'}>Add transactions</Link>
-        </li>
+        {ROUTES.map((route) => (
+          <li key={route.id}>
+            <Link href={route.url}>{route.text}</Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );
