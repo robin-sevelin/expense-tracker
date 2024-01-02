@@ -5,3 +5,10 @@ export const ROUTES = [
   { id: 3, url: '/pages/viewTransactions/', text: 'View transactions' },
   { id: 4, url: '/pages/addTransactions/', text: 'Add transactions' },
 ];
+
+export const USER_BASE_VALUES = {
+  uid: '',
+  email: '',
+  displayName: '',
+  photoURL: '',
+};

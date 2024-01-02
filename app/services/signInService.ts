@@ -1,14 +1,13 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { IUser } from '../models/IUser';
-import { auth } from '@/firebase/auth';
+import { signInWithRedirect } from 'firebase/auth';
+import { auth, googleProvider } from '@/firebase/auth';
+import { IUser } from '../models/Iuser';
 
 export const signInWithGoogle = async () => {
-  const provider = new GoogleAuthProvider();
-  provider.setCustomParameters({ prompt: 'select_account' });
+  googleProvider.setCustomParameters({ prompt: 'select_account' });
   try {
-    const result = await signInWithPopup(auth, provider);
-    return result.user as IUser;
+    const data = await signInWithRedirect(auth, googleProvider);
+    return data;
   } catch (error) {
-    return error;
+    return { error: 'error signing in' };
   }
 };

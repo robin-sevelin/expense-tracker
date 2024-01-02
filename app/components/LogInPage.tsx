@@ -1,19 +1,25 @@
 'use client';
 
-import { useAtom } from 'jotai';
-import React from 'react';
 import { signInWithGoogle } from '../services/signInService';
-import { loggedInAtom, userAtom } from '../store/atoms';
-import { IUser } from '../models/IUser';
+import { getRedirectResult } from 'firebase/auth';
+import { useEffect } from 'react';
+import { auth } from '@/firebase/auth';
 
 const LogInPage = () => {
-  const [, setUser] = useAtom(userAtom);
-  const [, setIsLoggedIn] = useAtom(loggedInAtom);
-  const handleClick = async () => {
-    const data = (await signInWithGoogle()) as IUser;
-    setUser(data);
-    setIsLoggedIn(true);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getRedirectResult(auth);
+      if (response) {
+        console.log(response.user);
+      }
+    };
+    getData();
+  }, []);
+
+  const signIn = async () => {
+    await signInWithGoogle();
   };
+
   return (
     <div className='hero bg-base-200'>
       <div className='hero-content text-center'>
@@ -22,7 +28,7 @@ const LogInPage = () => {
           <p className='py-6'>
             Please login with your google account to use the expense tracker.
           </p>
-          <button onClick={handleClick} className='btn btn-primary'>
+          <button onClick={signIn} className='btn btn-primary'>
             Log in
           </button>
         </div>

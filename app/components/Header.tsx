@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import Navigation from './Navigation';
 import { useAtom } from 'jotai/react';
 import { loggedInAtom } from '../store/atoms';
