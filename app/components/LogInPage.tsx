@@ -1,23 +1,23 @@
 'use client';
 
-import { signInWithGoogle } from '../services/signInService';
-import { getRedirectResult } from 'firebase/auth';
-import { useEffect } from 'react';
-import { auth } from '@/firebase/auth';
+import { signInWithGooglePopup } from '@/firebase/auth';
+import { createUserDocument } from '@/firebase/firestore';
+import { IUser } from '../models/IUser';
 
 const LogInPage = () => {
-  useEffect(() => {
-    const getData = async () => {
-      const response = await getRedirectResult(auth);
-      if (response) {
-        console.log(response.user);
-      }
-    };
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const response = await getRedirectResult(auth);
+  //     if (response) {
+  //       console.log(response.user);
+  //     }
+  //   };
+  //   getData();
+  // }, []);
 
   const signIn = async () => {
-    await signInWithGoogle();
+    const response = await signInWithGooglePopup();
+    const userDocRef = await createUserDocument(response.user as IUser);
   };
 
   return (
