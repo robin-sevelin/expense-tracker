@@ -5,7 +5,7 @@ import { IUser } from '@/app/models/IUser';
 export const db = getFirestore(app);
 
 export const createUserDocument = async (userAuth: IUser) => {
-  const userDocRef = doc(db, 'users', userAuth.uid);
+  const userDocRef = doc(db, 'users', userAuth?.uid);
 
   const userSnapshot = await getDoc(userDocRef);
 

@@ -1,11 +1,11 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import LogInPage from './components/LogInPage';
+import { loggedInAtom } from './store/atoms';
+import MainPage from './components/MainPage';
 
 export default function Home() {
-  return (
-    <>
-      <LogInPage />
-    </>
-  );
+  const [isLoggedIn] = useAtom(loggedInAtom);
+  return <>{isLoggedIn ? <MainPage /> : <LogInPage />}</>;
 }
