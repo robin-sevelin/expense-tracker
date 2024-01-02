@@ -1,4 +1,10 @@
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+} from 'firebase/firestore';
 import { app } from './config';
 import { IUser } from '@/app/models/IUser';
 
@@ -12,6 +18,7 @@ export const createUserDocument = async (userAuth: IUser) => {
   if (!userSnapshot.exists()) {
     const { displayName, email, photoURL } = userAuth;
     const createdAt = new Date();
+    const balance = 0;
 
     try {
       await setDoc(userDocRef, {
@@ -19,6 +26,7 @@ export const createUserDocument = async (userAuth: IUser) => {
         email,
         createdAt,
         photoURL,
+        balance,
       });
     } catch (error) {
       console.log('error creating the user', error);
