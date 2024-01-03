@@ -2,15 +2,15 @@
 
 import { auth } from '@/firebase/auth';
 import { signOut } from 'firebase/auth';
-import { loggedInAtom, userAtom } from '../store/atoms';
+import { userAtom } from '../store/atoms';
 import { useAtom } from 'jotai';
+import { USER_BASE_VALUES } from '../constants/constants';
 
 const MainPage = () => {
-  const [, setIsloggedIn] = useAtom(loggedInAtom);
-  const [user] = useAtom(userAtom);
+  const [user, setUser] = useAtom(userAtom);
   const logOut = async () => {
     await signOut(auth);
-    setIsloggedIn(false);
+    setUser(USER_BASE_VALUES);
   };
 
   return (

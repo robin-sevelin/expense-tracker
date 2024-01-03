@@ -1,19 +1,9 @@
-'use client';
-
-import { useAtom } from 'jotai';
-import LogInPage from './components/LogInPage';
-import { loggedInAtom } from './store/atoms';
-import MainPage from './components/MainPage';
-import Loading from './components/Loading';
-import { useGetRedirect } from './hooks/useGetRedirect';
+import LandingPage from './components/LandingPage';
 
 export default function Home() {
-  const [isLoggedIn] = useAtom(loggedInAtom);
-  const { loading } = useGetRedirect();
-
-  if (loading) {
-    return <Loading />;
-  }
-
-  return <>{isLoggedIn ? <MainPage /> : <LogInPage />}</>;
+  return (
+    <>
+      <LandingPage />
+    </>
+  );
 }
