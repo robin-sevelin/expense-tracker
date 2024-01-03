@@ -1,15 +1,14 @@
 'use client';
 
-import { redirect } from 'next/navigation';
 import React from 'react';
-import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
+import { useAtom } from 'jotai';
+import { userAtom } from '../store/atoms';
+import { useAuthUser } from '../hooks/useAuthUser';
 
 const AddTransaction = () => {
-  const { user } = useIsLoggedIn();
+  const [user] = useAtom(userAtom);
+  useAuthUser(user);
 
-  if (!user.uid) {
-    redirect('/');
-  }
   return (
     <div>
       <h2>Hello from add</h2>

@@ -1,15 +1,13 @@
 'use client';
 
 import React from 'react';
-import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
-import { redirect } from 'next/navigation';
+import { useAtom } from 'jotai';
+import { userAtom } from '../store/atoms';
+import { useAuthUser } from '../hooks/useAuthUser';
 
 const GraphPage = () => {
-  const { user } = useIsLoggedIn();
-
-  if (!user.uid) {
-    redirect('/');
-  }
+  const [user] = useAtom(userAtom);
+  useAuthUser(user);
   return <div>Graph</div>;
 };
 

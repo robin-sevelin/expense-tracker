@@ -10,12 +10,14 @@ import MainPage from './MainPage';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 
 const LandingPage = () => {
+  useIsLoggedIn();
   const { loading } = useGetRedirect();
-  const { user } = useIsLoggedIn();
+  const [user] = useAtom(userAtom);
 
   if (loading) {
     return <Loading />;
   }
+
   return <>{user.uid ? <MainPage /> : <LogInPage />}</>;
 };
 
