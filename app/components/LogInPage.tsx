@@ -1,24 +1,10 @@
 'use client';
 
-import { signInWithGooglePopup } from '@/firebase/auth';
-import { createUserDocument } from '@/firebase/firestore';
-import { IUser } from '../models/IUser';
+import { signinWithGoogleRedirect } from '@/firebase/auth';
+import { useGetRedirect } from '../hooks/useGetRedirect';
 
 const LogInPage = () => {
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const response = await getRedirectResult(auth);
-  //     if (response) {
-  //       console.log(response.user);
-  //     }
-  //   };
-  //   getData();
-  // }, []);
-
-  const signIn = async () => {
-    const response = await signInWithGooglePopup();
-    const userDocRef = await createUserDocument(response.user as IUser);
-  };
+  useGetRedirect();
 
   return (
     <div className='hero bg-base-200'>
@@ -28,7 +14,10 @@ const LogInPage = () => {
           <p className='py-6'>
             Please login with your google account to use the expense tracker.
           </p>
-          <button onClick={signIn} className='btn btn-primary'>
+          <button
+            onClick={signinWithGoogleRedirect}
+            className='btn btn-primary'
+          >
             Log in
           </button>
         </div>

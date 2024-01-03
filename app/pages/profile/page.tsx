@@ -1,9 +1,9 @@
-import React from 'react';
+import UserPage from '@/app/components/UserPage';
 
 const Profile = () => {
   return (
     <div>
-      <h2>Hello from profile</h2>
+      <UserPage />
     </div>
   );
 };

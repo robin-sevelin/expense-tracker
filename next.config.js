@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    API_KEY: 'AIzaSyAhSFg6fEBoDtEjwsYXrA5cU7OT1a1RfC0',
-    AUTH_DOMAIN: 'expense-tracker-fc31e.firebaseapp.com',
-    PROJECT_ID: 'expense-tracker-fc31e',
-    STORAGE_BUCKET: 'expense-tracker-fc31e.appspot.com',
-    MESSAGE_SENDER_ID: '277895219169',
-    APP_ID: '1:277895219169:web:91bb9e41ca324c267974a0',
-    MEASUREMENT_ID: 'G-8V7NPZQP6H',
+    NEXT_PUBLIC_API_KEY: process.env.NEXT_PUBLIC_API_KEY,
+    NEXT_PUBLIC_AUTH_DOMAIN: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+    NEXT_PUBLIC_PROJECT_ID: process.env.NEXT_PUBLIC_PROJECT_ID,
+    NEXT_PUBLIC_STORAGE_BUCKET: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+    NEXT_PUBLIC_MESSAGE_SENDER_ID: process.env.NEXT_PUBLIC_MESSAGE_SENDER_ID,
+    NEXT_PUBLIC_APP_ID: process.env.NEXT_PUBLIC_APP_ID,
+    NEXT_PUBLIC_MEASUREMENT_ID: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
   },
 };
 

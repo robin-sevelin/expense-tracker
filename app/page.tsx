@@ -1,11 +1,9 @@
-'use client';
-
-import LogInPage from './components/LogInPage';
+import LandingPage from './components/LandingPage';
 
 export default function Home() {
   return (
     <>
-      <LogInPage />
+      <LandingPage />
     </>
   );
 }
