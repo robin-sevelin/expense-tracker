@@ -19,6 +19,20 @@ const AddTransaction = () => {
           Amount
         </label>
         <input type='number' />
+        <div className='join'>
+          <input
+            className='join-item btn btn-outline btn-accent'
+            type='radio'
+            name='options'
+            aria-label='Regular'
+          />
+          <input
+            className='join-item btn btn-outline btn-accent'
+            type='radio'
+            name='options'
+            aria-label='Flow'
+          />
+        </div>
         <button className='btn btn-primary'>Submit</button>
       </form>
     </div>
