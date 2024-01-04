@@ -23,7 +23,9 @@ const UserPage = () => {
           </div>
         </div>
       </div>
-      <div className='hero bg-base-200'>{!balance && <AddBalance />}</div>
+      <div className='hero bg-base-200'>
+        <AddBalance />
+      </div>
     </>
   );
 };
