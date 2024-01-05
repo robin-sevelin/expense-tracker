@@ -1,4 +1,11 @@
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+} from 'firebase/firestore';
 import { app } from './config';
 import { IUser } from '@/app/models/IUser';
 import { ITransaction } from '@/app/models/ITransaction';
@@ -56,14 +63,21 @@ export const createTransactionDocument = async (
 ) => {
   const transactionDocRef = doc(db, 'transactions', userAuth?.uid);
 
-  await getDoc(transactionDocRef);
+  const transactionDocSnapshot = await getDoc(transactionDocRef);
+  const existingData = transactionDocSnapshot.data();
 
   try {
-    await setDoc(transactionDocRef, {
-      transaction,
-    });
+    if (existingData && existingData.transactions) {
+      await updateDoc(transactionDocRef, {
+        transactions: arrayUnion(transaction),
+      });
+    } else {
+      await setDoc(transactionDocRef, {
+        transactions: [transaction],
+      });
+    }
   } catch (error) {
-    console.log('error setting the transaction', error);
+    console.log('Error updating the transaction', error);
   }
 
   return { transactionDocRef } as const;
