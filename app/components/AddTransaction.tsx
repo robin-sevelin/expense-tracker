@@ -4,6 +4,7 @@ import React, { FormEvent, useState } from 'react';
 import { useAtom } from 'jotai';
 import { userAtom } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
+import { createTransactionDocument } from '@/firebase/firestore';
 
 const AddTransaction = () => {
   const [user] = useAtom(userAtom);
@@ -11,11 +12,20 @@ const AddTransaction = () => {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = { type: type, title: title, amount: amount };
+    const formData = {
+      id: Math.random(),
+      date: new Date(),
+      title: title,
+      amount: Number(amount),
+      type: type,
+    };
 
-    alert(JSON.stringify(formData, null, 2));
+    await createTransactionDocument(user, formData);
+    setType('');
+    setTitle('');
+    setAmount('');
   };
 
   useAuthUser(user);

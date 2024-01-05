@@ -13,7 +13,7 @@ export const useGetBalance = () => {
     if (!balance) {
       const getBalance = async () => {
         try {
-          const docRef = doc(db, 'transactions', user.uid);
+          const docRef = doc(db, 'users balance', user.uid);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const docData = docSnap.data();

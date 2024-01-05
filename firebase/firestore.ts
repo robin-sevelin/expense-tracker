@@ -1,6 +1,7 @@
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import { app } from './config';
 import { IUser } from '@/app/models/IUser';
+import { ITransaction } from '@/app/models/ITransaction';
 
 export const db = getFirestore(app);
 
@@ -28,17 +29,17 @@ export const createUserDocument = async (userAuth: IUser) => {
   return userDocRef;
 };
 
-export const createTransactionDocument = async (
+export const createBalanceDocument = async (
   userAuth: IUser,
   balance: number
 ) => {
-  const transactionDocRef = doc(db, 'transactions', userAuth?.uid);
+  const balanceDocRef = doc(db, 'users balance', userAuth?.uid);
 
-  const transactionSnapshot = await getDoc(transactionDocRef);
+  const balanceSnapshot = await getDoc(balanceDocRef);
 
-  if (!transactionSnapshot.exists()) {
+  if (!balanceSnapshot.exists()) {
     try {
-      await setDoc(transactionDocRef, {
+      await setDoc(balanceDocRef, {
         balance,
       });
     } catch (error) {
@@ -47,4 +48,23 @@ export const createTransactionDocument = async (
   }
 
   return { amount: balance } as const;
+};
+
+export const createTransactionDocument = async (
+  userAuth: IUser,
+  transaction: ITransaction
+) => {
+  const transactionDocRef = doc(db, 'transactions', userAuth?.uid);
+
+  await getDoc(transactionDocRef);
+
+  try {
+    await setDoc(transactionDocRef, {
+      transaction,
+    });
+  } catch (error) {
+    console.log('error setting the transaction', error);
+  }
+
+  return { transactionDocRef } as const;
 };

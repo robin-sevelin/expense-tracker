@@ -1,9 +1,9 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { userAtom } from '../store/atoms';
-import { createTransactionDocument, db } from '@/firebase/firestore';
+import { createBalanceDocument } from '@/firebase/firestore';
 import { useGetBalance } from '../hooks/useGetBalance';
 
 const AddBalance = () => {
@@ -13,7 +13,7 @@ const AddBalance = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await createTransactionDocument(user, input);
+    await createBalanceDocument(user, input);
     setInput(0);
   };
   return (
