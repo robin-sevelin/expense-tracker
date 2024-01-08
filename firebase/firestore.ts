@@ -50,7 +50,15 @@ export const createBalanceDocument = async (
         balance,
       });
     } catch (error) {
-      console.log('error setting the balance', error);
+      console.log('Error setting the balance', error);
+    }
+  } else {
+    try {
+      await updateDoc(balanceDocRef, {
+        balance,
+      });
+    } catch (error) {
+      console.log('Error updating the balance', error);
     }
   }
 

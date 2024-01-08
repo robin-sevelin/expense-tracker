@@ -4,11 +4,33 @@ import React from 'react';
 import { useAtom } from 'jotai';
 import { userAtom } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
+import { useGetTransactions } from '../hooks/useGetTransactions';
+import { useGetSum } from '../hooks/useGetSum';
+import NotFound from './NotFound';
 
 const TransactionList = () => {
   const [user] = useAtom(userAtom);
+  const { transactions } = useGetTransactions(user);
+  const { sum } = useGetSum(transactions);
   useAuthUser(user);
-  return <div>TransactionList</div>;
+
+  return (
+    <div>
+      <h2> TransactionList</h2>
+      {!transactions.length ? (
+        <NotFound />
+      ) : (
+        transactions.map((transaction) => (
+          <div key={transaction.id}>
+            <h3>Title: {transaction.title}</h3>
+            <p>Amount: {transaction.amount} kr</p>
+            <p>Type: {transaction.type}</p>
+            sum: {sum} kr
+          </div>
+        ))
+      )}
+    </div>
+  );
 };
 
 export default TransactionList;

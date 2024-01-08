@@ -29,5 +29,5 @@ export const useGetRedirect = () => {
     getData();
   }, [setUser]);
 
-  return { loading };
+  return { loading } as const;
 };

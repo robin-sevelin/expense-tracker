@@ -1,3 +1,5 @@
+import { title } from 'process';
+
 export const ROUTES = [
   { id: 0, url: '/', text: 'Home' },
   { id: 1, url: '/pages/profile', text: 'Profile' },
@@ -12,3 +14,29 @@ export const USER_BASE_VALUES = {
   displayName: '',
   photoURL: '',
 };
+
+export const BALANCE_BASE_VALUE = 0;
+
+export const TRANSACTION_TYPES = {
+  INCOME: 'income',
+  EXPENSE: 'expense',
+};
+
+export const EXPENSE_CATEGORIES = [
+  {
+    id: 0,
+    title: 'Joy',
+  },
+  {
+    id: 1,
+    title: 'Bills',
+  },
+  {
+    id: 2,
+    title: 'Food',
+  },
+  {
+    id: 3,
+    title: 'Other',
+  },
+];

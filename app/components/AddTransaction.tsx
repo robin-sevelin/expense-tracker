@@ -5,12 +5,15 @@ import { useAtom } from 'jotai';
 import { userAtom } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
 import { createTransactionDocument } from '@/firebase/firestore';
+import { TRANSACTION_TYPES } from '../constants/constants';
+import ExpenseCategories from './ExpenseCategories';
 
 const AddTransaction = () => {
   const [user] = useAtom(userAtom);
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,6 +23,7 @@ const AddTransaction = () => {
       title: title,
       amount: Number(amount),
       type: type,
+      category: category,
     };
 
     await createTransactionDocument(user, formData);
@@ -43,6 +47,7 @@ const AddTransaction = () => {
             onChange={(e) => setType(e.target.value)}
             aria-label='Expense'
           />
+
           <input
             className='join-item btn m-2'
             type='radio'
@@ -52,6 +57,9 @@ const AddTransaction = () => {
             aria-label='Income'
           />
         </div>
+        {type === TRANSACTION_TYPES.EXPENSE && (
+          <ExpenseCategories onHandleChange={setCategory} />
+        )}
         <div className=' m-2'>
           <label htmlFor='title'>Title</label>
           <input

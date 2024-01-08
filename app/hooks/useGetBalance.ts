@@ -1,36 +1,36 @@
 import { db } from '@/firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
-import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
 import { balanceAtom, userAtom } from '../store/atoms';
 
 export const useGetBalance = () => {
-  const [user] = useAtom(userAtom);
   const [balance, setBalance] = useAtom(balanceAtom);
-  const [loading, setLoading] = useState(true);
+  const [user] = useAtom(userAtom);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!balance) {
+    if (user) {
       const getBalance = async () => {
         try {
           const docRef = doc(db, 'users balance', user.uid);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const docData = docSnap.data();
-            const balance = docData.balance;
-            setBalance(balance);
+            const balanceData = docData.balance;
+            setBalance(balanceData);
           } else {
             console.log('No such document!');
           }
         } catch (error) {
           console.log('something went wrong', error);
         } finally {
-          setLoading(false);
+          setIsLoading(false);
         }
       };
       getBalance();
     }
-  }, [setBalance, user, balance]);
+  }, [setBalance, user]);
 
-  return { loading };
+  return { isLoading, balance };
 };

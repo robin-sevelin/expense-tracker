@@ -4,13 +4,14 @@ import React from 'react';
 import { useAtom } from 'jotai';
 import { balanceAtom, userAtom } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
+import BalanceAmount from './BalanceAmount';
 import AddBalance from './AddBalance';
 
 const UserPage = () => {
   const [user] = useAtom(userAtom);
   const [balance] = useAtom(balanceAtom);
-  useAuthUser(user);
 
+  useAuthUser(user);
   return (
     <>
       <div className='hero bg-base-200'>
@@ -19,7 +20,7 @@ const UserPage = () => {
             <h2 className='text-5xl font-bold'>User information</h2>
             <p className='py-6'>Name: {user.displayName}</p>
             <p className='py-6'>E-mail: {user.email}</p>
-            <p className='py-6'>Balance: {balance} kr</p>
+            <BalanceAmount key={balance} />
           </div>
         </div>
       </div>
