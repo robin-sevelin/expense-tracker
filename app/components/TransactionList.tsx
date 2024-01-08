@@ -7,12 +7,17 @@ import { useAuthUser } from '../hooks/useAuthUser';
 import { useGetTransactions } from '../hooks/useGetTransactions';
 import { useGetSum } from '../hooks/useGetSum';
 import NotFound from './NotFound';
+import Loading from './Loading';
 
 const TransactionList = () => {
   const [user] = useAtom(userAtom);
-  const { transactions } = useGetTransactions(user);
+  const { isLoading, transactions } = useGetTransactions();
   const { sum } = useGetSum(transactions);
   useAuthUser(user);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>

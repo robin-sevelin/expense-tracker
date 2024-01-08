@@ -4,14 +4,20 @@ import React from 'react';
 import { useAtom } from 'jotai';
 import { balanceAtom, userAtom } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
-import BalanceAmount from './BalanceAmount';
-import AddBalance from './AddBalance';
+import Link from 'next/link';
+import { useGetBalance } from '../hooks/useGetBalance';
+import Loading from './Loading';
 
 const UserPage = () => {
   const [user] = useAtom(userAtom);
   const [balance] = useAtom(balanceAtom);
+  const { isLoading } = useGetBalance();
 
   useAuthUser(user);
+
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <>
       <div className='hero bg-base-200'>
@@ -20,13 +26,13 @@ const UserPage = () => {
             <h2 className='text-5xl font-bold'>User information</h2>
             <p className='py-6'>Name: {user.displayName}</p>
             <p className='py-6'>E-mail: {user.email}</p>
-            <BalanceAmount key={balance} />
+            <p>Current balance: {balance} kr</p>
           </div>
         </div>
       </div>
-      <div className='hero bg-base-200'>
-        <AddBalance />
-      </div>
+      <Link href='/pages/editBalance'>
+        <button className='btn btn-primary'>Edit balance</button>
+      </Link>
     </>
   );
 };

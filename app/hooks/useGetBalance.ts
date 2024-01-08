@@ -1,16 +1,17 @@
 import { db } from '@/firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import { balanceAtom, userAtom } from '../store/atoms';
+import { useEffect, useState } from 'react';
+import { balanceAtom, submitAtom, userAtom } from '../store/atoms';
 
 export const useGetBalance = () => {
-  const [balance, setBalance] = useAtom(balanceAtom);
   const [user] = useAtom(userAtom);
+  const [, setBalance] = useAtom(balanceAtom);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (user) {
+    if (isSubmitted || user) {
       const getBalance = async () => {
         try {
           const docRef = doc(db, 'users balance', user.uid);
@@ -19,6 +20,7 @@ export const useGetBalance = () => {
             const docData = docSnap.data();
             const balanceData = docData.balance;
             setBalance(balanceData);
+            setIsSubmitted(false);
           } else {
             console.log('No such document!');
           }
@@ -30,7 +32,7 @@ export const useGetBalance = () => {
       };
       getBalance();
     }
-  }, [setBalance, user]);
+  }, [setBalance, user, setIsSubmitted, isSubmitted]);
 
-  return { isLoading, balance };
+  return { isLoading };
 };
