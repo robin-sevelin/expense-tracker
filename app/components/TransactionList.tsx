@@ -8,6 +8,7 @@ import { useGetTransactions } from '../hooks/useGetTransactions';
 import { useGetSum } from '../hooks/useGetSum';
 import NotFound from './NotFound';
 import Loading from './Loading';
+import Link from 'next/link';
 
 const TransactionList = () => {
   const [user] = useAtom(userAtom);
@@ -31,6 +32,10 @@ const TransactionList = () => {
             <p>Amount: {transaction.amount} kr</p>
             <p>Type: {transaction.type}</p>
             sum: {sum} kr
+            <button className='btn btn-secodary'>Remove</button>
+            <Link href={`/pages/${transaction.id}`}>
+              <button className='btn btn-primary'>Edit</button>
+            </Link>
           </div>
         ))
       )}
