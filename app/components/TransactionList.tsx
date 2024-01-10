@@ -9,12 +9,14 @@ import { useGetSum } from '../hooks/useGetSum';
 import NotFound from './NotFound';
 import Loading from './Loading';
 import Link from 'next/link';
+import { useGetBalance } from '../hooks/useGetBalance';
 
 const TransactionList = () => {
   const [user] = useAtom(userAtom);
   const { isLoading, transactions } = useGetTransactions();
   const { sum } = useGetSum(transactions);
   useAuthUser(user);
+  useGetBalance();
 
   if (isLoading) {
     return <Loading />;
