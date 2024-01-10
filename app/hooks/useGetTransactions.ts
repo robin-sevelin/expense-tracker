@@ -5,13 +5,13 @@ import { ITransaction } from '../models/ITransaction';
 import { useAtom } from 'jotai';
 import { userAtom } from '../store/atoms';
 
-export const useGetTransactions = () => {
+export const useGetTransactions = (isDeleted: boolean) => {
   const [user] = useAtom(userAtom);
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!transactions.length) {
+    if (isDeleted || user) {
       try {
         const getData = async () => {
           const docRef = doc(db, 'transactions', user.uid);
@@ -27,7 +27,7 @@ export const useGetTransactions = () => {
         setIsLoading(false);
       }
     }
-  }, [transactions, user]);
+  }, [isDeleted, user]);
 
   return { isLoading, transactions } as const;
 };

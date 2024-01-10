@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useAtom } from 'jotai';
 import { userAtom } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
@@ -10,13 +10,21 @@ import NotFound from './NotFound';
 import Loading from './Loading';
 import Link from 'next/link';
 import { useGetBalance } from '../hooks/useGetBalance';
+import { deleteTransactionObject } from '@/firebase/firestore';
 
 const TransactionList = () => {
   const [user] = useAtom(userAtom);
-  const { isLoading, transactions } = useGetTransactions();
+  const [isDeleted, setIsdeleted] = useState(false);
+  const { isLoading, transactions } = useGetTransactions(isDeleted);
+
   const { sum } = useGetSum(transactions);
   useAuthUser(user);
   useGetBalance();
+
+  const handleDelete = async (id: number) => {
+    await deleteTransactionObject(user, id);
+    setIsdeleted(true);
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -25,7 +33,7 @@ const TransactionList = () => {
   return (
     <div>
       <h2> TransactionList</h2>
-      {!transactions.length ? (
+      {!transactions ? (
         <NotFound />
       ) : (
         transactions.map((transaction) => (
@@ -33,14 +41,20 @@ const TransactionList = () => {
             <h3>Title: {transaction.title}</h3>
             <p>Amount: {transaction.amount} kr</p>
             <p>Type: {transaction.type}</p>
-            sum: {sum} kr
-            <button className='btn btn-secodary'>Remove</button>
+
+            <button
+              className='btn btn-secodary'
+              onClick={() => handleDelete(transaction.id)}
+            >
+              Remove
+            </button>
             <Link href={`/pages/${transaction.id}`}>
               <button className='btn btn-primary'>Edit</button>
             </Link>
           </div>
         ))
       )}
+      sum: {sum} kr
     </div>
   );
 };

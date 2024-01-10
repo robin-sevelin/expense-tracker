@@ -7,6 +7,7 @@ import { useAuthUser } from '../hooks/useAuthUser';
 import { createTransactionDocument } from '@/firebase/firestore';
 import { TRANSACTION_TYPES } from '../constants/constants';
 import ExpenseCategories from './ExpenseCategories';
+import IncomeCategories from './IncomeCategories';
 
 const AddTransaction = () => {
   const [user] = useAtom(userAtom);
@@ -59,6 +60,9 @@ const AddTransaction = () => {
         </div>
         {type === TRANSACTION_TYPES.EXPENSE && (
           <ExpenseCategories onHandleChange={setCategory} />
+        )}
+        {type === TRANSACTION_TYPES.INCOME && (
+          <IncomeCategories onHandleChange={setCategory} />
         )}
         <div className=' m-2'>
           <label htmlFor='title'>Title</label>

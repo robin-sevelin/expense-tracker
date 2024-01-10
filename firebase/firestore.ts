@@ -90,3 +90,24 @@ export const createTransactionDocument = async (
 
   return { transactionDocRef } as const;
 };
+
+export const deleteTransactionObject = async (userAuth: IUser, id: number) => {
+  const transactionCollectionRef = doc(db, 'transactions', userAuth?.uid);
+
+  try {
+    const transactionDocSnapshot = await getDoc(transactionCollectionRef);
+    const existingData = transactionDocSnapshot.data();
+
+    if (existingData) {
+      const updatedTransactions = existingData.transactions.filter(
+        (transaction: ITransaction) => transaction.id !== id
+      );
+
+      await updateDoc(transactionCollectionRef, {
+        transactions: updatedTransactions,
+      });
+    }
+  } catch (error) {
+    console.log('Error deleting the transaction', error);
+  }
+};

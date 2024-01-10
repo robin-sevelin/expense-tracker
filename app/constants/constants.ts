@@ -36,3 +36,22 @@ export const EXPENSE_CATEGORIES = [
     title: 'Other',
   },
 ];
+
+export const INCOME_CATEGORIES = [
+  {
+    id: 0,
+    title: 'Salary',
+  },
+  {
+    id: 1,
+    title: 'Gift',
+  },
+  {
+    id: 2,
+    title: 'Wellfare',
+  },
+  {
+    id: 3,
+    title: 'Other',
+  },
+];
