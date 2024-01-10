@@ -6,9 +6,6 @@ import {
   updateDoc,
   arrayUnion,
   collection,
-  query,
-  where,
-  getDocs,
 } from 'firebase/firestore';
 import { app } from './config';
 import { IUser } from '@/app/models/IUser';
@@ -65,7 +62,9 @@ export const createBalanceDocument = async (
   } else {
     try {
       await updateDoc(balanceDocRef, {
-        balane: balance,
+        balance: balance,
+        user: userAuth.displayName,
+        createdAt: DATESTAMP.toLocaleString(),
       });
     } catch (error) {
       console.log('Error updating the balance', error);

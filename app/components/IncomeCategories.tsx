@@ -12,7 +12,7 @@ const IncomeCategories = ({ onHandleChange }: CategoryProps) => {
   return (
     <>
       {INCOME_CATEGORIES.map((category) => (
-        <div className=' m-2' key={category.id}>
+        <div className=' m-2 float-right' key={category.id}>
           <input
             className='join-item btn m-2'
             type='radio'

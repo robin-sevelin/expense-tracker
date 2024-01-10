@@ -7,6 +7,7 @@ import { useAuthUser } from '../hooks/useAuthUser';
 import Link from 'next/link';
 import { useGetBalance } from '../hooks/useGetBalance';
 import Loading from './Loading';
+import BalanceAmount from './BalanceAmount';
 
 const UserPage = () => {
   const [user] = useAtom(userAtom);
@@ -26,7 +27,7 @@ const UserPage = () => {
             <h2 className='text-5xl font-bold'>User information</h2>
             <p className='py-6'>Name: {user.displayName}</p>
             <p className='py-6'>E-mail: {user.email}</p>
-            <p>Current balance: {balance} kr</p>
+            <BalanceAmount key={balance} />
           </div>
         </div>
       </div>
