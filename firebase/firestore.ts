@@ -5,6 +5,10 @@ import {
   getDoc,
   updateDoc,
   arrayUnion,
+  collection,
+  query,
+  where,
+  getDocs,
 } from 'firebase/firestore';
 import { app } from './config';
 import { IUser } from '@/app/models/IUser';
@@ -130,12 +134,35 @@ export const deleteTransactionObject = async (userAuth: IUser, id: string) => {
   }
 };
 
-// const transactions = collection(db, 'transactions');
+export const updateTransactionObject = async (
+  user: IUser,
+  title: string,
+  amount: number,
+  id: string
+) => {
+  const transactionsCollection = collection(db, 'transactions');
 
-// // Create a query against the collection.
-// const q = query(
-//   transactions,
-//   where('transactions', 'array-contains', transaction.id)
-// );
+  const userDocRef = doc(transactionsCollection, user.uid);
+  const yearSubcollectionRef = collection(userDocRef, CURRENT_YEAR);
+  const monthDocRef = doc(yearSubcollectionRef, CURRENT_MONTH);
 
-// console.log(q);
+  try {
+    const monthDocSnap = await getDoc(monthDocRef);
+    if (monthDocSnap.exists()) {
+      const monthDocData = monthDocSnap.data();
+      const transactionArray = monthDocData.transactions;
+      const updatedArray = transactionArray.map((transaction: ITransaction) => {
+        if (transaction.id === id) {
+          return { ...transaction, title, amount };
+        }
+        return transaction;
+      });
+
+      await updateDoc(monthDocRef, { transactions: updatedArray });
+    } else {
+      console.log('document doesnt exist');
+    }
+  } catch (error) {
+    console.log('error getting the document', error);
+  }
+};
