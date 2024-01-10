@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useAtom } from 'jotai';
-import { userAtom } from '../store/atoms';
+import { balanceAtom, userAtom } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
 import { useGetTransactions } from '../hooks/useGetTransactions';
 import { useGetSum } from '../hooks/useGetSum';
@@ -14,9 +14,9 @@ import { deleteTransactionObject } from '@/firebase/firestore';
 
 const TransactionList = () => {
   const [user] = useAtom(userAtom);
+  const [balance] = useAtom(balanceAtom);
   const [isDeleted, setIsdeleted] = useState(false);
   const { isLoading, transactions } = useGetTransactions(isDeleted);
-
   const { sum } = useGetSum(transactions);
   useAuthUser(user);
   useGetBalance();
@@ -33,7 +33,7 @@ const TransactionList = () => {
   return (
     <div>
       <h2> TransactionList</h2>
-      {!transactions ? (
+      {transactions?.length === 0 || !transactions ? (
         <NotFound />
       ) : (
         transactions.map((transaction) => (
@@ -54,7 +54,7 @@ const TransactionList = () => {
           </div>
         ))
       )}
-      sum: {sum} kr
+      sum: {sum === 0 ? balance : sum} kr
     </div>
   );
 };
