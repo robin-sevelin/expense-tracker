@@ -1,31 +1,38 @@
-// import { useEffect, useState } from "react";
-// import { balanceAtom } from "../store/atoms";
-// import { auth } from "@/firebase/auth";
-// import { createUserDocument } from "@/firebase/firestore";
-// import { getRedirectResult } from "firebase/auth";
-// import { useAtom } from "jotai";
-// import { IUser } from "../models/IUser";
+import { db } from '@/firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
+import { useAtom } from 'jotai';
+import { useEffect, useState } from 'react';
+import { balanceAtom, submitAtom, userAtom } from '../store/atoms';
 
-// export const useGetBalance = () => {
-//     const [, setBalance] = useAtom(balanceAtom);
-//     const [loading, setLoading] = useState(true);
+export const useGetBalance = () => {
+  const [user] = useAtom(userAtom);
+  const [, setBalance] = useAtom(balanceAtom);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
-//     useEffect(() => {
-//       const getData = async () => {
-//         try {
-//           const response = await getRedirectResult(auth);
-//           if (response) {
-//             setUser(response.user as IUser);
-//             await createUserDocument(response.user as IUser);
-//           }
-//         } catch (error) {
-//           console.error('Error during login:', error);
-//         } finally {
-//           setLoading(false);
-//         }
-//       };
+  useEffect(() => {
+    if (isSubmitted || user) {
+      const getBalance = async () => {
+        try {
+          const docRef = doc(db, 'users balance', user.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const docData = docSnap.data();
+            const balanceData = docData.balance;
+            setBalance(balanceData);
+            setIsSubmitted(false);
+          } else {
+            console.log('No such document!');
+          }
+        } catch (error) {
+          console.log('something went wrong', error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      getBalance();
+    }
+  }, [setBalance, user, setIsSubmitted, isSubmitted]);
 
-//       getData();
-//     }, [setUser]);
-
-//     return { loading };};
+  return { isLoading };
+};

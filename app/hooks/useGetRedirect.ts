@@ -8,7 +8,6 @@ import { IUser } from '../models/IUser';
 
 export const useGetRedirect = () => {
   const [, setUser] = useAtom(userAtom);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,5 +28,5 @@ export const useGetRedirect = () => {
     getData();
   }, [setUser]);
 
-  return { loading };
+  return { loading } as const;
 };

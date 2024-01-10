@@ -10,9 +10,9 @@ import MainPage from './MainPage';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 
 const LandingPage = () => {
-  useIsLoggedIn();
   const { loading } = useGetRedirect();
   const [user] = useAtom(userAtom);
+  useIsLoggedIn();
 
   if (loading) {
     return <Loading />;

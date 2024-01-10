@@ -4,36 +4,35 @@ import React from 'react';
 import { useAtom } from 'jotai';
 import { balanceAtom, userAtom } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
-import AddBalance from './AddBalance';
+import Link from 'next/link';
+import { useGetBalance } from '../hooks/useGetBalance';
+import Loading from './Loading';
 
 const UserPage = () => {
   const [user] = useAtom(userAtom);
   const [balance] = useAtom(balanceAtom);
+  const { isLoading } = useGetBalance();
+
   useAuthUser(user);
 
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <>
       <div className='hero bg-base-200'>
         <div className='hero-content flex-col justify-center items-center'>
           <div className='max-w-md'>
             <h2 className='text-5xl font-bold'>User information</h2>
-            <picture>
-              <img
-                src={user.photoURL}
-                alt={user.displayName}
-                width={75}
-                height={75}
-                loading='lazy'
-                className=' rounded-full shadow-2xl '
-              />
-            </picture>
             <p className='py-6'>Name: {user.displayName}</p>
             <p className='py-6'>E-mail: {user.email}</p>
-            <p className='py-6'>Balance: {balance} kr</p>
+            <p>Current balance: {balance} kr</p>
           </div>
         </div>
       </div>
-      <div className='hero bg-base-200'>{!balance && <AddBalance />}</div>
+      <Link href='/pages/editBalance'>
+        <button className='btn btn-primary'>Edit balance</button>
+      </Link>
     </>
   );
 };
