@@ -9,6 +9,11 @@ import {
 import { app } from './config';
 import { IUser } from '@/app/models/IUser';
 import { ITransaction } from '@/app/models/ITransaction';
+import {
+  CURRENT_YEAR,
+  CURRENT_MONTH,
+  DATESTAMP,
+} from '@/app/constants/constants';
 
 export const db = getFirestore(app);
 
@@ -19,13 +24,12 @@ export const createUserDocument = async (userAuth: IUser) => {
 
   if (!userSnapshot.exists()) {
     const { displayName, email, photoURL } = userAuth;
-    const createdAt = new Date();
 
     try {
       await setDoc(userDocRef, {
         displayName,
         email,
-        createdAt,
+        createdAt: DATESTAMP.toLocaleString(),
         photoURL,
       });
     } catch (error) {
@@ -47,7 +51,9 @@ export const createBalanceDocument = async (
   if (!balanceSnapshot.exists()) {
     try {
       await setDoc(balanceDocRef, {
-        balance,
+        user: userAuth.displayName,
+        createdAt: DATESTAMP.toLocaleString(),
+        balance: balance,
       });
     } catch (error) {
       console.log('Error setting the balance', error);
@@ -55,7 +61,7 @@ export const createBalanceDocument = async (
   } else {
     try {
       await updateDoc(balanceDocRef, {
-        balance,
+        balane: balance,
       });
     } catch (error) {
       console.log('Error updating the balance', error);
@@ -69,7 +75,13 @@ export const createTransactionDocument = async (
   userAuth: IUser,
   transaction: ITransaction
 ) => {
-  const transactionDocRef = doc(db, 'transactions', userAuth?.uid);
+  const transactionDocRef = doc(
+    db,
+    'transactions',
+    userAuth?.uid,
+    CURRENT_YEAR,
+    CURRENT_MONTH
+  );
 
   const transactionDocSnapshot = await getDoc(transactionDocRef);
   const existingData = transactionDocSnapshot.data();
@@ -91,8 +103,14 @@ export const createTransactionDocument = async (
   return { transactionDocRef } as const;
 };
 
-export const deleteTransactionObject = async (userAuth: IUser, id: number) => {
-  const transactionCollectionRef = doc(db, 'transactions', userAuth?.uid);
+export const deleteTransactionObject = async (userAuth: IUser, id: string) => {
+  const transactionCollectionRef = doc(
+    db,
+    'transactions',
+    userAuth?.uid,
+    CURRENT_YEAR,
+    CURRENT_MONTH
+  );
 
   try {
     const transactionDocSnapshot = await getDoc(transactionCollectionRef);
@@ -111,3 +129,13 @@ export const deleteTransactionObject = async (userAuth: IUser, id: number) => {
     console.log('Error deleting the transaction', error);
   }
 };
+
+// const transactions = collection(db, 'transactions');
+
+// // Create a query against the collection.
+// const q = query(
+//   transactions,
+//   where('transactions', 'array-contains', transaction.id)
+// );
+
+// console.log(q);

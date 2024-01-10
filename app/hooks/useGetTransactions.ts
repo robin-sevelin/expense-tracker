@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { ITransaction } from '../models/ITransaction';
 import { useAtom } from 'jotai';
 import { userAtom } from '../store/atoms';
+import { CURRENT_MONTH, CURRENT_YEAR } from '../constants/constants';
 
 export const useGetTransactions = (isDeleted: boolean) => {
   const [user] = useAtom(userAtom);
@@ -14,7 +15,13 @@ export const useGetTransactions = (isDeleted: boolean) => {
     if (isDeleted || user) {
       try {
         const getData = async () => {
-          const docRef = doc(db, 'transactions', user.uid);
+          const docRef = doc(
+            db,
+            'transactions',
+            user.uid,
+            CURRENT_YEAR,
+            CURRENT_MONTH
+          );
           const docSnap = await getDoc(docRef);
           const data = docSnap.data();
 
@@ -22,7 +29,7 @@ export const useGetTransactions = (isDeleted: boolean) => {
         };
         getData();
       } catch (error) {
-        console.error('Error gettoíng transaction list:', error);
+        console.error('Error getting transaction list:', error);
       } finally {
         setIsLoading(false);
       }

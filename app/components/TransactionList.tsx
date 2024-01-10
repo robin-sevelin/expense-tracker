@@ -21,7 +21,7 @@ const TransactionList = () => {
   useAuthUser(user);
   useGetBalance();
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     await deleteTransactionObject(user, id);
     setIsdeleted(true);
   };
