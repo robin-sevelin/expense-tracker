@@ -18,44 +18,45 @@ const TransactionList = () => {
   const [isDeleted, setIsdeleted] = useState(false);
   const { isLoading, transactions } = useGetTransactions(isDeleted);
   const { sum } = useGetSum(transactions);
-  useAuthUser(user);
-  useGetBalance();
 
   const handleDelete = async (id: string) => {
     await deleteTransactionObject(user, id);
     setIsdeleted(true);
   };
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
+  useAuthUser(user);
+  useGetBalance();
   return (
-    <div>
-      <h2> TransactionList</h2>
-      {transactions?.length === 0 || !transactions ? (
-        <NotFound />
+    <>
+      {isLoading ? (
+        <Loading />
       ) : (
-        transactions.map((transaction) => (
-          <div key={transaction.id}>
-            <h3>Title: {transaction.title}</h3>
-            <p>Amount: {transaction.amount} kr</p>
-            <p>Type: {transaction.type}</p>
+        <div>
+          <h2> TransactionList</h2>
+          {transactions?.length === 0 || !transactions ? (
+            <NotFound />
+          ) : (
+            transactions.map((transaction) => (
+              <div key={transaction.id}>
+                <h3>Title: {transaction.title}</h3>
+                <p>Amount: {transaction.amount} kr</p>
+                <p>Type: {transaction.type}</p>
 
-            <button
-              className='btn btn-secodary'
-              onClick={() => handleDelete(transaction.id)}
-            >
-              Remove
-            </button>
-            <Link href={`/pages/${transaction.id}`}>
-              <button className='btn btn-primary'>Edit</button>
-            </Link>
-          </div>
-        ))
+                <button
+                  className='btn btn-secodary'
+                  onClick={() => handleDelete(transaction.id)}
+                >
+                  Remove
+                </button>
+                <Link href={`/pages/${transaction.id}`}>
+                  <button className='btn btn-primary'>Edit</button>
+                </Link>
+              </div>
+            ))
+          )}
+          sum: {sum === 0 ? balance : sum} kr
+        </div>
       )}
-      sum: {sum === 0 ? balance : sum} kr
-    </div>
+    </>
   );
 };
 
