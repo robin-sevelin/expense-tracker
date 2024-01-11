@@ -14,7 +14,6 @@ import { deleteTransactionObject } from '@/firebase/firestore';
 
 const TransactionList = () => {
   const [user] = useAtom(userAtom);
-  const [balance] = useAtom(balanceAtom);
   const [isDeleted, setIsdeleted] = useState(false);
   const { isLoading, transactions } = useGetTransactions(isDeleted);
   const { sum } = useGetSum(transactions);
@@ -32,7 +31,7 @@ const TransactionList = () => {
       ) : (
         <div>
           <h2> TransactionList</h2>
-          {transactions?.length === 0 || !transactions ? (
+          {!transactions.length ? (
             <NotFound />
           ) : (
             transactions.map((transaction) => (
@@ -53,7 +52,7 @@ const TransactionList = () => {
               </div>
             ))
           )}
-          sum: {sum === 0 ? balance : sum} kr
+          Remaning money: {sum} kr
         </div>
       )}
     </>
