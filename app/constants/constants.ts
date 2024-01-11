@@ -1,3 +1,5 @@
+import { DateTime } from 'luxon';
+
 export const ROUTES = [
   { id: 0, url: '/', text: 'Home' },
   { id: 1, url: '/pages/profile', text: 'Profile' },
@@ -5,6 +7,12 @@ export const ROUTES = [
   { id: 3, url: '/pages/viewTransactions', text: 'View transactions' },
   { id: 4, url: '/pages/addTransactions', text: 'Add transactions' },
 ];
+
+export const DATESTAMP = DateTime.local();
+export const CURRENT_YEAR = DATESTAMP.year.toString();
+export const CURRENT_MONTH = DATESTAMP.toLocaleString({
+  month: 'short',
+});
 
 export const USER_BASE_VALUES = {
   uid: '',
@@ -30,6 +38,25 @@ export const EXPENSE_CATEGORIES = [
   {
     id: 2,
     title: 'Food',
+  },
+  {
+    id: 3,
+    title: 'Other',
+  },
+];
+
+export const INCOME_CATEGORIES = [
+  {
+    id: 0,
+    title: 'Salary',
+  },
+  {
+    id: 1,
+    title: 'Gift',
+  },
+  {
+    id: 2,
+    title: 'Wellfare',
   },
   {
     id: 3,

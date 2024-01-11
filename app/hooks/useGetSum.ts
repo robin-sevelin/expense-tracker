@@ -9,7 +9,7 @@ export const useGetSum = (transactions: ITransaction[]) => {
   const [sum, setSum] = useAtom(sumAtom);
 
   useEffect(() => {
-    if (transactions.length !== 0) {
+    if (transactions) {
       const countSum = () => {
         const expenses = transactions.filter(
           (transaction) => transaction.type === TRANSACTION_TYPES.EXPENSE
@@ -27,7 +27,7 @@ export const useGetSum = (transactions: ITransaction[]) => {
 
       countSum();
     }
-  }, [transactions, balance, setSum]);
+  }, [balance, setSum, transactions]);
 
   return { sum } as const;
 };

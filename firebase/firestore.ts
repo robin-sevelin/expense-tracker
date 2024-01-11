@@ -5,10 +5,16 @@ import {
   getDoc,
   updateDoc,
   arrayUnion,
+  collection,
 } from 'firebase/firestore';
 import { app } from './config';
 import { IUser } from '@/app/models/IUser';
 import { ITransaction } from '@/app/models/ITransaction';
+import {
+  CURRENT_YEAR,
+  CURRENT_MONTH,
+  DATESTAMP,
+} from '@/app/constants/constants';
 
 export const db = getFirestore(app);
 
@@ -19,13 +25,12 @@ export const createUserDocument = async (userAuth: IUser) => {
 
   if (!userSnapshot.exists()) {
     const { displayName, email, photoURL } = userAuth;
-    const createdAt = new Date();
 
     try {
       await setDoc(userDocRef, {
         displayName,
         email,
-        createdAt,
+        createdAt: DATESTAMP.toLocaleString(),
         photoURL,
       });
     } catch (error) {
@@ -47,7 +52,9 @@ export const createBalanceDocument = async (
   if (!balanceSnapshot.exists()) {
     try {
       await setDoc(balanceDocRef, {
-        balance,
+        user: userAuth.displayName,
+        createdAt: DATESTAMP.toLocaleString(),
+        balance: balance,
       });
     } catch (error) {
       console.log('Error setting the balance', error);
@@ -55,7 +62,9 @@ export const createBalanceDocument = async (
   } else {
     try {
       await updateDoc(balanceDocRef, {
-        balance,
+        balance: balance,
+        user: userAuth.displayName,
+        createdAt: DATESTAMP.toLocaleString(),
       });
     } catch (error) {
       console.log('Error updating the balance', error);
@@ -69,7 +78,13 @@ export const createTransactionDocument = async (
   userAuth: IUser,
   transaction: ITransaction
 ) => {
-  const transactionDocRef = doc(db, 'transactions', userAuth?.uid);
+  const transactionDocRef = doc(
+    db,
+    'transactions',
+    userAuth?.uid,
+    CURRENT_YEAR,
+    CURRENT_MONTH
+  );
 
   const transactionDocSnapshot = await getDoc(transactionDocRef);
   const existingData = transactionDocSnapshot.data();
@@ -89,4 +104,64 @@ export const createTransactionDocument = async (
   }
 
   return { transactionDocRef } as const;
+};
+
+export const deleteTransactionObject = async (userAuth: IUser, id: string) => {
+  const transactionCollectionRef = doc(
+    db,
+    'transactions',
+    userAuth?.uid,
+    CURRENT_YEAR,
+    CURRENT_MONTH
+  );
+
+  try {
+    const transactionDocSnapshot = await getDoc(transactionCollectionRef);
+    const existingData = transactionDocSnapshot.data();
+
+    if (existingData) {
+      const updatedTransactions = existingData.transactions.filter(
+        (transaction: ITransaction) => transaction.id !== id
+      );
+
+      await updateDoc(transactionCollectionRef, {
+        transactions: updatedTransactions,
+      });
+    }
+  } catch (error) {
+    console.log('Error deleting the transaction', error);
+  }
+};
+
+export const updateTransactionObject = async (
+  user: IUser,
+  title: string,
+  amount: number,
+  id: string
+) => {
+  const transactionsCollection = collection(db, 'transactions');
+
+  const userDocRef = doc(transactionsCollection, user.uid);
+  const yearSubcollectionRef = collection(userDocRef, CURRENT_YEAR);
+  const monthDocRef = doc(yearSubcollectionRef, CURRENT_MONTH);
+
+  try {
+    const monthDocSnap = await getDoc(monthDocRef);
+    if (monthDocSnap.exists()) {
+      const monthDocData = monthDocSnap.data();
+      const transactionArray = monthDocData.transactions;
+      const updatedArray = transactionArray.map((transaction: ITransaction) => {
+        if (transaction.id === id) {
+          return { ...transaction, title, amount };
+        }
+        return transaction;
+      });
+
+      await updateDoc(monthDocRef, { transactions: updatedArray });
+    } else {
+      console.log('document doesnt exist');
+    }
+  } catch (error) {
+    console.log('error getting the document', error);
+  }
 };

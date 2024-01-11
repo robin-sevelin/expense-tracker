@@ -6,6 +6,7 @@ import { balanceAtom, submitAtom, userAtom } from '../store/atoms';
 import { createBalanceDocument } from '@/firebase/firestore';
 import Link from 'next/link';
 import { useGetBalance } from '../hooks/useGetBalance';
+import BalanceAmount from './BalanceAmount';
 
 const AddBalance = () => {
   const [user] = useAtom(userAtom);
@@ -24,7 +25,7 @@ const AddBalance = () => {
   return (
     <div>
       <h2>Edit balance</h2>
-      Current Balance: {balance} kr
+      <BalanceAmount key={balance} />
       <form onSubmit={handleSubmit}>
         <label htmlFor='balance'>Amount in SEK</label>
         <input

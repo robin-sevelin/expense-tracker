@@ -1,17 +1,17 @@
 import React from 'react';
-import { EXPENSE_CATEGORIES } from '../constants/constants';
+import { INCOME_CATEGORIES } from '../constants/constants';
 
 interface CategoryProps {
   onHandleChange: (category: string) => void;
 }
 
-const ExpenseCategories = ({ onHandleChange }: CategoryProps) => {
+const IncomeCategories = ({ onHandleChange }: CategoryProps) => {
   const handleChange = (category: string) => {
     onHandleChange(category);
   };
   return (
     <>
-      {EXPENSE_CATEGORIES.map((category) => (
+      {INCOME_CATEGORIES.map((category) => (
         <div className=' m-2 float-right' key={category.id}>
           <input
             className='join-item btn m-2'
@@ -27,4 +27,4 @@ const ExpenseCategories = ({ onHandleChange }: CategoryProps) => {
   );
 };
 
-export default ExpenseCategories;
+export default IncomeCategories;

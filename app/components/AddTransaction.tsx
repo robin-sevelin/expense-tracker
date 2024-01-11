@@ -5,8 +5,10 @@ import { useAtom } from 'jotai';
 import { userAtom } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
 import { createTransactionDocument } from '@/firebase/firestore';
-import { TRANSACTION_TYPES } from '../constants/constants';
+import { DATESTAMP, TRANSACTION_TYPES } from '../constants/constants';
 import ExpenseCategories from './ExpenseCategories';
+import IncomeCategories from './IncomeCategories';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddTransaction = () => {
   const [user] = useAtom(userAtom);
@@ -18,8 +20,8 @@ const AddTransaction = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = {
-      id: Math.random(),
-      date: new Date(),
+      id: uuidv4(),
+      date: DATESTAMP.toLocaleString(),
       title: title,
       amount: Number(amount),
       type: type,
@@ -59,6 +61,9 @@ const AddTransaction = () => {
         </div>
         {type === TRANSACTION_TYPES.EXPENSE && (
           <ExpenseCategories onHandleChange={setCategory} />
+        )}
+        {type === TRANSACTION_TYPES.INCOME && (
+          <IncomeCategories onHandleChange={setCategory} />
         )}
         <div className=' m-2'>
           <label htmlFor='title'>Title</label>
