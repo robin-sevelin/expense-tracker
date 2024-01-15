@@ -13,7 +13,6 @@ const AddBalance = () => {
   const [input, setInput] = useState('');
   const [balance] = useAtom(balanceAtom);
   const [, setIsSubmitted] = useAtom(submitAtom);
-  useGetBalance();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,10 +21,11 @@ const AddBalance = () => {
     setIsSubmitted(true);
   };
 
+  useGetBalance();
   return (
     <div>
       <h2>Edit balance</h2>
-      <BalanceAmount key={balance} />
+      <BalanceAmount key={balance} balance={balance} />
       <form onSubmit={handleSubmit}>
         <label htmlFor='balance'>Amount in SEK</label>
         <input

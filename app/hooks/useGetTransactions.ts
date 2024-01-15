@@ -1,18 +1,18 @@
 import { db } from '@/firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
-import { ITransaction } from '../models/ITransaction';
 import { useAtom } from 'jotai';
-import { userAtom } from '../store/atoms';
+import { submitAtom, transactionsAtom, userAtom } from '../store/atoms';
 import { CURRENT_MONTH, CURRENT_YEAR } from '../constants/constants';
 
-export const useGetTransactions = (isDeleted: boolean) => {
+export const useGetTransactions = () => {
   const [user] = useAtom(userAtom);
-  const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const [, setTransactions] = useAtom(transactionsAtom);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDeleted, setIsDeleted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (isDeleted || user) {
+    if (user || isDeleted) {
       try {
         const getData = async () => {
           const docRef = doc(
@@ -26,6 +26,7 @@ export const useGetTransactions = (isDeleted: boolean) => {
           const data = docSnap.data();
 
           setTransactions(data?.transactions);
+          setIsDeleted(false);
         };
         getData();
       } catch (error) {
@@ -34,7 +35,7 @@ export const useGetTransactions = (isDeleted: boolean) => {
         setIsLoading(false);
       }
     }
-  }, [isDeleted, user]);
+  }, [user, setTransactions, setIsDeleted, isDeleted]);
 
-  return { isLoading, transactions } as const;
+  return { isLoading } as const;
 };

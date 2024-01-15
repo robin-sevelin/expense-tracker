@@ -1,4 +1,6 @@
 import { DateTime } from 'luxon';
+import { IUser } from '../models/IUser';
+import { ITransaction } from '../models/ITransaction';
 
 export const ROUTES = [
   { id: 0, url: '/', text: 'Home' },
@@ -14,12 +16,19 @@ export const CURRENT_MONTH = DATESTAMP.toLocaleString({
   month: 'short',
 });
 
-export const USER_BASE_VALUES = {
+export const USER_BASE_VALUES: IUser = {
   uid: '',
   email: '',
   displayName: '',
   photoURL: '',
 };
+
+export const TRANSACTION_BASE_VALUES: ITransaction = {
+  id: '',
+  title: '',
+  amount: 0,
+};
+export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 
 export const TRANSACTION_TYPES = {
   INCOME: 'income',

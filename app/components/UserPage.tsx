@@ -27,7 +27,7 @@ const UserPage = () => {
                 <h2 className='text-5xl font-bold'>User information</h2>
                 <p className='py-6'>Name: {user.displayName}</p>
                 <p className='py-6'>E-mail: {user.email}</p>
-                <BalanceAmount key={balance} />
+                <BalanceAmount key={balance} balance={balance} />
               </div>
             </div>
           </div>

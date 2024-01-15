@@ -9,24 +9,26 @@ import {
 } from 'chart.js';
 
 import { Chart } from 'chart.js';
-
 import { useGetBalance } from './useGetBalance';
 import { useAtom } from 'jotai';
-import { balanceAtom } from '../store/atoms';
+import { sumAtom, transactionsAtom } from '../store/atoms';
+import { TRANSACTION_TYPES } from '../constants/constants';
+
+Chart.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export const useGetChartData = () => {
-  const [balance] = useAtom(balanceAtom);
-  useGetBalance();
+  const [transactions] = useAtom(transactionsAtom);
+  const [sum] = useAtom(sumAtom);
 
-  Chart.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+  useGetBalance();
 
   const options = {
     responsive: true,
@@ -36,37 +38,49 @@ export const useGetChartData = () => {
       },
       title: {
         display: true,
-        text: 'Chart.js Line Chart',
+        text: 'Balance Over Time',
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
       },
     },
   };
 
   const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth();
-  const numberOfDaysInMonth = new Date(
-    currentYear,
-    currentMonth + 1,
+  const daysInMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
     0
   ).getDate();
-
-  const labels = Array.from(
-    { length: numberOfDaysInMonth },
-    (_, index) => index + 1
-  );
-  const yAxisData = Array.from(
-    { length: 10 },
-    (_, index) => (index / 9) * balance
-  );
+  const labels = Array.from({ length: daysInMonth }, (_, index) => index + 1);
 
   const data = {
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
-        data: yAxisData.map((value) => ({ y: value })),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        label: 'Balance',
+        data: labels.map((day) => {
+          const transactionsUntilDay = transactions.filter((transaction) => {
+            const transactionDate = transaction.date
+              ? new Date(transaction.date)
+              : null;
+            return transactionDate && transactionDate.getDate() <= day;
+          });
+
+          const expenseSum = transactionsUntilDay
+            .filter(
+              (transaction) => transaction.type === TRANSACTION_TYPES.EXPENSE
+            )
+            .reduce((acc, transaction) => acc + transaction.amount, 0);
+
+          const balance = sum - expenseSum;
+
+          return { x: day, y: balance };
+        }),
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.5)',
       },
     ],
   };

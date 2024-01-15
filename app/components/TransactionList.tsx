@@ -2,7 +2,12 @@
 
 import React, { useState } from 'react';
 import { useAtom } from 'jotai';
-import { balanceAtom, userAtom } from '../store/atoms';
+import {
+  submitAtom,
+  sumAtom,
+  transactionsAtom,
+  userAtom,
+} from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
 import { useGetTransactions } from '../hooks/useGetTransactions';
 import { useGetSum } from '../hooks/useGetSum';
@@ -14,23 +19,27 @@ import { deleteTransactionObject } from '@/firebase/firestore';
 
 const TransactionList = () => {
   const [user] = useAtom(userAtom);
-  const [isDeleted, setIsdeleted] = useState(false);
-  const { isLoading, transactions } = useGetTransactions(isDeleted);
-  const { sum } = useGetSum(transactions);
+  const [transactions] = useAtom(transactionsAtom);
+  const [sum] = useAtom(sumAtom);
+  const [, setIsdeleted] = useAtom(submitAtom);
+  const { isLoading } = useGetTransactions();
 
   const handleDelete = async (id: string) => {
     await deleteTransactionObject(user, id);
+
     setIsdeleted(true);
   };
+
   useAuthUser(user);
   useGetBalance();
+  useGetSum(transactions);
   return (
     <>
       {isLoading ? (
         <Loading />
       ) : (
         <div>
-          <h2> TransactionList</h2>
+          <h2>Transactions</h2>
           {!transactions.length ? (
             <NotFound />
           ) : (
@@ -52,7 +61,7 @@ const TransactionList = () => {
               </div>
             ))
           )}
-          Remaning money: {sum} kr
+          Remaning balance: {sum} kr
         </div>
       )}
     </>
