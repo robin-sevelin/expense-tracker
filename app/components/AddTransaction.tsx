@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useAtom } from 'jotai';
-import { userAtom } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TransactionFormData } from '../models/TransactionFormData';
@@ -10,11 +8,15 @@ import { useForm } from 'react-hook-form';
 import { transactionSchema } from '../models/TransactionSchema';
 import ExpenseCategories from './ExpenseCategories';
 import IncomeCategories from './IncomeCategories';
-import { createTransactionDocument } from '@/firebase/firestore';
+import { IUser } from '../models/IUser';
 
-const AddTransaction = () => {
+interface Props {
+  user: IUser;
+  onHandleSubmit: (user: IUser, data: TransactionFormData) => void;
+}
+
+const AddTransaction = ({ onHandleSubmit, user }: Props) => {
   const [type, setType] = useState('expense');
-  const [user] = useAtom(userAtom);
 
   useEffect(() => {}, [type]);
 
@@ -28,7 +30,7 @@ const AddTransaction = () => {
   });
 
   const submitData = async (data: TransactionFormData) => {
-    await createTransactionDocument(user, data);
+    onHandleSubmit(user, data);
     reset();
   };
 
@@ -98,6 +100,3 @@ const AddTransaction = () => {
 };
 
 export default AddTransaction;
-function uuidv4() {
-  throw new Error('Function not implemented.');
-}

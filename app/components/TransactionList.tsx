@@ -10,12 +10,12 @@ import {
 } from '../store/atoms';
 import { useAuthUser } from '../hooks/useAuthUser';
 import { useGetTransactions } from '../hooks/useGetTransactions';
-import { useGetSum } from '../hooks/useGetSum';
 import NotFound from './NotFound';
 import Loading from './Loading';
 import Link from 'next/link';
 import { useGetBalance } from '../hooks/useGetBalance';
 import { deleteTransactionObject } from '@/firebase/firestore';
+import { useGetSum } from '../hooks/useGetSum';
 
 const TransactionList = () => {
   const [user] = useAtom(userAtom);
@@ -32,7 +32,8 @@ const TransactionList = () => {
 
   useAuthUser(user);
   useGetBalance();
-  useGetSum(transactions);
+  useGetSum();
+
   return (
     <>
       {isLoading ? (
