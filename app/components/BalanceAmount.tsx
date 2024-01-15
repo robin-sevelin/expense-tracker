@@ -1,11 +1,12 @@
 'use client';
 
-import { useAtom } from 'jotai';
 import React from 'react';
-import { balanceAtom } from '../store/atoms';
 
-const BalanceAmount = () => {
-  const [balance] = useAtom(balanceAtom);
+interface Props {
+  balance: number;
+}
+
+const BalanceAmount = ({ balance }: Props) => {
   return <div>Balance: {balance} kr</div>;
 };
 

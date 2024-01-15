@@ -131,6 +131,8 @@ export const deleteTransactionObject = async (userAuth: IUser, id: string) => {
   } catch (error) {
     console.log('Error deleting the transaction', error);
   }
+
+  return { transactionCollectionRef } as const;
 };
 
 export const updateTransactionObject = async (

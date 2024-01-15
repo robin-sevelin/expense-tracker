@@ -16,6 +16,7 @@ const AddTransaction = () => {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,6 +33,12 @@ const AddTransaction = () => {
     setType('');
     setTitle('');
     setAmount('');
+
+    setIsSuccess(true);
+
+    setTimeout(() => {
+      setIsSuccess(false);
+    }, 2000);
   };
 
   useAuthUser(user);
@@ -49,7 +56,6 @@ const AddTransaction = () => {
             onChange={(e) => setType(e.target.value)}
             aria-label='Expense'
           />
-
           <input
             className='join-item btn m-2'
             type='radio'
@@ -70,6 +76,7 @@ const AddTransaction = () => {
           <input
             type='text'
             id='title'
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -80,11 +87,13 @@ const AddTransaction = () => {
           <input
             type='number'
             min={0}
+            value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
         </div>
         <button className='btn btn-primary'>Submit</button>
       </form>
+      {isSuccess && <div>Success</div>}
     </div>
   );
 };
