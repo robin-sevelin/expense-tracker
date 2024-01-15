@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import {
   getFirestore,
   doc,
@@ -78,6 +79,12 @@ export const createTransactionDocument = async (
   userAuth: IUser,
   transaction: ITransaction
 ) => {
+  const updatedTransaction = {
+    ...transaction,
+    id: uuidv4(),
+    date: DATESTAMP.toLocaleString(),
+  };
+
   const transactionDocRef = doc(
     db,
     'transactions',
@@ -92,11 +99,11 @@ export const createTransactionDocument = async (
   try {
     if (existingData && existingData.transactions) {
       await updateDoc(transactionDocRef, {
-        transactions: arrayUnion(transaction),
+        transactions: arrayUnion(updatedTransaction),
       });
     } else {
       await setDoc(transactionDocRef, {
-        transactions: [transaction],
+        transactions: [updatedTransaction],
       });
     }
   } catch (error) {
