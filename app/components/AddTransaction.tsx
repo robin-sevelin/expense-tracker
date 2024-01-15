@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthUser } from '../hooks/useAuthUser';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TransactionFormData } from '../models/TransactionFormData';
+import { TransactionFormData } from '../models/FormData';
 import { useForm } from 'react-hook-form';
-import { transactionSchema } from '../models/TransactionSchema';
+import { transactionSchema } from '../models/FormSchema';
 import ExpenseCategories from './ExpenseCategories';
 import IncomeCategories from './IncomeCategories';
 import { IUser } from '../models/IUser';

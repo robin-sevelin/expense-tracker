@@ -6,3 +6,7 @@ export interface TransactionFormData {
   type: string;
   category: string;
 }
+
+export interface BalanceFormData {
+  balance: number;
+}

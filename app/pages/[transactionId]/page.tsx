@@ -4,7 +4,7 @@ import AddTransaction from '@/app/components/AddTransaction';
 import TransactionById from '@/app/components/TransactionById';
 import { useGetTransactionById } from '@/app/hooks/useGetTransactionById';
 import { IUser } from '@/app/models/IUser';
-import { TransactionFormData } from '@/app/models/TransactionFormData';
+import { TransactionFormData } from '@/app/models/FormData';
 import { submitAtom, transactionAtom, userAtom } from '@/app/store/atoms';
 import { updateTransactionObject } from '@/firebase/firestore';
 import { useAtom } from 'jotai/react';

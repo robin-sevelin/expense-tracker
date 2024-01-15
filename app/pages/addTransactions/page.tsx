@@ -2,7 +2,7 @@
 
 import AddTransaction from '@/app/components/AddTransaction';
 import { IUser } from '@/app/models/IUser';
-import { TransactionFormData } from '@/app/models/TransactionFormData';
+import { TransactionFormData } from '@/app/models/FormData';
 import { userAtom } from '@/app/store/atoms';
 import { createTransactionDocument } from '@/firebase/firestore';
 import { useAtom } from 'jotai';

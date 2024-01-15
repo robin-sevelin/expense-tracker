@@ -6,3 +6,7 @@ export const transactionSchema = z.object({
   title: z.string().min(3).max(20),
   amount: z.number().min(1).max(9999),
 });
+
+export const balanceSchema = z.object({
+  balance: z.number().min(1).max(9999),
+});

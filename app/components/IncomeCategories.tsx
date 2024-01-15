@@ -1,7 +1,7 @@
 import React from 'react';
 import { INCOME_CATEGORIES } from '../constants/constants';
 import { UseFormRegister } from 'react-hook-form';
-import { TransactionFormData } from '../models/TransactionFormData';
+import { TransactionFormData } from '../models/FormData';
 
 interface expenseCategoriesProps {
   register: UseFormRegister<TransactionFormData>;
