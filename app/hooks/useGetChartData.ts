@@ -9,10 +9,11 @@ import {
 } from 'chart.js';
 
 import { Chart } from 'chart.js';
-import { useGetBalance } from './useGetBalance';
 import { useAtom } from 'jotai';
-import { sumAtom, transactionsAtom } from '../store/atoms';
+import { transactionsAtom } from '../store/atoms';
 import { TRANSACTION_TYPES } from '../constants/constants';
+import { useGetSum } from './useGetSum';
+import { useGetTransactions } from './useGetTransactions';
 
 Chart.register(
   CategoryScale,
@@ -25,10 +26,8 @@ Chart.register(
 );
 
 export const useGetChartData = () => {
-  const [transactions] = useAtom(transactionsAtom);
-  const [sum] = useAtom(sumAtom);
-
-  useGetBalance();
+  const { transactions } = useGetTransactions();
+  const { sum } = useGetSum();
 
   const options = {
     responsive: true,
