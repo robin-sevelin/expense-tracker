@@ -6,13 +6,13 @@ import { submitAtom, transactionsAtom, userAtom } from '../store/atoms';
 import { CURRENT_MONTH, CURRENT_YEAR } from '../constants/constants';
 
 export const useGetTransactions = () => {
+  const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
   const [user] = useAtom(userAtom);
-  const [, setTransactions] = useAtom(transactionsAtom);
+  const [transactions, setTransactions] = useAtom(transactionsAtom);
   const [isLoading, setIsLoading] = useState(true);
-  const [isDeleted, setIsDeleted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (user || isDeleted) {
+    if (isSubmitted || user) {
       try {
         const getData = async () => {
           const docRef = doc(
@@ -26,7 +26,7 @@ export const useGetTransactions = () => {
           const data = docSnap.data();
 
           setTransactions(data?.transactions);
-          setIsDeleted(false);
+          setIsSubmitted(false);
         };
         getData();
       } catch (error) {
@@ -35,7 +35,7 @@ export const useGetTransactions = () => {
         setIsLoading(false);
       }
     }
-  }, [user, setTransactions, setIsDeleted, isDeleted]);
+  }, [user, setTransactions, setIsSubmitted, isSubmitted]);
 
-  return { isLoading } as const;
+  return { isLoading, transactions } as const;
 };

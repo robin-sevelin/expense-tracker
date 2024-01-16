@@ -1,20 +1,19 @@
-import { idAtom, userAtom } from './../store/atoms';
+import { submitAtom, transactionByIdAtom, userAtom } from './../store/atoms';
 import { db } from '@/firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
 import { CURRENT_YEAR, CURRENT_MONTH } from '../constants/constants';
-import { submitAtom, transactionAtom } from '../store/atoms';
 import { ITransaction } from '../models/ITransaction';
 
 export const useGetTransactionById = (id: string) => {
   const [user] = useAtom(userAtom);
-  const [, setTransaction] = useAtom(transactionAtom);
+  const [transaction, setTransaction] = useAtom(transactionByIdAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (id || isSubmitted) {
+    if (id) {
       try {
         const getData = async () => {
           const docRef = doc(
@@ -41,7 +40,7 @@ export const useGetTransactionById = (id: string) => {
         setIsLoading(false);
       }
     }
-  }, [user, setTransaction, isSubmitted, id, setIsSubmitted]);
+  }, [user, setTransaction, id, isSubmitted, setIsSubmitted]);
 
-  return { isLoading } as const;
+  return { isLoading, transaction } as const;
 };

@@ -6,7 +6,7 @@ import { IUser } from '../models/IUser';
 import { userAtom } from '../store/atoms';
 
 export const useIsLoggedIn = () => {
-  const [, setUser] = useAtom(userAtom);
+  const [user, setUser] = useAtom(userAtom);
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -15,4 +15,6 @@ export const useIsLoggedIn = () => {
       }
     });
   });
+
+  return { user } as const;
 };

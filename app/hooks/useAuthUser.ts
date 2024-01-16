@@ -1,8 +1,12 @@
+import { userAtom } from '@/app/store/atoms';
 import { redirect } from 'next/navigation';
-import { IUser } from '../models/IUser';
+import { useAtom } from 'jotai';
 
-export const useAuthUser = (user: IUser) => {
+export const useAuthUser = () => {
+  const [user] = useAtom(userAtom);
   if (!user.uid) {
-    redirect('/');
+    return redirect('/');
   }
+
+  return { user } as const;
 };

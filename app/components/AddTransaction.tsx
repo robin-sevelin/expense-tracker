@@ -1,99 +1,98 @@
 'use client';
 
-import React, { FormEvent, useState } from 'react';
-import { useAtom } from 'jotai';
-import { userAtom } from '../store/atoms';
+import React, { useEffect, useState } from 'react';
 import { useAuthUser } from '../hooks/useAuthUser';
-import { createTransactionDocument } from '@/firebase/firestore';
-import { DATESTAMP, TRANSACTION_TYPES } from '../constants/constants';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { TransactionFormData } from '../models/FormData';
+import { useForm } from 'react-hook-form';
+import { transactionSchema } from '../models/FormSchema';
 import ExpenseCategories from './ExpenseCategories';
 import IncomeCategories from './IncomeCategories';
-import { v4 as uuidv4 } from 'uuid';
+import { IUser } from '../models/IUser';
 
-const AddTransaction = () => {
-  const [user] = useAtom(userAtom);
-  const [type, setType] = useState('');
-  const [title, setTitle] = useState('');
-  const [amount, setAmount] = useState('');
-  const [category, setCategory] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
+interface Props {
+  onHandleSubmit: (user: IUser, data: TransactionFormData) => void;
+}
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = {
-      id: uuidv4(),
-      date: DATESTAMP.toLocaleString(),
-      title: title,
-      amount: Number(amount),
-      type: type,
-      category: category,
-    };
+const AddTransaction = ({ onHandleSubmit }: Props) => {
+  const [type, setType] = useState('expense');
+  const { user } = useAuthUser();
 
-    await createTransactionDocument(user, formData);
-    setType('');
-    setTitle('');
-    setAmount('');
+  useEffect(() => {}, [type]);
 
-    setIsSuccess(true);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<TransactionFormData>({
+    resolver: zodResolver(transactionSchema),
+  });
 
-    setTimeout(() => {
-      setIsSuccess(false);
-    }, 2000);
+  const submitData = async (data: TransactionFormData) => {
+    onHandleSubmit(user, data);
+    reset();
   };
 
-  useAuthUser(user);
+  const handleClick = (type: string) => {
+    setType(type);
+  };
 
   return (
     <div className='flex flex-col justify-center items-center'>
       <h2>Add transactions</h2>
-      <form onSubmit={handleSubmit}>
-        <div className=' m-2'>
-          <input
-            className='join-item btn m-2'
-            type='radio'
-            name='type'
-            value={'expense'}
-            onChange={(e) => setType(e.target.value)}
-            aria-label='Expense'
-          />
-          <input
-            className='join-item btn m-2'
-            type='radio'
-            name='type'
-            value={'income'}
-            onChange={(e) => setType(e.target.value)}
-            aria-label='Income'
-          />
-        </div>
-        {type === TRANSACTION_TYPES.EXPENSE && (
-          <ExpenseCategories onHandleChange={setCategory} />
+      <form onSubmit={handleSubmit(submitData)}>
+        <label htmlFor='expense'>Expense</label>
+        <input
+          checked={type === 'expense'}
+          type='radio'
+          id='expense'
+          value={'Expense'}
+          {...register('type')}
+          onClick={() => handleClick('expense')}
+          name='type'
+        />
+        <label htmlFor='income'>Income</label>
+        <input
+          type='radio'
+          id='income'
+          value={'Income'}
+          {...register('type')}
+          onClick={() => handleClick('income')}
+          name='type'
+        />
+        {type === 'expense' ? (
+          <ExpenseCategories register={register} />
+        ) : (
+          <IncomeCategories register={register} />
         )}
-        {type === TRANSACTION_TYPES.INCOME && (
-          <IncomeCategories onHandleChange={setCategory} />
-        )}
-        <div className=' m-2'>
-          <label htmlFor='title'>Title</label>
-          <input
-            type='text'
-            id='title'
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+        <div className='error-container'>
+          {errors.category && (
+            <p style={{ color: 'red' }}>{errors.category.message}</p>
+          )}
         </div>
-        <div className=' m-2'>
-          <label htmlFor='amount' id='amount'>
-            Amount
-          </label>
-          <input
-            type='number'
-            min={0}
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
+
+        <label htmlFor='title'>Title</label>
+
+        <input type='text' id='title' {...register('title')} />
+        <div className='error-container'>
+          {errors.title && (
+            <p style={{ color: 'red' }}>{errors.title.message}</p>
+          )}
         </div>
-        <button className='btn btn-primary'>Submit</button>
+        <label htmlFor='amount'>Amount</label>
+        <input
+          type='number'
+          id='age'
+          {...register('amount', { valueAsNumber: true })}
+        />
+        <div className='error-container'>
+          {errors.amount && (
+            <p style={{ color: 'red' }}>{errors.amount.message}</p>
+          )}
+        </div>
+        <button>Submit</button>
       </form>
-      {isSuccess && <div>Success</div>}
     </div>
   );
 };

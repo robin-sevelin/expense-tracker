@@ -6,7 +6,7 @@ import { balanceAtom, submitAtom, userAtom } from '../store/atoms';
 
 export const useGetBalance = () => {
   const [user] = useAtom(userAtom);
-  const [, setBalance] = useAtom(balanceAtom);
+  const [balance, setBalance] = useAtom(balanceAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
@@ -34,5 +34,5 @@ export const useGetBalance = () => {
     }
   }, [setBalance, user, setIsSubmitted, isSubmitted]);
 
-  return { isLoading };
+  return { isLoading, balance };
 };

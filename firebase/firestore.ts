@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import {
   getFirestore,
   doc,
@@ -15,6 +16,7 @@ import {
   CURRENT_MONTH,
   DATESTAMP,
 } from '@/app/constants/constants';
+import { title } from 'process';
 
 export const db = getFirestore(app);
 
@@ -78,6 +80,12 @@ export const createTransactionDocument = async (
   userAuth: IUser,
   transaction: ITransaction
 ) => {
+  const updatedTransaction = {
+    ...transaction,
+    id: uuidv4(),
+    date: DATESTAMP.toLocaleString(),
+  };
+
   const transactionDocRef = doc(
     db,
     'transactions',
@@ -92,11 +100,11 @@ export const createTransactionDocument = async (
   try {
     if (existingData && existingData.transactions) {
       await updateDoc(transactionDocRef, {
-        transactions: arrayUnion(transaction),
+        transactions: arrayUnion(updatedTransaction),
       });
     } else {
       await setDoc(transactionDocRef, {
-        transactions: [transaction],
+        transactions: [updatedTransaction],
       });
     }
   } catch (error) {
@@ -137,8 +145,7 @@ export const deleteTransactionObject = async (userAuth: IUser, id: string) => {
 
 export const updateTransactionObject = async (
   user: IUser,
-  title: string,
-  amount: number,
+  data: ITransaction,
   id: string
 ) => {
   const transactionsCollection = collection(db, 'transactions');
@@ -152,9 +159,16 @@ export const updateTransactionObject = async (
     if (monthDocSnap.exists()) {
       const monthDocData = monthDocSnap.data();
       const transactionArray = monthDocData.transactions;
+
       const updatedArray = transactionArray.map((transaction: ITransaction) => {
         if (transaction.id === id) {
-          return { ...transaction, title, amount };
+          return {
+            ...transaction,
+            title: data.title,
+            amount: data.amount,
+            category: data.category,
+            type: data.type,
+          };
         }
         return transaction;
       });

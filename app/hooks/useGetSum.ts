@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { ITransaction } from '../models/ITransaction';
 import { TRANSACTION_TYPES } from '../constants/constants';
 import { useAtom } from 'jotai';
-import { balanceAtom, sumAtom } from '../store/atoms';
+import { balanceAtom, sumAtom, transactionsAtom } from '../store/atoms';
 
-export const useGetSum = (transactions: ITransaction[]) => {
+export const useGetSum = () => {
+  const [transactions] = useAtom(transactionsAtom);
   const [balance] = useAtom(balanceAtom);
   const [sum, setSum] = useAtom(sumAtom);
 

@@ -12,5 +12,4 @@ export const balanceAtom = atom(0);
 export const sumAtom = atom(0);
 export const submitAtom = atom(false);
 export const transactionsAtom = atom(TRANSACTIONS_BASE_VALUES);
-export const transactionAtom = atom(TRANSACTION_BASE_VALUES);
-export const idAtom = atom('');
+export const transactionByIdAtom = atom(TRANSACTION_BASE_VALUES);
