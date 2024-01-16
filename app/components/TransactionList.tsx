@@ -3,7 +3,6 @@
 import React from 'react';
 
 import { useAuthUser } from '../hooks/useAuthUser';
-
 import NotFound from './NotFound';
 import Loading from './Loading';
 import Link from 'next/link';

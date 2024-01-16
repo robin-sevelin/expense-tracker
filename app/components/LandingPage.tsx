@@ -15,7 +15,7 @@ const LandingPage = () => {
     return <Loading />;
   }
 
-  return <>{user.uid ? <MainPage /> : <LogInPage />}</>;
+  return <>{user ? <MainPage /> : <LogInPage />}</>;
 };
 
 export default LandingPage;
