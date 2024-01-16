@@ -1,4 +1,4 @@
-import { userAtom } from '@/app/store/atoms';
+import { sumAtom, transactionsAtom, userAtom } from '@/app/store/atoms';
 import {
   CategoryScale,
   Legend,
@@ -11,14 +11,13 @@ import {
 
 import { Chart } from 'chart.js';
 import { useAtom } from 'jotai';
-import { transactionsAtom } from '../store/atoms';
 import {
   CURRENT_MONTH,
   CURRENT_YEAR,
   TRANSACTION_TYPES,
 } from '../constants/constants';
-import { useGetSum } from './useGetSum';
 import { useGetTransactions } from './useGetTransactions';
+import { useGetBalance } from './useGetBalance';
 
 Chart.register(
   CategoryScale,
@@ -33,7 +32,8 @@ Chart.register(
 export const useGetChartData = () => {
   const [user] = useAtom(userAtom);
   const { transactions } = useGetTransactions();
-  const { sum } = useGetSum();
+  const { balance } = useGetBalance();
+  const HEADING = `${user.displayName}'s transaction stats: ${CURRENT_MONTH} ${CURRENT_YEAR} in SEK`;
 
   const options = {
     responsive: true,
@@ -43,7 +43,7 @@ export const useGetChartData = () => {
       },
       title: {
         display: true,
-        text: `${user.displayName}'s transaction stats: ${CURRENT_MONTH} ${CURRENT_YEAR} in SEK`,
+        text: HEADING,
       },
     },
     scales: {
@@ -128,9 +128,9 @@ export const useGetChartData = () => {
             )
             .reduce((acc, transaction) => acc + transaction.amount, 0);
 
-          const balance = sum + incomeSum - expenseSum;
+          const newBalance = balance + incomeSum - expenseSum;
 
-          return { x: day, y: balance };
+          return { x: day, y: newBalance };
         }),
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgba(75, 192, 192, 0.5)',

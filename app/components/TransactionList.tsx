@@ -7,19 +7,16 @@ import NotFound from './NotFound';
 import Loading from './Loading';
 import Link from 'next/link';
 import { deleteTransactionObject } from '@/firebase/firestore';
-import { ITransaction } from '../models/ITransaction';
 import { useAtom } from 'jotai';
 import { submitAtom } from '../store/atoms';
+import { useGetTransactions } from '../hooks/useGetTransactions';
+import { useGetSum } from '../hooks/useGetSum';
 
-interface Props {
-  transactions: ITransaction[];
-  isLoading: boolean;
-  sum: number;
-}
-
-const TransactionList = ({ transactions, isLoading, sum }: Props) => {
+const TransactionList = () => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const { user } = useAuthUser();
+  const { transactions, isLoading } = useGetTransactions();
+  const { sum } = useGetSum();
 
   const handleDelete = async (id: string) => {
     await deleteTransactionObject(user, id);

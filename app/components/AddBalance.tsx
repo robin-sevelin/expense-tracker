@@ -1,11 +1,10 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import React, { useEffect } from 'react';
-import { balanceAtom, submitAtom, userAtom } from '../store/atoms';
+import React from 'react';
+import { submitAtom, userAtom } from '../store/atoms';
 import { createBalanceDocument } from '@/firebase/firestore';
 import Link from 'next/link';
-import { useGetBalance } from '../hooks/useGetBalance';
 import BalanceAmount from './BalanceAmount';
 import { balanceSchema } from '../models/FormSchema';
 import { BalanceFormData } from '../models/FormData';
@@ -15,7 +14,6 @@ import { useForm } from 'react-hook-form';
 const AddBalance = () => {
   const [user] = useAtom(userAtom);
   const [, setIsSubmitted] = useAtom(submitAtom);
-  const { balance } = useGetBalance();
 
   const {
     register,
@@ -35,7 +33,7 @@ const AddBalance = () => {
   return (
     <div>
       <h2>Edit balance</h2>
-      <BalanceAmount key={balance} balance={balance} />
+      <BalanceAmount />
       <form onSubmit={handleSubmit(submitData)}>
         <label htmlFor='balance'>Amount in SEK</label>
         <input

@@ -1,12 +1,10 @@
 'use client';
 
 import React from 'react';
+import { useGetBalance } from '../hooks/useGetBalance';
 
-interface Props {
-  balance: number;
-}
-
-const BalanceAmount = ({ balance }: Props) => {
+const BalanceAmount = () => {
+  const { balance } = useGetBalance();
   return <div>Balance: {balance} kr</div>;
 };
 

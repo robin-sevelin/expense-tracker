@@ -7,7 +7,6 @@ import Loading from './Loading';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);
-
   const { isLoading } = useGetBalance();
 
   if (isLoading) {
