@@ -1,3 +1,4 @@
+import { userAtom } from '@/app/store/atoms';
 import {
   CategoryScale,
   Legend,
@@ -11,7 +12,11 @@ import {
 import { Chart } from 'chart.js';
 import { useAtom } from 'jotai';
 import { transactionsAtom } from '../store/atoms';
-import { TRANSACTION_TYPES } from '../constants/constants';
+import {
+  CURRENT_MONTH,
+  CURRENT_YEAR,
+  TRANSACTION_TYPES,
+} from '../constants/constants';
 import { useGetSum } from './useGetSum';
 import { useGetTransactions } from './useGetTransactions';
 
@@ -26,6 +31,7 @@ Chart.register(
 );
 
 export const useGetChartData = () => {
+  const [user] = useAtom(userAtom);
   const { transactions } = useGetTransactions();
   const { sum } = useGetSum();
 
@@ -37,7 +43,7 @@ export const useGetChartData = () => {
       },
       title: {
         display: true,
-        text: 'Balance Over Time',
+        text: `${user.displayName}'s transaction stats: ${CURRENT_MONTH} ${CURRENT_YEAR} in SEK`,
       },
     },
     scales: {
@@ -59,7 +65,28 @@ export const useGetChartData = () => {
     labels,
     datasets: [
       {
-        label: 'Balance',
+        label: 'Incomes',
+        data: labels.map((day) => {
+          const transactionsUntilDay = transactions.filter((transaction) => {
+            const transactionDate = transaction.date
+              ? new Date(transaction.date)
+              : null;
+            return transactionDate && transactionDate.getDate() <= day;
+          });
+
+          const incomeSum = transactionsUntilDay
+            .filter(
+              (transaction) => transaction.type === TRANSACTION_TYPES.INCOME
+            )
+            .reduce((acc, transaction) => acc + transaction.amount, 0);
+
+          return { x: day, y: incomeSum };
+        }),
+        borderColor: 'rgb(0, 128, 0)',
+        backgroundColor: 'rgba(0, 128, 0, 0.5)',
+      },
+      {
+        label: 'Expenses',
         data: labels.map((day) => {
           const transactionsUntilDay = transactions.filter((transaction) => {
             const transactionDate = transaction.date
@@ -74,7 +101,34 @@ export const useGetChartData = () => {
             )
             .reduce((acc, transaction) => acc + transaction.amount, 0);
 
-          const balance = sum - expenseSum;
+          return { x: day, y: expenseSum };
+        }),
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+      {
+        label: 'Balance',
+        data: labels.map((day) => {
+          const transactionsUntilDay = transactions.filter((transaction) => {
+            const transactionDate = transaction.date
+              ? new Date(transaction.date)
+              : null;
+            return transactionDate && transactionDate.getDate() <= day;
+          });
+
+          const incomeSum = transactionsUntilDay
+            .filter(
+              (transaction) => transaction.type === TRANSACTION_TYPES.INCOME
+            )
+            .reduce((acc, transaction) => acc + transaction.amount, 0);
+
+          const expenseSum = transactionsUntilDay
+            .filter(
+              (transaction) => transaction.type === TRANSACTION_TYPES.EXPENSE
+            )
+            .reduce((acc, transaction) => acc + transaction.amount, 0);
+
+          const balance = sum + incomeSum - expenseSum;
 
           return { x: day, y: balance };
         }),
