@@ -11,9 +11,9 @@ export const ROUTES = [
 ];
 
 export const DATESTAMP = DateTime.local();
-export const CURRENT_YEAR = DATESTAMP.year.toString();
-export const CURRENT_MONTH = DATESTAMP.toLocaleString({
-  month: 'short',
+export const CURRENT_YEAR = new Date().getFullYear().toString();
+export const CURRENT_MONTH = new Date().toLocaleString('en-US', {
+  month: 'long',
 });
 
 export const USER_BASE_VALUES: IUser = {

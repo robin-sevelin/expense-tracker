@@ -16,7 +16,6 @@ import {
   CURRENT_MONTH,
   DATESTAMP,
 } from '@/app/constants/constants';
-import { title } from 'process';
 
 export const db = getFirestore(app);
 
@@ -83,15 +82,24 @@ export const createTransactionDocument = async (
   const updatedTransaction = {
     ...transaction,
     id: uuidv4(),
-    date: DATESTAMP.toLocaleString(),
+    date: transaction.date,
   };
 
+  const transactionDate = transaction.date
+    ? {
+        year: transaction.date.getFullYear().toString(),
+        month: transaction.date.toLocaleString('en-US', { month: 'long' }),
+      }
+    : {
+        year: 'unknown',
+        month: 'unknown',
+      };
   const transactionDocRef = doc(
     db,
     'transactions',
     userAuth?.uid,
-    CURRENT_YEAR,
-    CURRENT_MONTH
+    transactionDate?.year,
+    transactionDate?.month
   );
 
   const transactionDocSnapshot = await getDoc(transactionDocRef);

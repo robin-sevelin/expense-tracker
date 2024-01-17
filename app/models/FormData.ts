@@ -1,7 +1,7 @@
 export interface TransactionFormData {
   id: string;
   title: string;
-  date: string;
+  date: Date;
   amount: number;
   type: string;
   category: string;

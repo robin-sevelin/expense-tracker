@@ -9,16 +9,19 @@ import { transactionSchema } from '../models/FormSchema';
 import ExpenseCategories from './ExpenseCategories';
 import IncomeCategories from './IncomeCategories';
 import { IUser } from '../models/IUser';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: TransactionFormData) => void;
 }
 
 const AddTransaction = ({ onHandleSubmit }: Props) => {
+  const [startDate, setStartDate] = useState<Date>(new Date());
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
 
-  useEffect(() => {}, [type]);
+  // useEffect(() => {}, [type]);
 
   const {
     register,
@@ -30,6 +33,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   });
 
   const submitData = async (data: TransactionFormData) => {
+    data.date = startDate;
     onHandleSubmit(user, data);
     reset();
   };
@@ -43,37 +47,60 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
       <div className='flex flex-col justify-center items-center'>
         <h2 className='text-5xl font-bold'>ADD TRANSACTION.</h2>
         <form onSubmit={handleSubmit(submitData)}>
-          <div className='join'>
-            <input
-              checked={type === 'expense'}
-              className='join-item btn'
-              aria-label='EXPENSE'
-              type='radio'
-              {...register('type')}
-              onClick={() => handleClick('expense')}
-              name='type'
-              value={'Expense'}
-            />
-            <input
-              className='join-item btn'
-              aria-label='INCOME'
-              type='radio'
-              {...register('type')}
-              onClick={() => handleClick('income')}
-              name='type'
-              value={'Income'}
+          <div>
+            <label htmlFor='datepicker' className='input-label'>
+              Transaction Date:
+            </label>
+            <DatePicker
+              id='datepicker'
+              className='input input-bordered input-primary w-full max-w-xs'
+              selected={startDate}
+              onChange={(date) => setStartDate(date as Date)}
+              shouldCloseOnSelect={false}
             />
           </div>
-          {type === 'expense' ? (
-            <ExpenseCategories register={register} />
-          ) : (
-            <IncomeCategories register={register} />
-          )}
+
+          <fieldset>
+            <legend className='input-label'>Transaction Type:</legend>
+            <div className='join'>
+              <input
+                checked={type === 'expense'}
+                className='join-item btn'
+                aria-label='EXPENSE'
+                type='radio'
+                {...register('type')}
+                onClick={() => handleClick('expense')}
+                name='type'
+                value={'Expense'}
+              />
+              <input
+                className='join-item btn'
+                aria-label='INCOME'
+                type='radio'
+                {...register('type')}
+                onClick={() => handleClick('income')}
+                name='type'
+                value={'Income'}
+              />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend className='input-label'>Transaction Category:</legend>
+            {type === 'expense' ? (
+              <ExpenseCategories register={register} />
+            ) : (
+              <IncomeCategories register={register} />
+            )}
+          </fieldset>
           <div className='error-container'>
             {errors.category && (
               <p style={{ color: 'red' }}>{errors.category.message}</p>
             )}
           </div>
+          <label htmlFor='title' className='input-label'>
+            Title:
+          </label>
           <input
             type='text'
             className='input input-bordered input-primary w-full max-w-xs'
@@ -85,6 +112,9 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
               <p style={{ color: 'red' }}>{errors.title.message}</p>
             )}
           </div>
+          <label htmlFor='amount' className='input-label'>
+            Amount:
+          </label>
           <input
             className='input input-bordered input-primary w-full max-w-xs'
             aria-label='Amount'
