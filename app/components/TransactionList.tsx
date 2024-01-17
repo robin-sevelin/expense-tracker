@@ -1,16 +1,16 @@
 'use client';
 
 import React from 'react';
-
 import { useAuthUser } from '../hooks/useAuthUser';
 import NotFound from './NotFound';
 import Loading from './Loading';
 import Link from 'next/link';
-import { deleteTransactionObject } from '@/firebase/firestore';
 import { useAtom } from 'jotai';
 import { submitAtom } from '../store/atoms';
 import { useGetTransactions } from '../hooks/useGetTransactions';
 import { useGetSum } from '../hooks/useGetSum';
+import Periods from './Periods';
+import { deleteTransactionObject } from '@/firebase/operations/deleteTransaction';
 
 const TransactionList = () => {
   const [, setIsSubmitted] = useAtom(submitAtom);
@@ -25,6 +25,7 @@ const TransactionList = () => {
 
   return (
     <>
+      <Periods />
       {isLoading ? (
         <Loading />
       ) : (

@@ -21,7 +21,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
 
-  // useEffect(() => {}, [type]);
+  useEffect(() => {}, [type]);
 
   const {
     register,

@@ -3,13 +3,13 @@
 import { useAtom } from 'jotai';
 import React from 'react';
 import { submitAtom, userAtom } from '../store/atoms';
-import { createBalanceDocument } from '@/firebase/firestore';
 import Link from 'next/link';
 import BalanceAmount from './BalanceAmount';
 import { balanceSchema } from '../models/FormSchema';
 import { BalanceFormData } from '../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { createBalanceDocument } from '@/firebase/operations/createBalance';
 
 const AddBalance = () => {
   const [user] = useAtom(userAtom);

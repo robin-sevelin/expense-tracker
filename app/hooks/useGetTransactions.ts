@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { submitAtom, transactionsAtom, userAtom } from '../store/atoms';
 import { CURRENT_MONTH, CURRENT_YEAR } from '../constants/constants';
-import { date } from 'zod';
 
 export const useGetTransactions = () => {
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);

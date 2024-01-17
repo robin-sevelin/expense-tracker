@@ -5,11 +5,11 @@ import TransactionById from '@/app/components/TransactionById';
 import { useGetTransactionById } from '@/app/hooks/useGetTransactionById';
 import { IUser } from '@/app/models/IUser';
 import { TransactionFormData } from '@/app/models/FormData';
-import { updateTransactionObject } from '@/firebase/firestore';
 import Link from 'next/link';
 import React from 'react';
 import { submitAtom } from '@/app/store/atoms';
 import { useAtom } from 'jotai';
+import { updateTransactionObject } from '@/firebase/operations/updateTransaction';
 
 const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
   const id = params.transactionId;
