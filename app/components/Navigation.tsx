@@ -8,7 +8,7 @@ const Navigation = () => {
     <nav>
       <ul>
         {ROUTES.map((route) => (
-          <li key={route.id}>
+          <li key={route.id} className=' float-right mr-3'>
             <Link href={route.url}>{route.text}</Link>
           </li>
         ))}

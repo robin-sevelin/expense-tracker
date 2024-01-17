@@ -31,7 +31,7 @@ const AddBalance = () => {
   };
 
   return (
-    <div>
+    <section className='max-w-3xl max-h-3xl m-auto'>
       <h2>Edit balance</h2>
       <BalanceAmount />
       <form onSubmit={handleSubmit(submitData)}>
@@ -53,7 +53,7 @@ const AddBalance = () => {
           <button className='btn btn-secondary'>Return</button>
         </Link>
       </form>
-    </div>
+    </section>
   );
 };
 

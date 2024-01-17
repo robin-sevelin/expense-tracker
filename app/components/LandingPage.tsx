@@ -15,7 +15,11 @@ const LandingPage = () => {
     return <Loading />;
   }
 
-  return <>{user.uid ? <MainPage /> : <LogInPage />}</>;
+  return (
+    <div className='min-h-full w-full bg-white absolute z-0'>
+      {user.uid ? <MainPage /> : <LogInPage />}
+    </div>
+  );
 };
 
 export default LandingPage;

@@ -28,8 +28,8 @@ const TransactionList = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <div>
-          <h2>Transactions</h2>
+        <section className='max-w-7xl max-h-3xl m-auto'>
+          <h2 className='text-5xl font-bold'>TRANSACTIONS.</h2>
           {!transactions.length ? (
             <NotFound />
           ) : (
@@ -38,9 +38,9 @@ const TransactionList = () => {
                 <h3>Title: {transaction.title}</h3>
                 <p>Amount: {transaction.amount} kr</p>
                 <p>Type: {transaction.type}</p>
-
+                <p>Category: {transaction.category}</p>
                 <button
-                  className='btn btn-secodary'
+                  className='btn btn-error'
                   onClick={() => handleDelete(transaction.id)}
                 >
                   Remove
@@ -52,7 +52,7 @@ const TransactionList = () => {
             ))
           )}
           Remaning balance: {sum} kr
-        </div>
+        </section>
       )}
     </>
   );
