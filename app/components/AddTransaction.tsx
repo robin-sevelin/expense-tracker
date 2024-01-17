@@ -39,61 +39,68 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <h2>Add transactions</h2>
-      <form onSubmit={handleSubmit(submitData)}>
-        <label htmlFor='expense'>Expense</label>
-        <input
-          checked={type === 'expense'}
-          type='radio'
-          id='expense'
-          value={'Expense'}
-          {...register('type')}
-          onClick={() => handleClick('expense')}
-          name='type'
-        />
-        <label htmlFor='income'>Income</label>
-        <input
-          type='radio'
-          id='income'
-          value={'Income'}
-          {...register('type')}
-          onClick={() => handleClick('income')}
-          name='type'
-        />
-        {type === 'expense' ? (
-          <ExpenseCategories register={register} />
-        ) : (
-          <IncomeCategories register={register} />
-        )}
-        <div className='error-container'>
-          {errors.category && (
-            <p style={{ color: 'red' }}>{errors.category.message}</p>
+    <section className='max-w-xl max-h-3xl m-auto'>
+      <div className='flex flex-col justify-center items-center'>
+        <h2 className='text-5xl font-bold'>ADD TRANSACTION.</h2>
+        <form onSubmit={handleSubmit(submitData)}>
+          <div className='join'>
+            <input
+              checked={type === 'expense'}
+              className='join-item btn'
+              aria-label='EXPENSE'
+              type='radio'
+              {...register('type')}
+              onClick={() => handleClick('expense')}
+              name='type'
+              value={'Expense'}
+            />
+            <input
+              className='join-item btn'
+              aria-label='INCOME'
+              type='radio'
+              {...register('type')}
+              onClick={() => handleClick('income')}
+              name='type'
+              value={'Income'}
+            />
+          </div>
+          {type === 'expense' ? (
+            <ExpenseCategories register={register} />
+          ) : (
+            <IncomeCategories register={register} />
           )}
-        </div>
-
-        <label htmlFor='title'>Title</label>
-
-        <input type='text' id='title' {...register('title')} />
-        <div className='error-container'>
-          {errors.title && (
-            <p style={{ color: 'red' }}>{errors.title.message}</p>
-          )}
-        </div>
-        <label htmlFor='amount'>Amount</label>
-        <input
-          type='number'
-          id='age'
-          {...register('amount', { valueAsNumber: true })}
-        />
-        <div className='error-container'>
-          {errors.amount && (
-            <p style={{ color: 'red' }}>{errors.amount.message}</p>
-          )}
-        </div>
-        <button>Submit</button>
-      </form>
-    </div>
+          <div className='error-container'>
+            {errors.category && (
+              <p style={{ color: 'red' }}>{errors.category.message}</p>
+            )}
+          </div>
+          <input
+            type='text'
+            className='input input-bordered input-primary w-full max-w-xs'
+            aria-label='Title'
+            {...register('title')}
+          />
+          <div className='error-container'>
+            {errors.title && (
+              <p style={{ color: 'red' }}>{errors.title.message}</p>
+            )}
+          </div>
+          <input
+            className='input input-bordered input-primary w-full max-w-xs'
+            aria-label='Amount'
+            type='number'
+            min={0}
+            {...register('amount', { valueAsNumber: true })}
+          />
+          <div className='error-container'>
+            {errors.amount && (
+              <p style={{ color: 'red' }}>{errors.amount.message}</p>
+            )}
+          </div>
+          <button className='btn btn-primary'>Submit</button>
+        </form>
+      </div>
+    </section>
   );
 };
 

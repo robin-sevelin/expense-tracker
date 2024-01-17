@@ -1,4 +1,4 @@
-import { atom, useAtom } from 'jotai';
+import { atom } from 'jotai';
 import {
   TRANSACTIONS_BASE_VALUES,
   TRANSACTION_BASE_VALUES,

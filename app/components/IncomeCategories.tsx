@@ -9,24 +9,20 @@ interface expenseCategoriesProps {
 
 const IncomeCategories = ({ register }: expenseCategoriesProps) => {
   return (
-    <>
+    <div className='join flex w-30'>
       {INCOME_CATEGORIES.map((category) => (
-        <div className=' m-2 float-right' key={category.id}>
-          <label htmlFor={category.title}>
-            {category.title}
-            <input
-              checked
-              className='join-item btn m-2'
-              type='radio'
-              id='category'
-              value={category.title}
-              {...register('category')}
-              name='category'
-            />
-          </label>
-        </div>
+        <input
+          key={category.id}
+          checked
+          aria-label={category.title.toUpperCase()}
+          className='join-item btn w-20'
+          type='radio'
+          value={category.title}
+          {...register('category')}
+          name='category'
+        />
       ))}
-    </>
+    </div>
   );
 };
 

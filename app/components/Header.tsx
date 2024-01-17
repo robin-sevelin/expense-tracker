@@ -15,7 +15,7 @@ const Header = () => {
     setUser(USER_BASE_VALUES);
   };
   return (
-    <header className='flex justify-between'>
+    <header className='flex justify-between h-20'>
       Header
       {user.uid && (
         <>
@@ -23,8 +23,8 @@ const Header = () => {
             <img
               src={user.photoURL}
               alt={user.displayName}
-              width={50}
-              height={50}
+              width={75}
+              height={75}
               loading='lazy'
               className=' rounded-full shadow-2xl '
             />
