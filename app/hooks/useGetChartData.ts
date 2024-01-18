@@ -1,4 +1,9 @@
-import { balanceAtom, sumAtom, userAtom } from '@/app/store/atoms';
+import {
+  balanceAtom,
+  selectedMonthAtom,
+  sumAtom,
+  userAtom,
+} from '@/app/store/atoms';
 import {
   CategoryScale,
   Legend,
@@ -32,10 +37,11 @@ Chart.register(
 );
 
 export const useGetChartData = () => {
+  const [selectedMonth] = useAtom(selectedMonthAtom);
   const [user] = useAtom(userAtom);
   const { transactions } = useGetTransactions();
   const { balance } = useGetBalance();
-  const HEADING = `${user.displayName}'s transaction stats: ${CURRENT_MONTH} ${CURRENT_YEAR} in SEK`;
+  const HEADING = `${user.displayName}'s transaction stats: ${selectedMonth.month} ${selectedMonth.year} in SEK`;
 
   const options = {
     responsive: true,

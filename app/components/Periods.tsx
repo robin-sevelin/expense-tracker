@@ -20,11 +20,11 @@ const Periods = () => {
   return (
     <div className='join flex flex-col justify-center items-center'>
       <fieldset>
-        <legend>Select available year</legend>
+        <legend>SELECT YEAR</legend>
         {sortedYears?.map((year, index) => (
           <input
             key={index}
-            className='join-item btn'
+            className='btn m-1'
             type='radio'
             aria-label={year}
             name='year'
@@ -35,12 +35,12 @@ const Periods = () => {
       {selectedYear && (
         <div className='join'>
           <fieldset>
-            <legend>Select available month</legend>
+            <legend>SELECT MONTH</legend>
             {sortedMonths?.map((month, index) => (
               <input
                 key={index}
                 type='radio'
-                className='join-item btn'
+                className='btn m-1'
                 aria-label={month.month}
                 name='month'
                 onChange={() => setSelectedMonth(month)}
