@@ -34,7 +34,7 @@ Chart.register(
 export const useGetChartData = () => {
   const [user] = useAtom(userAtom);
   const { transactions } = useGetTransactions();
-  const [balance] = useAtom(balanceAtom);
+  const { balance } = useGetBalance();
   const HEADING = `${user.displayName}'s transaction stats: ${CURRENT_MONTH} ${CURRENT_YEAR} in SEK`;
 
   const options = {
@@ -66,8 +66,6 @@ export const useGetChartData = () => {
         ? new Date(transaction.date)
         : null;
 
-      console.log(transaction.date);
-
       return transactionDate && transactionDate.getDate() === day;
     });
     return filteredTransactions;
@@ -82,12 +80,15 @@ export const useGetChartData = () => {
     x: day,
     y: getSumByType(day, TRANSACTION_TYPES.EXPENSE),
   }));
+
+  let currentBalance = balance;
   const labelsBalance = labels.map((day) => {
     const incomeSum = getSumByType(day, TRANSACTION_TYPES.INCOME);
     const expenseSum = getSumByType(day, TRANSACTION_TYPES.EXPENSE);
 
-    const newBalance = balance + incomeSum - expenseSum;
-    return { x: day, y: newBalance };
+    currentBalance = currentBalance + incomeSum - expenseSum;
+
+    return { x: day, y: currentBalance };
   });
 
   const data = {

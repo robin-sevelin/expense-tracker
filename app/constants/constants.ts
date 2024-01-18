@@ -9,17 +9,10 @@ export const ROUTES = [
   { id: 3, url: '/pages/viewTransactions', text: 'View transactions' },
   { id: 4, url: '/pages/addTransactions', text: 'Add transactions' },
 ];
-export const CURRENT_DATE = new Date();
-export const CURRENT_YEAR = new Date().getFullYear().toString();
-export const CURRENT_MONTH = new Date().toLocaleDateString('en-US', {
-  month: 'long',
-});
-
-export const DAYS_IN_MONTH = new Date(
-  CURRENT_DATE.getFullYear(),
-  CURRENT_DATE.getMonth() + 1,
-  0
-).getDate();
+export const CURRENT_DATE = DateTime.now();
+export const CURRENT_YEAR = CURRENT_DATE.year.toString();
+export const CURRENT_MONTH = CURRENT_DATE.toFormat('MMMM');
+export const DAYS_IN_MONTH = CURRENT_DATE.daysInMonth;
 
 export const USER_BASE_VALUES: IUser = {
   uid: '',

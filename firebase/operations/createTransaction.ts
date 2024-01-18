@@ -3,39 +3,32 @@ import { IUser } from '@/app/models/IUser';
 import * as firestore from 'firebase/firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
+import { DateTime } from 'luxon';
 
 export const createTransactionDocument = async (
   userAuth: IUser,
   transaction: ITransaction
 ) => {
-  const transactionDate = transaction.date
-    ? firestore.Timestamp.fromDate(transaction.date)
-    : null;
+  const formatDate = DateTime.fromJSDate(transaction.date as Date);
+  const formatYear = formatDate.year;
+  const formatMonth = formatDate.toFormat('MMMM');
 
   const updatedTransaction = {
     ...transaction,
     id: uuidv4(),
-    date: transactionDate,
+    date: formatDate.toLocaleString(),
   };
-
-  const transactionYear = transactionDate
-    ? transactionDate.toDate().getFullYear().toString()
-    : 'unknown';
-
-  const transactionMonth = transactionDate
-    ? transactionDate.toDate().toLocaleString('en-US', { month: 'long' })
-    : 'unknown';
 
   const transactionDocRef = firestore.doc(
     db,
     'transactions',
     userAuth?.uid,
-    transactionYear,
-    transactionMonth
+    formatYear.toString(),
+    formatMonth.toString()
   );
 
   try {
-    if (transactionYear !== 'unknown' && transactionMonth !== 'unknown') {
+    if (transaction) {
       const transactionDocSnapshot = await firestore.getDoc(transactionDocRef);
       const existingData = transactionDocSnapshot.data();
 
