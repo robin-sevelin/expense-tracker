@@ -7,14 +7,15 @@ import { IUser } from '@/app/models/IUser';
 import { TransactionFormData } from '@/app/models/FormData';
 import Link from 'next/link';
 import React from 'react';
-import { submitAtom } from '@/app/store/atoms';
+import { submitAtom, transactionsAtom } from '@/app/store/atoms';
 import { useAtom } from 'jotai';
 import { updateTransactionObject } from '@/firebase/operations/updateTransaction';
+import { ITransaction } from '@/app/models/ITransaction';
 
 const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
   const id = params.transactionId;
-  const { transaction } = useGetTransactionById(id);
   const [, setIsSubmitted] = useAtom(submitAtom);
+  const { transaction } = useGetTransactionById(id);
 
   const submitData = async (user: IUser, data: TransactionFormData) => {
     await updateTransactionObject(user, data, id);
@@ -28,7 +29,7 @@ const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
         <button className='btn btn-primary'>Return</button>
       </Link>
       <div>
-        <TransactionById transaction={transaction} key={id} />
+        <TransactionById transaction={transaction} />
       </div>
     </>
   );

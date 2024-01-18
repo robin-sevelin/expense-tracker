@@ -1,16 +1,22 @@
-import { submitAtom, transactionByIdAtom, userAtom } from './../store/atoms';
+import { ITransaction } from '@/app/models/ITransaction';
+import {
+  selectedMonthAtom,
+  submitAtom,
+  transactionByIdAtom,
+  userAtom,
+} from './../store/atoms';
 import { db } from '@/firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
-import { CURRENT_YEAR, CURRENT_MONTH } from '../constants/constants';
-import { ITransaction } from '../models/ITransaction';
+import { TRANSACTION_BASE_VALUES } from '../constants/constants';
 
 export const useGetTransactionById = (id: string) => {
   const [user] = useAtom(userAtom);
   const [transaction, setTransaction] = useAtom(transactionByIdAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
+  const [selectedPeriod] = useAtom(selectedMonthAtom);
 
   useEffect(() => {
     if (id) {
@@ -20,17 +26,20 @@ export const useGetTransactionById = (id: string) => {
             db,
             'transactions',
             user.uid,
-            CURRENT_YEAR,
-            CURRENT_MONTH
+            selectedPeriod.year.toString(),
+            selectedPeriod.month
           );
           const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            if (data) console.log(data);
+            setTransaction(data as ITransaction);
+          } else {
+            setTransaction(TRANSACTION_BASE_VALUES);
+          }
           const data = docSnap.data();
 
-          const selectedTransaction = data?.transactions.find(
-            (transaction: ITransaction) => transaction.id === id
-          );
-
-          setTransaction(selectedTransaction);
+          setTransaction(data?.transactions[0] as ITransaction);
           setIsSubmitted(false);
         };
         getData();
@@ -40,7 +49,7 @@ export const useGetTransactionById = (id: string) => {
         setIsLoading(false);
       }
     }
-  }, [user, setTransaction, id, isSubmitted, setIsSubmitted]);
+  }, [user, setTransaction, isSubmitted, setIsSubmitted, id, selectedPeriod]);
 
   return { isLoading, transaction } as const;
 };

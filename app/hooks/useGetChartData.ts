@@ -41,7 +41,7 @@ export const useGetChartData = () => {
   const [user] = useAtom(userAtom);
   const { transactions } = useGetTransactions();
   const { balance } = useGetBalance();
-  const HEADING = `${user.displayName}'s transaction stats: ${selectedMonth.month} ${selectedMonth.year} in SEK`;
+  const HEADING = `${user.displayName}'s transactions: ${selectedMonth.month} ${selectedMonth.year} in SEK`;
 
   const options = {
     responsive: true,
