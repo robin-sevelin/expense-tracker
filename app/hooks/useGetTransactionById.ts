@@ -32,7 +32,6 @@ export const useGetTransactionById = (id: string) => {
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const data = docSnap.data();
-            if (data) console.log(data);
             setTransaction(data as ITransaction);
           } else {
             setTransaction(TRANSACTION_BASE_VALUES);

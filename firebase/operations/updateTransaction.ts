@@ -3,19 +3,19 @@ import { ITransaction } from '@/app/models/ITransaction';
 import { IUser } from '@/app/models/IUser';
 import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firestore';
-import { DateTime } from 'luxon';
 
 export const updateTransactionObject = async (
   user: IUser,
-  transaction: ITransaction,
-  id: string
+  data: ITransaction,
+  id: string,
+  month: string,
+  year: string
 ) => {
   const transactionsCollection = collection(db, 'transactions');
-  const formatDate = DateTime.fromJSDate(transaction.date as Date);
 
   const userDocRef = doc(transactionsCollection, user.uid);
-  const yearSubcollectionRef = collection(userDocRef, CURRENT_YEAR);
-  const monthDocRef = doc(yearSubcollectionRef, CURRENT_MONTH);
+  const yearSubcollectionRef = collection(userDocRef, year.toString());
+  const monthDocRef = doc(yearSubcollectionRef, month);
 
   try {
     const monthDocSnap = await getDoc(monthDocRef);
@@ -27,11 +27,11 @@ export const updateTransactionObject = async (
         if (transaction.id === id) {
           return {
             ...transaction,
-            title: transaction.title,
-            amount: transaction.amount,
-            category: transaction.category,
-            type: transaction.type,
-            date: formatDate.toLocaleString(),
+            title: data.title,
+            amount: data.amount,
+            category: data.category,
+            type: data.type,
+            date: data.date,
           };
         }
         return transaction;

@@ -8,8 +8,6 @@ interface Props {
 }
 
 const TransactionById = ({ transaction }: Props) => {
-  console.log(transaction);
-
   return (
     <div>
       <h2>Update transaction</h2>
