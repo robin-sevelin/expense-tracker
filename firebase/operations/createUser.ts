@@ -1,4 +1,4 @@
-import { DATESTAMP } from '@/app/constants/constants';
+import { CURRENT_DATE } from '@/app/constants/constants';
 import { IUser } from '@/app/models/IUser';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firestore';
@@ -15,7 +15,7 @@ export const createUserDocument = async (userAuth: IUser) => {
       await setDoc(userDocRef, {
         displayName,
         email,
-        createdAt: DATESTAMP.toLocaleString(),
+        createdAt: CURRENT_DATE,
         photoURL,
       });
     } catch (error) {

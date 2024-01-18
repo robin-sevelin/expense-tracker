@@ -9,7 +9,6 @@ import { useAtom } from 'jotai';
 import { submitAtom } from '../store/atoms';
 import { useGetTransactions } from '../hooks/useGetTransactions';
 import { useGetSum } from '../hooks/useGetSum';
-import Periods from './Periods';
 import { deleteTransactionObject } from '@/firebase/operations/deleteTransaction';
 
 const TransactionList = () => {
@@ -25,13 +24,12 @@ const TransactionList = () => {
 
   return (
     <>
-      <Periods />
       {isLoading ? (
         <Loading />
       ) : (
         <section className='max-w-7xl max-h-3xl m-auto'>
           <h2 className='text-5xl font-bold'>TRANSACTIONS.</h2>
-          {!transactions.length ? (
+          {!transactions ? (
             <NotFound />
           ) : (
             transactions.map((transaction) => (

@@ -17,7 +17,7 @@ interface Props {
 }
 
 const AddTransaction = ({ onHandleSubmit }: Props) => {
-  const [startDate, setStartDate] = useState<Date>(new Date());
+  const [date, setDate] = useState(new Date());
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
 
@@ -33,7 +33,9 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   });
 
   const submitData = async (data: TransactionFormData) => {
-    data.date = startDate;
+    data.date = date;
+    console.log(JSON.stringify(data, null, 2));
+
     onHandleSubmit(user, data);
     reset();
   };
@@ -54,8 +56,8 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
             <DatePicker
               id='datepicker'
               className='input input-bordered input-primary w-full max-w-xs'
-              selected={startDate}
-              onChange={(date) => setStartDate(date as Date)}
+              selected={date}
+              onChange={(date) => setDate(date as Date)}
               shouldCloseOnSelect={false}
             />
           </div>
@@ -71,7 +73,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
                 {...register('type')}
                 onClick={() => handleClick('expense')}
                 name='type'
-                value={'Expense'}
+                value={'expense'}
               />
               <input
                 className='join-item btn'
@@ -80,7 +82,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
                 {...register('type')}
                 onClick={() => handleClick('income')}
                 name='type'
-                value={'Income'}
+                value={'income'}
               />
             </div>
           </fieldset>

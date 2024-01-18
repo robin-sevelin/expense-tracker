@@ -1,4 +1,4 @@
-import { DATESTAMP } from '@/app/constants/constants';
+import { CURRENT_DATE } from '@/app/constants/constants';
 import { IUser } from '@/app/models/IUser';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firestore';
@@ -15,7 +15,7 @@ export const createBalanceDocument = async (
     try {
       await setDoc(balanceDocRef, {
         user: userAuth.displayName,
-        createdAt: DATESTAMP.toLocaleString(),
+        createdAt: CURRENT_DATE,
         balance: balance,
       });
     } catch (error) {
@@ -26,7 +26,7 @@ export const createBalanceDocument = async (
       await updateDoc(balanceDocRef, {
         balance: balance,
         user: userAuth.displayName,
-        createdAt: DATESTAMP.toLocaleString(),
+        createdAt: CURRENT_DATE,
       });
     } catch (error) {
       console.log('Error updating the balance', error);

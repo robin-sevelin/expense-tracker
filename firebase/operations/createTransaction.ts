@@ -1,6 +1,6 @@
 import { ITransaction } from '@/app/models/ITransaction';
 import { IUser } from '@/app/models/IUser';
-import { doc, getDoc, updateDoc, arrayUnion, setDoc } from 'firebase/firestore';
+import * as firestore from 'firebase/firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -8,44 +8,43 @@ export const createTransactionDocument = async (
   userAuth: IUser,
   transaction: ITransaction
 ) => {
+  const transactionDate = transaction.date
+    ? firestore.Timestamp.fromDate(transaction.date)
+    : null;
+
   const updatedTransaction = {
     ...transaction,
     id: uuidv4(),
-    date: transaction.date,
+    date: transactionDate,
   };
 
-  const transactionDate = transaction.date
-    ? {
-        year: transaction.date.getFullYear().toString(),
-        month: transaction.date.toLocaleString('en-US', { month: 'long' }),
-      }
-    : {
-        year: 'unknown',
-        month: 'unknown',
-      };
+  const transactionYear = transactionDate
+    ? transactionDate.toDate().getFullYear().toString()
+    : 'unknown';
 
-  const transactionDocRef = doc(
+  const transactionMonth = transactionDate
+    ? transactionDate.toDate().toLocaleString('en-US', { month: 'long' })
+    : 'unknown';
+
+  const transactionDocRef = firestore.doc(
     db,
     'transactions',
     userAuth?.uid,
-    transactionDate?.year,
-    transactionDate?.month
+    transactionYear,
+    transactionMonth
   );
 
   try {
-    if (
-      transactionDate?.year !== 'unknown' &&
-      transactionDate?.month !== 'unknown'
-    ) {
-      const transactionDocSnapshot = await getDoc(transactionDocRef);
+    if (transactionYear !== 'unknown' && transactionMonth !== 'unknown') {
+      const transactionDocSnapshot = await firestore.getDoc(transactionDocRef);
       const existingData = transactionDocSnapshot.data();
 
       if (existingData && existingData.transactions) {
-        await updateDoc(transactionDocRef, {
-          transactions: arrayUnion(updatedTransaction),
+        await firestore.updateDoc(transactionDocRef, {
+          transactions: firestore.arrayUnion(updatedTransaction),
         });
       } else {
-        await setDoc(transactionDocRef, {
+        await firestore.setDoc(transactionDocRef, {
           transactions: [updatedTransaction],
         });
       }
