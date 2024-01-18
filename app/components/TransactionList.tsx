@@ -10,6 +10,7 @@ import { submitAtom } from '../store/atoms';
 import { useGetTransactions } from '../hooks/useGetTransactions';
 import { useGetSum } from '../hooks/useGetSum';
 import { deleteTransactionObject } from '@/firebase/operations/deleteTransaction';
+import Periods from './Periods';
 
 const TransactionList = () => {
   const [, setIsSubmitted] = useAtom(submitAtom);
@@ -24,6 +25,7 @@ const TransactionList = () => {
 
   return (
     <>
+      <Periods />
       {isLoading ? (
         <Loading />
       ) : (
@@ -38,6 +40,7 @@ const TransactionList = () => {
                 <p>Amount: {transaction.amount} kr</p>
                 <p>Type: {transaction.type}</p>
                 <p>Category: {transaction.category}</p>
+                <p>Date {transaction.date?.toString()}</p>
                 <button
                   className='btn btn-error'
                   onClick={() => handleDelete(transaction.id)}

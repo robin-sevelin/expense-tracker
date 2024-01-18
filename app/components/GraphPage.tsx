@@ -5,6 +5,7 @@ import { Line } from 'react-chartjs-2';
 import { useAuthUser } from '../hooks/useAuthUser';
 import { useGetChartData } from '../hooks/useGetChartData';
 import { useGetSum } from '../hooks/useGetSum';
+import Periods from './Periods';
 
 const GraphPage = () => {
   const { sum } = useGetSum();
@@ -14,6 +15,7 @@ const GraphPage = () => {
   return (
     <section className='max-w-7xl max-h-3xl m-auto'>
       <h2 className='text-5xl font-bold'>GRAPH.</h2>
+      <Periods />
       <p>Remaning balance {sum} kr</p>
       <Line options={options} data={data} />
     </section>

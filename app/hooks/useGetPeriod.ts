@@ -19,7 +19,6 @@ export const useGetPeriods = () => {
         const data = docSnap.data();
 
         setPeriods(data as IPeriod);
-        console.log(data);
       } else {
         console.log('Document does not exist');
       }

@@ -34,7 +34,6 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
 
   const submitData = async (data: TransactionFormData) => {
     data.date = date;
-    console.log(JSON.stringify(data, null, 2));
 
     onHandleSubmit(user, data);
     reset();
