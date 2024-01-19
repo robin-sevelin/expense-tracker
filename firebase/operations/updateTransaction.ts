@@ -1,43 +1,51 @@
-import { CURRENT_YEAR, CURRENT_MONTH } from '@/app/constants/constants';
 import { ITransaction } from '@/app/models/ITransaction';
 import { IUser } from '@/app/models/IUser';
-import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firestore';
+import { DateTime } from 'luxon';
 
 export const updateTransactionObject = async (
   user: IUser,
-  data: ITransaction,
+  updatedTransaction: ITransaction,
   id: string,
-  month: string,
-  year: string
+  date: Date
 ) => {
-  const transactionsCollection = collection(db, 'transactions');
+  const formatDate = DateTime.fromJSDate(date);
+  const year = formatDate.year;
+  const month = formatDate.toFormat('MMMM', { locale: 'en' });
 
-  const userDocRef = doc(transactionsCollection, user.uid);
-  const yearSubcollectionRef = collection(userDocRef, year.toString());
-  const monthDocRef = doc(yearSubcollectionRef, month);
+  const transactionCollectionRef = doc(
+    db,
+    'users',
+    user.uid,
+    'transactions',
+    user.uid
+  );
 
   try {
-    const monthDocSnap = await getDoc(monthDocRef);
-    if (monthDocSnap.exists()) {
-      const monthDocData = monthDocSnap.data();
-      const transactionArray = monthDocData.transactions;
+    const docSnap = await getDoc(transactionCollectionRef);
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+
+      const transactionArray = data.transactions;
 
       const updatedArray = transactionArray.map((transaction: ITransaction) => {
         if (transaction.id === id) {
           return {
             ...transaction,
-            title: data.title,
-            amount: data.amount,
-            category: data.category,
-            type: data.type,
-            date: data.date,
+            title: updatedTransaction.title,
+            amount: updatedTransaction.amount,
+            category: updatedTransaction.category,
+            type: updatedTransaction.type,
+            year: year,
+            month: month,
+            id: id,
           };
         }
         return transaction;
       });
 
-      await updateDoc(monthDocRef, { transactions: updatedArray });
+      await updateDoc(transactionCollectionRef, { transactions: updatedArray });
     } else {
       console.log('document doesnt exist');
     }

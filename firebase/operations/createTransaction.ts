@@ -1,47 +1,43 @@
 import { ITransaction } from '@/app/models/ITransaction';
 import { IUser } from '@/app/models/IUser';
-import * as firestore from 'firebase/firestore';
+import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { DateTime } from 'luxon';
 
 export const createTransactionDocument = async (
   userAuth: IUser,
-  transaction: ITransaction
+  transaction: ITransaction,
+  date: Date
 ) => {
-  const formatDate = DateTime.fromJSDate(transaction.date as Date);
-  const formatYear = formatDate.year;
-  const formatMonth = formatDate.toFormat('MMMM');
+  const formatDate = DateTime.fromJSDate(date);
+  const year = formatDate.year;
+  const month = formatDate.toFormat('MMMM', { locale: 'en' });
 
   const updatedTransaction = {
     ...transaction,
     id: uuidv4(),
-    date: formatDate.toLocaleString(),
+    year: year,
+    month: month,
   };
 
-  const transactionDocRef = firestore.doc(
+  const transactionsCollectionRef = collection(
     db,
-    'transactions',
+    'users',
     userAuth?.uid,
-    formatYear.toString(),
-    formatMonth.toString()
+    'transactions'
   );
 
-  try {
-    if (transaction) {
-      const transactionDocSnapshot = await firestore.getDoc(transactionDocRef);
-      const existingData = transactionDocSnapshot.data();
+  const transactionDocRef = doc(transactionsCollectionRef, userAuth.uid);
 
-      if (existingData && existingData.transactions) {
-        await firestore.updateDoc(transactionDocRef, {
-          transactions: firestore.arrayUnion(updatedTransaction),
-        });
-      } else {
-        await firestore.setDoc(transactionDocRef, {
-          transactions: [updatedTransaction],
-        });
-      }
-    }
+  try {
+    await setDoc(
+      transactionDocRef,
+      {
+        transactions: arrayUnion(updatedTransaction),
+      },
+      { merge: true }
+    );
   } catch (error) {
     console.log('Error updating the transaction', error);
   }

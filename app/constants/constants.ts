@@ -21,15 +21,12 @@ export const USER_BASE_VALUES: IUser = {
   photoURL: '',
 };
 
-export const MONTH_BASE_VALES = {
-  month: '',
-  year: '',
-};
-
 export const TRANSACTION_BASE_VALUES: ITransaction = {
   id: '',
   title: '',
   amount: 0,
+  year: 0,
+  month: '',
 };
 export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 

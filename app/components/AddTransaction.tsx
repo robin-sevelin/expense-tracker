@@ -13,7 +13,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 interface Props {
-  onHandleSubmit: (user: IUser, data: TransactionFormData) => void;
+  onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
 }
 
 const AddTransaction = ({ onHandleSubmit }: Props) => {
@@ -33,9 +33,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   });
 
   const submitData = async (data: TransactionFormData) => {
-    data.date = date;
-
-    onHandleSubmit(user, data);
+    onHandleSubmit(user, data, date);
     reset();
   };
 

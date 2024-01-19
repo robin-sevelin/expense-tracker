@@ -7,28 +7,22 @@ import { IUser } from '@/app/models/IUser';
 import { TransactionFormData } from '@/app/models/FormData';
 import Link from 'next/link';
 import React from 'react';
-import {
-  selectedMonthAtom,
-  submitAtom,
-  transactionsAtom,
-} from '@/app/store/atoms';
+import { submitAtom } from '@/app/store/atoms';
 import { useAtom } from 'jotai';
 import { updateTransactionObject } from '@/firebase/operations/updateTransaction';
+import { DateTime } from 'luxon';
 
 const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
   const id = params.transactionId;
   const [, setIsSubmitted] = useAtom(submitAtom);
   const { transaction } = useGetTransactionById(id);
-  const [selectedPeriod] = useAtom(selectedMonthAtom);
 
-  const submitData = async (user: IUser, data: TransactionFormData) => {
-    await updateTransactionObject(
-      user,
-      data,
-      id,
-      selectedPeriod.month,
-      selectedPeriod.year
-    );
+  const submitData = async (
+    user: IUser,
+    data: TransactionFormData,
+    date: Date
+  ) => {
+    await updateTransactionObject(user, data, id, date);
     setIsSubmitted(true);
   };
 
