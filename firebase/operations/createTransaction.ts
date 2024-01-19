@@ -11,14 +11,10 @@ export const createTransactionDocument = async (
   date: Date
 ) => {
   const formatDate = DateTime.fromJSDate(date);
-  const year = formatDate.year;
-  const month = formatDate.toFormat('MMMM', { locale: 'en' });
 
   const updatedTransaction = {
     ...transaction,
     id: uuidv4(),
-    year: year,
-    month: month,
     date: formatDate.toString(),
   };
 

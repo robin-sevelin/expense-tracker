@@ -11,8 +11,6 @@ export const updateTransactionObject = async (
   date: Date
 ) => {
   const formatDate = DateTime.fromJSDate(date);
-  const year = formatDate.year;
-  const month = formatDate.toFormat('MMMM', { locale: 'en' });
 
   const transactionCollectionRef = doc(
     db,
@@ -36,9 +34,6 @@ export const updateTransactionObject = async (
             title: updatedTransaction.title,
             amount: updatedTransaction.amount,
             category: updatedTransaction.category,
-            type: updatedTransaction.type,
-            year: year,
-            month: month,
             id: id,
             date: formatDate.toString(),
           };

@@ -11,17 +11,19 @@ import IncomeCategories from './IncomeCategories';
 import { IUser } from '../models/IUser';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import SumAmount from './SumAmount';
+import { submitAtom } from '../store/atoms';
+import { useAtom } from 'jotai';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
 }
 
 const AddTransaction = ({ onHandleSubmit }: Props) => {
+  const [, setIsSubmitted] = useAtom(submitAtom);
   const [date, setDate] = useState(new Date());
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
-
-  useEffect(() => {}, [type]);
 
   const {
     register,
@@ -34,6 +36,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
 
   const submitData = async (data: TransactionFormData) => {
     onHandleSubmit(user, data, date);
+    setIsSubmitted(true);
     reset();
   };
 

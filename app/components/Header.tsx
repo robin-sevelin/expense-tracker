@@ -6,6 +6,9 @@ import { signOut } from 'firebase/auth';
 import { USER_BASE_VALUES } from '../constants/constants';
 import { useAtom } from 'jotai';
 import { userAtom } from '../store/atoms';
+import { useGetSum } from '../hooks/useGetSum';
+import { useGetBalance } from '../hooks/useGetBalance';
+import SumAmount from './SumAmount';
 
 const Header = () => {
   const [user, setUser] = useAtom(userAtom);
@@ -29,6 +32,7 @@ const Header = () => {
               className=' rounded-full shadow-2xl '
             />
           </picture>
+          <SumAmount />
           <button onClick={logOut} className='btn btn-primary'>
             Sign out
           </button>

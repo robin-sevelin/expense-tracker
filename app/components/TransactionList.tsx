@@ -7,34 +7,43 @@ import Loading from './Loading';
 import Link from 'next/link';
 import { useAtom } from 'jotai';
 import { useGetTransactions } from '../hooks/useGetTransactions';
-import { useGetSum } from '../hooks/useGetSum';
 import { deleteTransactionObject } from '@/firebase/operations/deleteTransaction';
-import Periods from './Periods';
-import { submitAtom } from '../store/atoms';
+import { monthAtom, submitAtom } from '../store/atoms';
+import MonthPicker from './MonthPicker';
 
 const TransactionList = () => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const { user } = useAuthUser();
   const { transactions, isLoading } = useGetTransactions();
-  const { sum } = useGetSum();
+  const [currentMonth] = useAtom(monthAtom);
 
   const handleDelete = async (id: string) => {
     await deleteTransactionObject(user, id);
     setIsSubmitted(true);
   };
 
+  const filteredTransactions = transactions
+    ? transactions.filter((transaction) => {
+        const transactionDate = new Date(transaction.date);
+        return (
+          transactionDate.getMonth() === currentMonth.getMonth() &&
+          transactionDate.getFullYear() === currentMonth.getFullYear()
+        );
+      })
+    : null;
+
   return (
     <>
-      <Periods />
+      <MonthPicker />
       {isLoading ? (
         <Loading />
       ) : (
         <section className='max-w-7xl max-h-3xl m-auto'>
           <h2 className='text-5xl font-bold'>TRANSACTIONS.</h2>
-          {!transactions ? (
+          {!filteredTransactions ? (
             <NotFound />
           ) : (
-            transactions.map((transaction) => (
+            filteredTransactions.map((transaction) => (
               <div key={transaction.id}>
                 <h3>Title: {transaction.title}</h3>
                 <p>Amount: {transaction.amount} kr</p>
@@ -50,7 +59,6 @@ const TransactionList = () => {
               </div>
             ))
           )}
-          Remaning balance: {sum} kr
         </section>
       )}
     </>

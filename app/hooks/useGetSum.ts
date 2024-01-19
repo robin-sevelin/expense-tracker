@@ -1,20 +1,34 @@
 import { useEffect } from 'react';
 import { TRANSACTION_TYPES } from '../constants/constants';
 import { useAtom } from 'jotai';
-import { balanceAtom, sumAtom, transactionsAtom } from '../store/atoms';
+import {
+  balanceAtom,
+  sumAtom,
+  transactionsAtom,
+  monthAtom,
+} from '../store/atoms';
 
 export const useGetSum = () => {
   const [transactions] = useAtom(transactionsAtom);
   const [balance] = useAtom(balanceAtom);
   const [sum, setSum] = useAtom(sumAtom);
+  const [currentMonth] = useAtom(monthAtom);
 
   useEffect(() => {
     if (transactions) {
       const countSum = () => {
-        const expenses = transactions.filter(
+        const currentMonthTransactions = transactions.filter((transaction) => {
+          const transactionDate = new Date(transaction.date);
+          return (
+            transactionDate.getMonth() === currentMonth.getMonth() &&
+            transactionDate.getFullYear() === currentMonth.getFullYear()
+          );
+        });
+
+        const expenses = currentMonthTransactions.filter(
           (transaction) => transaction.type === TRANSACTION_TYPES.EXPENSE
         );
-        const incomes = transactions.filter(
+        const incomes = currentMonthTransactions.filter(
           (transaction) => transaction.type === TRANSACTION_TYPES.INCOME
         );
 
@@ -27,7 +41,7 @@ export const useGetSum = () => {
 
       countSum();
     }
-  }, [balance, setSum, transactions]);
+  }, [balance, setSum, transactions, currentMonth]);
 
   return { sum } as const;
 };
