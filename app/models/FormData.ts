@@ -6,6 +6,7 @@ export interface TransactionFormData {
   amount: number;
   type: string;
   category: string;
+  date: Date;
 }
 
 export interface BalanceFormData {

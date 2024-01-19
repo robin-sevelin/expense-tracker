@@ -40,6 +40,7 @@ export const updateTransactionObject = async (
             year: year,
             month: month,
             id: id,
+            date: formatDate.toString(),
           };
         }
         return transaction;

@@ -19,6 +19,7 @@ export const createTransactionDocument = async (
     id: uuidv4(),
     year: year,
     month: month,
+    date: formatDate.toString(),
   };
 
   const transactionsCollectionRef = collection(
