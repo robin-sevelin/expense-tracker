@@ -27,6 +27,7 @@ export const TRANSACTION_BASE_VALUES: ITransaction = {
   amount: 0,
   year: 0,
   month: '',
+  date: new Date(),
 };
 export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 
