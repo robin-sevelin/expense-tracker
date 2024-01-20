@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthUser } from '../hooks/useAuthUser';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TransactionFormData } from '../models/FormData';
@@ -11,9 +11,9 @@ import IncomeCategories from './IncomeCategories';
 import { IUser } from '../models/IUser';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import SumAmount from './SumAmount';
 import { submitAtom } from '../store/atoms';
 import { useAtom } from 'jotai';
+import { useGetTransactions } from '../hooks/useGetTransactions';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
@@ -24,6 +24,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   const [date, setDate] = useState(new Date());
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
+  useGetTransactions();
 
   const {
     register,

@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { useGetBalance } from '../hooks/useGetBalance';
+import { useGetCurrentSum } from '../hooks/useGetCurrentSum';
 
 const BalanceAmount = () => {
-  const { balance } = useGetBalance();
-  return <div>Balance: {balance} kr</div>;
+  const { sum } = useGetCurrentSum();
+  return <div>Balance: {sum} kr</div>;
 };
 
 export default BalanceAmount;

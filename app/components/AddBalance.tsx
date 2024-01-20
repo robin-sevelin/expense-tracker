@@ -10,9 +10,11 @@ import { BalanceFormData } from '../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { createBalanceDocument } from '@/firebase/operations/createBalance';
+import { useGetBalance } from '../hooks/useGetBalance';
 
 const AddBalance = () => {
   const [user] = useAtom(userAtom);
+  const { balance } = useGetBalance();
   const [, setIsSubmitted] = useAtom(submitAtom);
 
   const {
@@ -33,7 +35,7 @@ const AddBalance = () => {
   return (
     <section className='max-w-3xl max-h-3xl m-auto'>
       <h2>Edit balance</h2>
-      <BalanceAmount />
+      {balance} kr
       <form onSubmit={handleSubmit(submitData)}>
         <label htmlFor='balance'>Amount in SEK</label>
         <input

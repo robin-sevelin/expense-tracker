@@ -3,15 +3,19 @@ import { TRANSACTION_TYPES } from '../constants/constants';
 import { useAtom } from 'jotai';
 import {
   balanceAtom,
-  sumAtom,
   transactionsAtom,
   monthAtom,
+  expenseSumAtom,
+  incomeSumAtom,
+  filtredSumAtom,
 } from '../store/atoms';
 
-export const useGetSum = () => {
+export const useGetFilteredSum = () => {
   const [transactions] = useAtom(transactionsAtom);
   const [balance] = useAtom(balanceAtom);
-  const [sum, setSum] = useAtom(sumAtom);
+  const [sum, setSum] = useAtom(filtredSumAtom);
+  const [expenseSum, setExpenseSum] = useAtom(expenseSumAtom);
+  const [incomeSum, setIncomeSum] = useAtom(incomeSumAtom);
   const [currentMonth] = useAtom(monthAtom);
 
   useEffect(() => {
@@ -32,16 +36,25 @@ export const useGetSum = () => {
           (transaction) => transaction.type === TRANSACTION_TYPES.INCOME
         );
 
-        const expenseSum = expenses.reduce((a, b) => a + b.amount, 0);
-        const incomeSum = incomes.reduce((a, b) => a + b.amount, 0);
-        const diffSum = incomeSum - expenseSum;
+        const expenseSumValue = expenses.reduce((a, b) => a + b.amount, 0);
+        const incomeSumValue = incomes.reduce((a, b) => a + b.amount, 0);
+        const diffSum = incomeSumValue - expenseSumValue;
 
+        setExpenseSum(expenseSumValue);
+        setIncomeSum(incomeSumValue);
         setSum(diffSum + balance);
       };
 
       countSum();
     }
-  }, [balance, setSum, transactions, currentMonth]);
+  }, [
+    balance,
+    setSum,
+    transactions,
+    currentMonth,
+    setIncomeSum,
+    setExpenseSum,
+  ]);
 
-  return { sum } as const;
+  return { sum, expenseSum, incomeSum } as const;
 };

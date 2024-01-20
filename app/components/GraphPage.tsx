@@ -2,16 +2,21 @@
 
 import React from 'react';
 import { useAuthUser } from '../hooks/useAuthUser';
+import FilteredSummary from './FilteredSummary';
+import MonthPicker from './MonthPicker';
+import { Line } from 'react-chartjs-2';
+import { useGetChartData } from '../hooks/useGetChartData';
 
 const GraphPage = () => {
-  // const { options, data } = useGetChartData();
+  const { options, data } = useGetChartData();
 
   useAuthUser();
   return (
     <section className='max-w-7xl max-h-3xl m-auto'>
       <h2 className='text-5xl font-bold'>GRAPH.</h2>
-
-      {/* <Line options={options} data={data} /> */}
+      <MonthPicker />
+      <FilteredSummary />
+      <Line options={options} data={data} />
     </section>
   );
 };

@@ -5,10 +5,14 @@ import { userAtom } from '../store/atoms';
 import { useAtom } from 'jotai';
 import Loading from './Loading';
 import Link from 'next/link';
+import { useGetCurrentSum } from '../hooks/useGetCurrentSum';
+import { useGetTransactions } from '../hooks/useGetTransactions';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);
   const { isLoading } = useGetBalance();
+  useGetTransactions();
+  useGetCurrentSum();
 
   if (isLoading) {
     return <Loading />;
