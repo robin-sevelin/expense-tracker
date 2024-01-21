@@ -10,7 +10,7 @@ export const ROUTES = [
   { id: 4, url: '/pages/addTransactions', text: 'Add transactions' },
 ];
 export const CURRENT_DATE = DateTime.now();
-export const CURRENT_YEAR = CURRENT_DATE.year.toString();
+export const CURRENT_YEAR = CURRENT_DATE.year;
 export const CURRENT_MONTH = CURRENT_DATE.toFormat('MMMM');
 export const DAYS_IN_MONTH = CURRENT_DATE.daysInMonth;
 

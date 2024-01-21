@@ -10,11 +10,11 @@ import { useGetTransactions } from '../hooks/useGetTransactions';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);
-  const { isLoading } = useGetBalance();
-  useGetTransactions();
-  useGetCurrentSum();
+  const { balance } = useGetBalance();
+  const { transactions } = useGetTransactions();
+  const { sum } = useGetCurrentSum();
 
-  if (isLoading) {
+  if (!balance && !transactions && !sum) {
     return <Loading />;
   }
 

@@ -4,7 +4,6 @@ import { useAtom } from 'jotai';
 import React from 'react';
 import { submitAtom, userAtom } from '../store/atoms';
 import Link from 'next/link';
-import BalanceAmount from './BalanceAmount';
 import { balanceSchema } from '../models/FormSchema';
 import { BalanceFormData } from '../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';

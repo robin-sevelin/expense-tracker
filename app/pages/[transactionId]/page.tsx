@@ -9,22 +9,29 @@ import Link from 'next/link';
 import React from 'react';
 import { submitAtom } from '@/app/store/atoms';
 import { useAtom } from 'jotai';
-import { updateTransactionObject } from '@/firebase/operations/updateTransaction';
-import { DateTime } from 'luxon';
+import { updateTransaction } from '@/firebase/operations/updateTransaction';
+import Loading from '@/app/components/Loading';
+import { useGetTransactions } from '@/app/hooks/useGetTransactions';
 
 const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
   const id = params.transactionId;
   const [, setIsSubmitted] = useAtom(submitAtom);
-  const { transaction } = useGetTransactionById(id);
+  const { transaction, isLoading } = useGetTransactionById(id);
+  useGetTransactions();
 
   const submitData = async (
     user: IUser,
     data: TransactionFormData,
     date: Date
   ) => {
-    await updateTransactionObject(user, data, id, date);
+    await updateTransaction(user, data, id, date);
+
     setIsSubmitted(true);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>

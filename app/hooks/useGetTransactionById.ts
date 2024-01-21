@@ -23,7 +23,7 @@ export const useGetTransactionById = (id: string) => {
             const data = docSnap.data();
 
             const filteredData = data.transactions.filter(
-              (item: ITransaction) => item.id === id
+              (transaction: ITransaction) => transaction.id === id
             );
 
             setTransaction(filteredData[0]);
