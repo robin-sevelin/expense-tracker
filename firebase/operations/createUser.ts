@@ -15,7 +15,7 @@ export const createUserDocument = async (userAuth: IUser) => {
       await setDoc(userDocRef, {
         displayName,
         email,
-        createdAt: CURRENT_DATE,
+        createdAt: CURRENT_DATE.toString(),
         photoURL,
       });
     } catch (error) {
