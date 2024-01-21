@@ -23,13 +23,24 @@ const MainPage = () => {
       <div className='hero-content text-center'>
         <div className='max-w-md'>
           <h2 className='text-5xl font-bold'>Hello there {user.displayName}</h2>
-          <p className='py-6'>
-            Go to profile and set your balance before starting adding
-            transactions.
-          </p>
-          <Link href={'/pages/profile'}>
-            <button className='btn btn-primary'>Go to profile</button>
-          </Link>
+          {balance === 0 ? (
+            <>
+              <p className='py-6'>
+                Go to profile and set your balance before starting adding
+                transactions.
+              </p>
+              <Link href={'/pages/profile'}>
+                <button className='btn btn-primary'>Go to profile</button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <p>Start making transactions</p>
+              <Link href={'/pages/addTransactions'}>
+                <button className='btn btn-primary'>Add transactions</button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
