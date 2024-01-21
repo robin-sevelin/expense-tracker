@@ -17,7 +17,11 @@ const Header = () => {
   };
   return (
     <header className='flex justify-between h-20'>
-      Header
+      <div className=' p-2 m-1'>
+        <p className=' font-bold underline'>EXPENSE</p>
+        <p className=' font-light'>TRACKER</p>
+      </div>
+
       {user.uid && (
         <>
           <picture>

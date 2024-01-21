@@ -24,7 +24,6 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   const [date, setDate] = useState(new Date());
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
-  useGetTransactions();
 
   const {
     register,

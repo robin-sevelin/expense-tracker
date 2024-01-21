@@ -1,6 +1,5 @@
 import { atom } from 'jotai';
 import {
-  CURRENT_DATE,
   TRANSACTIONS_BASE_VALUES,
   TRANSACTION_BASE_VALUES,
   USER_BASE_VALUES,
