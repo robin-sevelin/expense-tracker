@@ -35,8 +35,6 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   });
 
   const submitData = async (data: TransactionFormData) => {
-    console.log(data);
-
     onHandleSubmit(user, data, date);
     setIsSubmitted(true);
     reset();
