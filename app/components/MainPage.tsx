@@ -7,12 +7,14 @@ import Loading from './Loading';
 import Link from 'next/link';
 import { useGetCurrentSum } from '../hooks/useGetCurrentSum';
 import { useGetTransactions } from '../hooks/useGetTransactions';
+import { useCheckDate } from '../hooks/useCheckDate';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);
   const { balance } = useGetBalance();
   const { transactions } = useGetTransactions();
   const { sum } = useGetCurrentSum();
+  useCheckDate(transactions);
 
   if (!balance && !transactions && !sum) {
     return <Loading />;
