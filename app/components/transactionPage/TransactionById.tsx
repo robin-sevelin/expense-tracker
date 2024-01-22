@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ITransaction } from '../models/ITransaction';
+import { ITransaction } from '../../models/ITransaction';
 
 interface Props {
   transaction: ITransaction;

@@ -1,17 +1,22 @@
 'use client';
 
 import React from 'react';
-import { useAuthUser } from '../hooks/useAuthUser';
+import { useAuthUser } from '../../hooks/useAuthUser';
 import Link from 'next/link';
 import { useAtom } from 'jotai';
 import { deleteTransactionObject } from '@/firebase/operations/deleteTransaction';
-import { submitAtom } from '../store/atoms';
-import { useGetFilteredTransactions } from '../hooks/useGetFIlteredTransaction';
+import { submitAtom } from '../../store/atoms';
+import { useGetFilteredTransactions } from '../../hooks/useGetFIlteredTransaction';
+import { ITransaction } from '@/app/models/ITransaction';
 
-const TransactionList = () => {
+interface Props {
+  transactions: ITransaction[];
+}
+
+const TransactionList = ({ transactions }: Props) => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const { user } = useAuthUser();
-  const { filteredTransactions } = useGetFilteredTransactions();
+  const { filteredTransactions } = useGetFilteredTransactions(transactions);
 
   const handleDelete = async (id: string) => {
     await deleteTransactionObject(user, id);

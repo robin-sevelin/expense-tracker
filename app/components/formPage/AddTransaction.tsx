@@ -1,21 +1,21 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAuthUser } from '../hooks/useAuthUser';
+import { useAuthUser } from '../../hooks/useAuthUser';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TransactionFormData } from '../models/FormData';
+import { TransactionFormData } from '../../models/FormData';
 import { useForm } from 'react-hook-form';
-import { transactionSchema } from '../models/FormSchema';
-import ExpenseCategories from './ExpenseCategories';
-import IncomeCategories from './IncomeCategories';
-import { IUser } from '../models/IUser';
+import { transactionSchema } from '../../models/FormSchema';
+import ExpenseCategories from '../sharedComponents/ExpenseCategories';
+import IncomeCategories from '../sharedComponents/IncomeCategories';
+import { IUser } from '../../models/IUser';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { submitAtom } from '../store/atoms';
+import { submitAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
-import { CURRENT_DATE } from '../constants/constants';
-import Link from 'next/link';
-import { useGetTransactions } from '../hooks/useGetTransactions';
+import { CURRENT_DATE } from '../../constants/constants';
+import { useGetTransactions } from '@/app/hooks/useGetTransactions';
+import { useGetBalance } from '@/app/hooks/useGetBalance';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
@@ -27,6 +27,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
   useGetTransactions();
+  useGetBalance();
 
   const {
     register,
@@ -154,12 +155,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
               <p style={{ color: 'red' }}>{errors.amount.message}</p>
             )}
           </div>
-          <div className='flex justify-between '>
-            <Link href='/pages/viewTransactions' className='btn btn-primary'>
-              <span>Return</span>
-            </Link>
-            <button className='btn btn-primary'>Submit</button>
-          </div>
+          <button className='btn btn-primary'>Submit</button>
         </form>
       </div>
     </section>

@@ -2,19 +2,21 @@
 
 import { useAtom } from 'jotai';
 import React from 'react';
-import { submitAtom, userAtom } from '../store/atoms';
+import { submitAtom, userAtom } from '../../store/atoms';
 import Link from 'next/link';
-import { balanceSchema } from '../models/FormSchema';
-import { BalanceFormData } from '../models/FormData';
+import { balanceSchema } from '../../models/FormSchema';
+import { BalanceFormData } from '../../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { createBalanceDocument } from '@/firebase/operations/createBalance';
-import { useGetBalance } from '../hooks/useGetBalance';
+import { useGetBalance } from '../../hooks/useGetBalance';
+import { useGetTransactions } from '@/app/hooks/useGetTransactions';
 
 const AddBalance = () => {
   const [user] = useAtom(userAtom);
   const { balance } = useGetBalance();
   const [, setIsSubmitted] = useAtom(submitAtom);
+  useGetTransactions();
 
   const {
     register,

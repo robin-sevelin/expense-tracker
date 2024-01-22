@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from './components/header/Header';
 import { Provider } from 'jotai';
-import Footer from './components/Footer';
+import Footer from './components/mainPage/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

@@ -1,16 +1,16 @@
 import React from 'react';
-import { EXPENSE_CATEGORIES } from '../constants/constants';
+import { INCOME_CATEGORIES } from '../../constants/constants';
 import { UseFormRegister } from 'react-hook-form';
-import { TransactionFormData } from '../models/FormData';
+import { TransactionFormData } from '../../models/FormData';
 
 interface expenseCategoriesProps {
   register: UseFormRegister<TransactionFormData>;
 }
 
-const ExpenseCategories = ({ register }: expenseCategoriesProps) => {
+const IncomeCategories = ({ register }: expenseCategoriesProps) => {
   return (
     <div className='join flex w-30'>
-      {EXPENSE_CATEGORIES.map((category) => (
+      {INCOME_CATEGORIES.map((category) => (
         <input
           key={category.id}
           defaultChecked
@@ -26,4 +26,4 @@ const ExpenseCategories = ({ register }: expenseCategoriesProps) => {
   );
 };
 
-export default ExpenseCategories;
+export default IncomeCategories;

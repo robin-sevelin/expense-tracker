@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { useAuthUser } from '../hooks/useAuthUser';
-import FilteredSummary from './FilteredSummary';
-import MonthPicker from './MonthPicker';
+import { useAuthUser } from '../../hooks/useAuthUser';
+import FilteredSummary from '../sharedComponents/FilteredSummary';
+import MonthPicker from '../sharedComponents/MonthPicker';
 import { Line } from 'react-chartjs-2';
-import { useGetChartData } from '../hooks/useGetChartData';
+import { useGetChartData } from '../../hooks/useGetChartData';
 
 const GraphPage = () => {
   const { options, data } = useGetChartData();

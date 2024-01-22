@@ -1,14 +1,16 @@
 'use client';
 
-import FilteredSummary from '@/app/components/FilteredSummary';
-import MonthPicker from '@/app/components/MonthPicker';
-import TransactionCalender from '@/app/components/TransactionCalender';
-import TransactionList from '@/app/components/TransactionList';
-import ViewMode from '@/app/components/ViewMode';
+import FilteredSummary from '@/app/components/sharedComponents/FilteredSummary';
+import MonthPicker from '@/app/components/sharedComponents/MonthPicker';
+import TransactionCalender from '@/app/components/transactionPage/TransactionCalender';
+import TransactionList from '@/app/components/transactionPage/TransactionList';
+import ViewMode from '@/app/components/transactionPage/ViewMode';
+import { useGetTransactions } from '@/app/hooks/useGetTransactions';
 import { useState } from 'react';
 
 const ViewTransactions = () => {
   const [view, setView] = useState('list');
+  const { transactions } = useGetTransactions();
 
   const setShowList = (value: string) => {
     setView(value);
@@ -19,7 +21,11 @@ const ViewTransactions = () => {
       <MonthPicker />
       <FilteredSummary />
       <ViewMode onSetShowList={setShowList} />
-      {view === 'list' ? <TransactionList /> : <TransactionCalender />}
+      {view === 'list' ? (
+        <TransactionList transactions={transactions} />
+      ) : (
+        <TransactionCalender transactions={transactions} />
+      )}
     </section>
   );
 };

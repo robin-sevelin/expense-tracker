@@ -1,13 +1,13 @@
 'use client';
 
-import { useGetBalance } from '../hooks/useGetBalance';
-import { userAtom } from '../store/atoms';
+import { useGetBalance } from '../../hooks/useGetBalance';
+import { userAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
-import Loading from './Loading';
+import Loading from '../sharedComponents/Loading';
 import Link from 'next/link';
-import { useGetCurrentSum } from '../hooks/useGetCurrentSum';
-import { useGetTransactions } from '../hooks/useGetTransactions';
-import { useCheckDate } from '../hooks/useCheckDate';
+import { useGetCurrentSum } from '../../hooks/useGetCurrentSum';
+import { useGetTransactions } from '../../hooks/useGetTransactions';
+import { useCheckDate } from '../../hooks/useCheckDate';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);

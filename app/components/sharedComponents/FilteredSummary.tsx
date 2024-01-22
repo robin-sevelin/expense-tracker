@@ -1,6 +1,6 @@
 import React from 'react';
-import { useGetTransactions } from '../hooks/useGetTransactions';
-import { useGetFilteredSum } from '../hooks/useGetfilteredSum';
+import { useGetTransactions } from '../../hooks/useGetTransactions';
+import { useGetFilteredSum } from '../../hooks/useGetfilteredSum';
 
 const FilteredSummary = () => {
   const { sum, incomeSum, expenseSum } = useGetFilteredSum();

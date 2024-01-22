@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { useGetCurrentSum } from '../hooks/useGetCurrentSum';
-import { CURRENT_DATE } from '../constants/constants';
+import { useGetCurrentSum } from '../../hooks/useGetCurrentSum';
+import { CURRENT_DATE } from '../../constants/constants';
 
 const BalanceAmount = () => {
   const { sum } = useGetCurrentSum();

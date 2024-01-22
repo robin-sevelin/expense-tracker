@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import React from 'react';
-import { monthAtom } from '../store/atoms';
+import { monthAtom } from '../../store/atoms';
 import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 
 const MonthPicker = () => {

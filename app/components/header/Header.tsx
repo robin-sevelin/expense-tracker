@@ -6,7 +6,7 @@ import { signOut } from 'firebase/auth';
 import { USER_BASE_VALUES } from '../../constants/constants';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../store/atoms';
-import BalanceAmount from '../BalanceAmount';
+import BalanceAmount from '../sharedComponents/BalanceAmount';
 import ProfilePicture from './ProfilePicture';
 import { useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';

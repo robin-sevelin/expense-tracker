@@ -1,12 +1,16 @@
 'use client';
 
 import React from 'react';
-import { useGetCalenderDays } from '../hooks/useGetCalenderDays';
-import { useGetFilteredTransactions } from '../hooks/useGetFIlteredTransaction';
-import { ITransaction } from '../models/ITransaction';
+import { useGetCalenderDays } from '../../hooks/useGetCalenderDays';
+import { useGetFilteredTransactions } from '../../hooks/useGetFIlteredTransaction';
+import { ITransaction } from '../../models/ITransaction';
 
-const TransactionCalender = () => {
-  const { filteredTransactions } = useGetFilteredTransactions();
+interface Props {
+  transactions: ITransaction[];
+}
+
+const TransactionCalender = ({ transactions }: Props) => {
+  const { filteredTransactions } = useGetFilteredTransactions(transactions);
   const { calenderArray } = useGetCalenderDays(
     filteredTransactions as ITransaction[]
   );

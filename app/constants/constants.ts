@@ -4,9 +4,9 @@ import { ITransaction } from '../models/ITransaction';
 export const ROUTES = [
   { id: 0, url: '/', text: 'Home' },
   { id: 1, url: '/pages/profile', text: 'Profile' },
-  { id: 2, url: '/pages/graph/', text: 'Graph' },
+  { id: 2, url: '/pages/chart/', text: 'Chart' },
   { id: 3, url: '/pages/viewTransactions', text: 'View transactions' },
-  { id: 4, url: '/pages/addTransactions', text: 'Add transactions' },
+  { id: 4, url: '/pages/addTransactions', text: 'Add transaction' },
 ];
 export const CURRENT_DATE = new Date();
 export const CURRENT_YEAR = CURRENT_DATE.getFullYear();

@@ -1,4 +1,4 @@
-import AddBalance from '@/app/components/AddBalance';
+import AddBalance from '@/app/components/formPage/AddBalance';
 import React from 'react';
 
 const page = () => {
