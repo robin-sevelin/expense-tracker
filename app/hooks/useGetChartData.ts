@@ -63,9 +63,8 @@ export const useGetChartData = () => {
 
   const getTransactionsUntilDay = (day: number) => {
     const filteredTransactions = transactions?.filter((transaction) => {
-      const transactionDate = transaction.date
-        ? new Date(transaction.date)
-        : null;
+      const transactionDate = transaction.date;
+      new Date(transaction.date);
 
       return (
         transactionDate &&
