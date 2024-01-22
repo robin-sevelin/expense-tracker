@@ -1,4 +1,4 @@
-import { userAtom } from '@/app/store/atoms';
+import { filtredSumAtom, monthAtom } from '@/app/store/atoms';
 import {
   CategoryScale,
   Legend,
@@ -12,12 +12,11 @@ import {
 import { Chart } from 'chart.js';
 import { useAtom } from 'jotai';
 import {
-  CURRENT_MONTH,
-  CURRENT_YEAR,
+  DAYS_IN_MONTH,
+  LINECHART_COLORS,
   TRANSACTION_TYPES,
 } from '../constants/constants';
 import { useGetTransactions } from './useGetTransactions';
-import { useGetBalance } from './useGetBalance';
 
 Chart.register(
   CategoryScale,
@@ -28,84 +27,96 @@ Chart.register(
   Tooltip,
   Legend
 );
+const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+    title: {
+      display: true,
+      text: 'HEADING',
+    },
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
+    },
+  },
+};
 
 export const useGetChartData = () => {
-  const [user] = useAtom(userAtom);
   const { transactions } = useGetTransactions();
-  const { balance } = useGetBalance();
-  const HEADING = `${user.displayName}'s transaction stats: ${CURRENT_MONTH} ${CURRENT_YEAR} in SEK`;
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: HEADING,
-      },
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  };
-
-  const currentDate = new Date();
-  const daysInMonth = new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth() + 1,
-    0
-  ).getDate();
-
-  const labels = Array.from({ length: daysInMonth }, (_, index) => index + 1);
-
-  const getTransactionsUntilDay = (day: number) =>
-    transactions.filter((transaction) => {
-      const transactionDate = transaction.date
-        ? new Date(transaction.date)
-        : null;
-      return transactionDate && transactionDate.getDate() <= day;
-    });
+  const [sum] = useAtom(filtredSumAtom);
+  const [currentMonth] = useAtom(monthAtom);
 
   const getSumByType = (day: number, type: string) =>
     getTransactionsUntilDay(day)
-      .filter((transaction) => transaction.type === type)
+      ?.filter(
+        (transaction) =>
+          transaction.type === type &&
+          new Date(transaction.date).getMonth() === currentMonth.getMonth() &&
+          new Date(transaction.date).getFullYear() ===
+            currentMonth.getFullYear()
+      )
       .reduce((a, b) => a + b.amount, 0);
+
+  const getTransactionsUntilDay = (day: number) => {
+    const filteredTransactions = transactions?.filter((transaction) => {
+      const transactionDate = transaction.date
+        ? new Date(transaction.date)
+        : null;
+
+      return (
+        transactionDate &&
+        transactionDate.getDate() === day &&
+        transactionDate.getMonth() === currentMonth.getMonth() &&
+        transactionDate.getFullYear() === currentMonth.getFullYear()
+      );
+    });
+    return filteredTransactions;
+  };
+
+  const labels = Array.from({ length: DAYS_IN_MONTH }, (_, index) => index + 1);
+  const labelsIncome = labels.map((day) => ({
+    x: day,
+    y: getSumByType(day, TRANSACTION_TYPES.INCOME),
+  }));
+  const labelsExpense = labels.map((day) => ({
+    x: day,
+    y: getSumByType(day, TRANSACTION_TYPES.EXPENSE),
+  }));
+
+  let currentBalance = sum;
+  const labelsBalance = labels.map((day) => {
+    const incomeSum = getSumByType(day, TRANSACTION_TYPES.INCOME);
+    const expenseSum = getSumByType(day, TRANSACTION_TYPES.EXPENSE);
+
+    currentBalance = currentBalance + incomeSum - expenseSum;
+
+    return { x: day, y: currentBalance };
+  });
 
   const data = {
     labels,
     datasets: [
       {
         label: 'Incomes',
-        data: labels.map((day) => ({
-          x: day,
-          y: getSumByType(day, TRANSACTION_TYPES.INCOME),
-        })),
-        borderColor: 'rgb(0, 128, 0)',
-        backgroundColor: 'rgba(0, 128, 0, 0.5)',
+        data: labelsIncome,
+        borderColor: LINECHART_COLORS.INCOME.border,
+        backgroundColor: LINECHART_COLORS.INCOME.bg,
       },
       {
         label: 'Expenses',
-        data: labels.map((day) => ({
-          x: day,
-          y: getSumByType(day, TRANSACTION_TYPES.EXPENSE),
-        })),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        data: labelsExpense,
+        borderColor: LINECHART_COLORS.EXPENSE.border,
+        backgroundColor: LINECHART_COLORS.EXPENSE.bg,
       },
       {
         label: 'Balance',
-        data: labels.map((day) => {
-          const incomeSum = getSumByType(day, TRANSACTION_TYPES.INCOME);
-          const expenseSum = getSumByType(day, TRANSACTION_TYPES.EXPENSE);
-          const newBalance = balance + incomeSum - expenseSum;
-          return { x: day, y: newBalance };
-        }),
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+        data: labelsBalance,
+        borderColor: LINECHART_COLORS.BALANCE.border,
+        backgroundColor: LINECHART_COLORS.BALANCE.bg,
       },
     ],
   };

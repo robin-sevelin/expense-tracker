@@ -13,3 +13,7 @@ export const sumAtom = atom(0);
 export const submitAtom = atom(false);
 export const transactionsAtom = atom(TRANSACTIONS_BASE_VALUES);
 export const transactionByIdAtom = atom(TRANSACTION_BASE_VALUES);
+export const monthAtom = atom(new Date());
+export const filtredSumAtom = atom(0);
+export const incomeSumAtom = atom(0);
+export const expenseSumAtom = atom(0);

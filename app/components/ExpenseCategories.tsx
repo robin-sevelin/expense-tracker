@@ -13,7 +13,7 @@ const ExpenseCategories = ({ register }: expenseCategoriesProps) => {
       {EXPENSE_CATEGORIES.map((category) => (
         <input
           key={category.id}
-          checked
+          defaultChecked
           aria-label={category.title.toUpperCase()}
           className='join-item btn w-20'
           type='radio'

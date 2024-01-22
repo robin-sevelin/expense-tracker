@@ -1,10 +1,10 @@
+import { ITransaction } from '@/app/models/ITransaction';
 import { submitAtom, transactionByIdAtom, userAtom } from './../store/atoms';
 import { db } from '@/firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
-import { CURRENT_YEAR, CURRENT_MONTH } from '../constants/constants';
-import { ITransaction } from '../models/ITransaction';
+import { TRANSACTION_BASE_VALUES } from '../constants/constants';
 
 export const useGetTransactionById = (id: string) => {
   const [user] = useAtom(userAtom);
@@ -13,26 +13,27 @@ export const useGetTransactionById = (id: string) => {
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (id) {
+    if (id || isSubmitted) {
       try {
         const getData = async () => {
-          const docRef = doc(
-            db,
-            'transactions',
-            user.uid,
-            CURRENT_YEAR,
-            CURRENT_MONTH
-          );
+          const docRef = doc(db, 'users', user.uid, 'transactions', user.uid);
           const docSnap = await getDoc(docRef);
-          const data = docSnap.data();
 
-          const selectedTransaction = data?.transactions.find(
-            (transaction: ITransaction) => transaction.id === id
-          );
+          if (docSnap.exists()) {
+            const data = docSnap.data();
 
-          setTransaction(selectedTransaction);
+            const filteredData = data.transactions.filter(
+              (transaction: ITransaction) => transaction.id === id
+            );
+
+            setTransaction(filteredData[0]);
+          } else {
+            setTransaction(TRANSACTION_BASE_VALUES);
+          }
+
           setIsSubmitted(false);
         };
+
         getData();
       } catch (error) {
         console.error('Error getting transaction by ID:', error);
@@ -40,7 +41,7 @@ export const useGetTransactionById = (id: string) => {
         setIsLoading(false);
       }
     }
-  }, [user, setTransaction, id, isSubmitted, setIsSubmitted]);
+  }, [user, setTransaction, isSubmitted, setIsSubmitted, id]);
 
   return { isLoading, transaction } as const;
 };

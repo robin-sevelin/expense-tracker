@@ -1,10 +1,10 @@
 import { auth } from '@/firebase/auth';
-import { createUserDocument } from '@/firebase/firestore';
 import { getRedirectResult } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { userAtom } from '../store/atoms';
 import { IUser } from '../models/IUser';
+import { createUserDocument } from '@/firebase/operations/createUser';
 
 export const useGetRedirect = () => {
   const [user, setUser] = useAtom(userAtom);

@@ -1,11 +1,20 @@
 'use client';
 
 import React from 'react';
-import { useGetBalance } from '../hooks/useGetBalance';
+import { useGetCurrentSum } from '../hooks/useGetCurrentSum';
+import { CURRENT_DATE } from '../constants/constants';
 
 const BalanceAmount = () => {
-  const { balance } = useGetBalance();
-  return <div>Balance: {balance} kr</div>;
+  const { sum } = useGetCurrentSum();
+  return (
+    <div>
+      Balance
+      {CURRENT_DATE.toLocaleString('en-US', {
+        month: 'long',
+      })}
+      : {sum} kr
+    </div>
+  );
 };
 
 export default BalanceAmount;

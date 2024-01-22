@@ -6,6 +6,7 @@ import { signOut } from 'firebase/auth';
 import { USER_BASE_VALUES } from '../constants/constants';
 import { useAtom } from 'jotai';
 import { userAtom } from '../store/atoms';
+import BalanceAmount from './BalanceAmount';
 
 const Header = () => {
   const [user, setUser] = useAtom(userAtom);
@@ -16,7 +17,11 @@ const Header = () => {
   };
   return (
     <header className='flex justify-between h-20'>
-      Header
+      <div className=' p-2 m-1'>
+        <p className=' font-bold underline'>EXPENSE</p>
+        <p className=' font-light'>TRACKER</p>
+      </div>
+
       {user.uid && (
         <>
           <picture>
@@ -29,6 +34,7 @@ const Header = () => {
               className=' rounded-full shadow-2xl '
             />
           </picture>
+          <BalanceAmount />
           <button onClick={logOut} className='btn btn-primary'>
             Sign out
           </button>

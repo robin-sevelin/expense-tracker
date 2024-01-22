@@ -11,10 +11,10 @@ const TransactionById = ({ transaction }: Props) => {
   return (
     <div>
       <h2>Update transaction</h2>
-      <p>Title: {transaction.title}</p>
-      <p>Type: {transaction.type}</p>
-      <p>Category: {transaction.category}</p>
-      <p>Amount: {transaction.amount} kr</p>
+      <p>Title: {transaction?.title}</p>
+      <p>Type: {transaction?.type}</p>
+      <p>Category: {transaction?.category}</p>
+      <p>Amount: {transaction?.amount} kr</p>
     </div>
   );
 };

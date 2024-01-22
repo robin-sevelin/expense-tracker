@@ -3,7 +3,6 @@ import {
   getAuth,
   GoogleAuthProvider,
   setPersistence,
-  signInWithPopup,
   signInWithRedirect,
 } from 'firebase/auth';
 import { app } from './config';
@@ -16,6 +15,3 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 export const signinWithGoogleRedirect = () => {
   signInWithRedirect(auth, googleProvider);
 };
-
-export const signInWithGooglePopup = () =>
-  signInWithPopup(auth, googleProvider);

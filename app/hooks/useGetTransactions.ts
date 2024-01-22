@@ -3,7 +3,6 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { submitAtom, transactionsAtom, userAtom } from '../store/atoms';
-import { CURRENT_MONTH, CURRENT_YEAR } from '../constants/constants';
 
 export const useGetTransactions = () => {
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
@@ -12,20 +11,19 @@ export const useGetTransactions = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isSubmitted || user) {
+    if (isSubmitted || transactions.length === 0) {
       try {
         const getData = async () => {
-          const docRef = doc(
-            db,
-            'transactions',
-            user.uid,
-            CURRENT_YEAR,
-            CURRENT_MONTH
-          );
+          const docRef = doc(db, 'users', user.uid, 'transactions', user.uid);
           const docSnap = await getDoc(docRef);
-          const data = docSnap.data();
 
-          setTransactions(data?.transactions);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setTransactions(data?.transactions);
+          } else {
+            setTransactions([]);
+          }
+
           setIsSubmitted(false);
         };
         getData();
@@ -35,7 +33,7 @@ export const useGetTransactions = () => {
         setIsLoading(false);
       }
     }
-  }, [user, setTransactions, setIsSubmitted, isSubmitted]);
+  }, [user, setTransactions, setIsSubmitted, isSubmitted, transactions]);
 
   return { isLoading, transactions } as const;
 };

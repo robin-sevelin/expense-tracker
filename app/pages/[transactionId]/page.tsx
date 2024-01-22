@@ -5,21 +5,33 @@ import TransactionById from '@/app/components/TransactionById';
 import { useGetTransactionById } from '@/app/hooks/useGetTransactionById';
 import { IUser } from '@/app/models/IUser';
 import { TransactionFormData } from '@/app/models/FormData';
-import { updateTransactionObject } from '@/firebase/firestore';
 import Link from 'next/link';
 import React from 'react';
 import { submitAtom } from '@/app/store/atoms';
 import { useAtom } from 'jotai';
+import { updateTransaction } from '@/firebase/operations/updateTransaction';
+import Loading from '@/app/components/Loading';
+import { useGetTransactions } from '@/app/hooks/useGetTransactions';
 
 const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
   const id = params.transactionId;
-  const { transaction } = useGetTransactionById(id);
   const [, setIsSubmitted] = useAtom(submitAtom);
+  const { transaction, isLoading } = useGetTransactionById(id);
+  useGetTransactions();
 
-  const submitData = async (user: IUser, data: TransactionFormData) => {
-    await updateTransactionObject(user, data, id);
+  const submitData = async (
+    user: IUser,
+    data: TransactionFormData,
+    date: Date
+  ) => {
+    await updateTransaction(user, data, id, date);
+
     setIsSubmitted(true);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -28,7 +40,7 @@ const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
         <button className='btn btn-primary'>Return</button>
       </Link>
       <div>
-        <TransactionById transaction={transaction} key={id} />
+        <TransactionById transaction={transaction} />
       </div>
     </>
   );
