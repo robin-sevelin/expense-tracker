@@ -1,9 +1,4 @@
-import {
-  expenseSumAtom,
-  filtredSumAtom,
-  incomeSumAtom,
-  monthAtom,
-} from '@/app/store/atoms';
+import { filtredSumAtom, monthAtom } from '@/app/store/atoms';
 import {
   CategoryScale,
   Legend,

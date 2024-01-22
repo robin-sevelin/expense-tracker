@@ -3,7 +3,6 @@
 import React from 'react';
 import { useAuthUser } from '../hooks/useAuthUser';
 import Link from 'next/link';
-import BalanceAmount from './BalanceAmount';
 import { useAtom } from 'jotai';
 import { balanceAtom } from '../store/atoms';
 

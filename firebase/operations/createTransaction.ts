@@ -3,19 +3,18 @@ import { IUser } from '@/app/models/IUser';
 import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
-import { DateTime } from 'luxon';
 
 export const createTransactionDocument = async (
   userAuth: IUser,
   transaction: ITransaction,
   date: Date
 ) => {
-  const formatDate = DateTime.fromJSDate(date);
+  console.log(transaction);
 
   const updatedTransaction = {
     ...transaction,
     id: uuidv4(),
-    date: formatDate.toString(),
+    date: date.toString(),
   };
 
   const transactionsCollectionRef = collection(

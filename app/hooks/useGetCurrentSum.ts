@@ -1,5 +1,9 @@
 import { useEffect } from 'react';
-import { TRANSACTION_TYPES } from '../constants/constants';
+import {
+  CURRENT_MONTH,
+  CURRENT_YEAR,
+  TRANSACTION_TYPES,
+} from '../constants/constants';
 import { useAtom } from 'jotai';
 import { balanceAtom, sumAtom, transactionsAtom } from '../store/atoms';
 
@@ -10,15 +14,11 @@ export const useGetCurrentSum = () => {
 
   useEffect(() => {
     if (transactions) {
-      const currentDate = new Date();
-      const currentMonth = currentDate.getMonth();
-      const currentYear = currentDate.getFullYear();
-
       const currentMonthTransactions = transactions.filter((transaction) => {
         const transactionDate = new Date(transaction.date);
         return (
-          transactionDate.getMonth() === currentMonth &&
-          transactionDate.getFullYear() === currentYear
+          transactionDate.getMonth() === CURRENT_MONTH &&
+          transactionDate.getFullYear() === CURRENT_YEAR
         );
       });
 

@@ -23,7 +23,7 @@ const MonthPicker = () => {
         Previous Month
       </button>
       <span>
-        {currentMonth.toLocaleString('default', {
+        {currentMonth.toLocaleString('en-US', {
           month: 'long',
           year: 'numeric',
         })}

@@ -2,7 +2,6 @@ import { ITransaction } from '@/app/models/ITransaction';
 import { IUser } from '@/app/models/IUser';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firestore';
-import { DateTime } from 'luxon';
 import { TransactionFormData } from '@/app/models/FormData';
 
 export const updateTransaction = async (
@@ -18,10 +17,6 @@ export const updateTransaction = async (
     'transactions',
     user.uid
   );
-
-  console.log(updatedTransaction);
-
-  const formatDate = DateTime.fromJSDate(date);
 
   try {
     const docSnap = await getDoc(transactionCollectionRef);
@@ -39,7 +34,8 @@ export const updateTransaction = async (
             category: updatedTransaction.category,
             type: updatedTransaction.type,
             id: id,
-            date: formatDate.toString(),
+            date: date.toString(),
+            recurrancy: updatedTransaction.reccurancy,
           };
         }
         return transaction;

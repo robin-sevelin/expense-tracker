@@ -7,13 +7,11 @@ import { useAtom } from 'jotai';
 import { deleteTransactionObject } from '@/firebase/operations/deleteTransaction';
 import { submitAtom } from '../store/atoms';
 import { useGetFilteredTransactions } from '../hooks/useGetFIlteredTransaction';
-import { useGetTransactions } from '../hooks/useGetTransactions';
 
 const TransactionList = () => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const { user } = useAuthUser();
   const { filteredTransactions } = useGetFilteredTransactions();
-  useGetTransactions();
 
   const handleDelete = async (id: string) => {
     await deleteTransactionObject(user, id);

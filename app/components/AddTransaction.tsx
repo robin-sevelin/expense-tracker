@@ -13,7 +13,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { submitAtom } from '../store/atoms';
 import { useAtom } from 'jotai';
-import { useGetTransactions } from '../hooks/useGetTransactions';
+import { CURRENT_DATE } from '../constants/constants';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
@@ -21,7 +21,7 @@ interface Props {
 
 const AddTransaction = ({ onHandleSubmit }: Props) => {
   const [, setIsSubmitted] = useAtom(submitAtom);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(CURRENT_DATE);
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
 
@@ -35,6 +35,8 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   });
 
   const submitData = async (data: TransactionFormData) => {
+    console.log(data);
+
     onHandleSubmit(user, data, date);
     setIsSubmitted(true);
     reset();
@@ -61,12 +63,33 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
               shouldCloseOnSelect={false}
             />
           </div>
+          <fieldset>
+            <legend className='input-label'>Reccuracy:</legend>
+            <div className='join'>
+              <input
+                className='join-item btn'
+                aria-label='ONCE'
+                type='radio'
+                {...register('reccurancy')}
+                name='reccurancy'
+                value={'once'}
+                defaultChecked
+              />
+              <input
+                className='join-item btn'
+                aria-label='RECCURING'
+                type='radio'
+                {...register('reccurancy')}
+                name='reccurancy'
+                value={'reccuring'}
+              />
+            </div>
+          </fieldset>
 
           <fieldset>
             <legend className='input-label'>Transaction Type:</legend>
             <div className='join'>
               <input
-                checked={type === 'expense'}
                 className='join-item btn'
                 aria-label='EXPENSE'
                 type='radio'
@@ -74,6 +97,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
                 onClick={() => handleClick('expense')}
                 name='type'
                 value={'expense'}
+                defaultChecked
               />
               <input
                 className='join-item btn'

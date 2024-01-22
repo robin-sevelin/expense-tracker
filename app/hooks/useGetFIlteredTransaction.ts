@@ -8,9 +8,10 @@ export const useGetFilteredTransactions = () => {
   const filteredTransactions = transactions
     ? transactions.filter((transaction) => {
         const transactionDate = new Date(transaction.date);
+
         return (
-          transactionDate.getMonth() === currentMonth.getMonth() &&
-          transactionDate.getFullYear() === currentMonth.getFullYear()
+          +transactionDate.getMonth() === currentMonth.getMonth() &&
+          +transactionDate.getFullYear() === currentMonth.getFullYear()
         );
       })
     : null;

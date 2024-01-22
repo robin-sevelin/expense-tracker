@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon';
 import { IUser } from '../models/IUser';
 import { ITransaction } from '../models/ITransaction';
 
@@ -9,10 +8,15 @@ export const ROUTES = [
   { id: 3, url: '/pages/viewTransactions', text: 'View transactions' },
   { id: 4, url: '/pages/addTransactions', text: 'Add transactions' },
 ];
-export const CURRENT_DATE = DateTime.now();
-export const CURRENT_YEAR = CURRENT_DATE.year;
-export const CURRENT_MONTH = CURRENT_DATE.toFormat('MMMM');
-export const DAYS_IN_MONTH = CURRENT_DATE.daysInMonth;
+export const CURRENT_DATE = new Date();
+export const CURRENT_YEAR = CURRENT_DATE.getFullYear();
+export const CURRENT_MONTH = CURRENT_DATE.getMonth();
+
+export const DAYS_IN_MONTH = new Date(
+  CURRENT_DATE.getFullYear(),
+  CURRENT_DATE.getMonth() + 1,
+  0
+).getDate();
 
 export const USER_BASE_VALUES: IUser = {
   uid: '',
@@ -25,9 +29,8 @@ export const TRANSACTION_BASE_VALUES: ITransaction = {
   id: '',
   title: '',
   amount: 0,
-  year: 0,
-  month: '',
-  date: new Date(),
+  date: CURRENT_DATE,
+  reccurancy: '',
 };
 export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 
