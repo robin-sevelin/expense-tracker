@@ -1,3 +1,4 @@
+import { DAYS_IN_MONTH } from './../constants/constants';
 import { useAtom } from 'jotai';
 import { DateTime } from 'luxon';
 import { monthAtom } from '../store/atoms';
@@ -5,11 +6,12 @@ import { monthAtom } from '../store/atoms';
 export const useGetCalenderDays = () => {
   const [selectedMonth] = useAtom(monthAtom);
 
-  const dateTime = DateTime.fromObject({
-    year: selectedMonth.getFullYear(),
-    month: selectedMonth.getMonth() + 1,
-  });
-  const daysInMonth = dateTime.daysInMonth;
+  const daysInMonth = new Date(
+    selectedMonth.getFullYear(),
+    selectedMonth.getMonth() + 1,
+    0
+  ).getDate();
+
   let calenderArray = [];
 
   if (daysInMonth) {
