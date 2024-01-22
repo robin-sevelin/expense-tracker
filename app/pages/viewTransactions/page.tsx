@@ -14,13 +14,13 @@ const ViewTransactions = () => {
     setView(value);
   };
   return (
-    <>
+    <section className='transaction-page'>
       <h2 className='text-5xl font-bold'>TRANSACTIONS.</h2>
       <MonthPicker />
       <FilteredSummary />
       <ViewMode onSetShowList={setShowList} />
       {view === 'list' ? <TransactionList /> : <TransactionCalender />}
-    </>
+    </section>
   );
 };
 

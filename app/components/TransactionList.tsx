@@ -19,28 +19,36 @@ const TransactionList = () => {
   };
 
   return (
-    <>
-      <section className='max-w-7xl max-h-3xl m-auto'>
-        {filteredTransactions?.map((transaction) => (
-          <div key={transaction.id}>
-            <h3>Title: {transaction.title}</h3>
+    <section className=' m-auto min-w-10 '>
+      {filteredTransactions?.map((transaction) => (
+        <div
+          className='card w-96 bg-neutral text-neutral-content mb-3'
+          key={transaction.id}
+        >
+          <div className='card-body items-center text-center'>
+            <h2 className='card-title'>{transaction.title}</h2>
             <p>
               Amount: {transaction.type === 'expense' && <span>-</span>}
               {transaction.amount} kr
             </p>
-            <button
-              className='btn btn-error'
-              onClick={() => handleDelete(transaction.id)}
-            >
-              Remove
-            </button>
-            <Link href={`/pages/${transaction.id}`}>
-              <button className='btn btn-primary'>Edit</button>
-            </Link>
+            <div className='card-actions justify-end'>
+              <button
+                className='btn btn-error'
+                onClick={() => handleDelete(transaction.id)}
+              >
+                Remove
+              </button>
+              <Link
+                href={`/pages/${transaction.id}`}
+                className='btn btn-primary'
+              >
+                <span>Edit</span>
+              </Link>
+            </div>
           </div>
-        ))}
-      </section>
-    </>
+        </div>
+      ))}
+    </section>
   );
 };
 

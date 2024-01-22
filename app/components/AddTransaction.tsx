@@ -14,6 +14,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { submitAtom } from '../store/atoms';
 import { useAtom } from 'jotai';
 import { CURRENT_DATE } from '../constants/constants';
+import Link from 'next/link';
+import { useGetTransactions } from '../hooks/useGetTransactions';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
@@ -24,6 +26,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   const [date, setDate] = useState(CURRENT_DATE);
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
+  useGetTransactions();
 
   const {
     register,
@@ -151,7 +154,12 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
               <p style={{ color: 'red' }}>{errors.amount.message}</p>
             )}
           </div>
-          <button className='btn btn-primary'>Submit</button>
+          <div className='flex justify-between '>
+            <Link href='/pages/viewTransactions' className='btn btn-primary'>
+              <span>Return</span>
+            </Link>
+            <button className='btn btn-primary'>Submit</button>
+          </div>
         </form>
       </div>
     </section>

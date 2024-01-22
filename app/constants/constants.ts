@@ -91,3 +91,5 @@ export const LINECHART_COLORS = {
     bg: 'rgba(75, 192, 192, 0.5)',
   },
 };
+
+export const VIDEO_BG = '/video-bg.mp4';

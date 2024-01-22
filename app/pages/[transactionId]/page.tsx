@@ -34,15 +34,13 @@ const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
   }
 
   return (
-    <>
+    <section className='flex flex-col justify-center items-center'>
       <AddTransaction onHandleSubmit={submitData} />
-      <Link href='/pages/viewTransactions'>
-        <button className='btn btn-primary'>Return</button>
-      </Link>
+
       <div>
         <TransactionById transaction={transaction} />
       </div>
-    </>
+    </section>
   );
 };
 

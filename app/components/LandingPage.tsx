@@ -16,9 +16,9 @@ const LandingPage = () => {
   }
 
   return (
-    <div className='min-h-full w-full bg-white absolute z-0'>
+    <section className='landing-page'>
       {user.uid ? <MainPage /> : <LogInPage />}
-    </div>
+    </section>
   );
 };
 
