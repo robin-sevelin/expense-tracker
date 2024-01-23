@@ -66,7 +66,7 @@ const TransactionList = ({ transactions }: Props) => {
       })}
       {isModalOpen && (
         <ModalDialog
-          onHandleClick={() => setIsModalOpen(false)}
+          onHandleChange={() => setIsModalOpen(false)}
           isModalOpen={isModalOpen}
         />
       )}

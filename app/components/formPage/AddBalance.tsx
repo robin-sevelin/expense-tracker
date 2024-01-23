@@ -65,7 +65,7 @@ const AddBalance = () => {
       </div>
       {isModalOpen && (
         <ModalDialog
-          onHandleClick={() => setIsModalOpen(false)}
+          onHandleChange={() => setIsModalOpen(false)}
           isModalOpen={isModalOpen}
         />
       )}
