@@ -12,8 +12,8 @@ const GraphPage = () => {
 
   useAuthUser();
   return (
-    <section className='max-w-7xl max-h-3xl m-auto'>
-      <h2 className='text-5xl font-bold'>GRAPH.</h2>
+    <section className='max-w-7xl max-h-3xl m-auto '>
+      <h2 className='text-5xl font-bold text-center'>CHART</h2>
       <MonthPicker />
       <FilteredSummary />
       <Line options={options} data={data} />

@@ -20,19 +20,19 @@ const MonthPicker = () => {
 
   return (
     <div className='flex flex-col justify-center items-center mt-5 mb-5'>
-      <h3 className='text-5xl font-bold mb-5'>
+      <h3 className='text-3xl font-bold mb-5'>
         {currentMonth.toLocaleString('en-US', {
           month: 'long',
           year: 'numeric',
         })}
       </h3>
       <div className='join'>
-        <button onClick={goBack} className='btn btn-primary join-item'>
-          <FaArrowCircleLeft />
+        <button onClick={goBack} className='btn join-item'>
+          <FaArrowCircleLeft className='text-xl' />
         </button>
 
-        <button onClick={goForward} className='btn btn-primary join-item'>
-          <FaArrowCircleRight />
+        <button onClick={goForward} className='btn  join-item'>
+          <FaArrowCircleRight className='text-xl' />
         </button>
       </div>
     </div>
