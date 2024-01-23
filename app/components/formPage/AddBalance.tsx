@@ -1,7 +1,7 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import React from 'react';
+import React, { useState } from 'react';
 import { submitAtom, userAtom } from '../../store/atoms';
 import Link from 'next/link';
 import { balanceSchema } from '../../models/FormSchema';
@@ -10,11 +10,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { createBalanceDocument } from '@/firebase/operations/createBalance';
 import { useGetBalance } from '../../hooks/useGetBalance';
+import ModalDialog from '../sharedComponents/ModalDialog';
 
 const AddBalance = () => {
   const [user] = useAtom(userAtom);
   const { balance } = useGetBalance();
   const [, setIsSubmitted] = useAtom(submitAtom);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     register,
@@ -29,6 +31,7 @@ const AddBalance = () => {
     await createBalanceDocument(user, data.balance);
     setIsSubmitted(true);
     reset();
+    setIsModalOpen(true);
   };
 
   return (
@@ -49,13 +52,18 @@ const AddBalance = () => {
               <p style={{ color: 'red' }}>{errors.balance.message}</p>
             )}
           </div>
-
           <button className='btn btn-primary'>Submit</button>
           <Link href='/pages/profile'>
             <button className='btn btn-secondary'>Return</button>
           </Link>
         </form>
       </div>
+      {isModalOpen && (
+        <ModalDialog
+          onHandleClick={() => setIsModalOpen(false)}
+          isModalOpen={isModalOpen}
+        />
+      )}
     </section>
   );
 };
