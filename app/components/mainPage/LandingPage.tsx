@@ -15,11 +15,7 @@ const LandingPage = () => {
     return <Loading />;
   }
 
-  return (
-    <section className='landing-page'>
-      {user.uid ? <MainPage /> : <LogInPage />}
-    </section>
-  );
+  return <>{user.uid ? <MainPage /> : <LogInPage />}</>;
 };
 
 export default LandingPage;

@@ -21,31 +21,17 @@ const MainPage = () => {
   }
 
   return (
-    <section>
+    <div className='hero min-h-full bg-base-200'>
       <div className='hero-content text-center'>
         <div className='max-w-md'>
-          <h2 className='text-5xl font-bold'>Hello there {user.displayName}</h2>
-          {balance === 0 ? (
-            <>
-              <p className='py-6'>
-                Go to profile and set your balance before starting adding
-                transactions.
-              </p>
-              <Link href={'/pages/profile'}>
-                <button className='btn btn-primary'>Go to profile</button>
-              </Link>
-            </>
-          ) : (
-            <>
-              <p>Start making transactions</p>
-              <Link href={'/pages/addTransactions'}>
-                <button className='btn btn-primary'>Add transactions</button>
-              </Link>
-            </>
-          )}
+          <h1 className='text-5xl font-bold'>Hello there {user.displayName}</h1>
+          <p className='py-6'>Start making transactions</p>
+          <Link href={'/pages/ad'} className='btn btn-primary'>
+            Add transactions
+          </Link>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

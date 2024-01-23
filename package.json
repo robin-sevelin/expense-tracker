@@ -16,7 +16,7 @@
     "hamburger-react": "^2.5.0",
     "jotai": "^2.6.1",
     "luxon": "^3.4.4",
-    "next": "^14.0.4",
+    "next": "^14.1.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^4.25.0",

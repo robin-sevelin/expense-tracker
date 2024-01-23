@@ -11,7 +11,7 @@ export const useGetBalance = () => {
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (isSubmitted || user) {
+    if (isSubmitted || !balance) {
       const getBalance = async () => {
         try {
           const docRef = doc(db, 'users', user.uid, 'balance', user.uid);
@@ -32,7 +32,7 @@ export const useGetBalance = () => {
       };
       getBalance();
     }
-  }, [setBalance, user, setIsSubmitted, isSubmitted]);
+  }, [setBalance, user, setIsSubmitted, isSubmitted, balance]);
 
   return { isLoading, balance };
 };

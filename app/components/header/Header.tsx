@@ -10,6 +10,7 @@ import BalanceAmount from '../sharedComponents/BalanceAmount';
 import ProfilePicture from './ProfilePicture';
 import { useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
+import Link from 'next/link';
 
 const Header = () => {
   const [user, setUser] = useAtom(userAtom);
@@ -21,7 +22,9 @@ const Header = () => {
   return (
     <header className='navbar bg-base-100 flex justify-between'>
       <div className=' p-2 m-1'>
-        <a className='btn btn-ghost text-xl'>EXPENSE TRACKER</a>
+        <Link href={'/'} className='btn btn-ghost text-xl'>
+          EXPENSE TRACKER
+        </Link>
         {user.uid && (
           <div className='p-2 m-1 flex items-center'>
             <ProfilePicture user={user} />

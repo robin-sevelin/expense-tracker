@@ -16,23 +16,16 @@ const TransactionCalender = ({ transactions }: Props) => {
   );
 
   return (
-    <div className='flex max-w-2/4 m-auto flex-wrap'>
+    <div className='flex w-3/5 m-auto flex-wrap'>
       {calenderArray.map((day, index) => (
         <div
-          className='w-24 h-24 m-2 border-2 flex flex-col justify-center items-center'
+          className={
+            day.expenseSum !== 0 || day.incomeSum !== 0 ? 'filled' : 'empty'
+          }
           key={index}
         >
           <div>
             <h3>{day.day}</h3>
-            {day.expenseSum !== 0 && (
-              <p className=' text-red-500'>
-                {day.expenseSum !== 0 && day.expenseSum} kr
-              </p>
-            )}
-
-            {day.incomeSum !== 0 && (
-              <p className=' text-green-500'>{day.incomeSum} kr</p>
-            )}
           </div>
         </div>
       ))}

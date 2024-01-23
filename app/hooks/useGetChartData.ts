@@ -1,4 +1,4 @@
-import { filtredSumAtom, monthAtom } from '@/app/store/atoms';
+import { balanceAtom, filtredSumAtom, monthAtom } from '@/app/store/atoms';
 import {
   CategoryScale,
   Legend,
@@ -47,7 +47,7 @@ const options = {
 
 export const useGetChartData = () => {
   const { transactions } = useGetTransactions();
-  const [sum] = useAtom(filtredSumAtom);
+  const [balance] = useAtom(balanceAtom);
   const [currentMonth] = useAtom(monthAtom);
 
   const getSumByType = (day: number, type: string) =>
@@ -87,7 +87,7 @@ export const useGetChartData = () => {
     y: getSumByType(day, TRANSACTION_TYPES.EXPENSE),
   }));
 
-  let currentBalance = sum;
+  let currentBalance = balance;
   const labelsBalance = labels.map((day) => {
     const incomeSum = getSumByType(day, TRANSACTION_TYPES.INCOME);
     const expenseSum = getSumByType(day, TRANSACTION_TYPES.EXPENSE);

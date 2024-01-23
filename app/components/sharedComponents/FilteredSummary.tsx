@@ -7,10 +7,10 @@ const FilteredSummary = () => {
   useGetTransactions();
   return (
     <div>
-      <ul className='flex bg-slate-100 p-5 gap-5'>
-        <li>Remaning balance: {sum} kr</li>
-        <li>Total incomes: {incomeSum} kr</li>
-        <li>Total expenses {expenseSum} kr</li>
+      <ul className='flex p-5 gap-3 w-3/4 m-auto items-center'>
+        <li>Balance {sum} kr</li>
+        <li>Incomes {incomeSum} kr</li>
+        <li>Expenses {expenseSum} kr</li>
       </ul>
     </div>
   );

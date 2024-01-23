@@ -10,11 +10,13 @@ import { submitAtom } from '@/app/store/atoms';
 import { useAtom } from 'jotai';
 import { updateTransaction } from '@/firebase/operations/updateTransaction';
 import Loading from '@/app/components/sharedComponents/Loading';
+import { useGetTransactions } from '@/app/hooks/useGetTransactions';
 
 const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
   const id = params.transactionId;
   const [, setIsSubmitted] = useAtom(submitAtom);
   const { transaction, isLoading } = useGetTransactionById(id);
+  useGetTransactions();
 
   const submitData = async (
     user: IUser,

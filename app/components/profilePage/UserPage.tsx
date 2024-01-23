@@ -18,11 +18,11 @@ const UserPage = () => {
           <p className='py-6'>Name: {user.displayName}</p>
           <p className='py-6'>E-mail: {user.email}</p>
         </div>
+        Your monthtly budget: {balance} kr
+        <Link href='/pages/editBalance' className='btn btn-primary'>
+          <span>Edit balance</span>
+        </Link>
       </div>
-      Your set balance: {balance} kr
-      <Link href='/pages/editBalance'>
-        <button className='btn btn-primary'>Edit balance</button>
-      </Link>
     </section>
   );
 };

@@ -14,8 +14,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { submitAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
 import { CURRENT_DATE } from '../../constants/constants';
-import { useGetTransactions } from '@/app/hooks/useGetTransactions';
-import { useGetBalance } from '@/app/hooks/useGetBalance';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
@@ -26,8 +24,6 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   const [date, setDate] = useState(CURRENT_DATE);
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
-  useGetTransactions();
-  useGetBalance();
 
   const {
     register,
@@ -49,9 +45,9 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   };
 
   return (
-    <section className='max-w-xl max-h-3xl m-auto'>
+    <section className='max-w-xl max-h-3xl m-auto mb-5'>
       <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-5xl font-bold'>ADD TRANSACTION.</h2>
+        <h2 className='text-5xl font-bold'>ADD TRANSACTION</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <div>
             <label htmlFor='datepicker' className='input-label'>

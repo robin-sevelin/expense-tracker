@@ -11,7 +11,7 @@ export const useGetTransactions = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isSubmitted || user) {
+    if (isSubmitted || !transactions.length) {
       try {
         const getData = async () => {
           const docRef = doc(db, 'users', user.uid, 'transactions', user.uid);

@@ -2,15 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-main {
-  min-height: calc(100vh - 200px);
+.transaction-page {
+  @apply w-3/4 m-auto flex flex-col justify-center items-center;
 }
 
-.transaction-page {
-  max-width: 1200px;
-  margin: auto;
+.filled {
+  width: 5rem;
+  height: 5rem;
+  margin: 0.5rem;
+  border-radius: 2px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  border-radius: 0.5rem;
+  background-color: red;
+}
+
+.empty {
+  width: 5rem;
+  height: 5rem;
+  margin: 0.5rem;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+
+h1,
+h2,
+h3,
+p {
+  @apply m-2;
+}
+
+input {
+  @apply mb-2;
 }

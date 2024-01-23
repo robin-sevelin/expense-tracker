@@ -10,13 +10,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { createBalanceDocument } from '@/firebase/operations/createBalance';
 import { useGetBalance } from '../../hooks/useGetBalance';
-import { useGetTransactions } from '@/app/hooks/useGetTransactions';
 
 const AddBalance = () => {
   const [user] = useAtom(userAtom);
   const { balance } = useGetBalance();
   const [, setIsSubmitted] = useAtom(submitAtom);
-  useGetTransactions();
 
   const {
     register,
@@ -34,28 +32,30 @@ const AddBalance = () => {
   };
 
   return (
-    <section className='max-w-3xl max-h-3xl m-auto'>
-      <h2>Edit balance</h2>
-      {balance} kr
-      <form onSubmit={handleSubmit(submitData)}>
-        <label htmlFor='balance'>Amount in SEK</label>
-        <input
-          type='number'
-          id='balance'
-          {...register('balance', { valueAsNumber: true })}
-          name='balance'
-        />
-        <div className='error-container'>
-          {errors.balance && (
-            <p style={{ color: 'red' }}>{errors.balance.message}</p>
-          )}
-        </div>
+    <section className='max-w-xl max-h-3xl m-auto mb-5'>
+      <div className='flex flex-col justify-center items-center'>
+        <h2 className='text-5xl font-bold'>EDIT BALANCE</h2>
+        <form onSubmit={handleSubmit(submitData)}>
+          <h3>Current balance {balance} SEK</h3>
+          <label htmlFor='balance'>Amount</label>
+          <input
+            type='number'
+            id='balance'
+            {...register('balance', { valueAsNumber: true })}
+            name='balance'
+          />
+          <div className='error-container'>
+            {errors.balance && (
+              <p style={{ color: 'red' }}>{errors.balance.message}</p>
+            )}
+          </div>
 
-        <button className='btn btn-primary'>Submit</button>
-        <Link href='/pages/profile'>
-          <button className='btn btn-secondary'>Return</button>
-        </Link>
-      </form>
+          <button className='btn btn-primary'>Submit</button>
+          <Link href='/pages/profile'>
+            <button className='btn btn-secondary'>Return</button>
+          </Link>
+        </form>
+      </div>
     </section>
   );
 };

@@ -10,13 +10,13 @@ const ViewMode = ({ onSetShowList }: Props) => {
   };
 
   return (
-    <div className='bg-white flex flex-col m-5 p-5 justify-center items-center'>
+    <div className=' flex flex-col m-5 p-5 justify-center items-center'>
       <fieldset>
         <legend>Select View</legend>
         <div className='join'>
           <input
             defaultChecked
-            className='join-item btn'
+            className='join-item btn w-36'
             type='radio'
             name='view'
             aria-label='List'
@@ -25,7 +25,7 @@ const ViewMode = ({ onSetShowList }: Props) => {
             onClick={() => handleClick('list')}
           />
           <input
-            className='join-item btn '
+            className='join-item btn w-36 '
             type='radio'
             name='view'
             aria-label='Calender'
