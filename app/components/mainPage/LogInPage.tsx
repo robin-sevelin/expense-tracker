@@ -7,7 +7,7 @@ const LogInPage = () => {
   useGetRedirect();
 
   return (
-    <div className='hero bg-base-200 max-w-4xl'>
+    <section className='hero bg-base-200 max-w-4xl m-auto'>
       <div className='hero-content text-center'>
         <div className='max-w-md'>
           <h2 className='text-5xl font-bold'>Hello there</h2>
@@ -22,7 +22,7 @@ const LogInPage = () => {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

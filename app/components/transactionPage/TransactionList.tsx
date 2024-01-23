@@ -27,7 +27,7 @@ const TransactionList = ({ transactions }: Props) => {
   };
 
   return (
-    <section className='m-auto min-w-10 '>
+    <section className=' flex max-w-3/4 flex-wrap gap-5 justify-center '>
       {filteredTransactions?.map((transaction) => {
         const transactionDate = new Date(transaction.date);
         const day = transactionDate.getDate();
@@ -35,7 +35,7 @@ const TransactionList = ({ transactions }: Props) => {
 
         return (
           <div
-            className='card w-96 bg-neutral text-neutral-content mb-3'
+            className='card w-50 bg-neutral text-neutral-content mb-3'
             key={transaction.id}
           >
             <div className='card-body items-center text-center'>

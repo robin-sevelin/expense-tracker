@@ -16,20 +16,15 @@ const TransactionCalender = ({ transactions }: Props) => {
   );
 
   return (
-    <div className='flex w-3/5 m-auto flex-wrap'>
+    <section className='flex w-3/5 m-auto flex-wrap'>
       {calenderArray.map((day, index) => (
-        <div
-          className={
-            day.expenseSum !== 0 || day.incomeSum !== 0 ? 'filled' : 'empty'
-          }
-          key={index}
-        >
+        <div key={index}>
           <div>
             <h3>{day.day}</h3>
           </div>
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

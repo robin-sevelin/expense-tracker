@@ -15,7 +15,11 @@ const LandingPage = () => {
     return <Loading />;
   }
 
-  return <>{user.uid ? <MainPage /> : <LogInPage />}</>;
+  return (
+    <main className='bg-base-200 max-w-3xl m-auto'>
+      {user.uid ? <MainPage /> : <LogInPage />}
+    </main>
+  );
 };
 
 export default LandingPage;

@@ -93,3 +93,5 @@ export const LINECHART_COLORS = {
 };
 
 export const VIDEO_BG = '/video-bg.mp4';
+
+export const HAMBURGER_ICON = '/hamburger.svg';

@@ -27,10 +27,10 @@ const MonthPicker = () => {
       </h3>
       <legend className='input-label'>Select month</legend>
       <div className='join'>
-        <button onClick={goBack} className='btn w-40 btn-primary join-item'>
+        <button onClick={goBack} className='btn w-36 btn-primary join-item'>
           Back
         </button>
-        <button onClick={goForward} className='btn w-40  btn-primary join-item'>
+        <button onClick={goForward} className='btn w-36  btn-primary join-item'>
           Forward
         </button>
       </div>

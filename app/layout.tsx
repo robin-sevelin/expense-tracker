@@ -4,6 +4,7 @@ import Header from './components/header/Header';
 import { Provider } from 'jotai';
 import ThemeProvider from './contexts/ThemeContext';
 import ThemeWrapper from './contexts/ThemeWrapper';
+import ProfileSection from './components/mainPage/ProfileSection';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

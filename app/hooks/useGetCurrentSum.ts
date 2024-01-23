@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   CURRENT_MONTH,
   CURRENT_YEAR,
@@ -11,6 +11,7 @@ export const useGetCurrentSum = () => {
   const [transactions] = useAtom(transactionsAtom);
   const [balance] = useAtom(balanceAtom);
   const [sum, setSum] = useAtom(sumAtom);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (transactions) {
@@ -34,8 +35,9 @@ export const useGetCurrentSum = () => {
       const diffSum = incomeSum - expenseSum;
 
       setSum(diffSum + balance);
+      setIsLoading(false);
     }
   }, [balance, setSum, transactions]);
 
-  return { sum } as const;
+  return { sum, isLoading } as const;
 };

@@ -11,19 +11,27 @@ const UserPage = () => {
   const { user } = useAuthUser();
 
   return (
-    <section className='max-w-7xl  m-auto'>
-      <div className='hero-content flex-col justify-center items-center'>
-        <div className='max-w-md'>
-          <h2 className='text-5xl font-bold'>PROFILE.</h2>
-          <p className='py-6'>Name: {user.displayName}</p>
-          <p className='py-6'>E-mail: {user.email}</p>
+    <div className=' hero min-h-full bg-base-200'>
+      <div className='hero-content flex-col lg:flex-row-reverse'>
+        <picture>
+          <img
+            src='/vecteezy_business-people-are-discussing-work-plans_4579166.jpg'
+            className='max-w-sm rounded-lg shadow-2xl'
+            alt='img'
+            loading='lazy'
+          />
+        </picture>
+        <div>
+          <h2 className='text-5xl font-bold'>PROFILE</h2>
+          <p className='py-3'>Name: {user.displayName}</p>
+          <p className='py-3'>E-mail: {user.email}</p>
+          <p className='py-3'>Your monthtly budget: {balance} kr</p>
+          <Link href='/pages/editBalance' className='btn btn-primary py-3'>
+            <span>Edit budget</span>
+          </Link>
         </div>
-        Your monthtly budget: {balance} kr
-        <Link href='/pages/editBalance' className='btn btn-primary'>
-          <span>Edit budget</span>
-        </Link>
       </div>
-    </section>
+    </div>
   );
 };
 

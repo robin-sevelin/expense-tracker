@@ -15,7 +15,7 @@ import { useGetTransactions } from '@/app/hooks/useGetTransactions';
 const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
   const id = params.transactionId;
   const [, setIsSubmitted] = useAtom(submitAtom);
-  const { transaction, isLoading } = useGetTransactionById(id);
+  const { transaction } = useGetTransactionById(id);
   useGetTransactions();
 
   const submitData = async (
@@ -27,10 +27,6 @@ const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
 
     setIsSubmitted(true);
   };
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <section className='flex flex-col justify-center items-center'>

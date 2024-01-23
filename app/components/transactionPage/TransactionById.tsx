@@ -2,14 +2,18 @@
 
 import React from 'react';
 import { ITransaction } from '../../models/ITransaction';
+import Loading from '../sharedComponents/Loading';
 
 interface Props {
   transaction: ITransaction;
 }
 
 const TransactionById = ({ transaction }: Props) => {
+  if (!transaction) {
+    return <Loading />;
+  }
   return (
-    <div className='card w-96 bg-neutral text-neutral-content mb-5 mt-5'>
+    <section className='card w-96 bg-neutral text-neutral-content mb-5 mt-5'>
       <div className='card-body items-center text-center'>
         <h2 className='card-title'>{transaction.title}</h2>
         <p>
@@ -21,7 +25,7 @@ const TransactionById = ({ transaction }: Props) => {
         <p>Reccurancy: {transaction.reccurancy}</p>
         <div className='card-actions justify-end'></div>
       </div>
-    </div>
+    </section>
   );
 };
 

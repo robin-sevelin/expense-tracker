@@ -4,7 +4,7 @@ import { useAtom } from 'jotai';
 import React from 'react';
 
 const ThemeSelector = () => {
-  const [theme, setTheme] = useAtom(themeAtom);
+  const [, setTheme] = useAtom(themeAtom);
 
   return (
     <details className='dropdown'>

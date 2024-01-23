@@ -1,6 +1,7 @@
 'use client';
 
 import FilteredSummary from '@/app/components/sharedComponents/FilteredSummary';
+import Loading from '@/app/components/sharedComponents/Loading';
 import MonthPicker from '@/app/components/sharedComponents/MonthPicker';
 import TransactionCalender from '@/app/components/transactionPage/TransactionCalender';
 import TransactionList from '@/app/components/transactionPage/TransactionList';
@@ -15,6 +16,7 @@ const ViewTransactions = () => {
   const setShowList = (value: string) => {
     setView(value);
   };
+
   return (
     <section className='transaction-page'>
       <h2 className='text-5xl font-bold'>TRANSACTIONS</h2>

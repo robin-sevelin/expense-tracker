@@ -21,17 +21,17 @@ const MainPage = () => {
   }
 
   return (
-    <div className='hero min-h-full bg-base-200'>
+    <section className='hero min-h-full bg-base-200'>
       <div className='hero-content text-center'>
         <div className='max-w-md'>
           <h1 className='text-5xl font-bold'>Hello there {user.displayName}</h1>
-          <p className='py-6'>Start making transactions</p>
+          <p className='py-6'>Lets make some transactions</p>
           <Link href={'/pages/addTransactions'} className='btn btn-primary'>
             Add transactions
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
