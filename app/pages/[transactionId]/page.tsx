@@ -1,16 +1,15 @@
 'use client';
 
-import AddTransaction from '@/app/components/AddTransaction';
-import TransactionById from '@/app/components/TransactionById';
+import AddTransaction from '@/app/components/formPage/AddTransaction';
+import TransactionById from '@/app/components/transactionPage/TransactionById';
 import { useGetTransactionById } from '@/app/hooks/useGetTransactionById';
 import { IUser } from '@/app/models/IUser';
 import { TransactionFormData } from '@/app/models/FormData';
-import Link from 'next/link';
 import React from 'react';
 import { submitAtom } from '@/app/store/atoms';
 import { useAtom } from 'jotai';
 import { updateTransaction } from '@/firebase/operations/updateTransaction';
-import Loading from '@/app/components/Loading';
+import Loading from '@/app/components/sharedComponents/Loading';
 import { useGetTransactions } from '@/app/hooks/useGetTransactions';
 
 const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
@@ -34,15 +33,13 @@ const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
   }
 
   return (
-    <>
+    <section className='flex flex-col justify-center items-center'>
       <AddTransaction onHandleSubmit={submitData} />
-      <Link href='/pages/viewTransactions'>
-        <button className='btn btn-primary'>Return</button>
-      </Link>
+
       <div>
         <TransactionById transaction={transaction} />
       </div>
-    </>
+    </section>
   );
 };
 
