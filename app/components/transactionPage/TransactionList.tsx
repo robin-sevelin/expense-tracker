@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import Link from 'next/link';
 import { useAtom } from 'jotai';
@@ -8,6 +8,7 @@ import { deleteTransactionObject } from '@/firebase/operations/deleteTransaction
 import { submitAtom } from '../../store/atoms';
 import { useGetFilteredTransactions } from '../../hooks/useGetFIlteredTransaction';
 import { ITransaction } from '@/app/models/ITransaction';
+import ModalDialog from '../sharedComponents/ModalDialog';
 
 interface Props {
   transactions: ITransaction[];
@@ -17,10 +18,12 @@ const TransactionList = ({ transactions }: Props) => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const { user } = useAuthUser();
   const { filteredTransactions } = useGetFilteredTransactions(transactions);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = async (id: string) => {
     await deleteTransactionObject(user, id);
     setIsSubmitted(true);
+    setIsModalOpen(true);
   };
 
   return (
@@ -61,6 +64,12 @@ const TransactionList = ({ transactions }: Props) => {
           </div>
         );
       })}
+      {isModalOpen && (
+        <ModalDialog
+          onHandleClick={() => setIsModalOpen(false)}
+          isModalOpen={isModalOpen}
+        />
+      )}
     </section>
   );
 };

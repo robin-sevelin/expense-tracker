@@ -14,6 +14,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { submitAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
 import { CURRENT_DATE } from '../../constants/constants';
+import ModalDialog from '../sharedComponents/ModalDialog';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
@@ -24,6 +25,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   const [date, setDate] = useState(CURRENT_DATE);
   const [type, setType] = useState('expense');
   const { user } = useAuthUser();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     register,
@@ -38,6 +40,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
     onHandleSubmit(user, data, date);
     setIsSubmitted(true);
     reset();
+    setIsModalOpen(true);
   };
 
   const handleClick = (type: string) => {
@@ -154,6 +157,12 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
           <button className='btn btn-primary'>Submit</button>
         </form>
       </div>
+      {isModalOpen && (
+        <ModalDialog
+          onHandleClick={() => setIsModalOpen(false)}
+          isModalOpen={isModalOpen}
+        />
+      )}
     </section>
   );
 };
