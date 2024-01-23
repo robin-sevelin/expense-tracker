@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai';
 import React from 'react';
 import { monthAtom } from '../../store/atoms';
-import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 
 const MonthPicker = () => {
   const [currentMonth, setCurrentMonth] = useAtom(monthAtom);
@@ -26,13 +25,13 @@ const MonthPicker = () => {
           year: 'numeric',
         })}
       </h3>
+      <legend className='input-label'>Select month</legend>
       <div className='join'>
-        <button onClick={goBack} className='btn join-item'>
-          <FaArrowCircleLeft className='text-xl' />
+        <button onClick={goBack} className='btn w-40 btn-primary join-item'>
+          Back
         </button>
-
-        <button onClick={goForward} className='btn  join-item'>
-          <FaArrowCircleRight className='text-xl' />
+        <button onClick={goForward} className='btn w-40  btn-primary join-item'>
+          Forward
         </button>
       </div>
     </div>

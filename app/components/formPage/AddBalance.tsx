@@ -40,22 +40,27 @@ const AddBalance = () => {
         <h2 className='text-5xl font-bold'>EDIT BALANCE</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <h3>Current balance {balance} SEK</h3>
-          <label htmlFor='balance'>Amount</label>
-          <input
-            type='number'
-            id='balance'
-            {...register('balance', { valueAsNumber: true })}
-            name='balance'
-          />
-          <div className='error-container'>
-            {errors.balance && (
-              <p style={{ color: 'red' }}>{errors.balance.message}</p>
-            )}
+          <div className='join'>
+            <label htmlFor='balance' className='input-label'>
+              Amount:
+            </label>
+            <input
+              className='input input-bordered input-primary w-full max-w-xs'
+              type='number'
+              id='balance'
+              {...register('balance', { valueAsNumber: true })}
+              name='balance'
+            />
+            <div className='error-container'>
+              {errors.balance && (
+                <p style={{ color: 'red' }}>{errors.balance.message}</p>
+              )}
+            </div>
+            <button className='btn btn-primary'>Submit</button>
+            <Link href='/pages/profile'>
+              <button className='btn btn-secondary'>Return</button>
+            </Link>
           </div>
-          <button className='btn btn-primary'>Submit</button>
-          <Link href='/pages/profile'>
-            <button className='btn btn-secondary'>Return</button>
-          </Link>
         </form>
       </div>
       {isModalOpen && (

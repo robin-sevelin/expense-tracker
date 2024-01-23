@@ -17,3 +17,4 @@ export const monthAtom = atom(new Date());
 export const filtredSumAtom = atom(0);
 export const incomeSumAtom = atom(0);
 export const expenseSumAtom = atom(0);
+export const themeAtom = atom('dark');

@@ -9,6 +9,7 @@ import { userAtom } from '../../store/atoms';
 import BalanceAmount from '../sharedComponents/BalanceAmount';
 import ProfilePicture from './ProfilePicture';
 import Link from 'next/link';
+import ThemeSelector from './ThemeSelector';
 
 const Header = () => {
   const [user, setUser] = useAtom(userAtom);
@@ -42,6 +43,7 @@ const Header = () => {
 
       {user.uid && (
         <div className='p-2 m-1'>
+          <ThemeSelector />
           <Navigation />
         </div>
       )}
