@@ -26,7 +26,7 @@ const MainPage = () => {
         <div className='max-w-md'>
           <h1 className='text-5xl font-bold'>Hello there {user.displayName}</h1>
           <p className='py-6'>Start making transactions</p>
-          <Link href={'/pages/ad'} className='btn btn-primary'>
+          <Link href={'/pages/addTransactions'} className='btn btn-primary'>
             Add transactions
           </Link>
         </div>

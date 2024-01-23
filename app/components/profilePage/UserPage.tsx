@@ -20,7 +20,7 @@ const UserPage = () => {
         </div>
         Your monthtly budget: {balance} kr
         <Link href='/pages/editBalance' className='btn btn-primary'>
-          <span>Edit balance</span>
+          <span>Edit budget</span>
         </Link>
       </div>
     </section>
