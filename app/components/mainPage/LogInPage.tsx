@@ -7,7 +7,7 @@ const LogInPage = () => {
   useGetRedirect();
 
   return (
-    <section className='hero bg-base-200 max-w-4xl m-auto'>
+    <section className='card bg-base-200 max-w-4xl m-auto'>
       <div className='hero-content text-center'>
         <div className='max-w-md'>
           <h2 className='text-5xl font-bold'>Hello there</h2>

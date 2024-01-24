@@ -7,21 +7,19 @@ import Loading from '../sharedComponents/Loading';
 import Link from 'next/link';
 import { useGetCurrentSum } from '../../hooks/useGetCurrentSum';
 import { useGetTransactions } from '../../hooks/useGetTransactions';
-import { useCheckDate } from '../../hooks/useCheckDate';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);
   const { balance } = useGetBalance();
   const { transactions } = useGetTransactions();
   const { sum } = useGetCurrentSum();
-  useCheckDate(transactions);
 
   if (!balance && !transactions && !sum) {
     return <Loading />;
   }
 
   return (
-    <section className='hero  bg-base-200'>
+    <section className='card max-w-xl m-auto bg-base-200 p-2'>
       <div className='hero-content text-center'>
         <div className='max-w-md'>
           <h1 className='text-5xl font-bold'>Hello there {user.displayName}</h1>
