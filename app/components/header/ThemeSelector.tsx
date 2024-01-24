@@ -20,11 +20,11 @@ const ThemeSelector = () => {
   }, [currentTheme, setTheme]);
 
   return (
-    <details className='dropdown mr-5'>
+    <details className='dropdown mr-10'>
       <summary className='m-1 btn bg-base-100'>Theme</summary>
       <ul
-        className='shadow menu dropdown-content z-[1] bg-base-100 rounded-box m-2 '
-        style={{ maxHeight: '700px', overflowY: 'hidden' }}
+        className='shadow menu dropdown-content z-[1] bg-base-100 rounded-box m-2 w-20 '
+        style={{ maxHeight: '600px', overflowY: 'hidden', width: '220px' }}
       >
         {THEMES.map((theme) => (
           <li key={theme.id}>
