@@ -28,7 +28,7 @@ const ThemeSelector = () => {
           maxHeight: '600px',
           overflowY: 'hidden',
           width: '220px',
-          marginLeft: '-10px',
+          marginLeft: '-110px',
         }}
       >
         {THEMES.map((theme) => (
