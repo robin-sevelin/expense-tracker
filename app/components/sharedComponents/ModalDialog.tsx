@@ -7,7 +7,6 @@ interface Props {
 
 const ModalDialog = ({ onHandleChange, isModalOpen }: Props) => {
   const handleCheckboxChange = () => {
-    // Add logic to update the isModalOpen state
     onHandleChange();
   };
   return (

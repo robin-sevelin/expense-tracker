@@ -38,7 +38,7 @@ const TransactionList = ({ transactions }: Props) => {
             className='card w-50 bg-neutral text-neutral-content mb-3'
             key={transaction.id}
           >
-            <div className='card-body items-center text-center'>
+            <div className='card-body  items-center text-center'>
               <h3 className='card-title'>{transaction.title}</h3>
               <p>
                 Amount: {transaction.type === 'expense' && <span>-</span>}

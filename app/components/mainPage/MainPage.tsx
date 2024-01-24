@@ -21,7 +21,7 @@ const MainPage = () => {
   }
 
   return (
-    <section className='hero min-h-full bg-base-200'>
+    <section className='hero  bg-base-200'>
       <div className='hero-content text-center'>
         <div className='max-w-md'>
           <h1 className='text-5xl font-bold'>Hello there {user.displayName}</h1>

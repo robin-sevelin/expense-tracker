@@ -34,7 +34,7 @@ const Navigation = () => {
             </svg>
           </label>
         </div>
-        <div className='drawer-side'>
+        <div className='drawer-side z-30'>
           <label
             htmlFor='my-drawer-4'
             aria-label='close sidebar'

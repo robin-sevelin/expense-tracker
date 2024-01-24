@@ -20,12 +20,11 @@ const Header = () => {
         </Link>
         <ProfileSection />
       </div>
-      {user.uid && (
-        <div className='p-2 m-1 flex'>
-          <ThemeSelector />
-          <Navigation />
-        </div>
-      )}
+
+      <div className='p-2 m-1 flex'>
+        <ThemeSelector />
+        {user.uid && <Navigation />}
+      </div>
     </header>
   );
 };

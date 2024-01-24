@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 
 export const useAuthUser = () => {
   const [user] = useAtom(userAtom);
+
   if (!user.uid) {
     return redirect('/');
   }
