@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from './components/header/Header';
 import { Provider } from 'jotai';
+import ThemeProvider from './contexts/ThemeContext';
+import ThemeWrapper from './contexts/ThemeWrapper';
+import ProfileSection from './components/mainPage/ProfileSection';
+import Footer from './components/mainPage/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,8 +21,13 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <Provider>
-          <Header />
-          <main>{children}</main>
+          <ThemeProvider>
+            <ThemeWrapper>
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </ThemeWrapper>
+          </ThemeProvider>
         </Provider>
       </body>
     </html>

@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { monthAtom, transactionsAtom } from '../store/atoms';
+import { monthAtom } from '../store/atoms';
 import { ITransaction } from '../models/ITransaction';
 
 export const useGetFilteredTransactions = (transactions: ITransaction[]) => {

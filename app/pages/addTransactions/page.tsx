@@ -19,6 +19,7 @@ const AddTransactions = () => {
     await createTransactionDocument(user, data, date);
     setIsSubmitted(true);
   };
+
   return (
     <>
       <AddTransaction onHandleSubmit={submitData} />

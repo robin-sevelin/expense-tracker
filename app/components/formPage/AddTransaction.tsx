@@ -159,7 +159,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
       </div>
       {isModalOpen && (
         <ModalDialog
-          onHandleClick={() => setIsModalOpen(false)}
+          onHandleChange={() => setIsModalOpen(false)}
           isModalOpen={isModalOpen}
         />
       )}

@@ -10,7 +10,7 @@ const ViewMode = ({ onSetShowList }: Props) => {
   };
 
   return (
-    <div className=' flex flex-col m-5 p-5 justify-center items-center'>
+    <section className=' flex flex-col m-5 p-5 justify-center items-center'>
       <fieldset>
         <legend>Select View</legend>
         <div className='join'>
@@ -35,7 +35,7 @@ const ViewMode = ({ onSetShowList }: Props) => {
           />
         </div>
       </fieldset>
-    </div>
+    </section>
   );
 };
 
