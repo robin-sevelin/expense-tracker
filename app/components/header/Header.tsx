@@ -14,14 +14,14 @@ const Header = () => {
 
   return (
     <header className='bg-base-100 flex justify-between navbar'>
-      <div className=' p-2 m-1'>
+      <div>
         <Link href={'/'} className='btn btn-ghost text-xl'>
           EXPENSE TRACKER
         </Link>
         <ProfileSection />
       </div>
 
-      <div className='p-2 m-1 flex'>
+      <div>
         <ThemeSelector />
         {user.uid && <Navigation />}
       </div>

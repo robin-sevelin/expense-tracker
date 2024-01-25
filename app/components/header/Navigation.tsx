@@ -15,13 +15,13 @@ const Navigation = () => {
   };
   return (
     <>
-      <div className='drawer drawer-end'>
+      <div className='drawer drawer-end p-2 m-1 w-20'>
         <input id='my-drawer-4' type='checkbox' className='drawer-toggle' />
         <div className='drawer-content'>
           <label
             aria-label='close sidebar button'
             htmlFor='my-drawer-4'
-            className='drawer-button btn btn-circle bg-base-100'
+            className='drawer-button btn bg-base-100'
           >
             <svg
               className='swap-off fill-current'
@@ -49,15 +49,14 @@ const Navigation = () => {
           </ul>
         </div>
       </div>
-      <div className='p-2 m-1'>
-        <button
-          aria-label='sign out'
-          onClick={logOut}
-          className='btn btn-error'
-        >
-          Sign out
-        </button>
-      </div>
+
+      <button
+        aria-label='sign out'
+        onClick={logOut}
+        className='btn btn-error w-20'
+      >
+        Sign out
+      </button>
     </>
   );
 };

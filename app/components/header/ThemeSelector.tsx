@@ -21,7 +21,7 @@ const ThemeSelector = () => {
 
   return (
     <details className='dropdown '>
-      <summary className='m-1 btn bg-base-100'>Theme</summary>
+      <summary className=' btn bg-base-100 w-20'>Theme</summary>
       <ul
         className='shadow menu dropdown-content z-[1] bg-base-100 rounded-box  '
         style={{

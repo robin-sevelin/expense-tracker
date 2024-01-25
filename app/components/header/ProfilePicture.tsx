@@ -11,8 +11,8 @@ const ProfilePicture = ({ user }: Props) => {
       <img
         src={user.photoURL}
         alt={user.displayName}
-        width={75}
-        height={75}
+        width={35}
+        height={35}
         loading='lazy'
         className=' rounded-full shadow-2xl '
       />
