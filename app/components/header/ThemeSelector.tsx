@@ -32,7 +32,7 @@ const ThemeSelector = () => {
           maxHeight: '600px',
           overflowY: 'hidden',
           width: '220px',
-          marginLeft: '-110px',
+          marginLeft: '-130px',
         }}
       >
         {THEMES.map((theme) => (
