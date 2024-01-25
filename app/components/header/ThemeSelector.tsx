@@ -21,7 +21,6 @@ const ThemeSelector = () => {
 
   return (
     <div className='dropdown '>
-      {/* <summary className=' btn bg-base-100 w-20'>Theme</summary> */}
       <div tabIndex={0} role='button' className='btn m-1 bg-base-100 w-20'>
         Theme
       </div>

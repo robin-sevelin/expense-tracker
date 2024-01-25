@@ -35,7 +35,7 @@ export const updateTransaction = async (
             type: updatedTransaction.type,
             id: id,
             date: date.toString(),
-            recurrancy: updatedTransaction.reccurancy,
+            reccurant: updatedTransaction.reccurant,
           };
         }
         return transaction;

@@ -9,6 +9,8 @@ export const createTransactionDocument = async (
   transaction: ITransaction,
   date: Date
 ) => {
+  console.log(transaction);
+
   const updatedTransaction = {
     ...transaction,
     id: uuidv4(),

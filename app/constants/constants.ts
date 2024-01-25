@@ -30,7 +30,7 @@ export const TRANSACTION_BASE_VALUES: ITransaction = {
   title: '',
   amount: 0,
   date: CURRENT_DATE,
-  reccurancy: '',
+  reccurant: '',
 };
 export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 

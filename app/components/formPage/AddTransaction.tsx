@@ -65,24 +65,24 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
             />
           </div>
           <fieldset>
-            <legend className='input-label'>Reccuracy:</legend>
+            <legend className='input-label'>Reccurant:</legend>
             <div className='join'>
               <input
                 className='join-item btn'
-                aria-label='ONCE'
+                aria-label='NO'
                 type='radio'
-                {...register('reccurancy')}
-                name='reccurancy'
-                value={'once'}
+                {...register('reccurant')}
+                name='reccurant'
+                value={String(false)}
                 defaultChecked
               />
               <input
                 className='join-item btn'
-                aria-label='RECCURING'
+                aria-label='YES'
                 type='radio'
-                {...register('reccurancy')}
-                name='reccurancy'
-                value={'reccuring'}
+                {...register('reccurant')}
+                name='reccurant'
+                value={String(true)}
               />
             </div>
           </fieldset>

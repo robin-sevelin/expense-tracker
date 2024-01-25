@@ -5,7 +5,7 @@ export interface TransactionFormData {
   type: string;
   category: string;
   date: Date;
-  reccurancy: string;
+  reccurant: string;
 }
 
 export interface BalanceFormData {
