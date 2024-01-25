@@ -14,6 +14,7 @@ export const createTransactionDocument = async (
   const updatedTransaction = {
     ...transaction,
     date: date.toString(),
+    id: uuidv4(),
   };
 
   const transactionsCollectionRef = collection(

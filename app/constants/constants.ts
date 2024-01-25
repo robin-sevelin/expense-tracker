@@ -30,7 +30,6 @@ export const TRANSACTION_BASE_VALUES: ITransaction = {
   title: '',
   amount: 0,
   date: CURRENT_DATE,
-  reccurant: '',
 };
 export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 
@@ -91,7 +90,5 @@ export const LINECHART_COLORS = {
     bg: 'rgba(75, 192, 192, 0.5)',
   },
 };
-
-export const VIDEO_BG = '/video-bg.mp4';
 
 export const HAMBURGER_ICON = '/hamburger.svg';

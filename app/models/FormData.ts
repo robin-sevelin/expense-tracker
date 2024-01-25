@@ -5,9 +5,18 @@ export interface TransactionFormData {
   type: string;
   category: string;
   date: Date;
-  reccurant: string;
 }
 
 export interface BalanceFormData {
   balance: number;
+}
+
+export interface ExpenseFormData {
+  title: string;
+  amount: number;
+}
+
+export interface IncomeFormData {
+  title: string;
+  amount: number;
 }

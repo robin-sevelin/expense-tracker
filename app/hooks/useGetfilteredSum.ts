@@ -8,6 +8,8 @@ import {
   expenseSumAtom,
   incomeSumAtom,
   filtredSumAtom,
+  incomeAtom,
+  expenseAtom,
 } from '../store/atoms';
 
 export const useGetFilteredSum = () => {
@@ -17,6 +19,8 @@ export const useGetFilteredSum = () => {
   const [expenseSum, setExpenseSum] = useAtom(expenseSumAtom);
   const [incomeSum, setIncomeSum] = useAtom(incomeSumAtom);
   const [currentMonth] = useAtom(monthAtom);
+  const [income] = useAtom(incomeAtom);
+  const [expense] = useAtom(expenseAtom);
 
   useEffect(() => {
     if (transactions) {
@@ -36,8 +40,10 @@ export const useGetFilteredSum = () => {
           (transaction) => transaction.type === TRANSACTION_TYPES.INCOME
         );
 
-        const expenseSumValue = expenses.reduce((a, b) => a + b.amount, 0);
-        const incomeSumValue = incomes.reduce((a, b) => a + b.amount, 0);
+        const expenseSumValue =
+          expenses.reduce((a, b) => a + b.amount, 0) + expense;
+        const incomeSumValue =
+          incomes.reduce((a, b) => a + b.amount, 0) + income;
         const diffSum = incomeSumValue - expenseSumValue;
 
         setExpenseSum(expenseSumValue);
@@ -48,6 +54,8 @@ export const useGetFilteredSum = () => {
       countSum();
     }
   }, [
+    expense,
+    income,
     balance,
     setSum,
     transactions,

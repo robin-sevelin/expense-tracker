@@ -2,6 +2,7 @@ import { CURRENT_DATE } from '@/app/constants/constants';
 import { IUser } from '@/app/models/IUser';
 import { doc, getDoc, setDoc, updateDoc, collection } from 'firebase/firestore';
 import { db } from '../firestore';
+import { v4 as uuidv4 } from 'uuid';
 
 export const createBalanceDocument = async (
   userAuth: IUser,
@@ -24,6 +25,7 @@ export const createBalanceDocument = async (
         user: userAuth.displayName,
         createdAt: CURRENT_DATE.toString(),
         balance: balance,
+        id: uuidv4(),
       });
     } catch (error) {
       console.log('Error setting the balance', error);
@@ -34,6 +36,7 @@ export const createBalanceDocument = async (
         balance: balance,
         user: userAuth.displayName,
         createdAt: CURRENT_DATE.toString(),
+        id: uuidv4(),
       });
     } catch (error) {
       console.log('Error updating the balance', error);

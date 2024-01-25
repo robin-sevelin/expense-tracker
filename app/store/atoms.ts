@@ -18,3 +18,5 @@ export const filtredSumAtom = atom(0);
 export const incomeSumAtom = atom(0);
 export const expenseSumAtom = atom(0);
 export const themeAtom = atom('dark');
+export const expenseAtom = atom(0);
+export const incomeAtom = atom(0);

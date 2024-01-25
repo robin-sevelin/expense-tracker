@@ -4,17 +4,18 @@ import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { submitAtom, userAtom } from '../../store/atoms';
 import Link from 'next/link';
-import { balanceSchema } from '../../models/FormSchema';
-import { BalanceFormData } from '../../models/FormData';
+import { balanceSchema, incomeSchema } from '../../models/FormSchema';
+import { BalanceFormData, IncomeFormData } from '../../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { createBalanceDocument } from '@/firebase/operations/createBalance';
-import { useGetBalance } from '../../hooks/useGetBalance';
 import ModalDialog from '../sharedComponents/ModalDialog';
+import { createIncomeDocument } from '@/firebase/operations/createIncome';
+import { useGetIncomes } from '@/app/hooks/useGetIncomes';
+import { IIncome } from '@/app/models/IIncome';
 
-const AddBalance = () => {
+const AddReccurentIncomes = () => {
   const [user] = useAtom(userAtom);
-  const { balance } = useGetBalance();
+  const { income } = useGetIncomes();
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -23,12 +24,12 @@ const AddBalance = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<BalanceFormData>({
-    resolver: zodResolver(balanceSchema),
+  } = useForm<IncomeFormData>({
+    resolver: zodResolver(incomeSchema),
   });
 
-  const submitData = async (data: BalanceFormData) => {
-    await createBalanceDocument(user, data.balance);
+  const submitData = async (income: IIncome) => {
+    await createIncomeDocument(user, income);
     setIsSubmitted(true);
     reset();
     setIsModalOpen(true);
@@ -37,24 +38,38 @@ const AddBalance = () => {
   return (
     <section className='max-w-3xl max-h-3xl m-auto mb-5'>
       <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-5xl font-bold'>SET BUDGET</h2>
+        <h2 className='text-5xl font-bold'>SET RECCURING INCOMES</h2>
         <form onSubmit={handleSubmit(submitData)}>
-          <h3>Current budget {balance} SEK</h3>
+          <h3>Current reccuring Incomes {income} SEK</h3>
           <div className='join'>
             <fieldset>
+              <label htmlFor='title' className='input-label'>
+                Title:
+              </label>
+              <input
+                type='text'
+                className='input input-bordered input-primary w-full max-w-xs'
+                aria-label='Title'
+                {...register('title')}
+              />
+              <div className='error-container'>
+                {errors.title && (
+                  <p style={{ color: 'red' }}>{errors.title.message}</p>
+                )}
+              </div>
               <label htmlFor='balance' className='input-label'>
                 Amount:
               </label>
               <input
                 className='input input-bordered input-primary w-full max-w-xs'
                 type='number'
-                id='balance'
-                {...register('balance', { valueAsNumber: true })}
-                name='balance'
+                id='amount'
+                {...register('amount', { valueAsNumber: true })}
+                name='amount'
               />
               <div className='error-container'>
-                {errors.balance && (
-                  <p style={{ color: 'red' }}>{errors.balance.message}</p>
+                {errors.amount && (
+                  <p style={{ color: 'red' }}>{errors.amount.message}</p>
                 )}
               </div>
               <button className='btn btn-primary mr-5'>Submit</button>
@@ -75,4 +90,4 @@ const AddBalance = () => {
   );
 };
 
-export default AddBalance;
+export default AddReccurentIncomes;

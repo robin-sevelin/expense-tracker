@@ -5,9 +5,17 @@ import {
   TRANSACTION_TYPES,
 } from '../constants/constants';
 import { useAtom } from 'jotai';
-import { balanceAtom, sumAtom, transactionsAtom } from '../store/atoms';
+import {
+  balanceAtom,
+  expenseAtom,
+  incomeAtom,
+  sumAtom,
+  transactionsAtom,
+} from '../store/atoms';
 
 export const useGetCurrentSum = () => {
+  const [income] = useAtom(incomeAtom);
+  const [expense] = useAtom(expenseAtom);
   const [transactions] = useAtom(transactionsAtom);
   const [balance] = useAtom(balanceAtom);
   const [sum, setSum] = useAtom(sumAtom);
@@ -30,14 +38,14 @@ export const useGetCurrentSum = () => {
         (transaction) => transaction.type === TRANSACTION_TYPES.INCOME
       );
 
-      const expenseSum = expenses.reduce((a, b) => a + b.amount, 0);
-      const incomeSum = incomes.reduce((a, b) => a + b.amount, 0);
+      const expenseSum = expenses.reduce((a, b) => a + b.amount, 0) + expense;
+      const incomeSum = incomes.reduce((a, b) => a + b.amount, 0) + income;
       const diffSum = incomeSum - expenseSum;
 
       setSum(diffSum + balance);
       setIsLoading(false);
     }
-  }, [balance, setSum, transactions]);
+  }, [balance, setSum, transactions, expense, income]);
 
   return { sum, isLoading } as const;
 };

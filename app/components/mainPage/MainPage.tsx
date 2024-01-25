@@ -7,14 +7,18 @@ import Loading from '../sharedComponents/Loading';
 import Link from 'next/link';
 import { useGetCurrentSum } from '../../hooks/useGetCurrentSum';
 import { useGetTransactions } from '../../hooks/useGetTransactions';
+import { useGetIncomes } from '@/app/hooks/useGetIncomes';
+import { useGetExpenses } from '@/app/hooks/useGetExpenses';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);
   const { balance } = useGetBalance();
+  const { income } = useGetIncomes();
+  const { expense } = useGetExpenses();
   const { transactions } = useGetTransactions();
   const { sum } = useGetCurrentSum();
 
-  if (!balance && !transactions && !sum) {
+  if (!balance && !transactions && !sum && !expense && !income) {
     return <Loading />;
   }
 

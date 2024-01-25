@@ -15,7 +15,6 @@ import { submitAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
 import { CURRENT_DATE } from '../../constants/constants';
 import ModalDialog from '../sharedComponents/ModalDialog';
-import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
@@ -38,7 +37,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   });
 
   const submitData = async (data: TransactionFormData) => {
-    (data.id = uuidv4()), onHandleSubmit(user, data, date);
+    onHandleSubmit(user, data, date);
     setIsSubmitted(true);
     reset();
     setIsModalOpen(true);
@@ -65,29 +64,6 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
               shouldCloseOnSelect={false}
             />
           </div>
-          <fieldset>
-            <legend className='input-label'>Reccurant:</legend>
-            <div className='join'>
-              <input
-                className='join-item btn'
-                aria-label='NO'
-                type='radio'
-                {...register('reccurant')}
-                name='reccurant'
-                value={String(false)}
-                defaultChecked
-              />
-              <input
-                className='join-item btn'
-                aria-label='YES'
-                type='radio'
-                {...register('reccurant')}
-                name='reccurant'
-                value={String(true)}
-              />
-            </div>
-          </fieldset>
-
           <fieldset>
             <legend className='input-label'>Transaction Type:</legend>
             <div className='join'>

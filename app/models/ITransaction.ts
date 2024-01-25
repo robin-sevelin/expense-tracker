@@ -5,5 +5,4 @@ export interface ITransaction {
   type?: string;
   category?: string;
   date: Date;
-  reccurant: string;
 }
