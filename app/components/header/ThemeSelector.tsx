@@ -20,9 +20,13 @@ const ThemeSelector = () => {
   }, [currentTheme, setTheme]);
 
   return (
-    <details className='dropdown '>
-      <summary className=' btn bg-base-100 w-20'>Theme</summary>
+    <div className='dropdown '>
+      {/* <summary className=' btn bg-base-100 w-20'>Theme</summary> */}
+      <div tabIndex={0} role='button' className='btn m-1 bg-base-100 w-20'>
+        Theme
+      </div>
       <ul
+        tabIndex={0}
         className='shadow menu dropdown-content z-[1] bg-base-100 rounded-box  '
         style={{
           maxHeight: '600px',
@@ -39,7 +43,7 @@ const ThemeSelector = () => {
           </li>
         ))}
       </ul>
-    </details>
+    </div>
   );
 };
 
