@@ -18,14 +18,14 @@ const MonthPicker = () => {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center mt-5 mb-5'>
+    <div className='flex flex-col mt-5 mb-5'>
       <h3 className='text-3xl font-bold mb-5'>
         {currentMonth.toLocaleString('en-US', {
           month: 'long',
           year: 'numeric',
         })}
       </h3>
-      <legend className='input-label'>Select month</legend>
+      <legend>Select month</legend>
       <div className='join'>
         <button onClick={goBack} className='btn w-36 btn-primary join-item'>
           Back
