@@ -13,7 +13,6 @@ export const createTransactionDocument = async (
 
   const updatedTransaction = {
     ...transaction,
-    id: uuidv4(),
     date: date.toString(),
   };
 

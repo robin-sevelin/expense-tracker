@@ -15,6 +15,7 @@ import { submitAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
 import { CURRENT_DATE } from '../../constants/constants';
 import ModalDialog from '../sharedComponents/ModalDialog';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
@@ -37,7 +38,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   });
 
   const submitData = async (data: TransactionFormData) => {
-    onHandleSubmit(user, data, date);
+    (data.id = uuidv4()), onHandleSubmit(user, data, date);
     setIsSubmitted(true);
     reset();
     setIsModalOpen(true);

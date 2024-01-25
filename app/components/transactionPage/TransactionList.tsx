@@ -44,6 +44,7 @@ const TransactionList = ({ transactions }: Props) => {
                 Amount: {transaction.type === 'expense' && <span>-</span>}
                 {transaction.amount} kr
               </p>
+              <p>Reccurant: {transaction.reccurant}</p>
 
               <p>Date: {`${day}/${month}`}</p>
               <div className='card-actions justify-end'>

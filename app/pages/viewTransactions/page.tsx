@@ -6,7 +6,7 @@ import TransactionCalender from '@/app/components/transactionPage/TransactionCal
 import TransactionList from '@/app/components/transactionPage/TransactionList';
 import ViewMode from '@/app/components/transactionPage/ViewMode';
 import { useAuthUser } from '@/app/hooks/useAuthUser';
-import useCheckDate from '@/app/hooks/useCheckDate';
+import { useCheckData } from '@/app/hooks/useCheckDate';
 import { useGetTransactions } from '@/app/hooks/useGetTransactions';
 import { useState } from 'react';
 
@@ -14,7 +14,7 @@ const ViewTransactions = () => {
   const [view, setView] = useState('list');
   const { transactions } = useGetTransactions();
   const { user } = useAuthUser();
-  useCheckDate(transactions, user);
+  useCheckData(transactions, user);
 
   const setShowList = (value: string) => {
     setView(value);

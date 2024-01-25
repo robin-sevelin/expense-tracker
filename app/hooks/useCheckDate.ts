@@ -1,50 +1,38 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { ITransaction } from '@/app/models/ITransaction';
+import { CURRENT_DATE } from '../constants/constants';
 import { createTransactionDocument } from '@/firebase/operations/createTransaction';
-import { ITransaction } from '../models/ITransaction';
 import { IUser } from '../models/IUser';
-import { useAtom } from 'jotai';
-import { submitAtom } from '../store/atoms';
 
-const useCheckDate = (transactions: ITransaction[], user: IUser) => {
-  const [isSubmitted] = useAtom(submitAtom);
+export const useCheckData = async (
+  transactions: ITransaction[],
+  user: IUser
+) => {
+  const [processedTransactions, setProcessedTransactions] = useState<string[]>(
+    []
+  );
+
+  const recurringTransactions = transactions.filter(
+    (transaction: ITransaction) => transaction.reccurant === 'true'
+  );
+
   useEffect(() => {
-    const checkAndAddTransactions = async () => {
-      const currentMonth = new Date().getMonth() + 1;
-
-      const recurringTransactionsWithoutCurrentMonth = transactions.filter(
-        (transaction) =>
-          transaction.reccurant === 'true' &&
-          new Date(transaction.date).getMonth() !== currentMonth - 1
-      );
-
-      for (const transaction of recurringTransactionsWithoutCurrentMonth) {
-        try {
-          const updatedDate = new Date(transaction.date);
-          updatedDate.setMonth(updatedDate.getMonth() + 1);
-
-          await addTransactionToCurrentMonth(transaction, user, updatedDate);
-        } catch (error) {
-          console.error('Error processing transaction:', error);
-        }
+    recurringTransactions.forEach(async (transaction) => {
+      if (
+        transaction.date !== CURRENT_DATE &&
+        !processedTransactions.includes(transaction.id)
+      ) {
+        await addNewTransaction(user, transaction);
+        setProcessedTransactions((prev) => [...prev, transaction.id]);
       }
-    };
-
-    if (isSubmitted) {
-      checkAndAddTransactions();
-    }
-  }, [transactions, user, isSubmitted]);
-
-  const addTransactionToCurrentMonth = async (
-    transaction: ITransaction,
-    user: IUser,
-    updatedDate: Date
-  ) => {
-    try {
-      await createTransactionDocument(user, transaction, updatedDate);
-    } catch (error) {
-      console.error('Error adding transaction to current month:', error);
-    }
-  };
+    });
+  }, [recurringTransactions, user, processedTransactions]);
 };
 
-export default useCheckDate;
+const addNewTransaction = async (user: IUser, transaction: ITransaction) => {
+  const updatedDate = new Date(transaction.date);
+  updatedDate.setMonth(updatedDate.getMonth() + 1);
+  console.log(updatedDate);
+
+  await createTransactionDocument(user, transaction, updatedDate);
+};
