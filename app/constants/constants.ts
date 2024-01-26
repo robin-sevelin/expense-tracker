@@ -95,6 +95,14 @@ export const LINECHART_COLORS = {
     border: 'rgb(75, 192, 192)',
     bg: 'rgba(75, 192, 192, 0.5)',
   },
+  RECCURING_EXPENSES: {
+    border: 'rgb(235, 82, 52)',
+    bg: 'rgb(154, 30, 166)',
+  },
+  RECCURING_INCOMES: {
+    border: 'rgb(52, 52, 2352)',
+    bg: 'rgb(87, 87, 186)',
+  },
 };
 
 export const HAMBURGER_ICON = '/hamburger.svg';

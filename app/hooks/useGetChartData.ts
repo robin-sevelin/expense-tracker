@@ -1,4 +1,10 @@
-import { balanceAtom, monthAtom, transactionsAtom } from '@/app/store/atoms';
+import {
+  balanceAtom,
+  expenseAtom,
+  incomeAtom,
+  monthAtom,
+  transactionsAtom,
+} from '@/app/store/atoms';
 import { useAtom } from 'jotai';
 import { chartOptions } from '../constants/chartOptions';
 import {
@@ -8,14 +14,14 @@ import {
 } from '../constants/constants';
 import { useGetFilteredTransactions } from './useGetFIlteredTransaction';
 import { ITransaction } from '../models/ITransaction';
-import { useAddReccuringToChart } from './useAddReccuringToChart';
 
 export const useGetChartData = () => {
   const [transactions] = useAtom(transactionsAtom);
   const [balance] = useAtom(balanceAtom);
   const [currentMonth] = useAtom(monthAtom);
+  const [recurringExpenses] = useAtom(expenseAtom);
+  const [recurringIncomes] = useAtom(incomeAtom);
   const { filtredTransactions } = useGetFilteredTransactions(transactions);
-  const { reccuringExpenses } = useAddReccuringToChart();
 
   const getSumByType = (day: number, type: string) =>
     getTransactionsUntilDay(day)
@@ -48,6 +54,37 @@ export const useGetChartData = () => {
   };
 
   const labels = Array.from({ length: DAYS_IN_MONTH }, (_, index) => index + 1);
+
+  const uniqueRecurringExpenseDates = Array.from(
+    new Set(recurringExpenses.map((expense) => Number(expense.date)))
+  );
+  const labelsRecurringExpenses = labels.map((day) => {
+    const recurringExpenseSum = uniqueRecurringExpenseDates.includes(day)
+      ? recurringExpenses
+          .filter(
+            (recurringTransaction) => Number(recurringTransaction.date) === day
+          )
+          .reduce((a, b) => a + b.amount, 0)
+      : 0;
+
+    return { x: day, y: recurringExpenseSum };
+  });
+
+  const uniqueRecurringIncomeDates = Array.from(
+    new Set(recurringIncomes.map((income) => Number(income.date)))
+  );
+  const labelsRecurringIncomes = labels.map((day) => {
+    const recurringIncomeSum = uniqueRecurringIncomeDates.includes(day)
+      ? recurringIncomes
+          .filter(
+            (recurringTransaction) => Number(recurringTransaction.date) === day
+          )
+          .reduce((a, b) => a + b.amount, 0)
+      : 0;
+
+    return { x: day, y: recurringIncomeSum };
+  });
+
   const labelsIncome = labels.map((day) => ({
     x: day,
     y: getSumByType(day, TRANSACTION_TYPES.INCOME),
@@ -61,8 +98,17 @@ export const useGetChartData = () => {
   const labelsBalance = labels.map((day) => {
     const incomeSum = getSumByType(day, TRANSACTION_TYPES.INCOME);
     const expenseSum = getSumByType(day, TRANSACTION_TYPES.EXPENSE);
+    const recurringExpenseSum =
+      labelsRecurringExpenses.find((label) => label.x === day)?.y || 0;
+    const recurringIncomeSum =
+      labelsRecurringIncomes.find((label) => label.x === day)?.y || 0;
 
-    currentBalance = currentBalance + incomeSum - expenseSum;
+    currentBalance =
+      currentBalance +
+      incomeSum -
+      expenseSum -
+      recurringExpenseSum +
+      recurringIncomeSum;
 
     return { x: day, y: currentBalance };
   });
@@ -81,6 +127,18 @@ export const useGetChartData = () => {
         data: labelsExpense,
         borderColor: LINECHART_COLORS.EXPENSE.border,
         backgroundColor: LINECHART_COLORS.EXPENSE.bg,
+      },
+      {
+        label: 'Recurring Expenses',
+        data: labelsRecurringExpenses,
+        borderColor: LINECHART_COLORS.RECCURING_EXPENSES.border,
+        backgroundColor: LINECHART_COLORS.RECCURING_EXPENSES.bg,
+      },
+      {
+        label: 'Recurring Incomes',
+        data: labelsRecurringIncomes,
+        borderColor: LINECHART_COLORS.RECCURING_INCOMES.border,
+        backgroundColor: LINECHART_COLORS.RECCURING_INCOMES.bg,
       },
       {
         label: 'Balance',

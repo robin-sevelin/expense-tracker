@@ -12,7 +12,7 @@ export const createExpenseDocument = async (
   const updatedExpense = {
     ...expense,
     id: uuidv4(),
-    day: expense.date.toString(),
+    date: expense.date.toString(),
     type: TRANSACTION_TYPES.EXPENSE,
   };
 
