@@ -28,7 +28,7 @@ const AddBalance = () => {
   });
 
   const submitData = async (data: BalanceFormData) => {
-    await createBalanceDocument(user, data.balance);
+    await createBalanceDocument(user, data);
     setIsSubmitted(true);
     reset();
     setIsModalOpen(true);
@@ -42,19 +42,19 @@ const AddBalance = () => {
           <h3>Current budget {balance} SEK</h3>
           <div className='join'>
             <fieldset>
-              <label htmlFor='balance' className='input-label'>
+              <label htmlFor='amount' className='input-label'>
                 Amount:
               </label>
               <input
                 className='input input-bordered input-primary w-full max-w-xs'
                 type='number'
-                id='balance'
-                {...register('balance', { valueAsNumber: true })}
-                name='balance'
+                id='amount'
+                {...register('amount', { valueAsNumber: true })}
+                name='amount'
               />
               <div className='error-container'>
-                {errors.balance && (
-                  <p style={{ color: 'red' }}>{errors.balance.message}</p>
+                {errors.amount && (
+                  <p style={{ color: 'red' }}>{errors.amount.message}</p>
                 )}
               </div>
               <button className='btn btn-primary mr-5'>Submit</button>

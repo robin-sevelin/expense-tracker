@@ -2,11 +2,11 @@ import { CURRENT_DATE } from '@/app/constants/constants';
 import { IUser } from '@/app/models/IUser';
 import { doc, getDoc, setDoc, updateDoc, collection } from 'firebase/firestore';
 import { db } from '../firestore';
-import { v4 as uuidv4 } from 'uuid';
+import { IBalance } from '@/app/models/IBalance';
 
 export const createBalanceDocument = async (
   userAuth: IUser,
-  balance: number
+  balance: IBalance
 ) => {
   const balancesCollectionRef = collection(
     db,
@@ -24,8 +24,7 @@ export const createBalanceDocument = async (
       await setDoc(balanceDocRef, {
         user: userAuth.displayName,
         createdAt: CURRENT_DATE.toString(),
-        balance: balance,
-        id: uuidv4(),
+        amount: balance.amount,
       });
     } catch (error) {
       console.log('Error setting the balance', error);
@@ -33,10 +32,9 @@ export const createBalanceDocument = async (
   } else {
     try {
       await updateDoc(balanceDocRef, {
-        balance: balance,
+        amount: balance.amount,
         user: userAuth.displayName,
         createdAt: CURRENT_DATE.toString(),
-        id: uuidv4(),
       });
     } catch (error) {
       console.log('Error updating the balance', error);

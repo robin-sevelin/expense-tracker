@@ -1,5 +1,7 @@
 import { atom } from 'jotai';
 import {
+  EXPENSES_BASE_VALUES,
+  INCOMES_BASE_VALUES,
   TRANSACTIONS_BASE_VALUES,
   TRANSACTION_BASE_VALUES,
   USER_BASE_VALUES,
@@ -18,5 +20,5 @@ export const filtredSumAtom = atom(0);
 export const incomeSumAtom = atom(0);
 export const expenseSumAtom = atom(0);
 export const themeAtom = atom('dark');
-export const expenseAtom = atom(0);
-export const incomeAtom = atom(0);
+export const expenseAtom = atom(EXPENSES_BASE_VALUES);
+export const incomeAtom = atom(INCOMES_BASE_VALUES);

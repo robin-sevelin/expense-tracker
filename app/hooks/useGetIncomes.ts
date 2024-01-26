@@ -3,23 +3,30 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { incomeAtom, submitAtom, userAtom } from '../store/atoms';
+import { IIncome } from '../models/IIncome';
 
 export const useGetIncomes = () => {
   const [user] = useAtom(userAtom);
-  const [income, setIncome] = useAtom(incomeAtom);
+  const [incomes, setIncomes] = useAtom(incomeAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (isSubmitted || !income) {
+    if (isSubmitted || !incomes.length) {
       const getIncome = async () => {
         try {
-          const docRef = doc(db, 'users', user.uid, 'incomeSum', user.uid);
+          const docRef = doc(
+            db,
+            'users',
+            user.uid,
+            'reccuringIncomes',
+            user.uid
+          );
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const docData = docSnap.data();
-            const incomeData = docData.amount;
-            setIncome(incomeData);
+            const incomeData = docData.incomes;
+            setIncomes(incomeData as IIncome[]);
             setIsSubmitted(false);
           } else {
             console.log('No such document!');
@@ -32,7 +39,7 @@ export const useGetIncomes = () => {
       };
       getIncome();
     }
-  }, [setIncome, user, setIsSubmitted, isSubmitted, income]);
+  }, [setIncomes, user, setIsSubmitted, isSubmitted, incomes]);
 
-  return { isLoading, income };
+  return { isLoading, incomes };
 };

@@ -18,7 +18,7 @@ export const useGetBalance = () => {
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const docData = docSnap.data();
-            const balanceData = docData.balance;
+            const balanceData = docData.amount;
             setBalance(balanceData);
             setIsSubmitted(false);
           } else {

@@ -3,23 +3,32 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { expenseAtom, submitAtom, userAtom } from '../store/atoms';
+import { IExpense } from '../models/IExpense';
 
 export const useGetExpenses = () => {
   const [user] = useAtom(userAtom);
-  const [expense, setExpense] = useAtom(expenseAtom);
+  const [expenses, setExpenses] = useAtom(expenseAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (isSubmitted || !expense) {
+    if (isSubmitted || !expenses.length) {
       const getExpense = async () => {
         try {
-          const docRef = doc(db, 'users', user.uid, 'expenseSum', user.uid);
+          const docRef = doc(
+            db,
+            'users',
+            user.uid,
+            'reccuringExpenses',
+            user.uid
+          );
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const docData = docSnap.data();
-            const expenseData = docData.amount;
-            setExpense(expenseData);
+            const expenseData = docData.expenses;
+            console.log(expenseData);
+
+            setExpenses(expenseData as IExpense[]);
             setIsSubmitted(false);
           } else {
             console.log('No such document!');
@@ -32,7 +41,7 @@ export const useGetExpenses = () => {
       };
       getExpense();
     }
-  }, [setExpense, user, setIsSubmitted, isSubmitted, expense]);
+  }, [setExpenses, user, setIsSubmitted, isSubmitted, expenses]);
 
-  return { isLoading, expense };
+  return { isLoading, expenses };
 };

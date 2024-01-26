@@ -1,5 +1,7 @@
 import { IUser } from '../models/IUser';
 import { ITransaction } from '../models/ITransaction';
+import { IIncome } from '../models/IIncome';
+import { IExpense } from '../models/IExpense';
 
 export const ROUTES = [
   { id: 0, url: '/', text: 'Home' },
@@ -31,6 +33,10 @@ export const TRANSACTION_BASE_VALUES: ITransaction = {
   amount: 0,
   date: CURRENT_DATE,
 };
+
+export const EXPENSES_BASE_VALUES: IExpense[] = [];
+export const INCOMES_BASE_VALUES: IIncome[] = [];
+
 export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 
 export const TRANSACTION_TYPES = {

@@ -26,7 +26,7 @@ const UserPage = () => {
           <p className='py-3'>Name: {user.displayName}</p>
           <p className='py-3'>E-mail: {user.email}</p>
           <p className='py-3'>Your monthtly budget: {balance} kr</p>
-          <Link href='/pages/editBalance' className='btn btn-primary py-3'>
+          <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
             <span>Edit budget</span>
           </Link>
         </div>

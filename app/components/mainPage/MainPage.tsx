@@ -9,16 +9,24 @@ import { useGetCurrentSum } from '../../hooks/useGetCurrentSum';
 import { useGetTransactions } from '../../hooks/useGetTransactions';
 import { useGetIncomes } from '@/app/hooks/useGetIncomes';
 import { useGetExpenses } from '@/app/hooks/useGetExpenses';
+import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
+import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);
   const { balance } = useGetBalance();
-  const { income } = useGetIncomes();
-  const { expense } = useGetExpenses();
+  const { reccuringIncomesSum } = useGetIncomeSum();
+  const { reccuringExpensesSum } = useGetExpenseSum();
   const { transactions } = useGetTransactions();
   const { sum } = useGetCurrentSum();
 
-  if (!balance && !transactions && !sum && !expense && !income) {
+  if (
+    !balance &&
+    !transactions &&
+    !sum &&
+    !reccuringExpensesSum &&
+    !reccuringIncomesSum
+  ) {
     return <Loading />;
   }
 

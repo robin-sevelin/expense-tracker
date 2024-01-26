@@ -40,10 +40,8 @@ export const useGetFilteredSum = () => {
           (transaction) => transaction.type === TRANSACTION_TYPES.INCOME
         );
 
-        const expenseSumValue =
-          expenses.reduce((a, b) => a + b.amount, 0) + expense;
-        const incomeSumValue =
-          incomes.reduce((a, b) => a + b.amount, 0) + income;
+        const expenseSumValue = expenses.reduce((a, b) => a + b.amount, 0);
+        const incomeSumValue = incomes.reduce((a, b) => a + b.amount, 0);
         const diffSum = incomeSumValue - expenseSumValue;
 
         setExpenseSum(expenseSumValue);

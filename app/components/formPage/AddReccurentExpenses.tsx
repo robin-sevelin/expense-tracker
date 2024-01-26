@@ -4,20 +4,19 @@ import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { submitAtom, userAtom } from '../../store/atoms';
 import Link from 'next/link';
-import { balanceSchema, expenseSchema } from '../../models/FormSchema';
-import { BalanceFormData, ExpenseFormData } from '../../models/FormData';
+import { expenseSchema } from '../../models/FormSchema';
+import { ExpenseFormData } from '../../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useGetBalance } from '../../hooks/useGetBalance';
 import ModalDialog from '../sharedComponents/ModalDialog';
 import { createExpenseDocument } from '@/firebase/operations/createExpense';
-import { useGetExpenses } from '@/app/hooks/useGetExpenses';
+import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
 
 const AddReccurentExpenses = () => {
   const [user] = useAtom(userAtom);
-  const { expense } = useGetExpenses();
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { reccuringExpensesSum } = useGetExpenseSum();
 
   const {
     register,
@@ -40,7 +39,7 @@ const AddReccurentExpenses = () => {
       <div className='flex flex-col justify-center items-center'>
         <h2 className='text-5xl font-bold'>SET RECCURING EXPENSES</h2>
         <form onSubmit={handleSubmit(submitData)}>
-          <h3>Current reccuring expenses {expense} SEK</h3>
+          <h3>Current reccuring expenses {reccuringExpensesSum} SEK</h3>
           <div className='join'>
             <fieldset>
               <label htmlFor='title' className='input-label'>

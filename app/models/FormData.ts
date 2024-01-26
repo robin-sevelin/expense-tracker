@@ -8,7 +8,7 @@ export interface TransactionFormData {
 }
 
 export interface BalanceFormData {
-  balance: number;
+  amount: number;
 }
 
 export interface ExpenseFormData {

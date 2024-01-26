@@ -4,20 +4,20 @@ import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { submitAtom, userAtom } from '../../store/atoms';
 import Link from 'next/link';
-import { balanceSchema, incomeSchema } from '../../models/FormSchema';
-import { BalanceFormData, IncomeFormData } from '../../models/FormData';
+import { incomeSchema } from '../../models/FormSchema';
+import { IncomeFormData } from '../../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import ModalDialog from '../sharedComponents/ModalDialog';
 import { createIncomeDocument } from '@/firebase/operations/createIncome';
-import { useGetIncomes } from '@/app/hooks/useGetIncomes';
 import { IIncome } from '@/app/models/IIncome';
+import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
 
 const AddReccurentIncomes = () => {
   const [user] = useAtom(userAtom);
-  const { income } = useGetIncomes();
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { reccuringIncomesSum } = useGetIncomeSum();
 
   const {
     register,
@@ -40,7 +40,7 @@ const AddReccurentIncomes = () => {
       <div className='flex flex-col justify-center items-center'>
         <h2 className='text-5xl font-bold'>SET RECCURING INCOMES</h2>
         <form onSubmit={handleSubmit(submitData)}>
-          <h3>Current reccuring Incomes {income} SEK</h3>
+          <h3>Current reccuring Incomes {reccuringIncomesSum} SEK</h3>
           <div className='join'>
             <fieldset>
               <label htmlFor='title' className='input-label'>
