@@ -3,7 +3,6 @@
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { submitAtom, userAtom } from '../../store/atoms';
-import Link from 'next/link';
 import { expenseSchema } from '../../models/FormSchema';
 import { ExpenseFormData } from '../../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,12 +10,14 @@ import { useForm } from 'react-hook-form';
 import ModalDialog from '../sharedComponents/ModalDialog';
 import { createExpenseDocument } from '@/firebase/operations/createExpense';
 import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
+import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
 
 const AddReccurentExpenses = () => {
   const [user] = useAtom(userAtom);
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { reccuringExpensesSum } = useGetExpenseSum();
+  const { daysInMonthArray } = useGetDaysInMonthArray();
 
   const {
     register,
@@ -29,6 +30,8 @@ const AddReccurentExpenses = () => {
 
   const submitData = async (expense: ExpenseFormData) => {
     await createExpenseDocument(user, expense);
+    console.log(expense);
+
     setIsSubmitted(true);
     reset();
     setIsModalOpen(true);
@@ -71,12 +74,21 @@ const AddReccurentExpenses = () => {
                   <p style={{ color: 'red' }}>{errors.amount.message}</p>
                 )}
               </div>
-              <button className='btn btn-primary mr-5'>Submit</button>
-              <Link href='/pages/profile'>
-                <button className='btn btn-secondary'>Return</button>
-              </Link>
             </fieldset>
           </div>
+          <legend>Pick day of the month</legend>
+          <select
+            className='select select-bordered w-full max-w-xs'
+            id='day'
+            {...register('day')}
+          >
+            {daysInMonthArray.map((days, index) => (
+              <option key={index} value={days.day}>
+                {days.day}
+              </option>
+            ))}
+          </select>
+          <button className='btn btn-primary'>Submit</button>
         </form>
       </div>
       {isModalOpen && (

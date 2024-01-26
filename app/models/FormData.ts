@@ -14,9 +14,11 @@ export interface BalanceFormData {
 export interface ExpenseFormData {
   title: string;
   amount: number;
+  day: string;
 }
 
 export interface IncomeFormData {
   title: string;
   amount: number;
+  day: string;
 }

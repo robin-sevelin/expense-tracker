@@ -1,4 +1,3 @@
-import { CURRENT_DATE } from '@/app/constants/constants';
 import { IUser } from '@/app/models/IUser';
 import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
 import { db } from '../firestore';
@@ -11,7 +10,6 @@ export const createExpenseDocument = async (
 ) => {
   const updatedExpense = {
     ...expense,
-    date: CURRENT_DATE.toString(),
     id: uuidv4(),
   };
 

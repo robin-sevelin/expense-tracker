@@ -12,12 +12,14 @@ import ModalDialog from '../sharedComponents/ModalDialog';
 import { createIncomeDocument } from '@/firebase/operations/createIncome';
 import { IIncome } from '@/app/models/IIncome';
 import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
+import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
 
 const AddReccurentIncomes = () => {
   const [user] = useAtom(userAtom);
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { reccuringIncomesSum } = useGetIncomeSum();
+  const { daysInMonthArray } = useGetDaysInMonthArray();
 
   const {
     register,
@@ -28,7 +30,7 @@ const AddReccurentIncomes = () => {
     resolver: zodResolver(incomeSchema),
   });
 
-  const submitData = async (income: IIncome) => {
+  const submitData = async (income: IncomeFormData) => {
     await createIncomeDocument(user, income);
     setIsSubmitted(true);
     reset();
@@ -72,12 +74,21 @@ const AddReccurentIncomes = () => {
                   <p style={{ color: 'red' }}>{errors.amount.message}</p>
                 )}
               </div>
-              <button className='btn btn-primary mr-5'>Submit</button>
-              <Link href='/pages/profile'>
-                <button className='btn btn-secondary'>Return</button>
-              </Link>
             </fieldset>
           </div>
+          <legend>Pick day of the month</legend>
+          <select
+            className='select select-bordered w-full max-w-xs'
+            id='day'
+            {...register('day')}
+          >
+            {daysInMonthArray.map((days, index) => (
+              <option key={index} value={days.day}>
+                {days.day}
+              </option>
+            ))}
+          </select>
+          <button className='btn btn-primary'>Submit</button>
         </form>
       </div>
       {isModalOpen && (

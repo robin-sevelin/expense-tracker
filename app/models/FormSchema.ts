@@ -14,9 +14,11 @@ export const balanceSchema = z.object({
 export const expenseSchema = z.object({
   title: z.string().min(3).max(20),
   amount: z.number().min(1),
+  day: z.string(),
 });
 
 export const incomeSchema = z.object({
   title: z.string().min(3).max(20),
   amount: z.number().min(1),
+  day: z.string(),
 });
