@@ -80,7 +80,7 @@ const AddReccurentExpenses = () => {
           <select
             className='select select-bordered w-full max-w-xs'
             id='day'
-            {...register('day')}
+            {...register('date')}
           >
             {daysInMonthArray.map((days, index) => (
               <option key={index} value={days.day}>

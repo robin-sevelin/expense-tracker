@@ -17,6 +17,7 @@ import {
   TRANSACTION_TYPES,
 } from '../constants/constants';
 import { useGetTransactions } from './useGetTransactions';
+import { useAddReccuringToChart } from './useAddReccuringToChart';
 
 Chart.register(
   CategoryScale,
@@ -49,6 +50,9 @@ export const useGetChartData = () => {
   const { transactions } = useGetTransactions();
   const [balance] = useAtom(balanceAtom);
   const [currentMonth] = useAtom(monthAtom);
+  const { newList } = useAddReccuringToChart(transactions);
+
+  console.log(newList);
 
   const getSumByType = (day: number, type: string) =>
     getTransactionsUntilDay(day)
@@ -62,7 +66,7 @@ export const useGetChartData = () => {
       .reduce((a, b) => a + b.amount, 0);
 
   const getTransactionsUntilDay = (day: number) => {
-    const filteredTransactions = transactions?.filter((transaction) => {
+    const filteredTransactions = newList?.filter((transaction) => {
       const transactionDate = transaction.date
         ? new Date(transaction.date)
         : null;

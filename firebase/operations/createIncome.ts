@@ -1,4 +1,4 @@
-import { CURRENT_DATE } from '@/app/constants/constants';
+import { CURRENT_DATE, TRANSACTION_TYPES } from '@/app/constants/constants';
 import { IUser } from '@/app/models/IUser';
 import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
 import { db } from '../firestore';
@@ -11,8 +11,9 @@ export const createIncomeDocument = async (
 ) => {
   const updatedIncome = {
     ...income,
-    date: CURRENT_DATE.toString(),
     id: uuidv4(),
+    date: income.date.toLowerCase(),
+    type: TRANSACTION_TYPES.EXPENSE,
   };
 
   const incomeCollectionRef = collection(
