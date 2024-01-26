@@ -23,6 +23,7 @@ export const useGetCurrentSum = () => {
   const [sum, setSum] = useAtom(sumAtom);
   const { reccuringExpensesSum } = useGetExpenseSum();
   const { reccuringIncomesSum } = useGetIncomeSum();
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

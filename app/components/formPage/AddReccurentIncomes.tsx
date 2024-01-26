@@ -3,14 +3,12 @@
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { submitAtom, userAtom } from '../../store/atoms';
-import Link from 'next/link';
 import { incomeSchema } from '../../models/FormSchema';
 import { IncomeFormData } from '../../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import ModalDialog from '../sharedComponents/ModalDialog';
 import { createIncomeDocument } from '@/firebase/operations/createIncome';
-import { IIncome } from '@/app/models/IIncome';
 import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
 import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
 

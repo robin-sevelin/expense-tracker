@@ -1,41 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { IExpense } from '../models/IExpense';
-import { ITransaction } from '../models/ITransaction';
-import { useGetExpenses } from './useGetExpenses';
-import { TRANSACTIONS_BASE_VALUES } from '../constants/constants';
+import { CURRENT_MONTH, CURRENT_YEAR } from '../constants/constants';
+import { expenseAtom } from '../store/atoms';
+import { useAtom } from 'jotai';
+import { v4 as uuidv4 } from 'uuid';
 
-export const useAddReccuringToChart = (transactions: ITransaction[]) => {
-  const { expenses } = useGetExpenses();
-  const [newList, setNewList] = useState<ITransaction[]>(
-    TRANSACTIONS_BASE_VALUES
-  );
-
-  console.log(expenses);
+export const useAddReccuringToChart = () => {
+  const [reccuringExpenses, setReccuringExpenses] = useAtom(expenseAtom);
 
   useEffect(() => {
-    if (expenses && transactions) {
+    if (reccuringExpenses.length === 0) {
       const addToExpenseArray = () => {
-        const expensesWithDateString = expenses.map((expense: IExpense) => ({
-          ...expense,
-          date: convertDate(expense),
-          id: Math.random().toString(),
-        }));
+        const expensesWithDateString = reccuringExpenses.map(
+          (expense: IExpense) => ({
+            ...expense,
+            date: convertDate(expense),
+            id: uuidv4(),
+          })
+        );
 
-        setNewList([...transactions, ...expensesWithDateString]);
+        setReccuringExpenses([...expensesWithDateString]);
       };
 
       addToExpenseArray();
     }
-  }, [transactions, expenses]);
+  }, [reccuringExpenses, setReccuringExpenses]);
 
-  return { newList } as const;
+  return { reccuringExpenses } as const;
 };
 
 const convertDate = (expense: IExpense) => {
   const dayString = expense.date;
-  const year = new Date().getFullYear();
-  const month = new Date().getMonth();
-  const newDate = new Date(year, month, Number(dayString));
+  const newDate = new Date(CURRENT_YEAR, CURRENT_MONTH, Number(dayString));
 
   return newDate.toString();
 };

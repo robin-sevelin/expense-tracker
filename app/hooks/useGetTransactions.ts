@@ -5,13 +5,13 @@ import { useAtom } from 'jotai';
 import { submitAtom, transactionsAtom, userAtom } from '../store/atoms';
 
 export const useGetTransactions = () => {
-  const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
   const [user] = useAtom(userAtom);
   const [transactions, setTransactions] = useAtom(transactionsAtom);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitted, setIssubmited] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (isSubmitted || !transactions.length) {
+    if (transactions.length === 0 || isSubmitted) {
       try {
         const getData = async () => {
           const docRef = doc(db, 'users', user.uid, 'transactions', user.uid);
@@ -23,17 +23,16 @@ export const useGetTransactions = () => {
           } else {
             setTransactions([]);
           }
-
-          setIsSubmitted(false);
         };
         getData();
       } catch (error) {
         console.error('Error getting transaction list:', error);
       } finally {
         setIsLoading(false);
+        setIssubmited(false);
       }
     }
-  }, [user, setTransactions, setIsSubmitted, isSubmitted, transactions]);
+  }, [isSubmitted, setIssubmited, transactions, setTransactions, user.uid]);
 
   return { isLoading, transactions } as const;
 };

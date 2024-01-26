@@ -30,7 +30,6 @@ const AddReccurentExpenses = () => {
 
   const submitData = async (expense: ExpenseFormData) => {
     await createExpenseDocument(user, expense);
-    console.log(expense);
 
     setIsSubmitted(true);
     reset();

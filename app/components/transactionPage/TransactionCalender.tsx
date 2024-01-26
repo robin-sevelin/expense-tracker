@@ -12,14 +12,14 @@ interface Props {
 
 const TransactionCalender = ({ transactions }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { filteredTransactions } = useGetFilteredTransactions(transactions);
+  const { filtredTransactions } = useGetFilteredTransactions(transactions);
   const [selectedDay, setSelectedDay] = useState({
     incomeSum: 0,
     expenseSum: 0,
     day: 0,
   });
   const { calenderArray } = useGetCalenderDays(
-    filteredTransactions as ITransaction[]
+    filtredTransactions as ITransaction[]
   );
 
   const handleClick = (expense: number, income: number, day: number) => {

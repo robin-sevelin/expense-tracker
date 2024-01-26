@@ -17,7 +17,7 @@ interface Props {
 const TransactionList = ({ transactions }: Props) => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const { user } = useAuthUser();
-  const { filteredTransactions } = useGetFilteredTransactions(transactions);
+  const { filtredTransactions } = useGetFilteredTransactions(transactions);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = async (id: string) => {
@@ -28,7 +28,7 @@ const TransactionList = ({ transactions }: Props) => {
 
   return (
     <section className=' flex max-w-3/4 flex-wrap gap-5 justify-center '>
-      {filteredTransactions?.map((transaction) => {
+      {filtredTransactions?.map((transaction) => {
         const transactionDate = new Date(transaction.date);
         const day = transactionDate.getDate();
         const month = transactionDate.getMonth() + 1;

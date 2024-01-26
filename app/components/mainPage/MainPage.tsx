@@ -5,30 +5,9 @@ import { userAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
 import Loading from '../sharedComponents/Loading';
 import Link from 'next/link';
-import { useGetCurrentSum } from '../../hooks/useGetCurrentSum';
-import { useGetTransactions } from '../../hooks/useGetTransactions';
-import { useGetIncomes } from '@/app/hooks/useGetIncomes';
-import { useGetExpenses } from '@/app/hooks/useGetExpenses';
-import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
-import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);
-  const { balance } = useGetBalance();
-  const { reccuringIncomesSum } = useGetIncomeSum();
-  const { reccuringExpensesSum } = useGetExpenseSum();
-  const { transactions } = useGetTransactions();
-  const { sum } = useGetCurrentSum();
-
-  if (
-    !balance &&
-    !transactions &&
-    !sum &&
-    !reccuringExpensesSum &&
-    !reccuringIncomesSum
-  ) {
-    return <Loading />;
-  }
 
   return (
     <section className='card max-w-xl m-auto bg-base-200 p-2'>

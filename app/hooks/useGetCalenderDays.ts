@@ -1,21 +1,15 @@
 import { useAtom } from 'jotai';
 import { monthAtom } from '../store/atoms';
 import { ITransaction } from '../models/ITransaction';
-import { TRANSACTION_TYPES } from '../constants/constants';
+import { DAYS_IN_MONTH, TRANSACTION_TYPES } from '../constants/constants';
 
 export const useGetCalenderDays = (filteredTransactions: ITransaction[]) => {
   const [selectedMonth] = useAtom(monthAtom);
 
-  const daysInMonth = new Date(
-    selectedMonth.getFullYear(),
-    selectedMonth.getMonth() + 1,
-    0
-  ).getDate();
-
   let calenderArray = [];
 
-  if (daysInMonth) {
-    for (let i = 0; i < daysInMonth; i++) {
+  if (DAYS_IN_MONTH) {
+    for (let i = 0; i < DAYS_IN_MONTH; i++) {
       const transactionsForDay = filteredTransactions.filter((transaction) => {
         const transactionDate = new Date(transaction.date);
         return (

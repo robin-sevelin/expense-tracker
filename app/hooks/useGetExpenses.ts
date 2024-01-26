@@ -26,7 +26,6 @@ export const useGetExpenses = () => {
           if (docSnap.exists()) {
             const docData = docSnap.data();
             const expenseData = docData.expenses;
-            console.log(expenseData);
 
             setExpenses(expenseData as IExpense[]);
             setIsSubmitted(false);
