@@ -2,12 +2,12 @@ import { TRANSACTION_TYPES } from '@/app/constants/constants';
 import { IUser } from '@/app/models/IUser';
 import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
 import { db } from '../firestore';
-import { IncomeFormData } from '@/app/models/FormData';
 import { v4 as uuidv4 } from 'uuid';
+import { IReccuringIncome } from '@/app/models/BudgetValues';
 
 export const createIncomeDocument = async (
   userAuth: IUser,
-  income: IncomeFormData
+  income: IReccuringIncome
 ) => {
   const updatedIncome = {
     ...income,

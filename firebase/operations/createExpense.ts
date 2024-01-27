@@ -1,13 +1,13 @@
 import { IUser } from '@/app/models/IUser';
 import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
 import { db } from '../firestore';
-import { ExpenseFormData } from '@/app/models/FormData';
 import { v4 as uuidv4 } from 'uuid';
 import { TRANSACTION_TYPES } from '@/app/constants/constants';
+import { IReccuringExpense } from '@/app/models/BudgetValues';
 
 export const createExpenseDocument = async (
   userAuth: IUser,
-  expense: ExpenseFormData
+  expense: IReccuringExpense
 ) => {
   const updatedExpense = {
     ...expense,

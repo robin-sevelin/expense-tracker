@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TransactionFormData } from '../../models/FormData';
 import { useForm } from 'react-hook-form';
 import { transactionSchema } from '../../models/FormSchema';
 import ExpenseCategories from '../sharedComponents/ExpenseCategories';
@@ -15,9 +14,10 @@ import { submitAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
 import { CURRENT_DATE } from '../../constants/constants';
 import ModalDialog from '../sharedComponents/ModalDialog';
+import { ITransaction } from '@/app/models/ITransaction';
 
 interface Props {
-  onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
+  onHandleSubmit: (user: IUser, data: ITransaction, date: Date) => void;
 }
 
 const AddTransaction = ({ onHandleSubmit }: Props) => {
@@ -32,11 +32,11 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<TransactionFormData>({
+  } = useForm<ITransaction>({
     resolver: zodResolver(transactionSchema),
   });
 
-  const submitData = async (data: TransactionFormData) => {
+  const submitData = async (data: ITransaction) => {
     onHandleSubmit(user, data, date);
     setIsSubmitted(true);
     reset();

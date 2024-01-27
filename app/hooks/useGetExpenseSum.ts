@@ -1,20 +1,20 @@
 import { useAtom } from 'jotai';
 import { submitAtom } from '../store/atoms';
 import { useEffect, useState } from 'react';
-import { useGetExpenses } from './useGetExpenses';
+import { useGetReccuringExpenses } from './useGetReccuringExpenses';
 
 export const useGetExpenseSum = () => {
-  const { expenses } = useGetExpenses();
+  const { reccuringExpenses } = useGetReccuringExpenses();
   const [reccuringExpensesSum, setReccuringExpensesSum] = useState(0);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (expenses || isSubmitted) {
-      const expenseSum = expenses.reduce((a, b) => a + b.amount, 0);
+    if (reccuringExpenses || isSubmitted) {
+      const expenseSum = reccuringExpenses.reduce((a, b) => a + b.amount, 0);
       setReccuringExpensesSum(expenseSum);
       setIsSubmitted(false);
     }
-  }, [expenses, setIsSubmitted, isSubmitted]);
+  }, [reccuringExpenses, setIsSubmitted, isSubmitted]);
 
   return { reccuringExpensesSum } as const;
 };

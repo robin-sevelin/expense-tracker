@@ -2,32 +2,31 @@ import { db } from '@/firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { expenseAtom, submitAtom, userAtom } from '../store/atoms';
-import { IExpense } from '../models/IExpense';
+import { reccuringIncomeAtom, submitAtom, userAtom } from '../store/atoms';
+import { IReccuringIncome } from '../models/BudgetValues';
 
-export const useGetExpenses = () => {
+export const useGetReccuringIncomes = () => {
   const [user] = useAtom(userAtom);
-  const [expenses, setExpenses] = useAtom(expenseAtom);
+  const [reccuringIncomes, setReccuringIncomes] = useAtom(reccuringIncomeAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (isSubmitted || !expenses.length) {
-      const getExpense = async () => {
+    if (isSubmitted || !reccuringIncomes.length) {
+      const getIncome = async () => {
         try {
           const docRef = doc(
             db,
             'users',
             user.uid,
-            'reccuringExpenses',
+            'reccuringIncomes',
             user.uid
           );
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const docData = docSnap.data();
-            const expenseData = docData.expenses;
-
-            setExpenses(expenseData as IExpense[]);
+            const incomeData = docData.incomes;
+            setReccuringIncomes(incomeData as IReccuringIncome[]);
             setIsSubmitted(false);
           } else {
             console.log('No such document!');
@@ -38,9 +37,15 @@ export const useGetExpenses = () => {
           setIsLoading(false);
         }
       };
-      getExpense();
+      getIncome();
     }
-  }, [setExpenses, user, setIsSubmitted, isSubmitted, expenses]);
+  }, [
+    setReccuringIncomes,
+    user,
+    setIsSubmitted,
+    isSubmitted,
+    reccuringIncomes,
+  ]);
 
-  return { isLoading, expenses };
+  return { isLoading, reccuringIncomes };
 };

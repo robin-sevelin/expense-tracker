@@ -1,8 +1,8 @@
 import {
   balanceAtom,
-  expenseAtom,
-  incomeAtom,
   monthAtom,
+  reccuringExpenseAtom,
+  reccuringIncomeAtom,
   transactionsAtom,
 } from '@/app/store/atoms';
 import { useAtom } from 'jotai';
@@ -19,8 +19,8 @@ export const useGetChartData = () => {
   const [transactions] = useAtom(transactionsAtom);
   const [balance] = useAtom(balanceAtom);
   const [currentMonth] = useAtom(monthAtom);
-  const [recurringExpenses] = useAtom(expenseAtom);
-  const [recurringIncomes] = useAtom(incomeAtom);
+  const [recurringExpenses] = useAtom(reccuringExpenseAtom);
+  const [recurringIncomes] = useAtom(reccuringIncomeAtom);
   const { filtredTransactions } = useGetFilteredTransactions(transactions);
 
   const getSumByType = (day: number, type: string) =>

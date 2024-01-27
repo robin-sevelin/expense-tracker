@@ -2,7 +2,7 @@ import { CURRENT_DATE } from '@/app/constants/constants';
 import { IUser } from '@/app/models/IUser';
 import { doc, getDoc, setDoc, updateDoc, collection } from 'firebase/firestore';
 import { db } from '../firestore';
-import { IBalance } from '@/app/models/IBalance';
+import { IBalance } from '@/app/models/BudgetValues';
 
 export const createBalanceDocument = async (
   userAuth: IUser,

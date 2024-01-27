@@ -1,10 +1,10 @@
 import React from 'react';
 import { EXPENSE_CATEGORIES } from '../../constants/constants';
 import { UseFormRegister } from 'react-hook-form';
-import { TransactionFormData } from '../../models/FormData';
+import { ITransaction } from '@/app/models/ITransaction';
 
 interface expenseCategoriesProps {
-  register: UseFormRegister<TransactionFormData>;
+  register: UseFormRegister<ITransaction>;
 }
 
 const ExpenseCategories = ({ register }: expenseCategoriesProps) => {

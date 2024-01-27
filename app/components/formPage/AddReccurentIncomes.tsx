@@ -4,13 +4,13 @@ import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { submitAtom, userAtom } from '../../store/atoms';
 import { incomeSchema } from '../../models/FormSchema';
-import { IncomeFormData } from '../../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import ModalDialog from '../sharedComponents/ModalDialog';
 import { createIncomeDocument } from '@/firebase/operations/createIncome';
 import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
 import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
+import { IReccuringIncome } from '@/app/models/BudgetValues';
 
 const AddReccurentIncomes = () => {
   const [user] = useAtom(userAtom);
@@ -24,11 +24,11 @@ const AddReccurentIncomes = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IncomeFormData>({
+  } = useForm<IReccuringIncome>({
     resolver: zodResolver(incomeSchema),
   });
 
-  const submitData = async (income: IncomeFormData) => {
+  const submitData = async (income: IReccuringIncome) => {
     await createIncomeDocument(user, income);
     setIsSubmitted(true);
     reset();

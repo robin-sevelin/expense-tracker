@@ -11,7 +11,6 @@ import CookieBanner from '../sharedComponents/CookieBanner';
 import { useGetTransactions } from '@/app/hooks/useGetTransactions';
 import { useGetBalance } from '@/app/hooks/useGetBalance';
 import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
-import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
 
 const LandingPage = () => {
   const [{ 'expense-tracker': expenseTrackerCookie }, setCookie] = useCookies([

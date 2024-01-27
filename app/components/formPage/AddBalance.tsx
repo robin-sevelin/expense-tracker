@@ -5,12 +5,12 @@ import React, { useState } from 'react';
 import { submitAtom, userAtom } from '../../store/atoms';
 import Link from 'next/link';
 import { balanceSchema } from '../../models/FormSchema';
-import { BalanceFormData } from '../../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { createBalanceDocument } from '@/firebase/operations/createBalance';
 import { useGetBalance } from '../../hooks/useGetBalance';
 import ModalDialog from '../sharedComponents/ModalDialog';
+import { IBalance } from '@/app/models/BudgetValues';
 
 const AddBalance = () => {
   const [user] = useAtom(userAtom);
@@ -23,11 +23,11 @@ const AddBalance = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<BalanceFormData>({
+  } = useForm<IBalance>({
     resolver: zodResolver(balanceSchema),
   });
 
-  const submitData = async (data: BalanceFormData) => {
+  const submitData = async (data: IBalance) => {
     await createBalanceDocument(user, data);
     setIsSubmitted(true);
     reset();

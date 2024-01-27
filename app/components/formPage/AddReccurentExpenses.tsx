@@ -4,13 +4,13 @@ import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { submitAtom, userAtom } from '../../store/atoms';
 import { expenseSchema } from '../../models/FormSchema';
-import { ExpenseFormData } from '../../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import ModalDialog from '../sharedComponents/ModalDialog';
 import { createExpenseDocument } from '@/firebase/operations/createExpense';
 import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
 import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
+import { IReccuringExpense } from '@/app/models/BudgetValues';
 
 const AddReccurentExpenses = () => {
   const [user] = useAtom(userAtom);
@@ -24,11 +24,11 @@ const AddReccurentExpenses = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<ExpenseFormData>({
+  } = useForm<IReccuringExpense>({
     resolver: zodResolver(expenseSchema),
   });
 
-  const submitData = async (expense: ExpenseFormData) => {
+  const submitData = async (expense: IReccuringExpense) => {
     await createExpenseDocument(user, expense);
 
     setIsSubmitted(true);

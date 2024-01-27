@@ -1,7 +1,6 @@
 import { IUser } from '../models/IUser';
 import { ITransaction } from '../models/ITransaction';
-import { IIncome } from '../models/IIncome';
-import { IExpense } from '../models/IExpense';
+import { IReccuringExpense, IReccuringIncome } from '../models/BudgetValues';
 
 export const ROUTES = [
   { id: 0, url: '/', text: 'Home' },
@@ -13,12 +12,17 @@ export const ROUTES = [
 export const CURRENT_DATE = new Date();
 export const CURRENT_YEAR = CURRENT_DATE.getFullYear();
 export const CURRENT_MONTH = CURRENT_DATE.getMonth();
-
 export const DAYS_IN_MONTH = new Date(
   CURRENT_DATE.getFullYear(),
   CURRENT_DATE.getMonth() + 1,
   0
 ).getDate();
+
+export const DAY_BASE_VALUES = {
+  incomeSum: 0,
+  expenseSum: 0,
+  day: 0,
+};
 
 export const USER_BASE_VALUES: IUser = {
   uid: '',
@@ -34,9 +38,8 @@ export const TRANSACTION_BASE_VALUES: ITransaction = {
   date: CURRENT_DATE,
 };
 
-export const EXPENSES_BASE_VALUES: IExpense[] = [];
-export const INCOMES_BASE_VALUES: IIncome[] = [];
-
+export const EXPENSES_BASE_VALUES: IReccuringExpense[] = [];
+export const INCOMES_BASE_VALUES: IReccuringIncome[] = [];
 export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 
 export const TRANSACTION_TYPES = {
@@ -104,5 +107,3 @@ export const LINECHART_COLORS = {
     bg: 'rgb(87, 87, 186)',
   },
 };
-
-export const HAMBURGER_ICON = '/hamburger.svg';

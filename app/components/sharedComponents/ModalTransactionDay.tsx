@@ -21,7 +21,7 @@ const ModalTransactionDay = ({
     onHandleChange();
   };
 
-  const [currentMonth, setCurrentMonth] = useAtom(monthAtom);
+  const [currentMonth] = useAtom(monthAtom);
   return (
     <>
       <input

@@ -5,6 +5,7 @@ import { useGetCalenderDays } from '../../hooks/useGetCalenderDays';
 import { useGetFilteredTransactions } from '../../hooks/useGetFIlteredTransaction';
 import { ITransaction } from '../../models/ITransaction';
 import ModalTransactionDay from '../sharedComponents/ModalTransactionDay';
+import { DAY_BASE_VALUES } from '@/app/constants/constants';
 
 interface Props {
   transactions: ITransaction[];
@@ -13,11 +14,7 @@ interface Props {
 const TransactionCalender = ({ transactions }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { filtredTransactions } = useGetFilteredTransactions(transactions);
-  const [selectedDay, setSelectedDay] = useState({
-    incomeSum: 0,
-    expenseSum: 0,
-    day: 0,
-  });
+  const [selectedDay, setSelectedDay] = useState(DAY_BASE_VALUES);
   const { calenderArray } = useGetCalenderDays(
     filtredTransactions as ITransaction[]
   );

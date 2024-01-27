@@ -7,8 +7,8 @@ import {
 import { useAtom } from 'jotai';
 import {
   balanceAtom,
-  expenseAtom,
-  incomeAtom,
+  reccuringExpenseAtom,
+  reccuringIncomeAtom,
   sumAtom,
   transactionsAtom,
 } from '../store/atoms';
@@ -16,8 +16,8 @@ import { useGetExpenseSum } from './useGetExpenseSum';
 import { useGetIncomeSum } from './useGetIncomeSum';
 
 export const useGetCurrentSum = () => {
-  const [income] = useAtom(incomeAtom);
-  const [expense] = useAtom(expenseAtom);
+  const [reccuringIncomes] = useAtom(reccuringIncomeAtom);
+  const [reccuringExpenses] = useAtom(reccuringExpenseAtom);
   const [transactions] = useAtom(transactionsAtom);
   const [balance] = useAtom(balanceAtom);
   const [sum, setSum] = useAtom(sumAtom);
@@ -55,8 +55,8 @@ export const useGetCurrentSum = () => {
     balance,
     setSum,
     transactions,
-    expense,
-    income,
+    reccuringExpenses,
+    reccuringIncomes,
     reccuringExpensesSum,
     reccuringIncomesSum,
   ]);

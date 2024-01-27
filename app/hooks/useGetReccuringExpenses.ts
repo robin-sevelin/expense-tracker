@@ -2,31 +2,32 @@ import { db } from '@/firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { incomeAtom, submitAtom, userAtom } from '../store/atoms';
-import { IIncome } from '../models/IIncome';
+import { reccuringExpenseAtom, submitAtom, userAtom } from '../store/atoms';
+import { IReccuringExpense } from '../models/BudgetValues';
 
-export const useGetIncomes = () => {
+export const useGetReccuringExpenses = () => {
   const [user] = useAtom(userAtom);
-  const [incomes, setIncomes] = useAtom(incomeAtom);
+  const [reccuringExpenses, setExpenses] = useAtom(reccuringExpenseAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
   useEffect(() => {
-    if (isSubmitted || !incomes.length) {
-      const getIncome = async () => {
+    if (isSubmitted || !reccuringExpenses.length) {
+      const getExpense = async () => {
         try {
           const docRef = doc(
             db,
             'users',
             user.uid,
-            'reccuringIncomes',
+            'reccuringExpenses',
             user.uid
           );
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const docData = docSnap.data();
-            const incomeData = docData.incomes;
-            setIncomes(incomeData as IIncome[]);
+            const expenseData = docData.expenses;
+
+            setExpenses(expenseData as IReccuringExpense[]);
             setIsSubmitted(false);
           } else {
             console.log('No such document!');
@@ -37,9 +38,9 @@ export const useGetIncomes = () => {
           setIsLoading(false);
         }
       };
-      getIncome();
+      getExpense();
     }
-  }, [setIncomes, user, setIsSubmitted, isSubmitted, incomes]);
+  }, [setExpenses, user, setIsSubmitted, isSubmitted, reccuringExpenses]);
 
-  return { isLoading, incomes };
+  return { isLoading, reccuringExpenses };
 };

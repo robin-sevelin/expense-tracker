@@ -33,12 +33,10 @@ const FilteredSummary = () => {
             <th>One time expenses</th>
             <td>{expenseSum} kr</td>
           </tr>
-
           <tr>
             <th>Reccuring expenses</th>
             <td>{reccuringExpensesSum} kr</td>
           </tr>
-
           <tr>
             <th>Balance</th>
             <td>{sum} kr</td>
