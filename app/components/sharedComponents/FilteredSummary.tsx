@@ -22,7 +22,7 @@ const FilteredSummary = () => {
         </thead>
         <tbody>
           <tr>
-            <th>Incomes</th>
+            <th>One time incomes</th>
             <td>{incomeSum} kr</td>
           </tr>
           <tr>

@@ -45,6 +45,7 @@ export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 export const TRANSACTION_TYPES = {
   INCOME: 'income',
   EXPENSE: 'expense',
+  RECCURING: 'reccuring',
 };
 
 export const EXPENSE_CATEGORIES = [

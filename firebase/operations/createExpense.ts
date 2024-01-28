@@ -13,7 +13,7 @@ export const createExpenseDocument = async (
     ...expense,
     id: uuidv4(),
     date: expense.date.toString(),
-    type: TRANSACTION_TYPES.EXPENSE,
+    type: TRANSACTION_TYPES.RECCURING,
   };
 
   const expenseCollectionRef = collection(

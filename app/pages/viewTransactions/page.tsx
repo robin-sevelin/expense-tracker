@@ -15,8 +15,6 @@ const ViewTransactions = () => {
   const [transactions] = useAtom(transactionsAtom);
   useAuthUser();
 
-  console.log(transactions);
-
   const setShowList = (value: string) => {
     setView(value);
   };

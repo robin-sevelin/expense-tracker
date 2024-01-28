@@ -1,4 +1,3 @@
-// chartConfig.js
 import {
   CategoryScale,
   LinearScale,

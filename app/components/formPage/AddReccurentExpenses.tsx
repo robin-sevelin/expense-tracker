@@ -82,7 +82,7 @@ const AddReccurentExpenses = () => {
             {...register('date')}
           >
             {daysInMonthArray.map((days, index) => (
-              <option key={index} value={days.day}>
+              <option key={index} value={days.day} disabled={days.day > 28}>
                 {days.day}
               </option>
             ))}
