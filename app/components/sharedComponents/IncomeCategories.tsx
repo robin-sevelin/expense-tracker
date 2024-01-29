@@ -1,15 +1,15 @@
 import React from 'react';
 import { INCOME_CATEGORIES } from '../../constants/constants';
 import { UseFormRegister } from 'react-hook-form';
-import { TransactionFormData } from '../../models/FormData';
+import { ITransaction } from '@/app/models/ITransaction';
 
 interface expenseCategoriesProps {
-  register: UseFormRegister<TransactionFormData>;
+  register: UseFormRegister<ITransaction>;
 }
 
 const IncomeCategories = ({ register }: expenseCategoriesProps) => {
   return (
-    <div className='join flex w-30'>
+    <div className='join flex '>
       {INCOME_CATEGORIES.map((category) => (
         <input
           key={category.id}

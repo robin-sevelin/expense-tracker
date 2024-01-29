@@ -1,5 +1,6 @@
 import { IUser } from '../models/IUser';
 import { ITransaction } from '../models/ITransaction';
+import { IReccuringExpense, IReccuringIncome } from '../models/BudgetValues';
 
 export const ROUTES = [
   { id: 0, url: '/', text: 'Home' },
@@ -7,16 +8,26 @@ export const ROUTES = [
   { id: 2, url: '/pages/chart/', text: 'Chart' },
   { id: 3, url: '/pages/viewTransactions', text: 'View transactions' },
   { id: 4, url: '/pages/addTransactions', text: 'Add transaction' },
+  {
+    id: 5,
+    url: '/pages/viewReccuringTransactions',
+    text: 'Reccuring transactions',
+  },
 ];
 export const CURRENT_DATE = new Date();
 export const CURRENT_YEAR = CURRENT_DATE.getFullYear();
 export const CURRENT_MONTH = CURRENT_DATE.getMonth();
-
 export const DAYS_IN_MONTH = new Date(
   CURRENT_DATE.getFullYear(),
   CURRENT_DATE.getMonth() + 1,
   0
 ).getDate();
+
+export const DAY_BASE_VALUES = {
+  incomeSum: 0,
+  expenseSum: 0,
+  day: 0,
+};
 
 export const USER_BASE_VALUES: IUser = {
   uid: '',
@@ -30,13 +41,18 @@ export const TRANSACTION_BASE_VALUES: ITransaction = {
   title: '',
   amount: 0,
   date: CURRENT_DATE,
-  reccurancy: '',
 };
+
+export const EXPENSES_BASE_VALUES: IReccuringExpense[] = [];
+export const INCOMES_BASE_VALUES: IReccuringIncome[] = [];
 export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 
 export const TRANSACTION_TYPES = {
+  BUDGET: 'budget',
   INCOME: 'income',
   EXPENSE: 'expense',
+  RECCURING_INCOME: 'reccuringIncome',
+  RECCURING_EXPENSE: 'reccuringExpense',
 };
 
 export const EXPENSE_CATEGORIES = [
@@ -90,8 +106,34 @@ export const LINECHART_COLORS = {
     border: 'rgb(75, 192, 192)',
     bg: 'rgba(75, 192, 192, 0.5)',
   },
+  RECCURING_EXPENSES: {
+    border: 'rgb(235, 82, 52)',
+    bg: 'rgb(154, 30, 166)',
+  },
+  RECCURING_INCOMES: {
+    border: 'rgb(52, 52, 2352)',
+    bg: 'rgb(87, 87, 186)',
+  },
 };
 
-export const VIDEO_BG = '/video-bg.mp4';
-
-export const HAMBURGER_ICON = '/hamburger.svg';
+export const FOOTER_NAV_IMGS = [
+  {
+    id: 0,
+    src: '/github-mark.png',
+    alt: 'github logo',
+    url: 'https://github.com/robin-sevelin',
+  },
+  {
+    id: 1,
+    src: 'linkedIn.png',
+    alt: 'linkedIn logo',
+    url: 'https://www.linkedin.com/in/robin-sevelin-336b20168/',
+  },
+  { id: 2, src: '/next.svg', alt: 'next logo', url: 'https://nextjs.org/' },
+  {
+    id: 3,
+    src: '/vercel.svg',
+    alt: 'vercel logo',
+    url: 'https://vercel.com/templates?framework=next.js',
+  },
+];

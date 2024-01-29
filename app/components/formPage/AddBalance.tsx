@@ -5,12 +5,12 @@ import React, { useState } from 'react';
 import { submitAtom, userAtom } from '../../store/atoms';
 import Link from 'next/link';
 import { balanceSchema } from '../../models/FormSchema';
-import { BalanceFormData } from '../../models/FormData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { createBalanceDocument } from '@/firebase/operations/createBalance';
 import { useGetBalance } from '../../hooks/useGetBalance';
 import ModalDialog from '../sharedComponents/ModalDialog';
+import { IBalance } from '@/app/models/BudgetValues';
 
 const AddBalance = () => {
   const [user] = useAtom(userAtom);
@@ -23,38 +23,38 @@ const AddBalance = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<BalanceFormData>({
+  } = useForm<IBalance>({
     resolver: zodResolver(balanceSchema),
   });
 
-  const submitData = async (data: BalanceFormData) => {
-    await createBalanceDocument(user, data.balance);
+  const submitData = async (data: IBalance) => {
+    await createBalanceDocument(user, data);
     setIsSubmitted(true);
     reset();
     setIsModalOpen(true);
   };
 
   return (
-    <section className='max-w-xl max-h-3xl m-auto mb-5'>
+    <>
       <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-5xl font-bold'>EDIT BUDGET</h2>
+        <h2 className='text-3xl font-bold'>SET BUDGET</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <h3>Current budget {balance} SEK</h3>
           <div className='join'>
             <fieldset>
-              <label htmlFor='balance' className='input-label'>
+              <label htmlFor='amount' className='input-label'>
                 Amount:
               </label>
               <input
                 className='input input-bordered input-primary w-full max-w-xs'
                 type='number'
-                id='balance'
-                {...register('balance', { valueAsNumber: true })}
-                name='balance'
+                id='amount'
+                {...register('amount', { valueAsNumber: true })}
+                name='amount'
               />
               <div className='error-container'>
-                {errors.balance && (
-                  <p style={{ color: 'red' }}>{errors.balance.message}</p>
+                {errors.amount && (
+                  <p style={{ color: 'red' }}>{errors.amount.message}</p>
                 )}
               </div>
               <button className='btn btn-primary mr-5'>Submit</button>
@@ -71,7 +71,7 @@ const AddBalance = () => {
           isModalOpen={isModalOpen}
         />
       )}
-    </section>
+    </>
   );
 };
 

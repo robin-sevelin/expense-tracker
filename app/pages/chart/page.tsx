@@ -1,9 +1,9 @@
-import GraphPage from '@/app/components/chartPage/ChartPage';
+import ChartPage from '@/app/components/chartPage/ChartPage';
 
 const Chart = () => {
   return (
     <>
-      <GraphPage />
+      <ChartPage />
     </>
   );
 };

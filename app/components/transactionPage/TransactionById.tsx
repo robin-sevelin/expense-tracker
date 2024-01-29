@@ -22,7 +22,6 @@ const TransactionById = ({ transaction }: Props) => {
         </p>
         <p>Type: {transaction.type}</p>
         <p>Category: {transaction.category}</p>
-        <p>Reccurancy: {transaction.reccurancy}</p>
         <div className='card-actions justify-end'></div>
       </div>
     </section>

@@ -4,7 +4,6 @@ import Header from './components/header/Header';
 import { Provider } from 'jotai';
 import ThemeProvider from './contexts/ThemeContext';
 import ThemeWrapper from './contexts/ThemeWrapper';
-import ProfileSection from './components/mainPage/ProfileSection';
 import Footer from './components/mainPage/Footer';
 
 export const metadata: Metadata = {

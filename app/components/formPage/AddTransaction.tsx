@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TransactionFormData } from '../../models/FormData';
 import { useForm } from 'react-hook-form';
 import { transactionSchema } from '../../models/FormSchema';
 import ExpenseCategories from '../sharedComponents/ExpenseCategories';
@@ -15,9 +14,10 @@ import { submitAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
 import { CURRENT_DATE } from '../../constants/constants';
 import ModalDialog from '../sharedComponents/ModalDialog';
+import { ITransaction } from '@/app/models/ITransaction';
 
 interface Props {
-  onHandleSubmit: (user: IUser, data: TransactionFormData, date: Date) => void;
+  onHandleSubmit: (user: IUser, data: ITransaction, date: Date) => void;
 }
 
 const AddTransaction = ({ onHandleSubmit }: Props) => {
@@ -32,11 +32,11 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<TransactionFormData>({
+  } = useForm<ITransaction>({
     resolver: zodResolver(transactionSchema),
   });
 
-  const submitData = async (data: TransactionFormData) => {
+  const submitData = async (data: ITransaction) => {
     onHandleSubmit(user, data, date);
     setIsSubmitted(true);
     reset();
@@ -48,14 +48,12 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   };
 
   return (
-    <section className='max-w-xl max-h-3xl m-auto mb-5'>
+    <section>
       <div className='flex flex-col justify-center items-center'>
         <h2 className='text-5xl font-bold'>ADD TRANSACTION</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <div>
-            <label htmlFor='datepicker' className='input-label'>
-              Transaction Date:
-            </label>
+            <legend>Select date</legend>
             <DatePicker
               id='datepicker'
               className='input input-bordered input-primary w-full max-w-xs'
@@ -65,30 +63,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
             />
           </div>
           <fieldset>
-            <legend className='input-label'>Reccuracy:</legend>
-            <div className='join'>
-              <input
-                className='join-item btn'
-                aria-label='ONCE'
-                type='radio'
-                {...register('reccurancy')}
-                name='reccurancy'
-                value={'once'}
-                defaultChecked
-              />
-              <input
-                className='join-item btn'
-                aria-label='RECCURING'
-                type='radio'
-                {...register('reccurancy')}
-                name='reccurancy'
-                value={'reccuring'}
-              />
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend className='input-label'>Transaction Type:</legend>
+            <legend className='input-label'>Transaction Type</legend>
             <div className='join'>
               <input
                 className='join-item btn'
@@ -113,7 +88,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
           </fieldset>
 
           <fieldset>
-            <legend className='input-label'>Transaction Category:</legend>
+            <legend className='input-label'>Transaction Category</legend>
             {type === 'expense' ? (
               <ExpenseCategories register={register} />
             ) : (

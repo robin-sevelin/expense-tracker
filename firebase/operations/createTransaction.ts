@@ -9,10 +9,12 @@ export const createTransactionDocument = async (
   transaction: ITransaction,
   date: Date
 ) => {
+  console.log(transaction);
+
   const updatedTransaction = {
     ...transaction,
-    id: uuidv4(),
     date: date.toString(),
+    id: uuidv4(),
   };
 
   const transactionsCollectionRef = collection(

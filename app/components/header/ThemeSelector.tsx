@@ -20,21 +20,11 @@ const ThemeSelector = () => {
   }, [currentTheme, setTheme]);
 
   return (
-    <div className='dropdown '>
-      {/* <summary className=' btn bg-base-100 w-20'>Theme</summary> */}
+    <div className='dropdown'>
       <div tabIndex={0} role='button' className='btn m-1 bg-base-100 w-20'>
         Theme
       </div>
-      <ul
-        tabIndex={0}
-        className='shadow menu dropdown-content z-[1] bg-base-100 rounded-box  '
-        style={{
-          maxHeight: '600px',
-          overflowY: 'hidden',
-          width: '220px',
-          marginLeft: '-130px',
-        }}
-      >
+      <ul tabIndex={0} className='theme-dropdown'>
         {THEMES.map((theme) => (
           <li key={theme.id}>
             <button onClick={() => handleThemeChange(theme)}>

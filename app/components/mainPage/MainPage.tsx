@@ -5,18 +5,9 @@ import { userAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
 import Loading from '../sharedComponents/Loading';
 import Link from 'next/link';
-import { useGetCurrentSum } from '../../hooks/useGetCurrentSum';
-import { useGetTransactions } from '../../hooks/useGetTransactions';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);
-  const { balance } = useGetBalance();
-  const { transactions } = useGetTransactions();
-  const { sum } = useGetCurrentSum();
-
-  if (!balance && !transactions && !sum) {
-    return <Loading />;
-  }
 
   return (
     <section className='card max-w-xl m-auto bg-base-200 p-2'>

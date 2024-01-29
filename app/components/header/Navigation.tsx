@@ -15,7 +15,7 @@ const Navigation = () => {
   };
   return (
     <>
-      <div className='drawer drawer-end p-2 m-1 w-20'>
+      <div className='drawer drawer-end'>
         <input id='my-drawer-4' type='checkbox' className='drawer-toggle' />
         <div className='drawer-content'>
           <label
@@ -49,7 +49,6 @@ const Navigation = () => {
           </ul>
         </div>
       </div>
-
       <button
         aria-label='sign out'
         onClick={logOut}

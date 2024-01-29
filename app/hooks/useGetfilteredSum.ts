@@ -8,6 +8,8 @@ import {
   expenseSumAtom,
   incomeSumAtom,
   filtredSumAtom,
+  reccuringIncomeAtom,
+  reccuringExpenseAtom,
 } from '../store/atoms';
 
 export const useGetFilteredSum = () => {
@@ -17,6 +19,8 @@ export const useGetFilteredSum = () => {
   const [expenseSum, setExpenseSum] = useAtom(expenseSumAtom);
   const [incomeSum, setIncomeSum] = useAtom(incomeSumAtom);
   const [currentMonth] = useAtom(monthAtom);
+  const [reccuringIncomes] = useAtom(reccuringIncomeAtom);
+  const [reccuringExpenses] = useAtom(reccuringExpenseAtom);
 
   useEffect(() => {
     if (transactions) {
@@ -48,6 +52,8 @@ export const useGetFilteredSum = () => {
       countSum();
     }
   }, [
+    reccuringExpenses,
+    reccuringIncomes,
     balance,
     setSum,
     transactions,

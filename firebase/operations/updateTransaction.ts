@@ -2,11 +2,10 @@ import { ITransaction } from '@/app/models/ITransaction';
 import { IUser } from '@/app/models/IUser';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firestore';
-import { TransactionFormData } from '@/app/models/FormData';
 
 export const updateTransaction = async (
   user: IUser,
-  updatedTransaction: TransactionFormData,
+  updatedTransaction: ITransaction,
   id: string,
   date: Date
 ) => {
@@ -35,7 +34,6 @@ export const updateTransaction = async (
             type: updatedTransaction.type,
             id: id,
             date: date.toString(),
-            recurrancy: updatedTransaction.reccurancy,
           };
         }
         return transaction;

@@ -5,13 +5,17 @@ import { useAuthUser } from '../../hooks/useAuthUser';
 import Link from 'next/link';
 import { useAtom } from 'jotai';
 import { balanceAtom } from '../../store/atoms';
+import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
+import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
 
 const UserPage = () => {
   const [balance] = useAtom(balanceAtom);
+  const { reccuringExpensesSum } = useGetExpenseSum();
+  const { reccuringIncomesSum } = useGetIncomeSum();
   const { user } = useAuthUser();
 
   return (
-    <div className=' hero min-h-full bg-base-200'>
+    <>
       <div className='hero-content flex-col lg:flex-row-reverse'>
         <picture>
           <img
@@ -26,12 +30,18 @@ const UserPage = () => {
           <p className='py-3'>Name: {user.displayName}</p>
           <p className='py-3'>E-mail: {user.email}</p>
           <p className='py-3'>Your monthtly budget: {balance} kr</p>
-          <Link href='/pages/editBalance' className='btn btn-primary py-3'>
-            <span>Edit budget</span>
+          <p className='py-3'>
+            Your monthtly reccuring expenses: {reccuringExpensesSum} kr
+          </p>
+          <p className='py-3'>
+            Your monthtly reccuring incomes: {reccuringIncomesSum} kr
+          </p>
+          <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
+            <span>Set budget</span>
           </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

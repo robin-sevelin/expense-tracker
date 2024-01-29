@@ -4,6 +4,5 @@ export interface ITransaction {
   amount: number;
   type?: string;
   category?: string;
-  date: Date;
-  reccurancy: string;
+  date: Date | string;
 }
