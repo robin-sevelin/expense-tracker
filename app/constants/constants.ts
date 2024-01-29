@@ -8,6 +8,11 @@ export const ROUTES = [
   { id: 2, url: '/pages/chart/', text: 'Chart' },
   { id: 3, url: '/pages/viewTransactions', text: 'View transactions' },
   { id: 4, url: '/pages/addTransactions', text: 'Add transaction' },
+  {
+    id: 5,
+    url: '/pages/viewReccuringTransactions',
+    text: 'Reccuring transactions',
+  },
 ];
 export const CURRENT_DATE = new Date();
 export const CURRENT_YEAR = CURRENT_DATE.getFullYear();
@@ -45,7 +50,8 @@ export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 export const TRANSACTION_TYPES = {
   INCOME: 'income',
   EXPENSE: 'expense',
-  RECCURING: 'reccuring',
+  RECCURING_INCOME: 'reccuringIncome',
+  RECCURING_EXPENSE: 'reccuringExpense',
 };
 
 export const EXPENSE_CATEGORIES = [

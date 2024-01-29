@@ -1,24 +1,50 @@
 'use client';
 
-import { IReccuringExpense, IReccuringIncome } from '@/app/models/BudgetValues';
-import React from 'react';
+import React, { useState } from 'react';
+import ReccuringExpenses from './ReccuringExpenses';
+import { reccuringExpenseAtom, reccuringIncomeAtom } from '@/app/store/atoms';
+import { useAtom } from 'jotai';
+import ReccuringIncomes from './ReccuringIncomes';
 
-interface Props {
-  transactions: IReccuringExpense[] | IReccuringIncome[];
-}
+const ReccurringTransactions = () => {
+  const [reccruingExpenses] = useAtom(reccuringExpenseAtom);
+  const [reccuringIncomes] = useAtom(reccuringIncomeAtom);
+  const [view, setView] = useState('expense');
 
-const ReccuringIncomes = ({ transactions }: Props) => {
   return (
-    <div>
-      <h2>ReccuringIncomes</h2>
-      {transactions.map((income, index) => (
-        <div key={index}>
-          <h3>{income.title}</h3>
-          <p>{income.amount} kr</p>
+    <section className=' flex flex-col m-5 p-5 justify-center items-center'>
+      <fieldset>
+        <legend>Select View</legend>
+        <div className='join'>
+          <input
+            defaultChecked
+            className='join-item btn w-36'
+            type='radio'
+            name='view'
+            aria-label='Expenses'
+            id='expense'
+            value='expense'
+            onClick={() => setView('expense')}
+          />
+          <input
+            className='join-item btn w-36 '
+            type='radio'
+            name='view'
+            aria-label='Incomes'
+            id='income'
+            value={'income'}
+            onClick={() => setView('income')}
+          />
         </div>
-      ))}
-    </div>
+      </fieldset>
+
+      {view === 'expense' ? (
+        <ReccuringExpenses expenses={reccruingExpenses} />
+      ) : (
+        <ReccuringIncomes incomes={reccuringIncomes} />
+      )}
+    </section>
   );
 };
 
-export default ReccuringIncomes;
+export default ReccurringTransactions;

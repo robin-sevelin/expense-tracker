@@ -13,7 +13,7 @@ export const createIncomeDocument = async (
     ...income,
     id: uuidv4(),
     date: income.date.toString(),
-    type: TRANSACTION_TYPES.RECCURING,
+    type: TRANSACTION_TYPES.RECCURING_INCOME,
   };
 
   const incomeCollectionRef = collection(

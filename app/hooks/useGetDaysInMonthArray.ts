@@ -1,5 +1,3 @@
-import { DAYS_IN_MONTH } from '../constants/constants';
-
 interface IDay {
   day: number;
 }
@@ -7,7 +5,7 @@ interface IDay {
 export const useGetDaysInMonthArray = () => {
   const daysInMonthArray: IDay[] = [];
 
-  for (let i = 0; i < DAYS_IN_MONTH; i++) {
+  for (let i = 0; i < 28; i++) {
     const dayObject: IDay = { day: i + 1 };
     daysInMonthArray.push(dayObject);
   }
