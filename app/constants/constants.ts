@@ -48,6 +48,7 @@ export const INCOMES_BASE_VALUES: IReccuringIncome[] = [];
 export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 
 export const TRANSACTION_TYPES = {
+  BUDGET: 'budget',
   INCOME: 'income',
   EXPENSE: 'expense',
   RECCURING_INCOME: 'reccuringIncome',
@@ -114,3 +115,25 @@ export const LINECHART_COLORS = {
     bg: 'rgb(87, 87, 186)',
   },
 };
+
+export const FOOTER_NAV_IMGS = [
+  {
+    id: 0,
+    src: '/github-mark.png',
+    alt: 'github logo',
+    url: 'https://github.com/robin-sevelin',
+  },
+  {
+    id: 1,
+    src: 'linkedIn.png',
+    alt: 'linkedIn logo',
+    url: 'https://www.linkedin.com/in/robin-sevelin-336b20168/',
+  },
+  { id: 2, src: '/next.svg', alt: 'next logo', url: 'https://nextjs.org/' },
+  {
+    id: 3,
+    src: '/vercel.svg',
+    alt: 'vercel logo',
+    url: 'https://vercel.com/templates?framework=next.js',
+  },
+];

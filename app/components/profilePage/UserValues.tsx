@@ -4,48 +4,49 @@ import React, { useState } from 'react';
 import AddBalance from '../formPage/AddBalance';
 import AddReccurentExpenses from '../formPage/AddReccurentExpenses';
 import AddReccurentIncomes from '../formPage/AddReccurentIncomes';
+import { TRANSACTION_TYPES } from '@/app/constants/constants';
 
 const UserValues = () => {
-  const [section, setSection] = useState('budget');
+  const [section, setSection] = useState(TRANSACTION_TYPES.BUDGET);
   return (
-    <div>
-      <div className='join'>
-        <fieldset>
-          <legend>Select section</legend>
+    <section className=' flex flex-col justify-center items-center  h-10xl gap-5 p-10 '>
+      <fieldset>
+        <legend className='font-bold mb-3'>Select section</legend>
+        <div className='join'>
           <input
             className='join-item btn'
             type='radio'
             name='options'
             aria-label='Budget'
             defaultChecked
-            id='budget'
-            value='budget'
-            onClick={() => setSection('budget')}
+            id={TRANSACTION_TYPES.BUDGET}
+            value={TRANSACTION_TYPES.BUDGET}
+            onClick={() => setSection(TRANSACTION_TYPES.BUDGET)}
           />
           <input
             className='join-item btn'
             type='radio'
             name='options'
             aria-label='Expenses'
-            id='expenses'
-            value='expenes'
-            onClick={() => setSection('expenses')}
+            id={TRANSACTION_TYPES.EXPENSE}
+            value={TRANSACTION_TYPES.EXPENSE}
+            onClick={() => setSection(TRANSACTION_TYPES.EXPENSE)}
           />
           <input
             className='join-item btn'
             type='radio'
             name='options'
             aria-label='Incomes'
-            id='incomes'
-            value='incomes'
-            onClick={() => setSection('incomes')}
+            id={TRANSACTION_TYPES.INCOME}
+            value={TRANSACTION_TYPES.INCOME}
+            onClick={() => setSection(TRANSACTION_TYPES.INCOME)}
           />
-        </fieldset>
-      </div>
-      {section == 'budget' && <AddBalance />}
-      {section == 'expenses' && <AddReccurentExpenses />}
-      {section == 'incomes' && <AddReccurentIncomes />}
-    </div>
+        </div>
+      </fieldset>
+      {section == TRANSACTION_TYPES.BUDGET && <AddBalance />}
+      {section == TRANSACTION_TYPES.EXPENSE && <AddReccurentExpenses />}
+      {section == TRANSACTION_TYPES.INCOME && <AddReccurentIncomes />}
+    </section>
   );
 };
 

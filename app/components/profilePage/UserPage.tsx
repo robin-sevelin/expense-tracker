@@ -15,7 +15,7 @@ const UserPage = () => {
   const { user } = useAuthUser();
 
   return (
-    <div className=' hero min-h-full bg-base-200'>
+    <>
       <div className='hero-content flex-col lg:flex-row-reverse'>
         <picture>
           <img
@@ -37,11 +37,11 @@ const UserPage = () => {
             Your monthtly reccuring incomes: {reccuringIncomesSum} kr
           </p>
           <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
-            <span>Edit budget</span>
+            <span>Set budget</span>
           </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

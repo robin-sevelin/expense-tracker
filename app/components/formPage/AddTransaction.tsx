@@ -48,14 +48,12 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   };
 
   return (
-    <section className='max-w-xl max-h-3xl m-auto mb-5'>
+    <section>
       <div className='flex flex-col justify-center items-center'>
         <h2 className='text-5xl font-bold'>ADD TRANSACTION</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <div>
-            <label htmlFor='datepicker' className='input-label'>
-              Transaction Date:
-            </label>
+            <legend>Select date</legend>
             <DatePicker
               id='datepicker'
               className='input input-bordered input-primary w-full max-w-xs'
@@ -65,7 +63,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
             />
           </div>
           <fieldset>
-            <legend className='input-label'>Transaction Type:</legend>
+            <legend className='input-label'>Transaction Type</legend>
             <div className='join'>
               <input
                 className='join-item btn'
@@ -90,7 +88,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
           </fieldset>
 
           <fieldset>
-            <legend className='input-label'>Transaction Category:</legend>
+            <legend className='input-label'>Transaction Category</legend>
             {type === 'expense' ? (
               <ExpenseCategories register={register} />
             ) : (

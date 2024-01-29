@@ -36,9 +36,9 @@ const AddReccurentIncomes = () => {
   };
 
   return (
-    <section className='max-w-3xl max-h-3xl m-auto mb-5'>
+    <>
       <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-5xl font-bold'>SET RECCURING INCOMES</h2>
+        <h2 className='text-3xl font-bold'>SET RECCURING INCOMES</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <h3>Current reccuring Incomes {reccuringIncomesSum} SEK</h3>
           <div className='join'>
@@ -76,7 +76,7 @@ const AddReccurentIncomes = () => {
           </div>
           <legend>Pick day of the month</legend>
           <select
-            className='select select-bordered w-full max-w-xs'
+            className='select select-bordered w-full max-w-xs select-primary'
             id='day'
             {...register('date')}
           >
@@ -95,7 +95,7 @@ const AddReccurentIncomes = () => {
           isModalOpen={isModalOpen}
         />
       )}
-    </section>
+    </>
   );
 };
 

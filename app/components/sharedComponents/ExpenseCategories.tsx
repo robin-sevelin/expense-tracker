@@ -9,7 +9,7 @@ interface expenseCategoriesProps {
 
 const ExpenseCategories = ({ register }: expenseCategoriesProps) => {
   return (
-    <div className='join flex w-30'>
+    <div className='join'>
       {EXPENSE_CATEGORIES.map((category) => (
         <input
           key={category.id}

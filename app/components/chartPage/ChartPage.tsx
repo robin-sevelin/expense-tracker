@@ -7,12 +7,12 @@ import MonthPicker from '../sharedComponents/MonthPicker';
 import { Line } from 'react-chartjs-2';
 import { useGetChartData } from '../../hooks/useGetChartData';
 
-const GraphPage = () => {
+const ChartPage = () => {
   const { chartOptions, data } = useGetChartData();
 
   useAuthUser();
   return (
-    <section className='max-w-7xl max-h-3xl m-auto '>
+    <section className='w-full'>
       <h2 className='text-5xl font-bold text-center'>CHART</h2>
       <MonthPicker />
       <FilteredSummary />
@@ -21,4 +21,4 @@ const GraphPage = () => {
   );
 };
 
-export default GraphPage;
+export default ChartPage;

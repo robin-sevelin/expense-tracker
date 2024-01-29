@@ -35,9 +35,9 @@ const AddBalance = () => {
   };
 
   return (
-    <section className='max-w-3xl max-h-3xl m-auto mb-5'>
+    <>
       <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-5xl font-bold'>SET BUDGET</h2>
+        <h2 className='text-3xl font-bold'>SET BUDGET</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <h3>Current budget {balance} SEK</h3>
           <div className='join'>
@@ -71,7 +71,7 @@ const AddBalance = () => {
           isModalOpen={isModalOpen}
         />
       )}
-    </section>
+    </>
   );
 };
 

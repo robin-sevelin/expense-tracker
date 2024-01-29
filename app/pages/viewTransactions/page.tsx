@@ -20,8 +20,8 @@ const ViewTransactions = () => {
   };
 
   return (
-    <section className='transaction-page'>
-      <h2 className='text-5xl font-bold'>TRANSACTIONS</h2>
+    <section>
+      <h2 className='text-5xl font-bold flex justify-center'>TRANSACTIONS</h2>
       <MonthPicker />
       <FilteredSummary />
       <ViewMode onSetShowList={setShowList} />

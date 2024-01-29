@@ -3,10 +3,10 @@ import React from 'react';
 
 const page = () => {
   return (
-    <div>
+    <>
       <h3>RECCURING TRANSACTIONS</h3>
       <ReccuringTransactions />
-    </div>
+    </>
   );
 };
 
