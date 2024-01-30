@@ -1,7 +1,7 @@
 import { IUser } from '@/app/models/IUser';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firestore';
-import { IReccuringExpense } from '@/app/models/BudgetValues';
+import { IRecurringExpense } from '@/app/models/BudgetValues';
 
 export const deleteReccuringExpense = async (userAuth: IUser, id: string) => {
   const transactionCollectionRef = doc(
@@ -18,7 +18,7 @@ export const deleteReccuringExpense = async (userAuth: IUser, id: string) => {
 
     if (existingData) {
       const updatedTransactions = existingData.expenses.filter(
-        (expense: IReccuringExpense) => expense.id !== id
+        (expense: IRecurringExpense) => expense.id !== id
       );
 
       await updateDoc(transactionCollectionRef, {

@@ -3,24 +3,24 @@ import { IUser } from '@/app/models/IUser';
 import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
-import { IReccuringIncome } from '@/app/models/BudgetValues';
+import { IRecurringIncome } from '@/app/models/BudgetValues';
 
 export const createIncomeDocument = async (
   userAuth: IUser,
-  income: IReccuringIncome
+  income: IRecurringIncome
 ) => {
   const updatedIncome = {
     ...income,
     id: uuidv4(),
     date: income.date.toString(),
-    type: TRANSACTION_TYPES.RECCURING_INCOME,
+    type: TRANSACTION_TYPES.RECURRING_INCOME,
   };
 
   const incomeCollectionRef = collection(
     db,
     'users',
     userAuth?.uid,
-    'reccuringIncomes'
+    'recurringIncomes'
   );
 
   const incomeDocRef = doc(incomeCollectionRef, userAuth.uid);

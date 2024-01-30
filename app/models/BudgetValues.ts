@@ -1,11 +1,11 @@
-export interface IReccuringIncome {
+export interface IRecurringIncome {
   title: string;
   amount: number;
   date: string;
   id: string;
 }
 
-export interface IReccuringExpense {
+export interface IRecurringExpense {
   title: string;
   amount: number;
   date: string;

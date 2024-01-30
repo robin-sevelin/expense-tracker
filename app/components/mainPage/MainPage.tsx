@@ -1,9 +1,7 @@
 'use client';
 
-import { useGetBalance } from '../../hooks/useGetBalance';
 import { userAtom } from '../../store/atoms';
 import { useAtom } from 'jotai';
-import Loading from '../sharedComponents/Loading';
 import Link from 'next/link';
 
 const MainPage = () => {

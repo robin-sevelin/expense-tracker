@@ -14,15 +14,16 @@ import {
 } from '../store/atoms';
 import { useGetExpenseSum } from './useGetExpenseSum';
 import { useGetIncomeSum } from './useGetIncomeSum';
+import { useGetBalance } from './useGetBalance';
 
 export const useGetCurrentSum = () => {
   const [reccuringIncomes] = useAtom(reccuringIncomeAtom);
   const [reccuringExpenses] = useAtom(reccuringExpenseAtom);
   const [transactions] = useAtom(transactionsAtom);
-  const [balance] = useAtom(balanceAtom);
   const [sum, setSum] = useAtom(sumAtom);
-  const { reccuringExpensesSum } = useGetExpenseSum();
-  const { reccuringIncomesSum } = useGetIncomeSum();
+  const { recurringExpenseSum } = useGetExpenseSum();
+  const { balance } = useGetBalance();
+  const { recurringIncomeSum } = useGetIncomeSum();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -46,7 +47,7 @@ export const useGetCurrentSum = () => {
       const expenseSum = expenses.reduce((a, b) => a + b.amount, 0);
       const incomeSum = incomes.reduce((a, b) => a + b.amount, 0);
       const diffSum =
-        incomeSum - expenseSum - reccuringExpensesSum + reccuringIncomesSum;
+        incomeSum - expenseSum - recurringExpenseSum + recurringIncomeSum;
 
       setSum(diffSum + balance);
       setIsLoading(false);
@@ -57,8 +58,8 @@ export const useGetCurrentSum = () => {
     transactions,
     reccuringExpenses,
     reccuringIncomes,
-    reccuringExpensesSum,
-    reccuringIncomesSum,
+    recurringExpenseSum,
+    recurringIncomeSum,
   ]);
 
   return { sum, isLoading } as const;

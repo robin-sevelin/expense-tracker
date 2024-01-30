@@ -10,13 +10,13 @@ import ModalDialog from '../sharedComponents/ModalDialog';
 import { createIncomeDocument } from '@/firebase/operations/createIncome';
 import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
 import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
-import { IReccuringIncome } from '@/app/models/BudgetValues';
+import { IRecurringIncome } from '@/app/models/BudgetValues';
 
 const AddReccurentIncomes = () => {
   const [user] = useAtom(userAtom);
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { reccuringIncomesSum } = useGetIncomeSum();
+  const { recurringIncomeSum } = useGetIncomeSum();
   const { daysInMonthArray } = useGetDaysInMonthArray();
 
   const {
@@ -24,11 +24,11 @@ const AddReccurentIncomes = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IReccuringIncome>({
+  } = useForm<IRecurringIncome>({
     resolver: zodResolver(incomeSchema),
   });
 
-  const submitData = async (income: IReccuringIncome) => {
+  const submitData = async (income: IRecurringIncome) => {
     await createIncomeDocument(user, income);
     setIsSubmitted(true);
     reset();
@@ -40,7 +40,7 @@ const AddReccurentIncomes = () => {
       <div className='flex flex-col justify-center items-center'>
         <h2 className='text-3xl font-bold'>SET RECCURING INCOMES</h2>
         <form onSubmit={handleSubmit(submitData)}>
-          <h3>Current reccuring Incomes {reccuringIncomesSum} SEK</h3>
+          <h3>Current reccuring Incomes {recurringIncomeSum} SEK</h3>
           <div className='join'>
             <fieldset>
               <label htmlFor='title' className='input-label'>

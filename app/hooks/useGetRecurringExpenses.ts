@@ -3,44 +3,54 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { reccuringExpenseAtom, submitAtom, userAtom } from '../store/atoms';
-import { IReccuringExpense } from '../models/BudgetValues';
+import { IRecurringExpense } from '../models/BudgetValues';
 
-export const useGetReccuringExpenses = () => {
+export const useGetRecurringExpenses = () => {
   const [user] = useAtom(userAtom);
-  const [reccuringExpenses, setExpenses] = useAtom(reccuringExpenseAtom);
+  const [recurringExpenses, setExpenses] = useAtom(reccuringExpenseAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
+  const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
-    if (isSubmitted || !reccuringExpenses.length) {
+    if (isSubmitted || !dataFetched || recurringExpenses.length === 0) {
       const getExpense = async () => {
         try {
           const docRef = doc(
             db,
             'users',
             user.uid,
-            'reccuringExpenses',
+            'recurringExpenses',
             user.uid
           );
           const docSnap = await getDoc(docRef);
+
           if (docSnap.exists()) {
             const docData = docSnap.data();
             const expenseData = docData.expenses;
 
-            setExpenses(expenseData as IReccuringExpense[]);
-            setIsSubmitted(false);
+            setExpenses(expenseData as IRecurringExpense[]);
           } else {
-            console.log('No such document!');
+            // console.log('No such document for recurring expenses!');
           }
         } catch (error) {
-          console.log('something went wrong', error);
+          console.error('Error fetching recurring expenses:', error);
         } finally {
           setIsLoading(false);
+          setIsSubmitted(false);
+          setDataFetched(true);
         }
       };
       getExpense();
     }
-  }, [setExpenses, user, setIsSubmitted, isSubmitted, reccuringExpenses]);
+  }, [
+    setExpenses,
+    user,
+    setIsSubmitted,
+    isSubmitted,
+    recurringExpenses,
+    dataFetched,
+  ]);
 
-  return { isLoading, reccuringExpenses };
+  return { isLoading, recurringExpenses };
 };

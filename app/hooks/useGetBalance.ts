@@ -9,9 +9,10 @@ export const useGetBalance = () => {
   const [balance, setBalance] = useAtom(balanceAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
+  const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
-    if (isSubmitted || !balance) {
+    if (isSubmitted || balance === 0 || !dataFetched) {
       const getBalance = async () => {
         try {
           const docRef = doc(db, 'users', user.uid, 'balance', user.uid);
@@ -20,19 +21,20 @@ export const useGetBalance = () => {
             const docData = docSnap.data();
             const balanceData = docData.amount;
             setBalance(balanceData);
-            setIsSubmitted(false);
           } else {
-            console.log('No such document!');
+            // console.log('No such document!');
           }
         } catch (error) {
           console.log('something went wrong', error);
         } finally {
           setIsLoading(false);
+          setIsSubmitted(false);
+          setDataFetched(true);
         }
       };
       getBalance();
     }
-  }, [setBalance, user, setIsSubmitted, isSubmitted, balance]);
+  }, [balance, dataFetched, isSubmitted, setBalance, setIsSubmitted, user.uid]);
 
   return { isLoading, balance };
 };

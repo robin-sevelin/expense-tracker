@@ -3,49 +3,53 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { reccuringIncomeAtom, submitAtom, userAtom } from '../store/atoms';
-import { IReccuringIncome } from '../models/BudgetValues';
+import { IRecurringIncome } from '../models/BudgetValues';
 
-export const useGetReccuringIncomes = () => {
+export const useGetRecurringIncomes = () => {
   const [user] = useAtom(userAtom);
-  const [reccuringIncomes, setReccuringIncomes] = useAtom(reccuringIncomeAtom);
+  const [recurringIncomes, setRecurringIncomes] = useAtom(reccuringIncomeAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
+  const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
-    if (isSubmitted || !reccuringIncomes.length) {
+    if (isSubmitted || !dataFetched || recurringIncomes.length === 0) {
       const getIncome = async () => {
         try {
           const docRef = doc(
             db,
             'users',
             user.uid,
-            'reccuringIncomes',
+            'recurringIncomes',
             user.uid
           );
           const docSnap = await getDoc(docRef);
+
           if (docSnap.exists()) {
-            const docData = docSnap.data();
-            const incomeData = docData.incomes;
-            setReccuringIncomes(incomeData as IReccuringIncome[]);
-            setIsSubmitted(false);
+            const data = docSnap.data();
+            const incomeData = data.incomes;
+            setRecurringIncomes(incomeData as IRecurringIncome[]);
           } else {
-            console.log('No such document!');
+            // console.log('No such document for recurring incomes!');
           }
         } catch (error) {
-          console.log('something went wrong', error);
+          console.error('Error fetching recurring incomes:', error);
         } finally {
           setIsLoading(false);
+          setIsSubmitted(false);
+          setDataFetched(true);
         }
       };
       getIncome();
     }
   }, [
-    setReccuringIncomes,
+    setRecurringIncomes,
     user,
     setIsSubmitted,
     isSubmitted,
-    reccuringIncomes,
+    dataFetched,
+    recurringIncomes.length,
   ]);
 
-  return { isLoading, reccuringIncomes };
+  return { isLoading, recurringIncomes };
 };

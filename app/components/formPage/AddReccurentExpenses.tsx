@@ -10,13 +10,13 @@ import ModalDialog from '../sharedComponents/ModalDialog';
 import { createExpenseDocument } from '@/firebase/operations/createExpense';
 import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
 import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
-import { IReccuringExpense } from '@/app/models/BudgetValues';
+import { IRecurringExpense } from '@/app/models/BudgetValues';
 
 const AddReccurentExpenses = () => {
   const [user] = useAtom(userAtom);
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { reccuringExpensesSum } = useGetExpenseSum();
+  const { recurringExpenseSum } = useGetExpenseSum();
   const { daysInMonthArray } = useGetDaysInMonthArray();
 
   const {
@@ -24,11 +24,11 @@ const AddReccurentExpenses = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IReccuringExpense>({
+  } = useForm<IRecurringExpense>({
     resolver: zodResolver(expenseSchema),
   });
 
-  const submitData = async (expense: IReccuringExpense) => {
+  const submitData = async (expense: IRecurringExpense) => {
     await createExpenseDocument(user, expense);
 
     setIsSubmitted(true);
@@ -41,7 +41,7 @@ const AddReccurentExpenses = () => {
       <div className='flex flex-col justify-center items-center'>
         <h2 className='text-3xl font-bold'>SET RECCURING EXPENSES</h2>
         <form onSubmit={handleSubmit(submitData)}>
-          <h3>Current reccuring expenses {reccuringExpensesSum} SEK</h3>
+          <h3>Current reccuring expenses {recurringExpenseSum} SEK</h3>
           <div className='join'>
             <fieldset>
               <label htmlFor='title' className='input-label'>

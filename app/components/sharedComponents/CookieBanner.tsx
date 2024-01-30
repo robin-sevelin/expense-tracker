@@ -24,7 +24,8 @@ const CookieBanner = ({ onHandleChange }: Props) => {
             <input type='checkbox' />
             <div className='collapse-title text-xl font-medium'>
               <p className='py-4'>
-                You must accept cookies to use this site, click to read more.
+                You must accept cookies to use this site, click HERE to read
+                more.
               </p>
             </div>
             <div className='collapse-content'>

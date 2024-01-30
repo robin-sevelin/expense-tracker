@@ -8,12 +8,13 @@ export const useGetTransactions = () => {
   const [user] = useAtom(userAtom);
   const [transactions, setTransactions] = useAtom(transactionsAtom);
   const [isLoading, setIsLoading] = useState(true);
-  const [isSubmitted, setIssubmited] = useAtom(submitAtom);
+  const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
+  const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
-    if (transactions.length === 0 || isSubmitted) {
-      try {
-        const getData = async () => {
+    if (isSubmitted || !dataFetched || transactions.length === 0) {
+      const getData = async () => {
+        try {
           const docRef = doc(db, 'users', user.uid, 'transactions', user.uid);
           const docSnap = await getDoc(docRef);
 
@@ -23,16 +24,25 @@ export const useGetTransactions = () => {
           } else {
             setTransactions([]);
           }
-        };
-        getData();
-      } catch (error) {
-        console.error('Error getting transaction list:', error);
-      } finally {
-        setIsLoading(false);
-        setIssubmited(false);
-      }
+        } catch (error) {
+          console.error('Error getting transaction list:', error);
+        } finally {
+          setIsLoading(false);
+          setIsSubmitted(false);
+          setDataFetched(true);
+        }
+      };
+
+      getData();
     }
-  }, [isSubmitted, setIssubmited, transactions, setTransactions, user.uid]);
+  }, [
+    dataFetched,
+    isSubmitted,
+    setIsSubmitted,
+    setTransactions,
+    transactions.length,
+    user.uid,
+  ]);
 
   return { isLoading, transactions } as const;
 };

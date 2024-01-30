@@ -10,8 +10,8 @@ import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
 
 const UserPage = () => {
   const [balance] = useAtom(balanceAtom);
-  const { reccuringExpensesSum } = useGetExpenseSum();
-  const { reccuringIncomesSum } = useGetIncomeSum();
+  const { recurringExpenseSum } = useGetExpenseSum();
+  const { recurringIncomeSum } = useGetIncomeSum();
   const { user } = useAuthUser();
 
   return (
@@ -31,10 +31,10 @@ const UserPage = () => {
           <p className='py-3'>E-mail: {user.email}</p>
           <p className='py-3'>Your monthtly budget: {balance} kr</p>
           <p className='py-3'>
-            Your monthtly reccuring expenses: {reccuringExpensesSum} kr
+            Your monthtly reccuring expenses: {recurringExpenseSum} kr
           </p>
           <p className='py-3'>
-            Your monthtly reccuring incomes: {reccuringIncomesSum} kr
+            Your monthtly reccuring incomes: {recurringIncomeSum} kr
           </p>
           <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
             <span>Set budget</span>

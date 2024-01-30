@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import ReccuringExpenses from './ReccuringExpenses';
+import ReccuringExpenses from './RecurringExpenses';
 import { reccuringExpenseAtom, reccuringIncomeAtom } from '@/app/store/atoms';
 import { useAtom } from 'jotai';
 import ReccuringIncomes from './ReccuringIncomes';
 import { TRANSACTION_TYPES } from '@/app/constants/constants';
 
-const ReccurringTransactions = () => {
+const RecurringTransactions = () => {
   const [reccruingExpenses] = useAtom(reccuringExpenseAtom);
   const [reccuringIncomes] = useAtom(reccuringIncomeAtom);
   const [view, setView] = useState(TRANSACTION_TYPES.EXPENSE);
@@ -48,4 +48,4 @@ const ReccurringTransactions = () => {
   );
 };
 
-export default ReccurringTransactions;
+export default RecurringTransactions;

@@ -8,8 +8,8 @@ import { useGetCurrentSum } from '@/app/hooks/useGetCurrentSum';
 const FilteredSummary = () => {
   const { incomeSum, expenseSum } = useGetFilteredSum();
   const { sum } = useGetCurrentSum();
-  const { reccuringExpensesSum } = useGetExpenseSum();
-  const { reccuringIncomesSum } = useGetIncomeSum();
+  const { recurringExpenseSum } = useGetExpenseSum();
+  const { recurringIncomeSum } = useGetIncomeSum();
   useGetTransactions();
   return (
     <div className='overflow-x-auto'>
@@ -27,7 +27,7 @@ const FilteredSummary = () => {
           </tr>
           <tr>
             <th>Reccuring incomes</th>
-            <td>{reccuringIncomesSum} kr</td>
+            <td>{recurringIncomeSum} kr</td>
           </tr>
           <tr>
             <th>One time expenses</th>
@@ -35,7 +35,7 @@ const FilteredSummary = () => {
           </tr>
           <tr>
             <th>Reccuring expenses</th>
-            <td>{reccuringExpensesSum} kr</td>
+            <td>{recurringExpenseSum} kr</td>
           </tr>
           <tr>
             <th>Balance</th>

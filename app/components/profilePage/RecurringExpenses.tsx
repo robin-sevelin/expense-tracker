@@ -1,5 +1,5 @@
 import { useAuthUser } from '@/app/hooks/useAuthUser';
-import { IReccuringExpense } from '@/app/models/BudgetValues';
+import { IRecurringExpense } from '@/app/models/BudgetValues';
 import { submitAtom } from '@/app/store/atoms';
 import { deleteReccuringExpense } from '@/firebase/operations/deleteReccuringExpense';
 import { useAtom } from 'jotai';
@@ -8,10 +8,10 @@ import React, { useState } from 'react';
 import ModalDialog from '../sharedComponents/ModalDialog';
 
 interface Props {
-  expenses: IReccuringExpense[];
+  expenses: IRecurringExpense[];
 }
 
-const ReccuringExpenses = ({ expenses }: Props) => {
+const RecurringExpenses = ({ expenses }: Props) => {
   const { user } = useAuthUser();
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,4 +56,4 @@ const ReccuringExpenses = ({ expenses }: Props) => {
   );
 };
 
-export default ReccuringExpenses;
+export default RecurringExpenses;
