@@ -3,7 +3,6 @@ import { IRecurringExpense } from '@/app/models/BudgetValues';
 import { submitAtom } from '@/app/store/atoms';
 import { deleteReccuringExpense } from '@/firebase/operations/deleteReccuringExpense';
 import { useAtom } from 'jotai';
-import Link from 'next/link';
 import React, { useState } from 'react';
 import ModalDialog from '../sharedComponents/ModalDialog';
 

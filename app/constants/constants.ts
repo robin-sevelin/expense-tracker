@@ -10,8 +10,8 @@ export const ROUTES = [
   { id: 4, url: '/pages/addTransactions', text: 'Add transaction' },
   {
     id: 5,
-    url: '/pages/viewReccuringTransactions',
-    text: 'Reccuring transactions',
+    url: '/pages/viewRecurringTransactions',
+    text: 'Recurring transactions',
   },
 ];
 export const CURRENT_DATE = new Date();
