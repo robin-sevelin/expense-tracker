@@ -1,9 +1,10 @@
 import { useAtom } from 'jotai';
-import { reccuringExpenseAtom, submitAtom } from '../store/atoms';
+import { submitAtom } from '../store/atoms';
 import { useEffect, useState } from 'react';
+import { useGetRecurringExpenses } from './useGetRecurringExpenses';
 
 export const useGetExpenseSum = () => {
-  const [recurringExpenses] = useAtom(reccuringExpenseAtom);
+  const { recurringExpenses } = useGetRecurringExpenses();
   const [recurringExpenseSum, setReccuringExpensesSum] = useState(0);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 

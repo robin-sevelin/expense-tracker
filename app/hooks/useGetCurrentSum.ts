@@ -28,7 +28,7 @@ export const useGetCurrentSum = () => {
   const { recurringExpenseSum } = useGetExpenseSum();
 
   useEffect(() => {
-    if (isSubmitted || !dataFetched || !sum) {
+    if (isSubmitted || !dataFetched || balance) {
       const currentMonthTransactions = transactions.filter((transaction) => {
         const transactionDate = new Date(transaction.date);
         return (

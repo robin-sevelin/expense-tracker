@@ -23,7 +23,7 @@ export const useGetFilteredSum = () => {
   const [reccuringExpenses] = useAtom(reccuringExpenseAtom);
 
   useEffect(() => {
-    if (transactions.length !== 0) {
+    if (reccuringIncomes || reccuringExpenses || incomeSum) {
       const countSum = () => {
         const currentMonthTransactions = transactions.filter((transaction) => {
           const transactionDate = new Date(transaction.date);
@@ -60,6 +60,7 @@ export const useGetFilteredSum = () => {
     currentMonth,
     setIncomeSum,
     setExpenseSum,
+    incomeSum,
   ]);
 
   return { sum, expenseSum, incomeSum } as const;
