@@ -14,6 +14,8 @@ export const useGetRecurringIncomes = () => {
 
   useEffect(() => {
     if (isSubmitted || !dataFetched || recurringIncomes.length === 0) {
+      console.log('hämtar rec inc');
+
       const getIncome = async () => {
         try {
           const docRef = doc(

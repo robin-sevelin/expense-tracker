@@ -8,7 +8,7 @@ export const deleteReccuringExpense = async (userAuth: IUser, id: string) => {
     db,
     'users',
     userAuth?.uid,
-    'reccuringExpenses',
+    'recurringExpenses',
     userAuth?.uid
   );
 

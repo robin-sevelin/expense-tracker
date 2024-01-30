@@ -23,7 +23,7 @@ export const useGetFilteredSum = () => {
   const [reccuringExpenses] = useAtom(reccuringExpenseAtom);
 
   useEffect(() => {
-    if (transactions) {
+    if (transactions.length !== 0) {
       const countSum = () => {
         const currentMonthTransactions = transactions.filter((transaction) => {
           const transactionDate = new Date(transaction.date);

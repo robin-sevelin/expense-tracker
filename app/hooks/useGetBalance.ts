@@ -12,7 +12,9 @@ export const useGetBalance = () => {
   const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
-    if (isSubmitted || balance === 0 || !dataFetched) {
+    if (isSubmitted || !balance || !dataFetched) {
+      console.log('get balance');
+
       const getBalance = async () => {
         try {
           const docRef = doc(db, 'users', user.uid, 'balance', user.uid);

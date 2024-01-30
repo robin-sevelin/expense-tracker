@@ -1,3 +1,4 @@
+import { reccuringIncomeAtom } from '@/app/store/atoms';
 import { useEffect, useState } from 'react';
 import {
   CURRENT_MONTH,
@@ -8,12 +9,12 @@ import { useAtom } from 'jotai';
 import {
   balanceAtom,
   reccuringExpenseAtom,
-  reccuringIncomeAtom,
+  submitAtom,
   sumAtom,
   transactionsAtom,
 } from '../store/atoms';
-import { useGetExpenseSum } from './useGetExpenseSum';
 import { useGetIncomeSum } from './useGetIncomeSum';
+import { useGetExpenseSum } from './useGetExpenseSum';
 import { useGetBalance } from './useGetBalance';
 
 export const useGetCurrentSum = () => {
@@ -21,14 +22,16 @@ export const useGetCurrentSum = () => {
   const [reccuringExpenses] = useAtom(reccuringExpenseAtom);
   const [transactions] = useAtom(transactionsAtom);
   const [sum, setSum] = useAtom(sumAtom);
-  const { recurringExpenseSum } = useGetExpenseSum();
+  const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
+  const [dataFetched, setDataFetched] = useState(false);
   const { balance } = useGetBalance();
   const { recurringIncomeSum } = useGetIncomeSum();
-
-  const [isLoading, setIsLoading] = useState(true);
+  const { recurringExpenseSum } = useGetExpenseSum();
 
   useEffect(() => {
-    if (transactions) {
+    if (isSubmitted || !dataFetched || sum === 0) {
+      console.log('hämtar summa');
+
       const currentMonthTransactions = transactions.filter((transaction) => {
         const transactionDate = new Date(transaction.date);
         return (
@@ -50,7 +53,8 @@ export const useGetCurrentSum = () => {
         incomeSum - expenseSum - recurringExpenseSum + recurringIncomeSum;
 
       setSum(diffSum + balance);
-      setIsLoading(false);
+      setIsSubmitted(false);
+      setDataFetched(true);
     }
   }, [
     balance,
@@ -60,7 +64,11 @@ export const useGetCurrentSum = () => {
     reccuringIncomes,
     recurringExpenseSum,
     recurringIncomeSum,
+    isSubmitted,
+    dataFetched,
+    setIsSubmitted,
+    sum,
   ]);
 
-  return { sum, isLoading } as const;
+  return { sum } as const;
 };

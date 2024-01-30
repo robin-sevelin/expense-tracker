@@ -8,8 +8,6 @@ import MainPage from './MainPage';
 import { useIsLoggedIn } from '../../hooks/useIsLoggedIn';
 import { useCookies } from 'react-cookie';
 import CookieBanner from '../sharedComponents/CookieBanner';
-import { useGetBalance } from '@/app/hooks/useGetBalance';
-import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
 
 const LandingPage = () => {
   const [{ 'expense-tracker': expenseTrackerCookie }, setCookie] = useCookies([
@@ -28,7 +26,7 @@ const LandingPage = () => {
 
   return (
     <>
-      {user.uid && <MainPage />}
+      {user.uid && expenseTrackerCookie && <MainPage />}
       {!expenseTrackerCookie && <CookieBanner onHandleChange={handleCookie} />}
       {!user.uid && expenseTrackerCookie && <LogInPage />}
     </>

@@ -10,6 +10,8 @@ export const useGetIncomeSum = () => {
 
   useEffect(() => {
     if (recurringIncomes || isSubmitted) {
+      console.log('jämtar rec incomes');
+
       const incomeSum = recurringIncomes.reduce((a, b) => a + b.amount, 0);
       setReccuringIncomesSum(incomeSum);
       setIsSubmitted(false);
