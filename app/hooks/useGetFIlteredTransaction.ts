@@ -12,8 +12,6 @@ export const useGetFilteredTransactions = (transactions: ITransaction[]) => {
 
   useEffect(() => {
     if (transactions) {
-      console.log('hämtar filter trans');
-
       const filterTransactions = () => {
         const transactionToBeFiltred = transactions
           ? transactions.filter((transaction) => {

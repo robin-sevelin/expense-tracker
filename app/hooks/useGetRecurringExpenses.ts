@@ -14,8 +14,6 @@ export const useGetRecurringExpenses = () => {
 
   useEffect(() => {
     if (isSubmitted || !dataFetched || recurringExpenses.length === 0) {
-      console.log('hämtar get recc ex');
-
       const getExpense = async () => {
         try {
           const docRef = doc(
@@ -50,7 +48,7 @@ export const useGetRecurringExpenses = () => {
     user,
     setIsSubmitted,
     isSubmitted,
-    recurringExpenses,
+    recurringExpenses.length,
     dataFetched,
   ]);
 

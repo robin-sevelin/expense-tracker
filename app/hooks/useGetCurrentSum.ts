@@ -7,7 +7,6 @@ import {
 } from '../constants/constants';
 import { useAtom } from 'jotai';
 import {
-  balanceAtom,
   reccuringExpenseAtom,
   submitAtom,
   sumAtom,
@@ -29,9 +28,7 @@ export const useGetCurrentSum = () => {
   const { recurringExpenseSum } = useGetExpenseSum();
 
   useEffect(() => {
-    if (isSubmitted || !dataFetched || sum === 0) {
-      console.log('hämtar summa');
-
+    if (isSubmitted || !dataFetched || !sum) {
       const currentMonthTransactions = transactions.filter((transaction) => {
         const transactionDate = new Date(transaction.date);
         return (
