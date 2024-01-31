@@ -10,8 +10,8 @@ import { useAtom } from 'jotai';
 const Navigation = () => {
   const [, setUser] = useAtom(userAtom);
   const logOut = async () => {
-    await signOut(auth);
-    setUser(USER_BASE_VALUES);
+    // await signOut(auth);
+    // setUser(USER_BASE_VALUES);
   };
   return (
     <>
