@@ -18,12 +18,12 @@ const CookieBanner = ({ onHandleChange }: Props) => {
         onChange={handleCheckboxChange}
       />
       <div role='dialog'>
-        <div className='modal-box'>
+        <div className='modal-box bg-base-200 '>
           <h3 className='font-bold text-lg'>Cookie conscent</h3>
-          <div className='collapse bg-base-100'>
+          <div className='collapse bg-base-200'>
             <input type='checkbox' />
             <div className='collapse-title text-xl font-medium'>
-              <p className='py-4 '>
+              <p>
                 You must accept cookies to use this site, click HERE to read
                 more ..or just click accept if you agree.
               </p>
@@ -50,8 +50,9 @@ const CookieBanner = ({ onHandleChange }: Props) => {
               </p>
             </div>
           </div>
+
           <button className='modal-action'>
-            <label htmlFor='my_modal_6' className='btn'>
+            <label htmlFor='my_modal_6' className='btn btn-primary'>
               Accept
             </label>
           </button>

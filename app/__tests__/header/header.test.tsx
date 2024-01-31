@@ -5,18 +5,15 @@ import ProfileSection from '@/app/components/mainPage/ProfileSection';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
-jest.mock('../../hooks/useAuthUser'),
-  () => ({
-    useAuthUser: jest.fn().mockReturnValue('user'),
-  });
-
-jest.mock(''),
-  () => ({
-    signOut: jest.fn().mockReturnValue('user'),
-  });
+jest.mock('firebase/auth', () => ({
+  ...jest.requireActual('firebase/auth'),
+  getAuth: jest.fn(),
+  setPersistence: jest.fn(),
+  GoogleAuthProvider: jest.fn(),
+}));
 
 describe('header', () => {
-  it('should render header with a fake user', () => {
+  it('should render header ', () => {
     const { queryByText } = render(<Header />);
 
     const title = queryByText('EXPENSE TRACKER');
@@ -38,9 +35,5 @@ describe('header', () => {
     const navigationElement = queryByText('Add transactions');
 
     expect(navigationElement).toBeNull();
-  });
-
-  it('should  render navigation if logged in', () => {
-    render(<Navigation />);
   });
 });

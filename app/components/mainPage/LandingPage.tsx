@@ -10,25 +10,20 @@ import { useCookies } from 'react-cookie';
 import CookieBanner from '../sharedComponents/CookieBanner';
 
 const LandingPage = () => {
-  const [{ 'expense-tracker': expenseTrackerCookie }, setCookie] = useCookies([
-    'expense-tracker',
-  ]);
-  const { loading } = useGetRedirect();
+  const [cookies, setCookie] = useCookies(['expense-tracker']);
+  const { 'expense-tracker': expenseTrackerCookie } = cookies;
   const { user } = useIsLoggedIn();
+  useGetRedirect();
 
   const handleCookie = () => {
     setCookie('expense-tracker', user);
   };
 
-  if (loading) {
-    return <Loading />;
-  }
-
   return (
     <>
-      {user.uid && expenseTrackerCookie && <MainPage />}
       {!expenseTrackerCookie && <CookieBanner onHandleChange={handleCookie} />}
       {!user.uid && expenseTrackerCookie && <LogInPage />}
+      {user.uid && expenseTrackerCookie && <MainPage />}
     </>
   );
 };

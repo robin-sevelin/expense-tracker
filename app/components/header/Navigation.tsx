@@ -10,18 +10,18 @@ import { useAtom } from 'jotai';
 const Navigation = () => {
   const [, setUser] = useAtom(userAtom);
   const logOut = async () => {
-    // await signOut(auth);
-    // setUser(USER_BASE_VALUES);
+    await signOut(auth);
+    setUser(USER_BASE_VALUES);
   };
   return (
     <>
       <div className='drawer drawer-end'>
-        <input id='my-drawer-4' type='checkbox' className='drawer-toggle' />
+        <input id='my-drawer-4' type='checkbox' className='drawer-toggle ' />
         <div className='drawer-content'>
           <label
             aria-label='close sidebar button'
             htmlFor='my-drawer-4'
-            className='drawer-button btn bg-base-100'
+            className='drawer-button btn bg-base-100 w-20 m-1'
           >
             <svg
               className='swap-off fill-current'
@@ -52,7 +52,7 @@ const Navigation = () => {
       <button
         aria-label='sign out'
         onClick={logOut}
-        className='btn btn-error w-20'
+        className='btn btn-error w-20 m-1'
       >
         Sign out
       </button>

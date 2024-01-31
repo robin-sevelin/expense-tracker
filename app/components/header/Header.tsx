@@ -12,13 +12,13 @@ const Header = () => {
 
   return (
     <header>
-      <div>
+      <div className='profile-container'>
         <Link href={'/'} className='btn btn-ghost text-xl'>
           EXPENSE TRACKER
         </Link>
         <ProfileSection />
       </div>
-      <div className=''>
+      <div className='nav-section'>
         <ThemeSelector />
         {user.uid && <Navigation />}
       </div>

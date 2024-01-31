@@ -25,7 +25,7 @@ button {
 }
 
 main {
-  @apply w-1/2 m-auto  flex flex-col justify-center items-center bg-base-100 min-h-[calc(100vh-100px)] p-5 rounded-xl;
+  @apply w-1/2 m-auto  flex flex-col justify-center items-center bg-base-100 min-h-[calc(100vh-210px)] max-h-full p-5 rounded-xl;
 }
 
 footer {
@@ -47,4 +47,38 @@ header {
 
 .with-border {
   border: 2px solid red; /* Specify your desired border color */
+}
+
+.profile-container {
+  @media (max-width: 640px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 120px;
+    margin-bottom: 100px;
+    margin-bottom: 150px;
+  }
+}
+
+.profile-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 640px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+    margin-bottom: 100px;
+  }
+}
+
+.nav-section {
+  width: fit-content;
+  padding: 1rem;
+  @media (max-width: 640px) {
+    margin-bottom: 400px;
+  }
 }

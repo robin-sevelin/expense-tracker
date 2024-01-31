@@ -4,11 +4,6 @@ import BalanceAmount from '@/app/components/sharedComponents/BalanceAmount';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
-jest.mock('../../hooks/useAuthUser'),
-  () => ({
-    useAuthUser: jest.fn().mockReturnValue('user'),
-  });
-
 describe('profile section', () => {
   it('should render profile section', () => {
     render(<ProfileSection />);
