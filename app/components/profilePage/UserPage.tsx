@@ -15,33 +15,41 @@ const UserPage = () => {
   const { user } = useAuthUser();
 
   return (
-    <>
-      <div className='hero-content flex-col lg:flex-row-reverse'>
-        <picture>
-          <img
-            src='/vecteezy_business-people-are-discussing-work-plans_4579166.jpg'
-            className='max-w-sm rounded-lg shadow-2xl'
-            alt='img'
-            loading='lazy'
-          />
-        </picture>
-        <div>
-          <h2 className='text-5xl font-bold'>PROFILE</h2>
-          <p className='py-3'>Name: {user.displayName}</p>
-          <p className='py-3'>E-mail: {user.email}</p>
-          <p className='py-3'>Your monthtly budget: {balance} kr</p>
-          <p className='py-3'>
-            Your monthtly reccuring expenses: {recurringExpenseSum} kr
-          </p>
-          <p className='py-3'>
-            Your monthtly reccuring incomes: {recurringIncomeSum} kr
+    <div className='hero-content flex-col lg:flex-row-reverse'>
+      <div>
+        <div className='overflow-x-auto'>
+          <table className='table'>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Budget amount</th>
+                <th>Reccuring expenses amount</th>
+                <th>Reccuring incomes amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>{user.displayName}</th>
+                <td>{user.email}</td>
+                <td>{balance} SEK</td>
+                <td>{recurringExpenseSum} SEK</td>
+                <td>{recurringIncomeSum} SEK</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className='hero-content'>
+          <p>
+            If you need to set or update your budget or recurrent values go to
+            EDIT BUDGET.
           </p>
           <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
-            <span>Set budget</span>
+            <span>Edit budget</span>
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

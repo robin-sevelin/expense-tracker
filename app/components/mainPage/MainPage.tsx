@@ -12,7 +12,10 @@ const MainPage = () => {
       <div className='hero-content text-center'>
         <div className='max-w-md'>
           <h1 className='text-5xl font-bold'>Hello there {user.displayName}</h1>
-          <p className='py-6'>Lets make some transactions</p>
+          <p className='py-6'>
+            Lets add some transactions but dont forget to set your budget in the
+            profile section.
+          </p>
           <Link href={'/pages/addTransactions'} className='btn btn-primary'>
             Add transactions
           </Link>

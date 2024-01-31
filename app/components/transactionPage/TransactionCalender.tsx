@@ -31,9 +31,12 @@ const TransactionCalender = ({ transactions }: Props) => {
           key={index}
           onClick={() => handleClick(day.expenseSum, day.incomeSum, day.day)}
         >
-          <div className='bg-base-300 w-20 h-20 p-1 m-1 card cursor-pointer'>
+          <div
+            className={`bg-base-300 w-20 h-20 p-1 m-1 card cursor-pointer ${
+              day.incomeSum !== 0 || day.expenseSum !== 0 ? 'with-border' : ''
+            }`}
+          >
             <h3>{day.day} </h3>
-            {(day.incomeSum !== 0 || day.expenseSum !== 0) && <span>💵</span>}
           </div>
         </button>
       ))}
