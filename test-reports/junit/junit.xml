@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="16" failures="0" errors="0" time="1.232">
+  <testsuite name="Add transaction" errors="0" failures="0" skipped="0" timestamp="2024-02-01T12:24:21" time="0.392" tests="1">
+    <testcase classname="Add transaction should render add transaction component" name="Add transaction should render add transaction component" time="0.023">
+    </testcase>
+  </testsuite>
+  <testsuite name="header" errors="0" failures="0" skipped="0" timestamp="2024-02-01T12:24:21" time="0.135" tests="4">
+    <testcase classname="header should render header " name="header should render header " time="0.015">
+    </testcase>
+    <testcase classname="header should render profile section" name="header should render profile section" time="0.001">
+    </testcase>
+    <testcase classname="header should render theme selector" name="header should render theme selector" time="0.003">
+    </testcase>
+    <testcase classname="header should not render navigation if no user id" name="header should not render navigation if no user id" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="profile section" errors="0" failures="0" skipped="0" timestamp="2024-02-01T12:24:21" time="0.082" tests="3">
+    <testcase classname="profile section should render profile section" name="profile section should render profile section" time="0.002">
+    </testcase>
+    <testcase classname="profile section should render balance amount component" name="profile section should render balance amount component" time="0.013">
+    </testcase>
+    <testcase classname="profile section should render profile picture component with user prop" name="profile section should render profile picture component with user prop" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="User Values" errors="0" failures="0" skipped="0" timestamp="2024-02-01T12:24:21" time="0.094" tests="4">
+    <testcase classname="User Values should render user values" name="User Values should render user values" time="0.004">
+    </testcase>
+    <testcase classname="User Values should render budget from" name="User Values should render budget from" time="0.002">
+    </testcase>
+    <testcase classname="User Values should render recurring expense form" name="User Values should render recurring expense form" time="0.004">
+    </testcase>
+    <testcase classname="User Values should render recurring incomes form" name="User Values should render recurring incomes form" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="transactions list" errors="0" failures="0" skipped="0" timestamp="2024-02-01T12:24:21" time="0.072" tests="1">
+    <testcase classname="transactions list should render TransactionList component" name="transactions list should render TransactionList component" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="footer" errors="0" failures="0" skipped="0" timestamp="2024-02-01T12:24:22" time="0.063" tests="1">
+    <testcase classname="footer should render footer" name="footer should render footer" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="useAuthUser" errors="0" failures="0" skipped="0" timestamp="2024-02-01T12:24:22" time="0.061" tests="2">
+    <testcase classname="useAuthUser redirects to &quot;/&quot; when user is not authenticated" name="useAuthUser redirects to &quot;/&quot; when user is not authenticated" time="0.001">
+    </testcase>
+    <testcase classname="useAuthUser returns the authenticated user when user is authenticated" name="useAuthUser returns the authenticated user when user is authenticated" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>

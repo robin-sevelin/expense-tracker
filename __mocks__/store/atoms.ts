@@ -1,3 +1,3 @@
-export const __esModule = true; // Important for ES6 modules
+export const __esModule = true;
 
 export const userAtom = jest.fn();
