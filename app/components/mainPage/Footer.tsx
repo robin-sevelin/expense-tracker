@@ -1,4 +1,4 @@
-import { FOOTER_NAV_IMGS } from '@/app/constants/constants';
+import { FOOTER_NAV_IMGS } from '@/constants/constants';
 import Link from 'next/link';
 import React from 'react';
 

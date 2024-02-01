@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import React from 'react';
-import { monthAtom } from '../../store/atoms';
+import { monthAtom } from '@/store/atoms';
 
 const MonthPicker = () => {
   const [currentMonth, setCurrentMonth] = useAtom(monthAtom);

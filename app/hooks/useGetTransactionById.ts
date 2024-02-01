@@ -1,10 +1,10 @@
-import { ITransaction } from '@/app/models/ITransaction';
-import { submitAtom, transactionByIdAtom, userAtom } from './../store/atoms';
-import { db } from '../../firebase/firestore';
+import { ITransaction } from '@/models/ITransaction';
+import { submitAtom, transactionByIdAtom, userAtom } from '@/store/atoms';
+import { db } from '@/../firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
-import { TRANSACTION_BASE_VALUES } from '../constants/constants';
+import { TRANSACTION_BASE_VALUES } from '@/constants/constants';
 
 export const useGetTransactionById = (id: string) => {
   const [user] = useAtom(userAtom);

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import ProfilePicture from '../header/ProfilePicture';
-import { userAtom } from '@/app/store/atoms';
+import { userAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
-import BalanceAmount from '../sharedComponents/BalanceAmount';
+import BalanceAmount from '@/components/sharedComponents/BalanceAmount';
 
 const ProfileSection = () => {
   const [user] = useAtom(userAtom);

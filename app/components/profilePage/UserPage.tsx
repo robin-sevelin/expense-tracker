@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { useAuthUser } from '../../hooks/useAuthUser';
+import { useAuthUser } from '@/hooks/useAuthUser';
 import Link from 'next/link';
 import { useAtom } from 'jotai';
-import { balanceAtom } from '../../store/atoms';
+import { balanceAtom } from '@/store/atoms';
 import { useGetExpenseSum } from '@/hooks/useGetExpenseSum';
 import { useGetIncomeSum } from '@/hooks/useGetIncomeSum';
 

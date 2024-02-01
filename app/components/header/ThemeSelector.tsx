@@ -1,6 +1,6 @@
-import { THEMES } from '@/app/constants/themes';
-import { ITheme } from '@/app/models/ITheme';
-import { themeAtom } from '@/app/store/atoms';
+import { THEMES } from '@/constants/themes';
+import { ITheme } from '@/models/ITheme';
+import { themeAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
 import React, { useEffect } from 'react';
 

@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useGetCalenderDays } from '../../hooks/useGetCalenderDays';
-import { useGetFilteredTransactions } from '../../hooks/useGetFIlteredTransaction';
-import { ITransaction } from '../../models/ITransaction';
-import ModalTransactionDay from '../sharedComponents/ModalTransactionDay';
+import { useGetCalenderDays } from '@/hooks/useGetCalenderDays';
+import { useGetFilteredTransactions } from '@/hooks/useGetFIlteredTransaction';
+import { ITransaction } from '@/models/ITransaction';
+import ModalTransactionDay from '@/components/sharedComponents/ModalTransactionDay';
 import { DAY_BASE_VALUES } from '@/constants/constants';
 
 interface Props {

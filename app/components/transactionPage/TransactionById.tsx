@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { ITransaction } from '../../models/ITransaction';
-import Loading from '../sharedComponents/Loading';
+import { ITransaction } from '@/models/ITransaction';
+import Loading from '@/components/sharedComponents/Loading';
 
 interface Props {
   transaction: ITransaction;

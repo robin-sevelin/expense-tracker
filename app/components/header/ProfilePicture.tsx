@@ -1,4 +1,4 @@
-import { IUser } from '@/app/models/IUser';
+import { IUser } from '@/models/IUser';
 import React from 'react';
 
 interface Props {

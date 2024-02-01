@@ -1,9 +1,9 @@
-import { db } from '../../firebase/firestore';
+import { db } from '@/../firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { reccuringIncomeAtom, submitAtom, userAtom } from '../store/atoms';
-import { IRecurringIncome } from '../models/BudgetValues';
+import { reccuringIncomeAtom, submitAtom, userAtom } from '@/store/atoms';
+import { IRecurringIncome } from '@/models/BudgetValues';
 
 export const useGetRecurringIncomes = () => {
   const [user] = useAtom(userAtom);

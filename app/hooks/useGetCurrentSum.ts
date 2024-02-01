@@ -1,4 +1,4 @@
-import { reccuringIncomeAtom } from '@/app/store/atoms';
+import { reccuringIncomeAtom } from '@/store/atoms';
 import { useEffect, useState } from 'react';
 import {
   CURRENT_MONTH,

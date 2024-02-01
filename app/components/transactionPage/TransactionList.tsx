@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useAtom } from 'jotai';
-import { deleteTransactionObject } from '../../../firebase/operations/deleteTransaction';
-import { submitAtom, userAtom } from '../../store/atoms';
-import { useGetFilteredTransactions } from '../../hooks/useGetFIlteredTransaction';
+import { deleteTransactionObject } from '@/../firebase/operations/deleteTransaction';
+import { submitAtom, userAtom } from '@/store/atoms';
+import { useGetFilteredTransactions } from '@/hooks/useGetFIlteredTransaction';
 import { ITransaction } from '@/models/ITransaction';
-import ModalDialog from '../sharedComponents/ModalDialog';
+import ModalDialog from '@/components/sharedComponents/ModalDialog';
 
 interface Props {
   transactions: ITransaction[];

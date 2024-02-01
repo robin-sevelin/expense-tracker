@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
-import { monthAtom } from '../store/atoms';
-import { ITransaction } from '../models/ITransaction';
-import { DAYS_IN_MONTH, TRANSACTION_TYPES } from '../constants/constants';
+import { monthAtom } from '@/store/atoms';
+import { ITransaction } from '@/models/ITransaction';
+import { DAYS_IN_MONTH, TRANSACTION_TYPES } from '@/constants/constants';
 
 export const useGetCalenderDays = (filteredTransactions: ITransaction[]) => {
   const [selectedMonth] = useAtom(monthAtom);

@@ -6,14 +6,14 @@ import {
   transactionsAtom,
 } from '@/store/atoms';
 import { useAtom } from 'jotai';
-import { chartOptions } from '../constants/chartOptions';
+import { chartOptions } from '@/constants/chartOptions';
 import {
   DAYS_IN_MONTH,
   LINECHART_COLORS,
   TRANSACTION_TYPES,
-} from '../constants/constants';
+} from '@/constants/constants';
 import { useGetFilteredTransactions } from './useGetFIlteredTransaction';
-import { ITransaction } from '../models/ITransaction';
+import { ITransaction } from '@/models/ITransaction';
 
 export const useGetChartData = () => {
   const [transactions] = useAtom(transactionsAtom);

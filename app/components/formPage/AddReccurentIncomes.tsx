@@ -2,15 +2,15 @@
 
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
-import { submitAtom, userAtom } from '../../store/atoms';
-import { incomeSchema } from '../../models/FormSchema';
+import { submitAtom, userAtom } from '@/store/atoms';
+import { incomeSchema } from '@/models/FormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import ModalDialog from '../sharedComponents/ModalDialog';
-import { createIncomeDocument } from '../../../firebase/operations/createIncome';
-import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
-import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
-import { IRecurringIncome } from '@/app/models/BudgetValues';
+import ModalDialog from '@/components/sharedComponents/ModalDialog';
+import { createIncomeDocument } from '@/../firebase/operations/createIncome';
+import { useGetIncomeSum } from '@/hooks/useGetIncomeSum';
+import { useGetDaysInMonthArray } from '@/hooks/useGetDaysInMonthArray';
+import { IRecurringIncome } from '@/models/BudgetValues';
 
 const AddReccurentIncomes = () => {
   const [user] = useAtom(userAtom);

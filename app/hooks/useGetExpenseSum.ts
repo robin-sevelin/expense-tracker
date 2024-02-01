@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { submitAtom } from '../store/atoms';
+import { submitAtom } from '@/store/atoms';
 import { useEffect, useState } from 'react';
 import { useGetRecurringExpenses } from './useGetRecurringExpenses';
 

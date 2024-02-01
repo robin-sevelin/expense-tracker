@@ -1,10 +1,10 @@
-import { useAuthUser } from '@/app/hooks/useAuthUser';
-import { IRecurringIncome } from '@/app/models/BudgetValues';
-import { submitAtom } from '@/app/store/atoms';
-import { deleteReccuringIncome } from '../../../firebase/operations/deleteReccuringIncome';
+import { useAuthUser } from '@/hooks/useAuthUser';
+import { IRecurringIncome } from '@/models/BudgetValues';
+import { submitAtom } from '@/store/atoms';
+import { deleteReccuringIncome } from '@/../firebase/operations/deleteReccuringIncome';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
-import ModalDialog from '../sharedComponents/ModalDialog';
+import ModalDialog from '@/components/sharedComponents/ModalDialog';
 
 interface Props {
   incomes: IRecurringIncome[];

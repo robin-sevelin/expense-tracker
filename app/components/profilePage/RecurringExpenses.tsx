@@ -1,10 +1,10 @@
-import { useAuthUser } from '@/app/hooks/useAuthUser';
-import { IRecurringExpense } from '@/app/models/BudgetValues';
-import { submitAtom } from '@/app/store/atoms';
-import { deleteReccuringExpense } from '../../../firebase/operations/deleteReccuringExpense';
+import { useAuthUser } from '@/hooks/useAuthUser';
+import { IRecurringExpense } from '@/models/BudgetValues';
+import { submitAtom } from '@/store/atoms';
+import { deleteReccuringExpense } from '@/../firebase/operations/deleteReccuringExpense';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
-import ModalDialog from '../sharedComponents/ModalDialog';
+import ModalDialog from '@/components/sharedComponents/ModalDialog';
 
 interface Props {
   expenses: IRecurringExpense[];

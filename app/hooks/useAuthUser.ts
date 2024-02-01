@@ -1,4 +1,4 @@
-import { userAtom } from '@/app/store/atoms';
+import { userAtom } from '@/store/atoms';
 import { redirect } from 'next/navigation';
 import { useAtom } from 'jotai';
 

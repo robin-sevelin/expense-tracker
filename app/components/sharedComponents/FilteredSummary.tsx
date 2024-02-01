@@ -1,6 +1,6 @@
 import React from 'react';
-import { useGetTransactions } from '../../hooks/useGetTransactions';
-import { useGetFilteredSum } from '../../hooks/useGetfilteredSum';
+import { useGetTransactions } from '@/hooks/useGetTransactions';
+import { useGetFilteredSum } from '@/hooks/useGetfilteredSum';
 import { useGetExpenseSum } from '@/hooks/useGetExpenseSum';
 import { useGetIncomeSum } from '@/hooks/useGetIncomeSum';
 import { useGetCurrentSum } from '@/hooks/useGetCurrentSum';
