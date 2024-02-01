@@ -15,17 +15,15 @@ const UserPage = () => {
   const { user } = useAuthUser();
 
   return (
-    <div className='hero-content flex-col lg:flex-row-reverse'>
-      <div>
-        <div className='hero-content flex-col '>
-          <p>
-            If you need to set or update your budget or recurrent values go to
-            EDIT BUDGET.
-          </p>
-          <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
-            <span>Edit budget</span>
-          </Link>
-        </div>
+    <>
+      <div className='flex flex-col justify-center items-center'>
+        <p>
+          If you need to set or update your budget or recurrent values go to
+          EDIT BUDGET.
+        </p>
+        <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
+          <span>Edit budget</span>
+        </Link>
         <div className='overflow-x-auto py-10'>
           <table className='table'>
             <thead>
@@ -49,7 +47,7 @@ const UserPage = () => {
           </table>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

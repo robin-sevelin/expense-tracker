@@ -11,8 +11,8 @@ const Header = () => {
   const [user] = useAtom(userAtom);
 
   return (
-    <header>
-      <div className='profile-container'>
+    <header className='flex items-center'>
+      <div className='flex justify-center'>
         <Link href={'/'} className='btn btn-ghost text-xl'>
           EXPENSE TRACKER
         </Link>

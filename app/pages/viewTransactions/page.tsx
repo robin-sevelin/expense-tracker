@@ -24,7 +24,7 @@ const ViewTransactions = () => {
   }
 
   return (
-    <section>
+    <section className='w-full'>
       <h2 className='text-5xl font-bold flex justify-center'>TRANSACTIONS</h2>
       <MonthPicker />
       <FilteredSummary />

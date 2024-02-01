@@ -3,10 +3,12 @@ import React from 'react';
 
 const page = () => {
   return (
-    <>
-      <h3>RECURRING TRANSACTIONS</h3>
+    <section className='w-full'>
+      <h2 className='text-5xl font-bold flex justify-center'>
+        RECURRING TRANSACTIONS
+      </h2>
       <RecurringTransactions />
-    </>
+    </section>
   );
 };
 

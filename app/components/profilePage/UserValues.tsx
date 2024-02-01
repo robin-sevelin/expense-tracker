@@ -5,11 +5,14 @@ import AddBalance from '../formPage/AddBalance';
 import AddReccurentExpenses from '../formPage/AddReccurentExpenses';
 import AddReccurentIncomes from '../formPage/AddReccurentIncomes';
 import { TRANSACTION_TYPES } from '@/constants/constants';
+import { useAuthUser } from '@/hooks/useAuthUser';
 
 const UserValues = () => {
   const [section, setSection] = useState(TRANSACTION_TYPES.BUDGET);
+  useAuthUser();
+
   return (
-    <section className=' flex flex-col justify-center items-center bg-base-200 h-10xl gap-5 p-10 '>
+    <section className='user-values'>
       <fieldset>
         <legend className='font-bold mb-3'>Select section</legend>
         <div className='join'>

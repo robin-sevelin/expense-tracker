@@ -12,14 +12,14 @@ import CookieBanner from '@/components/sharedComponents/CookieBanner';
 const LandingPage = () => {
   const [cookies, setCookie] = useCookies(['expense-tracker']);
   const { 'expense-tracker': expenseTrackerCookie } = cookies;
-  const { loading } = useGetRedirect();
+  const { isLoading } = useGetRedirect();
   const { user } = useIsLoggedIn();
 
   const handleCookie = () => {
     setCookie('expense-tracker', user);
   };
 
-  if (loading) {
+  if (isLoading) {
     return <Loading />;
   }
 

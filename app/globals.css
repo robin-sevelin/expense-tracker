@@ -21,7 +21,7 @@ input {
 }
 
 main {
-  @apply w-3/5 m-auto  flex flex-col justify-center items-center bg-base-100 min-h-[calc(100vh-100px)] max-h-full p-5 rounded-xl;
+  @apply w-3/5 m-auto  flex flex-col justify-center items-center bg-base-100 min-h-[calc(100vh-50px)]  p-5 rounded-xl;
 }
 
 footer {
@@ -33,48 +33,17 @@ header {
 }
 
 .theme-dropdown {
-  max-height: 600px;
-  width: 220px;
-  margin-left: -130px;
-  overflow-y: scroll;
-
-  @apply shadow menu dropdown-content z-[1] bg-base-100 rounded-box;
+  @apply shadow menu dropdown-content z-[1] bg-base-100 rounded-box max-h-[600px] w-[220px] ml-[-50px]  overflow-y-scroll;
 }
 
 .with-border {
-  border: 2px solid red; /* Specify your desired border color */
+  @apply border-solid border-2 border-red-600;
 }
 
-.profile-container {
-  @media (max-width: 640px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 120px;
-    margin-bottom: 100px;
-    margin-bottom: 150px;
-  }
+.user-values {
+  @apply flex flex-col justify-center items-center bg-base-100  gap-5 p-10;
 }
 
-.profile-window {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 640px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 200px;
-    margin-bottom: 100px;
-  }
-}
-
-.nav-section {
-  width: fit-content;
-  padding: 1rem;
-  @media (max-width: 640px) {
-    margin-bottom: 400px;
-  }
+.centered-container {
+  @apply flex flex-col m-5 p-5 justify-center items-center;
 }

@@ -10,14 +10,14 @@ const ProfileSection = () => {
   const [user] = useAtom(userAtom);
 
   return (
-    <section className='flex justify-start m-1 p-2 bg-secondary-100 h-auto '>
+    <>
       {user.uid && (
-        <div className='profile-window'>
+        <>
           <ProfilePicture user={user} />
           <BalanceAmount />
-        </div>
+        </>
       )}
-    </section>
+    </>
   );
 };
 

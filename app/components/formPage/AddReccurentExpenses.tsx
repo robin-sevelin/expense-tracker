@@ -77,7 +77,7 @@ const AddReccurentExpenses = () => {
           </div>
           <legend>Pick day of the month</legend>
           <select
-            className='select select-bordered select-primary w-full max-w-xs'
+            className='select select-bordered select-primary w-full max-w-xs mb-3'
             id='day'
             {...register('date')}
           >

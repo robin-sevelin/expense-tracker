@@ -10,7 +10,7 @@ import {
   filtredSumAtom,
   reccuringIncomeAtom,
   reccuringExpenseAtom,
-} from '../store/atoms';
+} from '@/store/atoms';
 
 export const useGetFilteredSum = () => {
   const [transactions] = useAtom(transactionsAtom);

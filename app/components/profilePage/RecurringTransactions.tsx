@@ -6,14 +6,18 @@ import { reccuringExpenseAtom, reccuringIncomeAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
 import ReccuringIncomes from './ReccuringIncomes';
 import { TRANSACTION_TYPES } from '@/constants/constants';
+import Loading from '../sharedComponents/Loading';
 
 const RecurringTransactions = () => {
   const [reccruingExpenses] = useAtom(reccuringExpenseAtom);
   const [reccuringIncomes] = useAtom(reccuringIncomeAtom);
   const [view, setView] = useState(TRANSACTION_TYPES.EXPENSE);
 
+  if (!reccruingExpenses || !reccuringIncomes) {
+    return <Loading />;
+  }
   return (
-    <section className=' flex flex-col m-5 p-5 justify-center items-center'>
+    <section className='centered-container'>
       <fieldset>
         <legend>Select View</legend>
         <div className='join'>

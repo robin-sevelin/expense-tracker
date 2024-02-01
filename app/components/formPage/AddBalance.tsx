@@ -11,10 +11,11 @@ import { createBalanceDocument } from '@/../firebase/operations/createBalance';
 import { useGetBalance } from '@/hooks/useGetBalance';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';
 import { IBalance } from '@/models/BudgetValues';
+import Loading from '../sharedComponents/Loading';
 
 const AddBalance = () => {
   const [user] = useAtom(userAtom);
-  const { balance } = useGetBalance();
+  const { balance, isLoading } = useGetBalance();
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -34,8 +35,12 @@ const AddBalance = () => {
     setIsModalOpen(true);
   };
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
-    <>
+    <section>
       <div className='flex flex-col justify-center items-center'>
         <h2 className='text-3xl font-bold'>SET BUDGET</h2>
         <form onSubmit={handleSubmit(submitData)}>
@@ -71,7 +76,7 @@ const AddBalance = () => {
           isModalOpen={isModalOpen}
         />
       )}
-    </>
+    </section>
   );
 };
 
