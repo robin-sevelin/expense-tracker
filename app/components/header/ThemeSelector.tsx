@@ -21,9 +21,7 @@ const ThemeSelector = () => {
 
   return (
     <div className='dropdown'>
-      <div tabIndex={0} role='button' className='btn m-1 bg-base-100 w-20'>
-        Theme
-      </div>
+      <button className='btn m-1 bg-base-100'>Theme</button>
       <ul tabIndex={0} className='theme-dropdown'>
         {THEMES.map((theme) => (
           <li key={theme.id}>

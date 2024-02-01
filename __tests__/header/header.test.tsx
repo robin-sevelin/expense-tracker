@@ -9,7 +9,6 @@ jest.mock('firebase/auth', () => ({
   ...jest.requireActual('firebase/auth'),
   getAuth: jest.fn(),
   setPersistence: jest.fn(),
-  GoogleAuthProvider: jest.fn(),
 }));
 
 describe('header', () => {
@@ -29,7 +28,9 @@ describe('header', () => {
     render(<ThemeSelector />);
   });
 
-  it('should not render navigation if not logged in', () => {
+  it('should not render navigation if no user id', () => {
+    const user = { uid: '' };
+
     const { queryByText } = render(<Navigation />);
 
     const navigationElement = queryByText('Add transactions');

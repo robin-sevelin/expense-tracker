@@ -17,7 +17,16 @@ const UserPage = () => {
   return (
     <div className='hero-content flex-col lg:flex-row-reverse'>
       <div>
-        <div className='overflow-x-auto'>
+        <div className='hero-content flex-col '>
+          <p>
+            If you need to set or update your budget or recurrent values go to
+            EDIT BUDGET.
+          </p>
+          <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
+            <span>Edit budget</span>
+          </Link>
+        </div>
+        <div className='overflow-x-auto py-10'>
           <table className='table'>
             <thead>
               <tr>
@@ -38,15 +47,6 @@ const UserPage = () => {
               </tr>
             </tbody>
           </table>
-        </div>
-        <div className='hero-content'>
-          <p>
-            If you need to set or update your budget or recurrent values go to
-            EDIT BUDGET.
-          </p>
-          <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
-            <span>Edit budget</span>
-          </Link>
         </div>
       </div>
     </div>

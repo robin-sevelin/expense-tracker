@@ -7,10 +7,10 @@ const LogInPage = () => {
   useGetRedirect();
 
   return (
-    <section>
+    <>
       <div className='hero-content text-center'>
         <div className='max-w-md'>
-          <h2 className='text-5xl font-bold'>Hello there</h2>
+          <h2 className='text-5xl font-bold'>Welcome</h2>
           <p className='py-6'>
             Please login with your google account to use the expense tracker.
           </p>
@@ -22,7 +22,7 @@ const LogInPage = () => {
           </button>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

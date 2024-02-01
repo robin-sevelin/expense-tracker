@@ -1,8 +1,8 @@
 import TransactionList from '@/app/components/transactionPage/TransactionList';
 import { render } from '@testing-library/react';
 
-describe('transactionList', () => {
-  it('should redner transactionList component', () => {
+describe('TransactionList', () => {
+  it('should render TransactionList component', () => {
     const transactions = [
       {
         id: 'hej',

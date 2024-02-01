@@ -10,7 +10,7 @@ const CookieBanner = ({ onHandleChange }: Props) => {
     onHandleChange();
   };
   return (
-    <>
+    <div>
       <input
         type='checkbox'
         id='my_modal_6'
@@ -58,7 +58,7 @@ const CookieBanner = ({ onHandleChange }: Props) => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

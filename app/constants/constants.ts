@@ -137,3 +137,5 @@ export const FOOTER_NAV_IMGS = [
     url: 'https://vercel.com/templates?framework=next.js',
   },
 ];
+
+export const EXPENSE_TRACKER_LOGO = '/expense-tracker.svg';

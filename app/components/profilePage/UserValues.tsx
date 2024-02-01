@@ -9,7 +9,7 @@ import { TRANSACTION_TYPES } from '@/app/constants/constants';
 const UserValues = () => {
   const [section, setSection] = useState(TRANSACTION_TYPES.BUDGET);
   return (
-    <section className=' flex flex-col justify-center items-center  h-10xl gap-5 p-10 '>
+    <section className=' flex flex-col justify-center items-center bg-base-200 h-10xl gap-5 p-10 '>
       <fieldset>
         <legend className='font-bold mb-3'>Select section</legend>
         <div className='join'>

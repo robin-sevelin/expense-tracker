@@ -21,7 +21,7 @@ const Navigation = () => {
           <label
             aria-label='close sidebar button'
             htmlFor='my-drawer-4'
-            className='drawer-button btn bg-base-100 w-20 m-1'
+            className='drawer-button btn bg-base-100 m-1 '
           >
             <svg
               className='swap-off fill-current'
