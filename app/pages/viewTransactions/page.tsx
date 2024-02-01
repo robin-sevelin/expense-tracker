@@ -1,13 +1,13 @@
 'use client';
 
-import FilteredSummary from '@/app/components/sharedComponents/FilteredSummary';
-import Loading from '@/app/components/sharedComponents/Loading';
-import MonthPicker from '@/app/components/sharedComponents/MonthPicker';
-import TransactionCalender from '@/app/components/transactionPage/TransactionCalender';
-import TransactionList from '@/app/components/transactionPage/TransactionList';
-import ViewMode from '@/app/components/transactionPage/ViewMode';
-import { useAuthUser } from '@/app/hooks/useAuthUser';
-import { useGetTransactions } from '@/app/hooks/useGetTransactions';
+import FilteredSummary from '@/components/sharedComponents/FilteredSummary';
+import Loading from '@/components/sharedComponents/Loading';
+import MonthPicker from '@/components/sharedComponents/MonthPicker';
+import TransactionCalender from '@/components/transactionPage/TransactionCalender';
+import TransactionList from '@/components/transactionPage/TransactionList';
+import ViewMode from '@/components/transactionPage/ViewMode';
+import { useAuthUser } from '@/hooks/useAuthUser';
+import { useGetTransactions } from '@/hooks/useGetTransactions';
 import { useState } from 'react';
 
 const ViewTransactions = () => {

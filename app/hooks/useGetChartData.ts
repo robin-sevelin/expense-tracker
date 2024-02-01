@@ -4,7 +4,7 @@ import {
   reccuringExpenseAtom,
   reccuringIncomeAtom,
   transactionsAtom,
-} from '@/app/store/atoms';
+} from '@/store/atoms';
 import { useAtom } from 'jotai';
 import { chartOptions } from '../constants/chartOptions';
 import {

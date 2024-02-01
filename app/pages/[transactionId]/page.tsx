@@ -1,15 +1,15 @@
 'use client';
 
-import AddTransaction from '@/app/components/formPage/AddTransaction';
-import TransactionById from '@/app/components/transactionPage/TransactionById';
-import { useGetTransactionById } from '@/app/hooks/useGetTransactionById';
-import { IUser } from '@/app/models/IUser';
+import AddTransaction from '@/components/formPage/AddTransaction';
+import TransactionById from '@/components/transactionPage/TransactionById';
+import { useGetTransactionById } from '@/hooks/useGetTransactionById';
+import { IUser } from '@/models/IUser';
 import React from 'react';
-import { submitAtom } from '@/app/store/atoms';
+import { submitAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
-import { updateTransaction } from '@/firebase/operations/updateTransaction';
-import { useGetTransactions } from '@/app/hooks/useGetTransactions';
-import { ITransaction } from '@/app/models/ITransaction';
+import { updateTransaction } from '../../../firebase/operations/updateTransaction';
+import { useGetTransactions } from '@/hooks/useGetTransactions';
+import { ITransaction } from '@/models/ITransaction';
 
 const EditTransaction = ({ params }: { params: { transactionId: string } }) => {
   const id = params.transactionId;

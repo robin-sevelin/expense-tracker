@@ -3,13 +3,15 @@
 import React from 'react';
 import { useGetCurrentSum } from '../../hooks/useGetCurrentSum';
 import { CURRENT_DATE } from '../../constants/constants';
-import { useGetRecurringExpenses } from '@/app/hooks/useGetRecurringExpenses';
-import { useGetRecurringIncomes } from '@/app/hooks/useGetRecurringIncomes';
+import { useGetRecurringExpenses } from '@/hooks/useGetRecurringExpenses';
+import { useGetRecurringIncomes } from '@/hooks/useGetRecurringIncomes';
+import { useGetTransactions } from '@/hooks/useGetTransactions';
 
 const BalanceAmount = () => {
   const { sum } = useGetCurrentSum();
   useGetRecurringExpenses();
   useGetRecurringIncomes();
+  useGetTransactions();
 
   return (
     <div className=' p-2 m-1'>

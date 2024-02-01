@@ -1,6 +1,6 @@
 import { ITransaction } from '@/app/models/ITransaction';
 import { submitAtom, transactionByIdAtom, userAtom } from './../store/atoms';
-import { db } from '@/firebase/firestore';
+import { db } from '../../firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';

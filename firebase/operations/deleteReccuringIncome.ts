@@ -1,7 +1,7 @@
-import { IUser } from '@/app/models/IUser';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { IUser } from '@/models/IUser';
+import { doc, getDoc, updateDoc } from '../firestore';
 import { db } from '../firestore';
-import { IRecurringIncome } from '@/app/models/BudgetValues';
+import { IRecurringIncome } from '@/models/BudgetValues';
 
 export const deleteReccuringIncome = async (userAuth: IUser, id: string) => {
   const transactionCollectionRef = doc(

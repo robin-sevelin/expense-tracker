@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import AddBalance from '../formPage/AddBalance';
 import AddReccurentExpenses from '../formPage/AddReccurentExpenses';
 import AddReccurentIncomes from '../formPage/AddReccurentIncomes';
-import { TRANSACTION_TYPES } from '@/app/constants/constants';
+import { TRANSACTION_TYPES } from '@/constants/constants';
 
 const UserValues = () => {
   const [section, setSection] = useState(TRANSACTION_TYPES.BUDGET);

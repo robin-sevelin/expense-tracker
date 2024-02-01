@@ -1,9 +1,9 @@
-import { IUser } from '@/app/models/IUser';
-import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
+import { IUser } from '@/models/IUser';
+import { doc, setDoc, collection, arrayUnion } from '../firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
-import { TRANSACTION_TYPES } from '@/app/constants/constants';
-import { IRecurringExpense } from '@/app/models/BudgetValues';
+import { TRANSACTION_TYPES } from '@/constants/constants';
+import { IRecurringExpense } from '@/models/BudgetValues';
 
 export const createExpenseDocument = async (
   userAuth: IUser,

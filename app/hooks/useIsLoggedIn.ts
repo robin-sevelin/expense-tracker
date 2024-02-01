@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { auth } from '@/firebase/auth';
+import { auth } from '../../firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { IUser } from '../models/IUser';
 import { userAtom } from '../store/atoms';

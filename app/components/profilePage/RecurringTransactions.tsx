@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import ReccuringExpenses from './RecurringExpenses';
-import { reccuringExpenseAtom, reccuringIncomeAtom } from '@/app/store/atoms';
+import { reccuringExpenseAtom, reccuringIncomeAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
 import ReccuringIncomes from './ReccuringIncomes';
-import { TRANSACTION_TYPES } from '@/app/constants/constants';
+import { TRANSACTION_TYPES } from '@/constants/constants';
 
 const RecurringTransactions = () => {
   const [reccruingExpenses] = useAtom(reccuringExpenseAtom);

@@ -1,8 +1,8 @@
-import { CURRENT_DATE } from '@/app/constants/constants';
-import { IUser } from '@/app/models/IUser';
-import { doc, getDoc, setDoc, updateDoc, collection } from 'firebase/firestore';
+import { CURRENT_DATE } from '@/constants/constants';
+import { IUser } from '@/models/IUser';
+import { doc, getDoc, setDoc, updateDoc, collection } from '../firestore';
 import { db } from '../firestore';
-import { IBalance } from '@/app/models/BudgetValues';
+import { IBalance } from '@/models/BudgetValues';
 
 export const createBalanceDocument = async (
   userAuth: IUser,

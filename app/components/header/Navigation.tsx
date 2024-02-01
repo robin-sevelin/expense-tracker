@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ROUTES, USER_BASE_VALUES } from '../../constants/constants';
-import { auth } from '@/firebase/auth';
+import { auth } from '../../../firebase/auth';
 import { signOut } from 'firebase/auth';
 import { userAtom } from '@/app/store/atoms';
 import { useAtom } from 'jotai';

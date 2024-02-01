@@ -1,4 +1,22 @@
-import { getFirestore } from 'firebase/firestore';
+import {
+  updateDoc,
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  arrayUnion as firestoreArrayUnion,
+} from 'firebase/firestore';
 import { app } from './config';
 
-export const db = getFirestore(app);
+const db = getFirestore(app);
+
+export {
+  collection,
+  doc,
+  setDoc,
+  firestoreArrayUnion as arrayUnion,
+  db,
+  updateDoc,
+  getDoc,
+};

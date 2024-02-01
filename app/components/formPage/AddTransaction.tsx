@@ -1,20 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAuthUser } from '../../hooks/useAuthUser';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { transactionSchema } from '../../models/FormSchema';
-import ExpenseCategories from '../sharedComponents/ExpenseCategories';
-import IncomeCategories from '../sharedComponents/IncomeCategories';
-import { IUser } from '../../models/IUser';
+import { transactionSchema } from '@/models/FormSchema';
+import ExpenseCategories from '@/components/sharedComponents/ExpenseCategories';
+import IncomeCategories from '@/components/sharedComponents/IncomeCategories';
+import { IUser } from '@/models/IUser';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { submitAtom } from '../../store/atoms';
+import { submitAtom, userAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
-import { CURRENT_DATE } from '../../constants/constants';
-import ModalDialog from '../sharedComponents/ModalDialog';
-import { ITransaction } from '@/app/models/ITransaction';
+import { CURRENT_DATE } from '@/constants/constants';
+import ModalDialog from '@/components/sharedComponents/ModalDialog';
+import { ITransaction } from '@/models/ITransaction';
 
 interface Props {
   onHandleSubmit: (user: IUser, data: ITransaction, date: Date) => void;
@@ -24,7 +23,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [date, setDate] = useState(CURRENT_DATE);
   const [type, setType] = useState('expense');
-  const { user } = useAuthUser();
+  const [user] = useAtom(userAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {

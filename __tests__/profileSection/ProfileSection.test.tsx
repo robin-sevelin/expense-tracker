@@ -1,6 +1,6 @@
-import ProfilePicture from '@/app/components/header/ProfilePicture';
-import ProfileSection from '@/app/components/mainPage/ProfileSection';
-import BalanceAmount from '@/app/components/sharedComponents/BalanceAmount';
+import ProfilePicture from '@/components/header/ProfilePicture';
+import ProfileSection from '@/components/mainPage/ProfileSection';
+import BalanceAmount from '@/components/sharedComponents/BalanceAmount';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 

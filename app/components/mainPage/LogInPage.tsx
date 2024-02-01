@@ -1,7 +1,7 @@
 'use client';
 
-import { useGetRedirect } from '@/app/hooks/useGetRedirect';
-import { signinWithGoogleRedirect } from '@/firebase/auth';
+import { useGetRedirect } from '@/hooks/useGetRedirect';
+import { signinWithGoogleRedirect } from '@/../firebase/auth';
 
 const LogInPage = () => {
   useGetRedirect();

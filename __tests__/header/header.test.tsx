@@ -1,7 +1,7 @@
-import Header from '@/app/components/header/Header';
-import Navigation from '@/app/components/header/Navigation';
-import ThemeSelector from '@/app/components/header/ThemeSelector';
-import ProfileSection from '@/app/components/mainPage/ProfileSection';
+import Header from '@/components/header/Header';
+import Navigation from '@/components/header/Navigation';
+import ThemeSelector from '@/components/header/ThemeSelector';
+import ProfileSection from '@/components/mainPage/ProfileSection';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
@@ -29,8 +29,6 @@ describe('header', () => {
   });
 
   it('should not render navigation if no user id', () => {
-    const user = { uid: '' };
-
     const { queryByText } = render(<Navigation />);
 
     const navigationElement = queryByText('Add transactions');

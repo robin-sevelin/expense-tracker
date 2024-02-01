@@ -1,7 +1,7 @@
 import { useAuthUser } from '@/app/hooks/useAuthUser';
 import { IRecurringIncome } from '@/app/models/BudgetValues';
 import { submitAtom } from '@/app/store/atoms';
-import { deleteReccuringIncome } from '@/firebase/operations/deleteReccuringIncome';
+import { deleteReccuringIncome } from '../../../firebase/operations/deleteReccuringIncome';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import ModalDialog from '../sharedComponents/ModalDialog';

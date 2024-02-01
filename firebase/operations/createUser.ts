@@ -1,6 +1,6 @@
-import { CURRENT_DATE } from '@/app/constants/constants';
-import { IUser } from '@/app/models/IUser';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { CURRENT_DATE } from '@/constants/constants';
+import { IUser } from '@/models/IUser';
+import { doc, getDoc, setDoc } from '../firestore';
 import { db } from '../firestore';
 
 export const createUserDocument = async (userAuth: IUser) => {

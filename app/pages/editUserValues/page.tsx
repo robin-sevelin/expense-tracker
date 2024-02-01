@@ -1,4 +1,4 @@
-import UserValues from '@/app/components/profilePage/UserValues';
+import UserValues from '@/components/profilePage/UserValues';
 import React from 'react';
 
 const page = () => {

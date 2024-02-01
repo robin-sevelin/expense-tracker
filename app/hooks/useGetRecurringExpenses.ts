@@ -1,4 +1,4 @@
-import { db } from '@/firebase/firestore';
+import { db } from '../../firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';

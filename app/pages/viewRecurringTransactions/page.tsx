@@ -1,4 +1,4 @@
-import RecurringTransactions from '@/app/components/profilePage/RecurringTransactions';
+import RecurringTransactions from '@/components/profilePage/RecurringTransactions';
 import React from 'react';
 
 const page = () => {

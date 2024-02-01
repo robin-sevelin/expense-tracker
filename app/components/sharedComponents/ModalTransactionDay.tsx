@@ -1,4 +1,4 @@
-import { monthAtom } from '@/app/store/atoms';
+import { monthAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
 import React from 'react';
 

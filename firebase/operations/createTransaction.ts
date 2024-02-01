@@ -1,6 +1,6 @@
-import { ITransaction } from '@/app/models/ITransaction';
-import { IUser } from '@/app/models/IUser';
-import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
+import { ITransaction } from '@/models/ITransaction';
+import { IUser } from '@/models/IUser';
+import { doc, setDoc, collection, arrayUnion } from '../firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
 

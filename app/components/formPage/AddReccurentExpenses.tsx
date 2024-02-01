@@ -7,10 +7,10 @@ import { expenseSchema } from '../../models/FormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import ModalDialog from '../sharedComponents/ModalDialog';
-import { createExpenseDocument } from '@/firebase/operations/createExpense';
-import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
-import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
-import { IRecurringExpense } from '@/app/models/BudgetValues';
+import { createExpenseDocument } from '../../../firebase/operations/createExpense';
+import { useGetExpenseSum } from '@/hooks/useGetExpenseSum';
+import { useGetDaysInMonthArray } from '@/hooks/useGetDaysInMonthArray';
+import { IRecurringExpense } from '@/models/BudgetValues';
 
 const AddReccurentExpenses = () => {
   const [user] = useAtom(userAtom);

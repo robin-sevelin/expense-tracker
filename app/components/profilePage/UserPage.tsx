@@ -5,8 +5,8 @@ import { useAuthUser } from '../../hooks/useAuthUser';
 import Link from 'next/link';
 import { useAtom } from 'jotai';
 import { balanceAtom } from '../../store/atoms';
-import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
-import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
+import { useGetExpenseSum } from '@/hooks/useGetExpenseSum';
+import { useGetIncomeSum } from '@/hooks/useGetIncomeSum';
 
 const UserPage = () => {
   const [balance] = useAtom(balanceAtom);

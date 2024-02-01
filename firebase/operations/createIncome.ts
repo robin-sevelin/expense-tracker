@@ -1,9 +1,9 @@
-import { TRANSACTION_TYPES } from '@/app/constants/constants';
-import { IUser } from '@/app/models/IUser';
-import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
+import { TRANSACTION_TYPES } from '@/constants/constants';
+import { IUser } from '@/models/IUser';
+import { doc, setDoc, collection, arrayUnion } from '../firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
-import { IRecurringIncome } from '@/app/models/BudgetValues';
+import { IRecurringIncome } from '@/models/BudgetValues';
 
 export const createIncomeDocument = async (
   userAuth: IUser,

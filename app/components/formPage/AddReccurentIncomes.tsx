@@ -7,7 +7,7 @@ import { incomeSchema } from '../../models/FormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import ModalDialog from '../sharedComponents/ModalDialog';
-import { createIncomeDocument } from '@/firebase/operations/createIncome';
+import { createIncomeDocument } from '../../../firebase/operations/createIncome';
 import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
 import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
 import { IRecurringIncome } from '@/app/models/BudgetValues';
