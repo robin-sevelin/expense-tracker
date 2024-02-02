@@ -1,47 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="16" failures="0" errors="0" time="1.047">
-  <testsuite name="footer" errors="0" failures="0" skipped="0" timestamp="2024-02-01T13:29:22" time="0.259" tests="1">
-    <testcase classname="footer should render footer" name="footer should render footer" time="0.016">
+<testsuites name="jest tests" tests="16" failures="1" errors="0" time="1.532">
+  <testsuite name="footer" errors="0" failures="0" skipped="0" timestamp="2024-02-02T08:52:10" time="0.399" tests="1">
+    <testcase classname="footer should render footer" name="footer should render footer" time="0.017">
     </testcase>
   </testsuite>
-  <testsuite name="header" errors="0" failures="0" skipped="0" timestamp="2024-02-01T13:29:23" time="0.122" tests="4">
+  <testsuite name="Add transaction" errors="0" failures="0" skipped="0" timestamp="2024-02-02T08:52:11" time="0.204" tests="1">
+    <testcase classname="Add transaction should render add transaction component" name="Add transaction should render add transaction component" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="header" errors="0" failures="0" skipped="0" timestamp="2024-02-02T08:52:11" time="0.141" tests="4">
     <testcase classname="header should render header " name="header should render header " time="0.013">
     </testcase>
-    <testcase classname="header should render profile section" name="header should render profile section" time="0.001">
+    <testcase classname="header should render profile section" name="header should render profile section" time="0">
     </testcase>
-    <testcase classname="header should render theme selector" name="header should render theme selector" time="0.002">
+    <testcase classname="header should render theme selector" name="header should render theme selector" time="0.004">
     </testcase>
     <testcase classname="header should not render navigation if no user id" name="header should not render navigation if no user id" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="Add transaction" errors="0" failures="0" skipped="0" timestamp="2024-02-01T13:29:23" time="0.138" tests="1">
-    <testcase classname="Add transaction should render add transaction component" name="Add transaction should render add transaction component" time="0.013">
-    </testcase>
-  </testsuite>
-  <testsuite name="User Values" errors="0" failures="0" skipped="0" timestamp="2024-02-01T13:29:23" time="0.098" tests="4">
-    <testcase classname="User Values should render user values" name="User Values should render user values" time="0.005">
+  <testsuite name="User Values" errors="0" failures="1" skipped="0" timestamp="2024-02-02T08:52:11" time="0.171" tests="4">
+    <testcase classname="User Values should render user values" name="User Values should render user values" time="0.042">
+      <failure>Error: NEXT_REDIRECT
+    at getRedirectError (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/next/src/client/components/redirect.ts:23:17)
+    at getRedirectError (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/next/src/client/components/redirect.ts:44:9)
+    at useAuthUser (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/app/hooks/useAuthUser.ts:9:20)
+    at UserValues (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/app/components/profilePage/UserValues.tsx:12:14)
+    at renderWithHooks (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:16305:18)
+    at mountIndeterminateComponent (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:20074:13)
+    at beginWork (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:21587:16)
+    at beginWork$1 (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+    at performUnitOfWork (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+    at workLoopSync (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+    at renderRootSync (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+    at recoverFromConcurrentError (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:25850:20)
+    at performConcurrentWorkOnRoot (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:25750:22)
+    at flushActQueue (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react/cjs/react.development.js:2667:24)
+    at act (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react/cjs/react.development.js:2582:11)
+    at /Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/@testing-library/react/dist/act-compat.js:46:25
+    at renderRoot (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/@testing-library/react/dist/pure.js:180:26)
+    at render (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/@testing-library/react/dist/pure.js:266:10)
+    at Object.&lt;anonymous&gt; (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/__tests__/profilePage/UserValues.test.tsx:9:11)
+    at Promise.then.completed (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-runner/build/runTest.js:444:34)</failure>
     </testcase>
     <testcase classname="User Values should render budget from" name="User Values should render budget from" time="0.002">
     </testcase>
-    <testcase classname="User Values should render recurring expense form" name="User Values should render recurring expense form" time="0.004">
+    <testcase classname="User Values should render recurring expense form" name="User Values should render recurring expense form" time="0.006">
     </testcase>
-    <testcase classname="User Values should render recurring incomes form" name="User Values should render recurring incomes form" time="0.003">
+    <testcase classname="User Values should render recurring incomes form" name="User Values should render recurring incomes form" time="0.005">
     </testcase>
   </testsuite>
-  <testsuite name="profile section" errors="0" failures="0" skipped="0" timestamp="2024-02-01T13:29:23" time="0.089" tests="3">
+  <testsuite name="profile section" errors="0" failures="0" skipped="0" timestamp="2024-02-02T08:52:11" time="0.104" tests="3">
     <testcase classname="profile section should render profile section" name="profile section should render profile section" time="0.002">
     </testcase>
-    <testcase classname="profile section should render balance amount component" name="profile section should render balance amount component" time="0.012">
+    <testcase classname="profile section should render balance amount component" name="profile section should render balance amount component" time="0.034">
     </testcase>
     <testcase classname="profile section should render profile picture component with user prop" name="profile section should render profile picture component with user prop" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="transactions list" errors="0" failures="0" skipped="0" timestamp="2024-02-01T13:29:23" time="0.07" tests="1">
+  <testsuite name="transactions list" errors="0" failures="0" skipped="0" timestamp="2024-02-02T08:52:11" time="0.07" tests="1">
     <testcase classname="transactions list should render TransactionList component" name="transactions list should render TransactionList component" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="useAuthUser" errors="0" failures="0" skipped="0" timestamp="2024-02-01T13:29:23" time="0.059" tests="2">
-    <testcase classname="useAuthUser redirects to &quot;/&quot; when user is not authenticated" name="useAuthUser redirects to &quot;/&quot; when user is not authenticated" time="0">
+  <testsuite name="useAuthUser" errors="0" failures="0" skipped="0" timestamp="2024-02-02T08:52:11" time="0.06" tests="2">
+    <testcase classname="useAuthUser redirects to &quot;/&quot; when user is not authenticated" name="useAuthUser redirects to &quot;/&quot; when user is not authenticated" time="0.001">
     </testcase>
     <testcase classname="useAuthUser returns the authenticated user when user is authenticated" name="useAuthUser returns the authenticated user when user is authenticated" time="0">
     </testcase>

@@ -26,6 +26,7 @@ export default function RootLayout({
           <ThemeProvider>
             <ThemeWrapper>
               <Header />
+
               <main>{children}</main>
               <Footer />
             </ThemeWrapper>

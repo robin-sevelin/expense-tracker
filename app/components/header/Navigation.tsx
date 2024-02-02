@@ -1,21 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { ROUTES, USER_BASE_VALUES } from '@/constants/constants';
-import { auth } from '@/../firebase/auth';
-import { signOut } from 'firebase/auth';
-import { userAtom } from '@/store/atoms';
-import { useAtom } from 'jotai';
+import { ROUTES } from '@/constants/constants';
 
 const Navigation = () => {
-  const [, setUser] = useAtom(userAtom);
-  const logOut = async () => {
-    await signOut(auth);
-    setUser(USER_BASE_VALUES);
-  };
   return (
     <>
-      <div className='drawer drawer-end'>
+      <div className='drawer drawer-start'>
         <input id='my-drawer-4' type='checkbox' className='drawer-toggle ' />
         <div className='drawer-content'>
           <label
@@ -49,13 +40,6 @@ const Navigation = () => {
           </ul>
         </div>
       </div>
-      <button
-        aria-label='sign out'
-        onClick={logOut}
-        className='btn btn-error w-20 m-1'
-      >
-        Sign out
-      </button>
     </>
   );
 };

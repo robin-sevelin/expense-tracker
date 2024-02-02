@@ -6,23 +6,26 @@ import { userAtom } from '@/store/atoms';
 import Link from 'next/link';
 import ThemeSelector from './ThemeSelector';
 import ProfileSection from '../mainPage/ProfileSection';
+import ProgressBar from '../ProgressBar';
 
 const Header = () => {
   const [user] = useAtom(userAtom);
 
   return (
-    <header className='flex items-center'>
-      <div className='flex justify-center'>
+    <>
+      <header className='flex justify-between'>
+        <div className='nav-section'>
+          {user.uid && <Navigation />}
+          <ThemeSelector />
+        </div>
+
         <Link href={'/'} className='btn btn-ghost text-xl'>
           EXPENSE TRACKER
         </Link>
         <ProfileSection />
-      </div>
-      <div className='nav-section'>
-        <ThemeSelector />
-        {user.uid && <Navigation />}
-      </div>
-    </header>
+      </header>
+      {user.uid && <ProgressBar />}
+    </>
   );
 };
 
