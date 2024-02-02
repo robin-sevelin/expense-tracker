@@ -30,12 +30,14 @@ const ProgressBar = () => {
   }
 
   return (
-    <section className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col justify-center items-center'>
       <div className=' p-2 m-1'>
-        {CURRENT_DATE.toLocaleString('en-US', {
-          month: 'long',
-        })}
-        : {sum} SEK
+        <h3 className='font-bold'>
+          {CURRENT_DATE.toLocaleString('en-US', {
+            month: 'long',
+          })}
+          : {sum} SEK
+        </h3>
       </div>
       <div
         className='radial-progress text-primary'
@@ -44,7 +46,7 @@ const ProgressBar = () => {
       >
         {percent} %
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -22,7 +22,7 @@ const ReccuringIncomes = ({ incomes }: Props) => {
   };
   return (
     <>
-      <h2>Reccuring Incomes</h2>
+      <h3>Reccuring Incomes</h3>
       <div className=' flex max-w-3/4 flex-wrap gap-5 justify-center '>
         {incomes.map((income) => (
           <div

@@ -5,6 +5,7 @@ import { Provider } from 'jotai';
 import ThemeProvider from './contexts/ThemeContext';
 import ThemeWrapper from './contexts/ThemeWrapper';
 import Footer from './components/mainPage/Footer';
+import ProgressBar from './components/ProgressBar';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -26,7 +27,6 @@ export default function RootLayout({
           <ThemeProvider>
             <ThemeWrapper>
               <Header />
-
               <main>{children}</main>
               <Footer />
             </ThemeWrapper>

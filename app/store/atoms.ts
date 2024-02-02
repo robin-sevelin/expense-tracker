@@ -5,7 +5,7 @@ import {
   TRANSACTIONS_BASE_VALUES,
   TRANSACTION_BASE_VALUES,
   USER_BASE_VALUES,
-} from '../constants/constants';
+} from '@/constants/constants';
 
 export const loadingAtom = atom(false);
 export const loggedInAtom = atom(false);

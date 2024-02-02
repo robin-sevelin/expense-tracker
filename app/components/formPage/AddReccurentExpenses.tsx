@@ -37,7 +37,7 @@ const AddReccurentExpenses = () => {
   };
 
   return (
-    <section>
+    <>
       <div className='flex flex-col justify-center items-center'>
         <h2 className='text-3xl font-bold'>SET RECCURING EXPENSES</h2>
         <form onSubmit={handleSubmit(submitData)}>
@@ -96,7 +96,7 @@ const AddReccurentExpenses = () => {
           isModalOpen={isModalOpen}
         />
       )}
-    </section>
+    </>
   );
 };
 

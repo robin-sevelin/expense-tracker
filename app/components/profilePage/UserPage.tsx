@@ -17,6 +17,19 @@ const UserPage = () => {
   return (
     <>
       <div className='flex flex-col justify-center items-center'>
+        <picture className=' p-2 m-1'>
+          <img
+            src={user.photoURL}
+            alt={user.displayName}
+            width={75}
+            height={75}
+            loading='lazy'
+            className=' rounded-full shadow-2xl '
+          />
+        </picture>
+        <h2>{user.displayName}</h2>
+        <p>{user.email}</p>
+        <p></p>
         <p>
           If you need to set or update your budget or recurrent values go to
           EDIT BUDGET.
@@ -28,8 +41,6 @@ const UserPage = () => {
           <table className='table'>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Email</th>
                 <th>Budget amount</th>
                 <th>Reccuring expenses amount</th>
                 <th>Reccuring incomes amount</th>
@@ -37,8 +48,6 @@ const UserPage = () => {
             </thead>
             <tbody>
               <tr>
-                <th>{user.displayName}</th>
-                <td>{user.email}</td>
                 <td>{balance} SEK</td>
                 <td>{recurringExpenseSum} SEK</td>
                 <td>{recurringIncomeSum} SEK</td>

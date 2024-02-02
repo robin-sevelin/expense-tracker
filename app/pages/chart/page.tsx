@@ -1,12 +1,9 @@
-'use client';
-
 import ChartPage from '@/components/chartPage/ChartPage';
-import { useAuthUser } from '@/hooks/useAuthUser';
 
 const Chart = () => {
-  useAuthUser();
   return (
     <>
+      <h2 className='text-5xl font-bold flex justify-center'>CHART</h2>
       <ChartPage />
     </>
   );

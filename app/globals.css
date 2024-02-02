@@ -21,7 +21,7 @@ input {
 }
 
 main {
-  @apply w-3/5 m-auto  flex flex-col justify-center items-center bg-base-100 min-h-[calc(100vh-50px)]  p-5 rounded-xl;
+  @apply max-w-[1200px] m-auto  min-h-[calc(100vh-50px)]  p-5 rounded-xl bg-base-100 mt-20;
 }
 
 footer {
@@ -29,11 +29,11 @@ footer {
 }
 
 header {
-  @apply bg-base-100 flex justify-between navbar;
+  @apply bg-base-100 flex justify-between navbar  m-auto;
 }
 
 .theme-dropdown {
-  @apply shadow menu dropdown-content z-[1] bg-base-100 rounded-box max-h-[600px] w-[220px]   overflow-y-scroll;
+  @apply shadow menu dropdown-content z-[1] bg-base-100 rounded-box max-h-[600px] w-[220px]  overflow-y-scroll;
 }
 
 .with-border {

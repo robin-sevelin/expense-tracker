@@ -125,16 +125,9 @@ export const FOOTER_NAV_IMGS = [
   },
   {
     id: 1,
-    src: 'linkedIn.png',
+    src: '/linkedIn.png',
     alt: 'linkedIn logo',
     url: 'https://www.linkedin.com/in/robin-sevelin-336b20168/',
-  },
-  { id: 2, src: '/next.svg', alt: 'next logo', url: 'https://nextjs.org/' },
-  {
-    id: 3,
-    src: '/vercel.svg',
-    alt: 'vercel logo',
-    url: 'https://vercel.com/templates?framework=next.js',
   },
 ];
 

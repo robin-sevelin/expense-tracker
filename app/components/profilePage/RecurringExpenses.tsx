@@ -22,7 +22,7 @@ const RecurringExpenses = ({ expenses }: Props) => {
   };
   return (
     <>
-      <h2>Reccuring Expenses</h2>
+      <h3>Reccuring Expenses</h3>
       <div className=' flex max-w-3/4 flex-wrap gap-5 justify-center '>
         {expenses?.map((expense) => (
           <div

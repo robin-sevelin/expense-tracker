@@ -7,13 +7,13 @@ const Footer = () => {
     <footer>
       {FOOTER_NAV_IMGS.map((img) => (
         <Link href={img.url} key={img.id} target='blank'>
-          <picture className='bg-white flex-col justify-center items-center w-20 h-20 flex rounded-full  p-3'>
+          <picture className='bg-white flex-col justify-center items-center  flex rounded-full  p-3'>
             <img
               src={img.src}
               alt={img.alt}
               loading='lazy'
-              width={50}
-              height={50}
+              width={35}
+              height={35}
             />
           </picture>
         </Link>

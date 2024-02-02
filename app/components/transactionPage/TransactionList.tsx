@@ -26,7 +26,7 @@ const TransactionList = ({ transactions }: Props) => {
   };
 
   return (
-    <section className='flex flex-wrap gap-5 justify-center '>
+    <div className='flex flex-wrap gap-5 justify-center '>
       {filtredTransactions?.map((transaction) => {
         const transactionDate = new Date(transaction.date);
         const day = transactionDate.getDate();
@@ -68,7 +68,7 @@ const TransactionList = ({ transactions }: Props) => {
           isModalOpen={isModalOpen}
         />
       )}
-    </section>
+    </div>
   );
 };
 

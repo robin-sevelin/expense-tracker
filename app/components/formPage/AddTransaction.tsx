@@ -14,17 +14,17 @@ import { useAtom } from 'jotai';
 import { CURRENT_DATE } from '@/constants/constants';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';
 import { ITransaction } from '@/models/ITransaction';
+import { useGetTransactions } from '@/hooks/useGetTransactions';
+import { createTransactionDocument } from '../../../firebase/operations/createTransaction';
+import Loading from '../sharedComponents/Loading';
 
-interface Props {
-  onHandleSubmit: (user: IUser, data: ITransaction, date: Date) => void;
-}
-
-const AddTransaction = ({ onHandleSubmit }: Props) => {
+const AddTransaction = () => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [date, setDate] = useState(CURRENT_DATE);
   const [type, setType] = useState('expense');
   const [user] = useAtom(userAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isLoading } = useGetTransactions();
 
   const {
     register,
@@ -36,20 +36,22 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   });
 
   const submitData = async (data: ITransaction) => {
-    onHandleSubmit(user, data, date);
+    await createTransactionDocument(user, data, date);
     setIsSubmitted(true);
     reset();
-    setIsModalOpen(true);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const handleClick = (type: string) => {
     setType(type);
   };
 
   return (
-    <section>
+    <>
       <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-5xl font-bold'>ADD TRANSACTION</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <div>
             <legend>Select date</legend>
@@ -137,7 +139,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
           isModalOpen={isModalOpen}
         />
       )}
-    </section>
+    </>
   );
 };
 

@@ -32,6 +32,7 @@ export const useGetTransactionById = (id: string) => {
           }
 
           setIsSubmitted(false);
+          setIsLoading(false);
         };
 
         getData();

@@ -1,15 +1,16 @@
 'use client';
 
 import React from 'react';
-import { ITransaction } from '@/models/ITransaction';
 import Loading from '@/components/sharedComponents/Loading';
+import { useGetTransactionById } from '@/hooks/useGetTransactionById';
 
 interface Props {
-  transaction: ITransaction;
+  id: string;
 }
 
-const TransactionById = ({ transaction }: Props) => {
-  if (!transaction) {
+const TransactionById = ({ id }: Props) => {
+  const { isLoading, transaction } = useGetTransactionById(id);
+  if (!isLoading) {
     return <Loading />;
   }
   return (

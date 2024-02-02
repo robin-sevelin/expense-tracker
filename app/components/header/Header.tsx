@@ -18,11 +18,10 @@ const Header = () => {
           {user.uid && <Navigation />}
           <ThemeSelector />
         </div>
-
         <Link href={'/'} className='btn btn-ghost text-xl'>
           EXPENSE TRACKER
         </Link>
-        <ProfileSection />
+        <div>{user.uid && <ProfileSection />}</div>
       </header>
       {user.uid && <ProgressBar />}
     </>
