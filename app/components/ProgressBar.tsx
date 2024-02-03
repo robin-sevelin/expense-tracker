@@ -6,11 +6,10 @@ import { useGetCurrentSum } from '@/hooks/useGetCurrentSum';
 import { useGetRecurringExpenses } from '@/hooks/useGetRecurringExpenses';
 import { useGetRecurringIncomes } from '@/hooks/useGetRecurringIncomes';
 import { useGetTransactions } from '@/hooks/useGetTransactions';
-import Loading from './sharedComponents/Loading';
 
 const ProgressBar = () => {
   const { sum } = useGetCurrentSum();
-  const { balance, isLoading } = useGetBalance();
+  const { balance } = useGetBalance();
 
   let percent = Math.round((sum / balance) * 100);
 
@@ -25,12 +24,8 @@ const ProgressBar = () => {
     '--value': percent,
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col justify-center items-center mt-5'>
       <div className=' p-2 m-1'>
         <h3 className='font-bold'>
           {CURRENT_DATE.toLocaleString('en-US', {
@@ -46,6 +41,7 @@ const ProgressBar = () => {
       >
         {percent} %
       </div>
+      <p>remains</p>
     </div>
   );
 };

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 interface Props {
   onHandleChange: () => void;
@@ -10,14 +8,14 @@ const CookieBanner = ({ onHandleChange }: Props) => {
     onHandleChange();
   };
   return (
-    <div>
+    <div className='flex justify-center '>
       <input
         type='checkbox'
         id='my_modal_6'
         className='modal-toggle'
         onChange={handleCheckboxChange}
       />
-      <div role='dialog'>
+      <div role='dialog '>
         <div className='modal-box bg-base-200 '>
           <h3 className='font-bold text-lg'>Cookie conscent</h3>
           <div className='collapse bg-base-200'>
@@ -50,8 +48,7 @@ const CookieBanner = ({ onHandleChange }: Props) => {
               </p>
             </div>
           </div>
-
-          <button className='modal-action'>
+          <button className='modal-action flex-col justify-center'>
             <label htmlFor='my_modal_6' className='btn btn-primary'>
               Accept
             </label>

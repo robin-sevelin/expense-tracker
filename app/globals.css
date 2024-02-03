@@ -21,11 +21,11 @@ input {
 }
 
 main {
-  @apply max-w-[1200px] m-auto  min-h-[calc(100vh-50px)]  p-5 rounded-xl bg-base-100 mt-20;
+  @apply max-w-[1200px] m-auto  min-h-[calc(100vh-320px)]  p-5 rounded-xl bg-base-100 mt-20;
 }
 
 footer {
-  @apply flex justify-center bg-base-100 items-center gap-5 py-5 absolute w-full mb-0;
+  @apply flex justify-center flex-col bg-base-100 items-center gap-5 py-5 absolute w-full mb-0;
 }
 
 header {

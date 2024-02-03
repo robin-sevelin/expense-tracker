@@ -129,6 +129,14 @@ export const FOOTER_NAV_IMGS = [
     alt: 'linkedIn logo',
     url: 'https://www.linkedin.com/in/robin-sevelin-336b20168/',
   },
+  {
+    id: 2,
+    src: '/email.png',
+    alt: 'email',
+    url: 'mailto:robin.sevelin@medieinstitutet.se',
+  },
 ];
 
 export const EXPENSE_TRACKER_LOGO = '/expense-tracker.svg';
+
+export const VIDEO_BG = '/pexels-kindel-media-7055354 (Original).mp4';
