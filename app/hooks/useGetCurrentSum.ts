@@ -11,20 +11,20 @@ import {
   sumAtom,
   transactionsAtom,
 } from '../store/atoms';
-import { useGetIncomeSum } from './useGetIncomeSum';
-import { useGetExpenseSum } from './useGetExpenseSum';
+
+import { useGetRecurringExpenseSum } from './useGetRecurringExpenseSum';
 import { useGetBalance } from './useGetBalance';
+import { useGetRecurringIncomeSum } from './useGetRecurringIncomeSum';
 
 export const useGetCurrentSum = () => {
   const [recurringTransactions] = useAtom(recurringTransactionAtom);
-
   const [transactions] = useAtom(transactionsAtom);
   const [sum, setSum] = useAtom(sumAtom);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
   const [dataFetched, setDataFetched] = useState(false);
   const { balance } = useGetBalance();
-  const { recurringIncomeSum } = useGetIncomeSum();
-  const { recurringExpenseSum } = useGetExpenseSum();
+  const { recurringIncomeSum } = useGetRecurringIncomeSum();
+  const { recurringExpenseSum } = useGetRecurringExpenseSum();
 
   useEffect(() => {
     if (isSubmitted || !dataFetched || balance) {

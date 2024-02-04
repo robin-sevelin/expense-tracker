@@ -54,7 +54,5 @@ export const useGetRecurringTransactions = () => {
     dataFetched,
   ]);
 
-  console.log(recurringTransactions);
-
   return { isLoading, recurringTransactions };
 };

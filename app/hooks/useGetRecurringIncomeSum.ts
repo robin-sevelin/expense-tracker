@@ -3,9 +3,9 @@ import { submitAtom } from '@/store/atoms';
 import { useEffect, useState } from 'react';
 import { useGetRecurringTransactions } from './useGetRecurringTransactions';
 
-export const useGetIncomeSum = () => {
+export const useGetRecurringIncomeSum = () => {
   const { recurringTransactions } = useGetRecurringTransactions();
-  const [recurringIncomeSum, setReccuringIncomesSum] = useState(0);
+  const [recurringIncomeSum, setReccuringIncomeSum] = useState(0);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const useGetIncomeSum = () => {
         (transaction) => transaction.type === 'income'
       );
       const incomeSum = incomes.reduce((a, b) => a + b.amount, 0);
-      setReccuringIncomesSum(incomeSum);
+      setReccuringIncomeSum(incomeSum);
       setIsSubmitted(false);
     }
   }, [recurringTransactions, isSubmitted, setIsSubmitted]);

@@ -1,15 +1,15 @@
 import React from 'react';
 import { useGetTransactions } from '@/hooks/useGetTransactions';
 import { useGetFilteredSum } from '@/hooks/useGetfilteredSum';
-import { useGetExpenseSum } from '@/hooks/useGetExpenseSum';
-import { useGetIncomeSum } from '@/hooks/useGetIncomeSum';
 import { useGetCurrentSum } from '@/hooks/useGetCurrentSum';
+import { useGetRecurringExpenseSum } from '@/hooks/useGetRecurringExpenseSum';
+import { useGetRecurringIncomeSum } from '@/hooks/useGetRecurringIncomeSum';
 
 const FilteredSummary = () => {
   const { incomeSum, expenseSum } = useGetFilteredSum();
   const { sum } = useGetCurrentSum();
-  const { recurringExpenseSum } = useGetExpenseSum();
-  const { recurringIncomeSum } = useGetIncomeSum();
+  const { recurringExpenseSum } = useGetRecurringExpenseSum();
+  const { recurringIncomeSum } = useGetRecurringIncomeSum();
   useGetTransactions();
   return (
     <div className='overflow-x-auto'>

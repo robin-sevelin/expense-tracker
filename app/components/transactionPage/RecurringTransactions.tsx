@@ -7,6 +7,8 @@ import React, { useState } from 'react';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';
 import { deleteReccuringTransaction } from '@/../firebase/operations/deleteRecurringTransaction';
 import { useGetRecurringTransactions } from '@/hooks/useGetRecurringTransactions';
+import { TRANSACTION_TYPES } from '@/constants/constants';
+import FilteredSummary from '../sharedComponents/FilteredSummary';
 
 const RecurringTransactions = () => {
   const { recurringTransactions } = useGetRecurringTransactions();
@@ -21,6 +23,7 @@ const RecurringTransactions = () => {
   };
   return (
     <>
+      <FilteredSummary />
       <div className=' flex max-w-3/4 flex-wrap gap-5 justify-center '>
         {recurringTransactions?.map((transaction) => (
           <div
@@ -29,8 +32,14 @@ const RecurringTransactions = () => {
           >
             <div className='card-body  items-center text-center'>
               <h3>{transaction.title}</h3>
-              <p>{transaction.amount} kr</p>
-              <p>day of month: {transaction.date}</p>
+              <p>
+                Amount:{' '}
+                {transaction.type === TRANSACTION_TYPES.EXPENSE && (
+                  <span>-</span>
+                )}
+                {transaction.amount} kr
+              </p>
+              <p>Day of month: {transaction.date}</p>
               <div className='card-actions justify-end'>
                 <button
                   className='btn btn-error w-20'

@@ -5,13 +5,13 @@ import { useAuthUser } from '@/hooks/useAuthUser';
 import Link from 'next/link';
 import { useAtom } from 'jotai';
 import { balanceAtom } from '@/store/atoms';
-import { useGetExpenseSum } from '@/hooks/useGetExpenseSum';
-import { useGetIncomeSum } from '@/hooks/useGetIncomeSum';
+import { useGetRecurringExpenseSum } from '@/hooks/useGetRecurringExpenseSum';
+import { useGetRecurringIncomeSum } from '@/hooks/useGetRecurringIncomeSum';
 
 const UserPage = () => {
   const [balance] = useAtom(balanceAtom);
-  const { recurringExpenseSum } = useGetExpenseSum();
-  const { recurringIncomeSum } = useGetIncomeSum();
+  const { recurringExpenseSum } = useGetRecurringExpenseSum();
+  const { recurringIncomeSum } = useGetRecurringIncomeSum();
   const { user } = useAuthUser();
 
   return (
