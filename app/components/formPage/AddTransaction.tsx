@@ -14,7 +14,7 @@ import { CURRENT_DATE, TRANSACTION_TYPES } from '@/constants/constants';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';
 import { ITransaction } from '@/models/ITransaction';
 import { useGetTransactions } from '@/hooks/useGetTransactions';
-import { createTransactionDocument } from '../../../firebase/operations/createTransaction';
+import { createTransactionDocument } from '@/../firebase/operations/createTransaction';
 import Loading from '../sharedComponents/Loading';
 
 const AddTransaction = () => {

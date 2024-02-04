@@ -5,7 +5,7 @@ import { useGetCalenderDays } from '@/hooks/useGetCalenderDays';
 import { useGetFilteredTransactions } from '@/hooks/useGetFIlteredTransaction';
 import { ITransaction } from '@/models/ITransaction';
 import ModalTransactionDay from '@/components/sharedComponents/ModalTransactionDay';
-import { DAY_BASE_VALUES } from '@/constants/constants';
+import { DAY_BASE_VALUES } from '@/constants/baseValues';
 
 interface Props {
   transactions: ITransaction[];

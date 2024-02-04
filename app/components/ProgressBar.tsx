@@ -4,7 +4,6 @@ import { CURRENT_DATE } from '@/constants/constants';
 import { useGetBalance } from '@/hooks/useGetBalance';
 import { useGetCurrentSum } from '@/hooks/useGetCurrentSum';
 import { useGetRecurringTransactions } from '@/hooks/useGetRecurringTransactions';
-
 import { useGetTransactions } from '@/hooks/useGetTransactions';
 
 const ProgressBar = () => {

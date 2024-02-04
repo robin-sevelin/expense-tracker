@@ -3,7 +3,6 @@
 import React from 'react';
 import { useGetCurrentSum } from '@/hooks/useGetCurrentSum';
 import { CURRENT_DATE } from '@/constants/constants';
-
 import { useGetTransactions } from '@/hooks/useGetTransactions';
 import { useGetRecurringTransactions } from '@/hooks/useGetRecurringTransactions';
 
