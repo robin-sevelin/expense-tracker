@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { transactionSchema } from '@/models/FormSchema';
 import ExpenseCategories from '@/components/sharedComponents/ExpenseCategories';
 import IncomeCategories from '@/components/sharedComponents/IncomeCategories';
-import { IUser } from '@/models/IUser';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { submitAtom, userAtom } from '@/store/atoms';
@@ -52,6 +51,7 @@ const AddTransaction = () => {
   return (
     <>
       <div className='flex flex-col justify-center items-center'>
+        <h2 className='text-3xl font-bold'>SET TRANSACTION</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <div>
             <legend>Select date</legend>

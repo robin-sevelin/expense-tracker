@@ -2,25 +2,23 @@ import { IUser } from '@/models/IUser';
 import { doc, setDoc, collection, arrayUnion } from '../firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
-import { TRANSACTION_TYPES } from '@/constants/constants';
-import { IRecurringExpense } from '@/models/BudgetValues';
+import { IRecurringTransaction } from '@/models/IRecurringTransaction';
 
-export const createExpenseDocument = async (
+export const createRecurringTransactionDocument = async (
   userAuth: IUser,
-  expense: IRecurringExpense
+  expense: IRecurringTransaction
 ) => {
   const updatedExpense = {
     ...expense,
     id: uuidv4(),
     date: expense.date.toString(),
-    type: TRANSACTION_TYPES.RECURRING_EXPENSE,
   };
 
   const expenseCollectionRef = collection(
     db,
-    'users',
+    'userTransactions',
     userAuth?.uid,
-    'recurringExpenses'
+    'recurringTransactions'
   );
 
   const expenseDocRef = doc(expenseCollectionRef, userAuth.uid);
@@ -29,7 +27,7 @@ export const createExpenseDocument = async (
     await setDoc(
       expenseDocRef,
       {
-        expenses: arrayUnion(updatedExpense),
+        transactions: arrayUnion(updatedExpense),
       },
       { merge: true }
     );

@@ -1,42 +1,40 @@
+'use client';
+
 import { useAuthUser } from '@/hooks/useAuthUser';
-import { IRecurringExpense } from '@/models/BudgetValues';
 import { submitAtom } from '@/store/atoms';
-import { deleteReccuringExpense } from '@/../firebase/operations/deleteReccuringExpense';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';
+import { deleteReccuringTransaction } from '@/../firebase/operations/deleteRecurringTransaction';
+import { useGetRecurringTransactions } from '@/hooks/useGetRecurringTransactions';
 
-interface Props {
-  expenses: IRecurringExpense[];
-}
-
-const RecurringExpenses = ({ expenses }: Props) => {
+const RecurringTransactions = () => {
+  const { recurringTransactions } = useGetRecurringTransactions();
   const { user } = useAuthUser();
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = async (id: string) => {
-    await deleteReccuringExpense(user, id);
+    await deleteReccuringTransaction(user, id);
     setIsSubmitted(true);
     setIsModalOpen(true);
   };
   return (
     <>
-      <h3>Reccuring Expenses</h3>
       <div className=' flex max-w-3/4 flex-wrap gap-5 justify-center '>
-        {expenses?.map((expense) => (
+        {recurringTransactions?.map((transaction) => (
           <div
-            key={expense.id}
+            key={transaction.id}
             className='card w-50 bg-neutral text-neutral-content mb-3'
           >
             <div className='card-body  items-center text-center'>
-              <h3>{expense.title}</h3>
-              <p>{expense.amount} kr</p>
-              <p>day of month: {expense.date}</p>
+              <h3>{transaction.title}</h3>
+              <p>{transaction.amount} kr</p>
+              <p>day of month: {transaction.date}</p>
               <div className='card-actions justify-end'>
                 <button
                   className='btn btn-error w-20'
-                  onClick={() => handleDelete(expense.id)}
+                  onClick={() => handleDelete(transaction.id)}
                 >
                   Remove
                 </button>
@@ -55,4 +53,4 @@ const RecurringExpenses = ({ expenses }: Props) => {
   );
 };
 
-export default RecurringExpenses;
+export default RecurringTransactions;

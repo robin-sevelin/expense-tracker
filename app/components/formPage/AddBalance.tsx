@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 import { createBalanceDocument } from '@/../firebase/operations/createBalance';
 import { useGetBalance } from '@/hooks/useGetBalance';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';
-import { IBalance } from '@/models/BudgetValues';
+import { IBalance } from '@/models/IBalance.ts';
 import Loading from '../sharedComponents/Loading';
 
 const AddBalance = () => {

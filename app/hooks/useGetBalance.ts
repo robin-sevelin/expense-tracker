@@ -15,7 +15,7 @@ export const useGetBalance = () => {
     if (isSubmitted || !balance || !dataFetched) {
       const getBalance = async () => {
         try {
-          const docRef = doc(db, 'users', user.uid, 'balance', user.uid);
+          const docRef = doc(db, 'userBudgets', user.uid, 'balance', user.uid);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const docData = docSnap.data();

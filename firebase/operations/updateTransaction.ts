@@ -11,7 +11,7 @@ export const updateTransaction = async (
 ) => {
   const transactionCollectionRef = doc(
     db,
-    'users',
+    'userTransactions',
     user.uid,
     'transactions',
     user.uid

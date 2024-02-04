@@ -1,6 +1,6 @@
 import { IUser } from '../models/IUser';
 import { ITransaction } from '../models/ITransaction';
-import { IRecurringExpense, IRecurringIncome } from '../models/BudgetValues';
+import { IRecurringTransaction } from '@/models/IRecurringTransaction';
 
 export const ROUTES = [
   { id: 0, url: '/', text: 'Home' },
@@ -43,8 +43,7 @@ export const TRANSACTION_BASE_VALUES: ITransaction = {
   date: CURRENT_DATE,
 };
 
-export const EXPENSES_BASE_VALUES: IRecurringExpense[] = [];
-export const INCOMES_BASE_VALUES: IRecurringIncome[] = [];
+export const RECURRING_TRANSACTIONS_BASE_VALUES: IRecurringTransaction[] = [];
 export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 
 export const TRANSACTION_TYPES = {

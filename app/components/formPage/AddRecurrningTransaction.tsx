@@ -3,20 +3,18 @@
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { submitAtom, userAtom } from '@/store/atoms';
-import { expenseSchema } from '@/models/FormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';
-import { createExpenseDocument } from '@/../firebase/operations/createExpense';
-import { useGetExpenseSum } from '@/hooks/useGetExpenseSum';
 import { useGetDaysInMonthArray } from '@/hooks/useGetDaysInMonthArray';
-import { IRecurringExpense } from '@/models/BudgetValues';
+import { recurringTransactionSchema } from '@/models/FormSchema';
+import { createRecurringTransactionDocument } from '../../../firebase/operations/createRecurringTransaction';
+import { IRecurringTransaction } from '@/models/IRecurringTransaction';
 
-const AddReccurentExpenses = () => {
+const AddRecurringTransaction = () => {
   const [user] = useAtom(userAtom);
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { recurringExpenseSum } = useGetExpenseSum();
   const { daysInMonthArray } = useGetDaysInMonthArray();
 
   const {
@@ -24,12 +22,12 @@ const AddReccurentExpenses = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IRecurringExpense>({
-    resolver: zodResolver(expenseSchema),
+  } = useForm<IRecurringTransaction>({
+    resolver: zodResolver(recurringTransactionSchema),
   });
 
-  const submitData = async (expense: IRecurringExpense) => {
-    await createExpenseDocument(user, expense);
+  const submitData = async (expense: IRecurringTransaction) => {
+    await createRecurringTransactionDocument(user, expense);
 
     setIsSubmitted(true);
     reset();
@@ -39,9 +37,30 @@ const AddReccurentExpenses = () => {
   return (
     <>
       <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-3xl font-bold'>SET RECCURING EXPENSES</h2>
+        <h2 className='text-3xl font-bold'>SET RECCURING TRANSACTION</h2>
         <form onSubmit={handleSubmit(submitData)}>
-          <h3>Current reccuring expenses {recurringExpenseSum} SEK</h3>
+          <fieldset>
+            <legend className='input-label'>Transaction Type</legend>
+            <div className='join'>
+              <input
+                className='join-item btn'
+                aria-label='EXPENSE'
+                type='radio'
+                {...register('type')}
+                name='type'
+                value={'expense'}
+                defaultChecked
+              />
+              <input
+                className='join-item btn'
+                aria-label='INCOME'
+                type='radio'
+                {...register('type')}
+                name='type'
+                value={'income'}
+              />
+            </div>
+          </fieldset>
           <div className='join'>
             <fieldset>
               <label htmlFor='title' className='input-label'>
@@ -100,4 +119,4 @@ const AddReccurentExpenses = () => {
   );
 };
 
-export default AddReccurentExpenses;
+export default AddRecurringTransaction;

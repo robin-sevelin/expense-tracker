@@ -16,7 +16,7 @@ export const useGetTransactionById = (id: string) => {
     if (id || isSubmitted) {
       try {
         const getData = async () => {
-          const docRef = doc(db, 'users', user.uid, 'transactions', user.uid);
+          const docRef = doc(db, 'transactions', user.uid);
           const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {

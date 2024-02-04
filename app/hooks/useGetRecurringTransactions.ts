@@ -2,34 +2,36 @@ import { db } from '@/../firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { reccuringExpenseAtom, submitAtom, userAtom } from '../store/atoms';
-import { IRecurringExpense } from '@/models/BudgetValues';
+import { IRecurringTransaction } from '@/models/IRecurringTransaction';
+import { recurringTransactionAtom, submitAtom, userAtom } from '@/store/atoms';
 
-export const useGetRecurringExpenses = () => {
+export const useGetRecurringTransactions = () => {
   const [user] = useAtom(userAtom);
-  const [recurringExpenses, setExpenses] = useAtom(reccuringExpenseAtom);
+  const [recurringTransactions, setRecurringTransactions] = useAtom(
+    recurringTransactionAtom
+  );
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
   const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
-    if (isSubmitted || !dataFetched || recurringExpenses.length === 0) {
+    if (isSubmitted || !dataFetched || recurringTransactions.length === 0) {
       const getExpense = async () => {
         try {
           const docRef = doc(
             db,
-            'users',
+            'userTransactions',
             user.uid,
-            'recurringExpenses',
+            'recurringTransactions',
             user.uid
           );
           const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {
             const docData = docSnap.data();
-            const expenseData = docData.expenses;
+            const expenseData = docData.transactions;
 
-            setExpenses(expenseData as IRecurringExpense[]);
+            setRecurringTransactions(expenseData as IRecurringTransaction[]);
           } else {
             // console.log('No such document for recurring expenses!');
           }
@@ -44,13 +46,15 @@ export const useGetRecurringExpenses = () => {
       getExpense();
     }
   }, [
-    setExpenses,
+    setRecurringTransactions,
     user,
     setIsSubmitted,
     isSubmitted,
-    recurringExpenses.length,
+    recurringTransactions.length,
     dataFetched,
   ]);
 
-  return { isLoading, recurringExpenses };
+  console.log(recurringTransactions);
+
+  return { isLoading, recurringTransactions };
 };

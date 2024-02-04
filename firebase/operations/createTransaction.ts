@@ -17,7 +17,7 @@ export const createTransactionDocument = async (
 
   const transactionsCollectionRef = collection(
     db,
-    'users',
+    'userTransactions',
     userAuth?.uid,
     'transactions'
   );

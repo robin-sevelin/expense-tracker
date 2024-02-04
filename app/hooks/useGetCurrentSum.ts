@@ -1,4 +1,3 @@
-import { reccuringIncomeAtom } from '@/store/atoms';
 import { useEffect, useState } from 'react';
 import {
   CURRENT_MONTH,
@@ -7,7 +6,7 @@ import {
 } from '../constants/constants';
 import { useAtom } from 'jotai';
 import {
-  reccuringExpenseAtom,
+  recurringTransactionAtom,
   submitAtom,
   sumAtom,
   transactionsAtom,
@@ -17,8 +16,8 @@ import { useGetExpenseSum } from './useGetExpenseSum';
 import { useGetBalance } from './useGetBalance';
 
 export const useGetCurrentSum = () => {
-  const [reccuringIncomes] = useAtom(reccuringIncomeAtom);
-  const [reccuringExpenses] = useAtom(reccuringExpenseAtom);
+  const [recurringTransactions] = useAtom(recurringTransactionAtom);
+
   const [transactions] = useAtom(transactionsAtom);
   const [sum, setSum] = useAtom(sumAtom);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
@@ -57,8 +56,7 @@ export const useGetCurrentSum = () => {
     balance,
     setSum,
     transactions,
-    reccuringExpenses,
-    reccuringIncomes,
+    recurringTransactions,
     recurringExpenseSum,
     recurringIncomeSum,
     isSubmitted,

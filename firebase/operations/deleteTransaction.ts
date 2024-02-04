@@ -6,7 +6,7 @@ import { db } from '../firestore';
 export const deleteTransactionObject = async (userAuth: IUser, id: string) => {
   const transactionCollectionRef = doc(
     db,
-    'users',
+    'userTransactions',
     userAuth?.uid,
     'transactions',
     userAuth?.uid

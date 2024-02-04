@@ -2,7 +2,7 @@ import { CURRENT_DATE } from '@/constants/constants';
 import { IUser } from '@/models/IUser';
 import { doc, getDoc, setDoc, updateDoc, collection } from '../firestore';
 import { db } from '../firestore';
-import { IBalance } from '@/models/BudgetValues';
+import { IBalance } from '@/models/IBalance.ts';
 
 export const createBalanceDocument = async (
   userAuth: IUser,
@@ -10,7 +10,7 @@ export const createBalanceDocument = async (
 ) => {
   const balancesCollectionRef = collection(
     db,
-    'users',
+    'userBudgets',
     userAuth?.uid,
     'balance'
   );

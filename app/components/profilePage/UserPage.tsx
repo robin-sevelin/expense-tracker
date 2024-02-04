@@ -30,10 +30,7 @@ const UserPage = () => {
         <h2>{user.displayName}</h2>
         <p>{user.email}</p>
         <p></p>
-        <p>
-          If you need to set or update your budget or recurrent values go to
-          EDIT BUDGET.
-        </p>
+        <p>If you need to set or update your budget go to EDIT BUDGET.</p>
         <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
           <span>Edit budget</span>
         </Link>

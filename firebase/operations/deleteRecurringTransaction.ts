@@ -1,14 +1,17 @@
 import { IUser } from '@/models/IUser';
 import { doc, getDoc, updateDoc } from '../firestore';
 import { db } from '../firestore';
-import { IRecurringExpense } from '@/models/BudgetValues';
+import { IRecurringTransaction } from '@/models/IRecurringTransaction';
 
-export const deleteReccuringExpense = async (userAuth: IUser, id: string) => {
+export const deleteReccuringTransaction = async (
+  userAuth: IUser,
+  id: string
+) => {
   const transactionCollectionRef = doc(
     db,
-    'users',
+    'userTransactions',
     userAuth?.uid,
-    'recurringExpenses',
+    'recurringTransactions',
     userAuth?.uid
   );
 
@@ -18,7 +21,7 @@ export const deleteReccuringExpense = async (userAuth: IUser, id: string) => {
 
     if (existingData) {
       const updatedTransactions = existingData.expenses.filter(
-        (expense: IRecurringExpense) => expense.id !== id
+        (expense: IRecurringTransaction) => expense.id !== id
       );
 
       await updateDoc(transactionCollectionRef, {
