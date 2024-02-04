@@ -37,6 +37,7 @@ const AddTransaction = () => {
   const submitData = async (data: ITransaction) => {
     await createTransactionDocument(user, data, date);
     setIsSubmitted(true);
+    setIsModalOpen(true);
     reset();
   };
 

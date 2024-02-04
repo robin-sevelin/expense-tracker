@@ -22,3 +22,6 @@ export const themeAtom = atom('dark');
 export const recurringTransactionAtom = atom(
   RECURRING_TRANSACTIONS_BASE_VALUES
 );
+
+export const recurringIncomeSumAtom = atom(0);
+export const recurringExpenseSumAtom = atom(0);

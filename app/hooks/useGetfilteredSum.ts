@@ -1,3 +1,7 @@
+import {
+  recurringExpenseSumAtom,
+  recurringIncomeSumAtom,
+} from './../store/atoms';
 import { useEffect } from 'react';
 import { TRANSACTION_TYPES } from '../constants/constants';
 import { useAtom } from 'jotai';
@@ -8,7 +12,6 @@ import {
   expenseSumAtom,
   incomeSumAtom,
   filtredSumAtom,
-  recurringTransactionAtom,
 } from '@/store/atoms';
 
 export const useGetFilteredSum = () => {
@@ -18,10 +21,11 @@ export const useGetFilteredSum = () => {
   const [expenseSum, setExpenseSum] = useAtom(expenseSumAtom);
   const [incomeSum, setIncomeSum] = useAtom(incomeSumAtom);
   const [currentMonth] = useAtom(monthAtom);
-  const [recurringTransaction] = useAtom(recurringTransactionAtom);
+  const [recurringExpenseSum] = useAtom(recurringExpenseSumAtom);
+  const [recurringIncomeSum] = useAtom(recurringIncomeSumAtom);
 
   useEffect(() => {
-    if (recurringTransaction || incomeSum) {
+    if (recurringIncomeSum || recurringExpenseSum || incomeSum) {
       const countSum = () => {
         const currentMonthTransactions = transactions.filter((transaction) => {
           const transactionDate = new Date(transaction.date);
@@ -40,7 +44,11 @@ export const useGetFilteredSum = () => {
 
         const expenseSumValue = expenses.reduce((a, b) => a + b.amount, 0);
         const incomeSumValue = incomes.reduce((a, b) => a + b.amount, 0);
-        const diffSum = incomeSumValue - expenseSumValue;
+        const diffSum =
+          incomeSumValue -
+          expenseSumValue -
+          recurringExpenseSum +
+          recurringIncomeSum;
 
         setExpenseSum(expenseSumValue);
         setIncomeSum(incomeSumValue);
@@ -50,7 +58,9 @@ export const useGetFilteredSum = () => {
       countSum();
     }
   }, [
-    recurringTransaction,
+    ,
+    recurringIncomeSum,
+    recurringExpenseSum,
     balance,
     setSum,
     transactions,
