@@ -7,9 +7,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';
 import { useGetDaysInMonthArray } from '@/hooks/useGetDaysInMonthArray';
-import { IRecurrningTransaction } from '@/models/BudgetValues';
+
 import { recurringTransactionSchema } from '@/models/FormSchema';
 import { createRecurringTransactionDocument } from '../../../firebase/operations/createRecurringTransaction';
+import { TRANSACTION_TYPES } from '@/constants/constants';
+import { IRecurringTransaction } from '@/models/IRecurringTransaction';
 
 const AddRecurringTransaction = () => {
   const [user] = useAtom(userAtom);
@@ -22,11 +24,11 @@ const AddRecurringTransaction = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IRecurrningTransaction>({
+  } = useForm<IRecurringTransaction>({
     resolver: zodResolver(recurringTransactionSchema),
   });
 
-  const submitData = async (expense: IRecurrningTransaction) => {
+  const submitData = async (expense: IRecurringTransaction) => {
     await createRecurringTransactionDocument(user, expense);
 
     setIsSubmitted(true);
@@ -48,7 +50,7 @@ const AddRecurringTransaction = () => {
                 type='radio'
                 {...register('type')}
                 name='type'
-                value={'expense'}
+                value={TRANSACTION_TYPES.EXPENSE}
                 defaultChecked
               />
               <input
@@ -57,7 +59,7 @@ const AddRecurringTransaction = () => {
                 type='radio'
                 {...register('type')}
                 name='type'
-                value={'income'}
+                value={TRANSACTION_TYPES.INCOME}
               />
             </div>
           </fieldset>

@@ -2,6 +2,7 @@ import { useAtom } from 'jotai';
 import { recurringExpenseSumAtom, submitAtom } from '@/store/atoms';
 import { useEffect, useState } from 'react';
 import { useGetRecurringTransactions } from './useGetRecurringTransactions';
+import { TRANSACTION_TYPES } from '@/constants/constants';
 
 export const useGetRecurringExpenseSum = () => {
   const { recurringTransactions } = useGetRecurringTransactions();
@@ -13,7 +14,7 @@ export const useGetRecurringExpenseSum = () => {
   useEffect(() => {
     if (recurringTransactions || isSubmitted) {
       const expenses = recurringTransactions.filter(
-        (transaction) => transaction.type === 'expense'
+        (transaction) => transaction.type === TRANSACTION_TYPES.EXPENSE
       );
       const expenseSum = expenses.reduce((a, b) => a + b.amount, 0);
       setReccuringExpensesSum(expenseSum);

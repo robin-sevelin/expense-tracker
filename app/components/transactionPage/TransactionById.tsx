@@ -3,6 +3,7 @@
 import React from 'react';
 import Loading from '@/components/sharedComponents/Loading';
 import { useGetTransactionById } from '@/hooks/useGetTransactionById';
+import { TRANSACTION_TYPES } from '@/constants/constants';
 
 interface Props {
   id: string;
@@ -18,7 +19,8 @@ const TransactionById = ({ id }: Props) => {
       <div className='card-body items-center text-center'>
         <h2 className='card-title'>{transaction.title}</h2>
         <p>
-          Amount: {transaction.type === 'expense' && <span>-</span>}
+          Amount:{' '}
+          {transaction.type === TRANSACTION_TYPES.EXPENSE && <span>-</span>}
           {transaction.amount} kr
         </p>
         <p>Type: {transaction.type}</p>

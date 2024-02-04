@@ -7,10 +7,10 @@ import AddRecurringTransaction from './AddRecurrningTransaction';
 const TransactionTypeSelect = () => {
   const [form, setForm] = useState('one time');
   return (
-    <>
-      <div className='join'>
-        <fieldset>
-          <legend>Select transaction type</legend>
+    <div className=' flex flex-col m-5 p-5 justify-center items-center'>
+      <fieldset>
+        <legend>Select transaction type</legend>
+        <div className='join'>
           <input
             className='join-item btn'
             type='radio'
@@ -28,11 +28,10 @@ const TransactionTypeSelect = () => {
             onClick={() => setForm('recurring')}
             value={'recurring'}
           />
-        </fieldset>
-      </div>
-
+        </div>
+      </fieldset>
       {form === 'one time' ? <AddTransaction /> : <AddRecurringTransaction />}
-    </>
+    </div>
   );
 };
 

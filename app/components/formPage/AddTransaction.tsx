@@ -10,7 +10,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { submitAtom, userAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
-import { CURRENT_DATE } from '@/constants/constants';
+import { CURRENT_DATE, TRANSACTION_TYPES } from '@/constants/constants';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';
 import { ITransaction } from '@/models/ITransaction';
 import { useGetTransactions } from '@/hooks/useGetTransactions';
@@ -20,7 +20,7 @@ import Loading from '../sharedComponents/Loading';
 const AddTransaction = () => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [date, setDate] = useState(CURRENT_DATE);
-  const [type, setType] = useState('expense');
+  const [type, setType] = useState(TRANSACTION_TYPES.EXPENSE);
   const [user] = useAtom(userAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isLoading } = useGetTransactions();
@@ -72,9 +72,9 @@ const AddTransaction = () => {
                 aria-label='EXPENSE'
                 type='radio'
                 {...register('type')}
-                onClick={() => handleClick('expense')}
+                onClick={() => handleClick(TRANSACTION_TYPES.EXPENSE)}
                 name='type'
-                value={'expense'}
+                value={TRANSACTION_TYPES.EXPENSE}
                 defaultChecked
               />
               <input
@@ -82,16 +82,16 @@ const AddTransaction = () => {
                 aria-label='INCOME'
                 type='radio'
                 {...register('type')}
-                onClick={() => handleClick('income')}
+                onClick={() => handleClick(TRANSACTION_TYPES.INCOME)}
                 name='type'
-                value={'income'}
+                value={TRANSACTION_TYPES.INCOME}
               />
             </div>
           </fieldset>
 
           <fieldset>
             <legend className='input-label'>Transaction Category</legend>
-            {type === 'expense' ? (
+            {type === TRANSACTION_TYPES.EXPENSE ? (
               <ExpenseCategories register={register} />
             ) : (
               <IncomeCategories register={register} />

@@ -3,6 +3,10 @@ import { doc, setDoc, collection, arrayUnion } from '../firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { IRecurringTransaction } from '@/models/IRecurringTransaction';
+import {
+  RECURRING_TRANSACTIONS,
+  USER_TRANSACTIONS,
+} from '@/constants/constants';
 
 export const createRecurringTransactionDocument = async (
   userAuth: IUser,
@@ -16,9 +20,9 @@ export const createRecurringTransactionDocument = async (
 
   const expenseCollectionRef = collection(
     db,
-    'userTransactions',
+    USER_TRANSACTIONS,
     userAuth?.uid,
-    'recurringTransactions'
+    RECURRING_TRANSACTIONS
   );
 
   const expenseDocRef = doc(expenseCollectionRef, userAuth.uid);

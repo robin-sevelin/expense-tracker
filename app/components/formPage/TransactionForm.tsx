@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import AddTransaction from './AddTransaction';
-import AddRecurringTransaction from './AddRecurrningTransaction.tsx';
+import AddRecurringTransaction from './AddRecurrningTransaction';
 
 const TransactionForm = () => {
   const [form, setForm] = useState('one time');
@@ -30,7 +30,6 @@ const TransactionForm = () => {
           />
         </fieldset>
       </div>
-
       {form === 'one time' ? <AddTransaction /> : <AddRecurringTransaction />}
     </>
   );

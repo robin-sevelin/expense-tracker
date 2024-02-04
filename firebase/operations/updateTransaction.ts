@@ -1,3 +1,7 @@
+import {
+  TRANSACTIONS,
+  USER_TRANSACTIONS,
+} from './../../app/constants/constants';
 import { ITransaction } from '@/models/ITransaction';
 import { IUser } from '@/models/IUser';
 import { doc, getDoc, updateDoc } from '../firestore';
@@ -11,9 +15,9 @@ export const updateTransaction = async (
 ) => {
   const transactionCollectionRef = doc(
     db,
-    'userTransactions',
+    USER_TRANSACTIONS,
     user.uid,
-    'transactions',
+    TRANSACTIONS,
     user.uid
   );
 

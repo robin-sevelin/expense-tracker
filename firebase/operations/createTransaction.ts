@@ -3,6 +3,7 @@ import { IUser } from '@/models/IUser';
 import { doc, setDoc, collection, arrayUnion } from '../firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
+import { TRANSACTIONS, USER_TRANSACTIONS } from '@/constants/constants';
 
 export const createTransactionDocument = async (
   userAuth: IUser,
@@ -17,9 +18,9 @@ export const createTransactionDocument = async (
 
   const transactionsCollectionRef = collection(
     db,
-    'userTransactions',
+    USER_TRANSACTIONS,
     userAuth?.uid,
-    'transactions'
+    TRANSACTIONS
   );
 
   const transactionDocRef = doc(transactionsCollectionRef, userAuth.uid);

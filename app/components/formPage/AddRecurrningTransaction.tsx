@@ -10,6 +10,7 @@ import { useGetDaysInMonthArray } from '@/hooks/useGetDaysInMonthArray';
 import { recurringTransactionSchema } from '@/models/FormSchema';
 import { createRecurringTransactionDocument } from '../../../firebase/operations/createRecurringTransaction';
 import { IRecurringTransaction } from '@/models/IRecurringTransaction';
+import { TRANSACTION_TYPES } from '@/constants/constants';
 
 const AddRecurringTransaction = () => {
   const [user] = useAtom(userAtom);
@@ -48,7 +49,7 @@ const AddRecurringTransaction = () => {
                 type='radio'
                 {...register('type')}
                 name='type'
-                value={'expense'}
+                value={TRANSACTION_TYPES.EXPENSE}
                 defaultChecked
               />
               <input
@@ -57,7 +58,7 @@ const AddRecurringTransaction = () => {
                 type='radio'
                 {...register('type')}
                 name='type'
-                value={'income'}
+                value={TRANSACTION_TYPES.INCOME}
               />
             </div>
           </fieldset>

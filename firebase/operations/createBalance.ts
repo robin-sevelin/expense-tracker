@@ -1,3 +1,4 @@
+import { BALANCE, USER_BUDGETS } from './../../app/constants/constants';
 import { CURRENT_DATE } from '@/constants/constants';
 import { IUser } from '@/models/IUser';
 import { doc, getDoc, setDoc, updateDoc, collection } from '../firestore';
@@ -10,9 +11,9 @@ export const createBalanceDocument = async (
 ) => {
   const balancesCollectionRef = collection(
     db,
-    'userBudgets',
+    USER_BUDGETS,
     userAuth?.uid,
-    'balance'
+    BALANCE
   );
 
   const balanceDocRef = doc(balancesCollectionRef, userAuth?.uid);

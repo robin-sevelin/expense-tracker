@@ -139,3 +139,10 @@ export const FOOTER_NAV_IMGS = [
 export const EXPENSE_TRACKER_LOGO = '/expense-tracker.svg';
 
 export const VIDEO_BG = '/pexels-kindel-media-7055354 (Original).mp4';
+
+export const BALANCE = 'balance';
+export const TRANSACTIONS = 'transactions';
+export const RECURRING_TRANSACTIONS = 'recurringTransactions';
+export const USER_TRANSACTIONS = 'userTransactions';
+export const USER_BUDGETS = 'userBudgets';
+export const USERS = 'users';

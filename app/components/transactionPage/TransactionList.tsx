@@ -8,6 +8,7 @@ import { submitAtom, userAtom } from '@/store/atoms';
 import { useGetFilteredTransactions } from '@/hooks/useGetFIlteredTransaction';
 import { ITransaction } from '@/models/ITransaction';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';
+import { TRANSACTION_TYPES } from '@/constants/constants';
 
 interface Props {
   transactions: ITransaction[];
@@ -40,7 +41,10 @@ const TransactionList = ({ transactions }: Props) => {
             <div className='card-body  items-center text-center'>
               <h3 className='card-title'>{transaction.title}</h3>
               <p>
-                Amount: {transaction.type === 'expense' && <span>-</span>}
+                Amount:{' '}
+                {transaction.type === TRANSACTION_TYPES.EXPENSE && (
+                  <span>-</span>
+                )}
                 {transaction.amount} kr
               </p>
               <p>Date: {`${day}/${month}`}</p>
