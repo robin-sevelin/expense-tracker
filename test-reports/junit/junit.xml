@@ -1,55 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="13" failures="1" errors="0" time="1.483">
-  <testsuite name="useAuthUser" errors="0" failures="0" skipped="0" timestamp="2024-02-02T14:03:43" time="0.762" tests="2">
-    <testcase classname="useAuthUser redirects to &quot;/&quot; when user is not authenticated" name="useAuthUser redirects to &quot;/&quot; when user is not authenticated" time="0.003">
-    </testcase>
-    <testcase classname="useAuthUser returns the authenticated user when user is authenticated" name="useAuthUser returns the authenticated user when user is authenticated" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="transactions list" errors="0" failures="0" skipped="0" timestamp="2024-02-02T14:03:43" time="0.764" tests="1">
-    <testcase classname="transactions list should render TransactionList component" name="transactions list should render TransactionList component" time="0.013">
-    </testcase>
-  </testsuite>
-  <testsuite name="footer" errors="0" failures="0" skipped="0" timestamp="2024-02-02T14:03:43" time="0.772" tests="1">
-    <testcase classname="footer should render footer" name="footer should render footer" time="0.021">
-    </testcase>
-  </testsuite>
-  <testsuite name="header" errors="0" failures="0" skipped="0" timestamp="2024-02-02T14:03:43" time="0.823" tests="4">
-    <testcase classname="header should render header " name="header should render header " time="0.028">
-    </testcase>
-    <testcase classname="header should render profile section" name="header should render profile section" time="0.002">
-    </testcase>
-    <testcase classname="header should render theme selector" name="header should render theme selector" time="0.005">
-    </testcase>
-    <testcase classname="header should not render navigation if no user id" name="header should not render navigation if no user id" time="0.013">
-    </testcase>
-  </testsuite>
-  <testsuite name="Add transaction" errors="0" failures="0" skipped="0" timestamp="2024-02-02T14:03:43" time="0.868" tests="1">
-    <testcase classname="Add transaction should render add transaction component" name="Add transaction should render add transaction component" time="0.025">
-    </testcase>
-  </testsuite>
-  <testsuite name="User Values" errors="0" failures="1" skipped="0" timestamp="2024-02-02T14:03:43" time="0.877" tests="4">
-    <testcase classname="User Values should render user values" name="User Values should render user values" time="0.069">
-      <failure>Error: NEXT_REDIRECT
-    at getRedirectError (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/next/src/client/components/redirect.ts:23:17)
-    at getRedirectError (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/next/src/client/components/redirect.ts:44:9)
-    at useAuthUser (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/app/hooks/useAuthUser.ts:9:20)
-    at UserValues (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/app/components/profilePage/UserValues.tsx:12:14)
-    at renderWithHooks (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:16305:18)
-    at mountIndeterminateComponent (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:20074:13)
-    at beginWork (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:21587:16)
-    at beginWork$1 (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:27426:14)
-    at performUnitOfWork (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:26560:12)
-    at workLoopSync (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:26466:5)
-    at renderRootSync (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:26434:7)
-    at recoverFromConcurrentError (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:25850:20)
-    at performConcurrentWorkOnRoot (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-dom/cjs/react-dom.development.js:25750:22)
-    at flushActQueue (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react/cjs/react.development.js:2667:24)
-    at act (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react/cjs/react.development.js:2582:11)
-    at /Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/@testing-library/react/dist/act-compat.js:46:25
-    at renderRoot (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/@testing-library/react/dist/pure.js:180:26)
-    at render (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/@testing-library/react/dist/pure.js:266:10)
-    at Object.&lt;anonymous&gt; (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/__tests__/profilePage/UserValues.test.tsx:9:11)
+<testsuites name="jest tests" tests="12" failures="1" errors="0" time="1.08">
+  <testsuite name="expense categories" errors="0" failures="1" skipped="0" timestamp="2024-02-04T16:22:24" time="0.264" tests="1">
+    <testcase classname="expense categories should render expene categories component" name="expense categories should render expene categories component" time="0.001">
+      <failure>TypeError: undefined is not iterable (cannot read property Symbol(Symbol.iterator))
+    at isSubmitting (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/react-hook-form/src/useForm.ts:62:5)
+    at Object.&lt;anonymous&gt; (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/__tests__/expenseCategories/ExpenseCategories.test.tsx:16:33)
     at Promise.then.completed (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/utils.js:298:28)
     at new Promise (&lt;anonymous&gt;)
     at callAsyncCircusFn (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/utils.js:231:10)
@@ -62,14 +17,43 @@
     at runAndTransformResultsToJestFormat (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
     at jestAdapter (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
     at runTestInternal (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-runner/build/runTest.js:367:16)
-    at runTest (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-runner/build/runTest.js:444:34)
-    at Object.worker (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-runner/build/testWorker.js:106:12)</failure>
+    at runTest (/Users/robinsevelin/Desktop/ExArbete/expense-tracker/node_modules/jest-runner/build/runTest.js:444:34)</failure>
     </testcase>
-    <testcase classname="User Values should render budget from" name="User Values should render budget from" time="0.006">
+  </testsuite>
+  <testsuite name="Add transaction" errors="0" failures="0" skipped="0" timestamp="2024-02-04T16:22:25" time="0.165" tests="1">
+    <testcase classname="Add transaction should render add transaction component" name="Add transaction should render add transaction component" time="0.01">
     </testcase>
-    <testcase classname="User Values should render recurring expense form" name="User Values should render recurring expense form" time="0.013">
+  </testsuite>
+  <testsuite name="header" errors="0" failures="0" skipped="0" timestamp="2024-02-04T16:22:25" time="0.108" tests="4">
+    <testcase classname="header should render header " name="header should render header " time="0.019">
     </testcase>
-    <testcase classname="User Values should render recurring incomes form" name="User Values should render recurring incomes form" time="0.005">
+    <testcase classname="header should render profile section" name="header should render profile section" time="0.002">
+    </testcase>
+    <testcase classname="header should render theme selector" name="header should render theme selector" time="0.003">
+    </testcase>
+    <testcase classname="header should not render navigation if no user id" name="header should not render navigation if no user id" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="footer" errors="0" failures="0" skipped="0" timestamp="2024-02-04T16:22:25" time="0.073" tests="1">
+    <testcase classname="footer should render footer" name="footer should render footer" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="balance amount" errors="0" failures="0" skipped="0" timestamp="2024-02-04T16:22:25" time="0.065" tests="1">
+    <testcase classname="balance amount should render balance amount component" name="balance amount should render balance amount component" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="transactions list" errors="0" failures="0" skipped="0" timestamp="2024-02-04T16:22:25" time="0.067" tests="1">
+    <testcase classname="transactions list should render TransactionList component" name="transactions list should render TransactionList component" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="User Values" errors="0" failures="0" skipped="0" timestamp="2024-02-04T16:22:25" time="0.067" tests="1">
+    <testcase classname="User Values should render budget form" name="User Values should render budget form" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="useAuthUser" errors="0" failures="0" skipped="0" timestamp="2024-02-04T16:22:25" time="0.058" tests="2">
+    <testcase classname="useAuthUser redirects to &quot;/&quot; when user is not authenticated" name="useAuthUser redirects to &quot;/&quot; when user is not authenticated" time="0.001">
+    </testcase>
+    <testcase classname="useAuthUser returns the authenticated user when user is authenticated" name="useAuthUser returns the authenticated user when user is authenticated" time="0">
     </testcase>
   </testsuite>
 </testsuites>
