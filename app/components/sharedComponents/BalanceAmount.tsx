@@ -1,23 +1,28 @@
 'use client';
 
 import React from 'react';
-import { useGetCurrentSum } from '../../hooks/useGetCurrentSum';
-import { CURRENT_DATE } from '../../constants/constants';
-import Loading from './Loading';
+import { useGetCurrentSum } from '@/hooks/useGetCurrentSum';
+import { CURRENT_DATE } from '@/constants/constants';
+
+import { useGetTransactions } from '@/hooks/useGetTransactions';
+import { useGetRecurringTransactions } from '@/hooks/useGetRecurringTransactions';
 
 const BalanceAmount = () => {
-  const { sum, isLoading } = useGetCurrentSum();
+  const { sum } = useGetCurrentSum();
+  useGetRecurringTransactions();
+  useGetTransactions();
 
-  if (isLoading) {
-    return <Loading />;
-  }
   return (
-    <div className=' p-2 m-1'>
-      {CURRENT_DATE.toLocaleString('en-US', {
-        month: 'long',
-      })}
-      : {sum} kr
-    </div>
+    <>
+      {sum && (
+        <div className=' p-2 m-1'>
+          {CURRENT_DATE.toLocaleString('en-US', {
+            month: 'long',
+          })}
+          : {sum} kr
+        </div>
+      )}
+    </>
   );
 };
 

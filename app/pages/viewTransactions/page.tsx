@@ -1,36 +1,11 @@
-'use client';
-
-import FilteredSummary from '@/app/components/sharedComponents/FilteredSummary';
-import MonthPicker from '@/app/components/sharedComponents/MonthPicker';
-import TransactionCalender from '@/app/components/transactionPage/TransactionCalender';
-import TransactionList from '@/app/components/transactionPage/TransactionList';
-import ViewMode from '@/app/components/transactionPage/ViewMode';
-import { useAuthUser } from '@/app/hooks/useAuthUser';
-import { transactionsAtom } from '@/app/store/atoms';
-import { useAtom } from 'jotai';
-import { useState } from 'react';
+import Transactions from '@/components/transactionPage/Transactions';
 
 const ViewTransactions = () => {
-  const [view, setView] = useState('list');
-  const [transactions] = useAtom(transactionsAtom);
-  useAuthUser();
-
-  const setShowList = (value: string) => {
-    setView(value);
-  };
-
   return (
-    <section>
+    <>
       <h2 className='text-5xl font-bold flex justify-center'>TRANSACTIONS</h2>
-      <MonthPicker />
-      <FilteredSummary />
-      <ViewMode onSetShowList={setShowList} />
-      {view === 'list' ? (
-        <TransactionList transactions={transactions} />
-      ) : (
-        <TransactionCalender transactions={transactions} />
-      )}
-    </section>
+      <Transactions />
+    </>
   );
 };
 

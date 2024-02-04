@@ -1,7 +1,3 @@
-import { IUser } from '../models/IUser';
-import { ITransaction } from '../models/ITransaction';
-import { IReccuringExpense, IReccuringIncome } from '../models/BudgetValues';
-
 export const ROUTES = [
   { id: 0, url: '/', text: 'Home' },
   { id: 1, url: '/pages/profile', text: 'Profile' },
@@ -10,8 +6,8 @@ export const ROUTES = [
   { id: 4, url: '/pages/addTransactions', text: 'Add transaction' },
   {
     id: 5,
-    url: '/pages/viewReccuringTransactions',
-    text: 'Reccuring transactions',
+    url: '/pages/viewRecurringTransactions',
+    text: 'Recurring transactions',
   },
 ];
 export const CURRENT_DATE = new Date();
@@ -23,36 +19,12 @@ export const DAYS_IN_MONTH = new Date(
   0
 ).getDate();
 
-export const DAY_BASE_VALUES = {
-  incomeSum: 0,
-  expenseSum: 0,
-  day: 0,
-};
-
-export const USER_BASE_VALUES: IUser = {
-  uid: '',
-  email: '',
-  displayName: '',
-  photoURL: '',
-};
-
-export const TRANSACTION_BASE_VALUES: ITransaction = {
-  id: '',
-  title: '',
-  amount: 0,
-  date: CURRENT_DATE,
-};
-
-export const EXPENSES_BASE_VALUES: IReccuringExpense[] = [];
-export const INCOMES_BASE_VALUES: IReccuringIncome[] = [];
-export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
-
 export const TRANSACTION_TYPES = {
   BUDGET: 'budget',
   INCOME: 'income',
   EXPENSE: 'expense',
-  RECCURING_INCOME: 'reccuringIncome',
-  RECCURING_EXPENSE: 'reccuringExpense',
+  RECURRING_INCOME: 'recurringIncome',
+  RECURRING_EXPENSE: 'recurringExpense',
 };
 
 export const EXPENSE_CATEGORIES = [
@@ -93,29 +65,6 @@ export const INCOME_CATEGORIES = [
   },
 ];
 
-export const LINECHART_COLORS = {
-  INCOME: {
-    border: 'rgb(0, 128, 0)',
-    bg: 'rgba(0, 128, 0, 0.5)',
-  },
-  EXPENSE: {
-    border: 'rgb(255, 99, 132)',
-    bg: 'rgba(255, 99, 132, 0.5)',
-  },
-  BALANCE: {
-    border: 'rgb(75, 192, 192)',
-    bg: 'rgba(75, 192, 192, 0.5)',
-  },
-  RECCURING_EXPENSES: {
-    border: 'rgb(235, 82, 52)',
-    bg: 'rgb(154, 30, 166)',
-  },
-  RECCURING_INCOMES: {
-    border: 'rgb(52, 52, 2352)',
-    bg: 'rgb(87, 87, 186)',
-  },
-};
-
 export const FOOTER_NAV_IMGS = [
   {
     id: 0,
@@ -125,15 +74,21 @@ export const FOOTER_NAV_IMGS = [
   },
   {
     id: 1,
-    src: 'linkedIn.png',
+    src: '/linkedIn.png',
     alt: 'linkedIn logo',
     url: 'https://www.linkedin.com/in/robin-sevelin-336b20168/',
   },
-  { id: 2, src: '/next.svg', alt: 'next logo', url: 'https://nextjs.org/' },
   {
-    id: 3,
-    src: '/vercel.svg',
-    alt: 'vercel logo',
-    url: 'https://vercel.com/templates?framework=next.js',
+    id: 2,
+    src: '/email.png',
+    alt: 'email',
+    url: 'mailto:robin.sevelin@medieinstitutet.se',
   },
 ];
+
+export const BALANCE = 'balance';
+export const TRANSACTIONS = 'transactions';
+export const RECURRING_TRANSACTIONS = 'recurringTransactions';
+export const USER_TRANSACTIONS = 'userTransactions';
+export const USER_BUDGETS = 'userBudgets';
+export const USERS = 'users';

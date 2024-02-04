@@ -11,14 +11,9 @@ export const balanceSchema = z.object({
   amount: z.number().min(1),
 });
 
-export const expenseSchema = z.object({
+export const recurringTransactionSchema = z.object({
   title: z.string().min(3).max(20),
   amount: z.number().min(1),
   date: z.string(),
-});
-
-export const incomeSchema = z.object({
-  title: z.string().min(3).max(20),
-  amount: z.number().min(1),
-  date: z.string(),
+  type: z.string(),
 });

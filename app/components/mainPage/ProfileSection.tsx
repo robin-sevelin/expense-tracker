@@ -1,23 +1,41 @@
 'use client';
 
 import React from 'react';
-import ProfilePicture from '../header/ProfilePicture';
-import BalanceAmount from '../sharedComponents/BalanceAmount';
-import { userAtom } from '@/app/store/atoms';
+import { userAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/../firebase/auth';
+import { USER_BASE_VALUES } from '@/constants/baseValues';
 
 const ProfileSection = () => {
   const [user] = useAtom(userAtom);
+  const [, setUser] = useAtom(userAtom);
+
+  const logOut = async () => {
+    await signOut(auth);
+    setUser(USER_BASE_VALUES);
+  };
 
   return (
-    <section className='flex justify-start m-1 p-2 bg-secondary-100 h-auto '>
-      {user.uid && (
-        <div className=' flex items-center '>
-          <ProfilePicture user={user} />
-          <BalanceAmount />
-        </div>
-      )}
-    </section>
+    <>
+      <picture className=' p-2 m-1'>
+        <img
+          src={user.photoURL}
+          alt={user.displayName}
+          width={50}
+          height={50}
+          loading='lazy'
+          className=' rounded-full shadow-2xl '
+        />
+      </picture>
+      <button
+        aria-label='sign out'
+        onClick={logOut}
+        className='btn btn-error w-20 m-1'
+      >
+        Sign out
+      </button>
+    </>
   );
 };
 

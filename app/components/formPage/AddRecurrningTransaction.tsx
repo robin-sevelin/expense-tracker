@@ -2,21 +2,20 @@
 
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
-import { submitAtom, userAtom } from '../../store/atoms';
-import { incomeSchema } from '../../models/FormSchema';
+import { submitAtom, userAtom } from '@/store/atoms';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import ModalDialog from '../sharedComponents/ModalDialog';
-import { createIncomeDocument } from '@/firebase/operations/createIncome';
-import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
-import { useGetDaysInMonthArray } from '@/app/hooks/useGetDaysInMonthArray';
-import { IReccuringIncome } from '@/app/models/BudgetValues';
+import ModalDialog from '@/components/sharedComponents/ModalDialog';
+import { useGetDaysInMonthArray } from '@/hooks/useGetDaysInMonthArray';
+import { recurringTransactionSchema } from '@/models/FormSchema';
+import { createRecurringTransactionDocument } from '../../../firebase/operations/createRecurringTransaction';
+import { IRecurringTransaction } from '@/models/IRecurringTransaction';
+import { TRANSACTION_TYPES } from '@/constants/constants';
 
-const AddReccurentIncomes = () => {
+const AddRecurringTransaction = () => {
   const [user] = useAtom(userAtom);
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { reccuringIncomesSum } = useGetIncomeSum();
   const { daysInMonthArray } = useGetDaysInMonthArray();
 
   const {
@@ -24,12 +23,13 @@ const AddReccurentIncomes = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IReccuringIncome>({
-    resolver: zodResolver(incomeSchema),
+  } = useForm<IRecurringTransaction>({
+    resolver: zodResolver(recurringTransactionSchema),
   });
 
-  const submitData = async (income: IReccuringIncome) => {
-    await createIncomeDocument(user, income);
+  const submitData = async (expense: IRecurringTransaction) => {
+    await createRecurringTransactionDocument(user, expense);
+
     setIsSubmitted(true);
     reset();
     setIsModalOpen(true);
@@ -38,9 +38,30 @@ const AddReccurentIncomes = () => {
   return (
     <>
       <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-3xl font-bold'>SET RECCURING INCOMES</h2>
+        <h2 className='text-3xl font-bold'>SET RECCURING TRANSACTION</h2>
         <form onSubmit={handleSubmit(submitData)}>
-          <h3>Current reccuring Incomes {reccuringIncomesSum} SEK</h3>
+          <fieldset>
+            <legend className='input-label'>Transaction Type</legend>
+            <div className='join'>
+              <input
+                className='join-item btn'
+                aria-label='EXPENSE'
+                type='radio'
+                {...register('type')}
+                name='type'
+                value={TRANSACTION_TYPES.EXPENSE}
+                defaultChecked
+              />
+              <input
+                className='join-item btn'
+                aria-label='INCOME'
+                type='radio'
+                {...register('type')}
+                name='type'
+                value={TRANSACTION_TYPES.INCOME}
+              />
+            </div>
+          </fieldset>
           <div className='join'>
             <fieldset>
               <label htmlFor='title' className='input-label'>
@@ -57,7 +78,7 @@ const AddReccurentIncomes = () => {
                   <p style={{ color: 'red' }}>{errors.title.message}</p>
                 )}
               </div>
-              <label htmlFor='balance' className='input-label'>
+              <label htmlFor='amount' className='input-label'>
                 Amount:
               </label>
               <input
@@ -76,7 +97,7 @@ const AddReccurentIncomes = () => {
           </div>
           <legend>Pick day of the month</legend>
           <select
-            className='select select-bordered w-full max-w-xs select-primary'
+            className='select select-bordered select-primary w-full max-w-xs mb-3'
             id='day'
             {...register('date')}
           >
@@ -99,4 +120,4 @@ const AddReccurentIncomes = () => {
   );
 };
 
-export default AddReccurentIncomes;
+export default AddRecurringTransaction;

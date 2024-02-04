@@ -1,10 +1,10 @@
-import { ITransaction } from '@/app/models/ITransaction';
-import { submitAtom, transactionByIdAtom, userAtom } from './../store/atoms';
-import { db } from '@/firebase/firestore';
+import { ITransaction } from '@/models/ITransaction';
+import { submitAtom, transactionByIdAtom, userAtom } from '@/store/atoms';
+import { db } from '@/../firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
-import { TRANSACTION_BASE_VALUES } from '../constants/constants';
+import { TRANSACTION_BASE_VALUES } from '@/constants/baseValues';
 
 export const useGetTransactionById = (id: string) => {
   const [user] = useAtom(userAtom);
@@ -16,7 +16,7 @@ export const useGetTransactionById = (id: string) => {
     if (id || isSubmitted) {
       try {
         const getData = async () => {
-          const docRef = doc(db, 'users', user.uid, 'transactions', user.uid);
+          const docRef = doc(db, 'transactions', user.uid);
           const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {
@@ -32,6 +32,7 @@ export const useGetTransactionById = (id: string) => {
           }
 
           setIsSubmitted(false);
+          setIsLoading(false);
         };
 
         getData();

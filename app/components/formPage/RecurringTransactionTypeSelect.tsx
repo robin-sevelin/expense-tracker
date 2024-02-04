@@ -1,19 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import ReccuringExpenses from './ReccuringExpenses';
-import { reccuringExpenseAtom, reccuringIncomeAtom } from '@/app/store/atoms';
-import { useAtom } from 'jotai';
-import ReccuringIncomes from './ReccuringIncomes';
-import { TRANSACTION_TYPES } from '@/app/constants/constants';
+import { TRANSACTION_TYPES } from '@/constants/constants';
 
-const ReccurringTransactions = () => {
-  const [reccruingExpenses] = useAtom(reccuringExpenseAtom);
-  const [reccuringIncomes] = useAtom(reccuringIncomeAtom);
+const RecurringTransactions = () => {
   const [view, setView] = useState(TRANSACTION_TYPES.EXPENSE);
 
   return (
-    <section className=' flex flex-col m-5 p-5 justify-center items-center'>
+    <section className='centered-container'>
       <fieldset>
         <legend>Select View</legend>
         <div className='join'>
@@ -38,14 +32,8 @@ const ReccurringTransactions = () => {
           />
         </div>
       </fieldset>
-
-      {view === TRANSACTION_TYPES.EXPENSE ? (
-        <ReccuringExpenses expenses={reccruingExpenses} />
-      ) : (
-        <ReccuringIncomes incomes={reccuringIncomes} />
-      )}
     </section>
   );
 };
 
-export default ReccurringTransactions;
+export default RecurringTransactions;

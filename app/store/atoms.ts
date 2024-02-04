@@ -1,11 +1,11 @@
 import { atom } from 'jotai';
+import {} from '@/constants/constants';
 import {
-  EXPENSES_BASE_VALUES,
-  INCOMES_BASE_VALUES,
+  USER_BASE_VALUES,
   TRANSACTIONS_BASE_VALUES,
   TRANSACTION_BASE_VALUES,
-  USER_BASE_VALUES,
-} from '../constants/constants';
+  RECURRING_TRANSACTIONS_BASE_VALUES,
+} from '@/constants/baseValues';
 
 export const loadingAtom = atom(false);
 export const loggedInAtom = atom(false);
@@ -20,5 +20,9 @@ export const filtredSumAtom = atom(0);
 export const incomeSumAtom = atom(0);
 export const expenseSumAtom = atom(0);
 export const themeAtom = atom('dark');
-export const reccuringExpenseAtom = atom(EXPENSES_BASE_VALUES);
-export const reccuringIncomeAtom = atom(INCOMES_BASE_VALUES);
+export const recurringTransactionAtom = atom(
+  RECURRING_TRANSACTIONS_BASE_VALUES
+);
+
+export const recurringIncomeSumAtom = atom(0);
+export const recurringExpenseSumAtom = atom(0);

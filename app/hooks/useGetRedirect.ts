@@ -1,14 +1,14 @@
-import { auth } from '@/firebase/auth';
+import { auth } from '@/../firebase/auth';
 import { getRedirectResult } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import { userAtom } from '../store/atoms';
-import { IUser } from '../models/IUser';
-import { createUserDocument } from '@/firebase/operations/createUser';
+import { userAtom } from '@/store/atoms';
+import { IUser } from '@/models/IUser';
+import { createUserDocument } from '@/../firebase/operations/createUser';
 
 export const useGetRedirect = () => {
   const [user, setUser] = useAtom(userAtom);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
@@ -21,12 +21,12 @@ export const useGetRedirect = () => {
       } catch (error) {
         console.error('Error during login:', error);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
     getData();
   }, [setUser]);
 
-  return { loading, user } as const;
+  return { isLoading, user } as const;
 };

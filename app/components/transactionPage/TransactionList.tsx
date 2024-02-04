@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAuthUser } from '../../hooks/useAuthUser';
 import Link from 'next/link';
 import { useAtom } from 'jotai';
-import { deleteTransactionObject } from '@/firebase/operations/deleteTransaction';
-import { submitAtom } from '../../store/atoms';
-import { useGetFilteredTransactions } from '../../hooks/useGetFIlteredTransaction';
-import { ITransaction } from '@/app/models/ITransaction';
-import ModalDialog from '../sharedComponents/ModalDialog';
+import { deleteTransactionObject } from '@/../firebase/operations/deleteTransaction';
+import { submitAtom, userAtom } from '@/store/atoms';
+import { useGetFilteredTransactions } from '@/hooks/useGetFIlteredTransaction';
+import { ITransaction } from '@/models/ITransaction';
+import ModalDialog from '@/components/sharedComponents/ModalDialog';
+import { TRANSACTION_TYPES } from '@/constants/constants';
 
 interface Props {
   transactions: ITransaction[];
@@ -16,7 +16,7 @@ interface Props {
 
 const TransactionList = ({ transactions }: Props) => {
   const [, setIsSubmitted] = useAtom(submitAtom);
-  const { user } = useAuthUser();
+  const [user] = useAtom(userAtom);
   const { filtredTransactions } = useGetFilteredTransactions(transactions);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -27,7 +27,7 @@ const TransactionList = ({ transactions }: Props) => {
   };
 
   return (
-    <section className='flex flex-wrap gap-5 justify-center '>
+    <div className='flex flex-wrap gap-5 justify-center '>
       {filtredTransactions?.map((transaction) => {
         const transactionDate = new Date(transaction.date);
         const day = transactionDate.getDate();
@@ -41,7 +41,10 @@ const TransactionList = ({ transactions }: Props) => {
             <div className='card-body  items-center text-center'>
               <h3 className='card-title'>{transaction.title}</h3>
               <p>
-                Amount: {transaction.type === 'expense' && <span>-</span>}
+                Amount:{' '}
+                {transaction.type === TRANSACTION_TYPES.EXPENSE && (
+                  <span>-</span>
+                )}
                 {transaction.amount} kr
               </p>
               <p>Date: {`${day}/${month}`}</p>
@@ -69,7 +72,7 @@ const TransactionList = ({ transactions }: Props) => {
           isModalOpen={isModalOpen}
         />
       )}
-    </section>
+    </div>
   );
 };
 

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 interface Props {
   onHandleChange: () => void;
@@ -10,21 +8,22 @@ const CookieBanner = ({ onHandleChange }: Props) => {
     onHandleChange();
   };
   return (
-    <>
+    <div className='flex justify-center '>
       <input
         type='checkbox'
         id='my_modal_6'
         className='modal-toggle'
         onChange={handleCheckboxChange}
       />
-      <div role='dialog'>
-        <div className='modal-box'>
+      <div role='dialog '>
+        <div className='modal-box bg-base-200 '>
           <h3 className='font-bold text-lg'>Cookie conscent</h3>
-          <div className='collapse bg-base-100'>
+          <div className='collapse bg-base-200'>
             <input type='checkbox' />
             <div className='collapse-title text-xl font-medium'>
-              <p className='py-4'>
-                You must accept cookies to use this site, click to read more.
+              <p>
+                You must accept cookies to use this site, click HERE to read
+                more ..or just click accept if you agree.
               </p>
             </div>
             <div className='collapse-content'>
@@ -49,14 +48,14 @@ const CookieBanner = ({ onHandleChange }: Props) => {
               </p>
             </div>
           </div>
-          <div className='modal-action'>
-            <label htmlFor='my_modal_6' className='btn'>
+          <button className='modal-action flex-col justify-center'>
+            <label htmlFor='my_modal_6' className='btn btn-primary'>
               Accept
             </label>
-          </div>
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

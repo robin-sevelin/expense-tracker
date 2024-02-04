@@ -1,6 +1,6 @@
-import { THEMES } from '@/app/constants/themes';
-import { ITheme } from '@/app/models/ITheme';
-import { themeAtom } from '@/app/store/atoms';
+import { THEMES } from '@/constants/themes';
+import { ITheme } from '@/models/ITheme';
+import { themeAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
 import React, { useEffect } from 'react';
 
@@ -21,9 +21,7 @@ const ThemeSelector = () => {
 
   return (
     <div className='dropdown'>
-      <div tabIndex={0} role='button' className='btn m-1 bg-base-100 w-20'>
-        Theme
-      </div>
+      <button className='btn m-1 bg-base-100'>Theme</button>
       <ul tabIndex={0} className='theme-dropdown'>
         {THEMES.map((theme) => (
           <li key={theme.id}>

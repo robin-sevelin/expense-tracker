@@ -1,42 +1,36 @@
-import {
-  balanceAtom,
-  monthAtom,
-  reccuringExpenseAtom,
-  reccuringIncomeAtom,
-  transactionsAtom,
-} from '@/app/store/atoms';
+import { recurringTransactionAtom } from './../store/atoms';
+import { balanceAtom, monthAtom, transactionsAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
-import { chartOptions } from '../constants/chartOptions';
-import {
-  DAYS_IN_MONTH,
-  LINECHART_COLORS,
-  TRANSACTION_TYPES,
-} from '../constants/constants';
+import { LINECHART_COLORS, chartOptions } from '@/constants/chartOptions';
+import { DAYS_IN_MONTH, TRANSACTION_TYPES } from '@/constants/constants';
 import { useGetFilteredTransactions } from './useGetFIlteredTransaction';
-import { ITransaction } from '../models/ITransaction';
+import { ITransaction } from '@/models/ITransaction';
+import { useGetDaysInMonthArray } from './useGetDaysInMonthArray';
 
 export const useGetChartData = () => {
   const [transactions] = useAtom(transactionsAtom);
   const [balance] = useAtom(balanceAtom);
   const [currentMonth] = useAtom(monthAtom);
-  const [recurringExpenses] = useAtom(reccuringExpenseAtom);
-  const [recurringIncomes] = useAtom(reccuringIncomeAtom);
+  const [recurringTransactions] = useAtom(recurringTransactionAtom);
+  const { daysInMonthArray } = useGetDaysInMonthArray();
   const { filtredTransactions } = useGetFilteredTransactions(transactions);
 
-  const getSumByType = (day: number, type: string) =>
-    getTransactionsUntilDay(day)
-      ?.filter(
-        (transaction: ITransaction) =>
-          transaction.type === type &&
-          new Date(transaction.date).getMonth() === currentMonth.getMonth() &&
-          new Date(transaction.date).getFullYear() ===
-            currentMonth.getFullYear()
-      )
-      .reduce((a, b) => a + b.amount, 0);
+  const getSumByType = (day: number, type: string) => {
+    const transactions = getTransactionsUntilDay(day);
+
+    const filteredTransactions = transactions.filter(
+      (transaction: ITransaction) =>
+        transaction.type === type &&
+        new Date(transaction.date).getMonth() === currentMonth.getMonth() &&
+        new Date(transaction.date).getFullYear() === currentMonth.getFullYear()
+    );
+
+    return filteredTransactions.reduce((a, b) => a + b.amount, 0);
+  };
 
   const getTransactionsUntilDay = (day: number) => {
     const updatedTransactionList = filtredTransactions?.filter(
-      (transaction) => {
+      (transaction: ITransaction) => {
         const transactionDate = transaction.date
           ? new Date(transaction.date)
           : null;
@@ -53,7 +47,14 @@ export const useGetChartData = () => {
     return updatedTransactionList;
   };
 
-  const labels = Array.from({ length: DAYS_IN_MONTH }, (_, index) => index + 1);
+  const labels = Array.from(
+    { length: daysInMonthArray.length },
+    (_, index) => index + 1
+  );
+
+  const recurringExpenses = recurringTransactions.filter(
+    (transaction) => transaction.type === TRANSACTION_TYPES.EXPENSE
+  );
 
   const uniqueRecurringExpenseDates = Array.from(
     new Set(recurringExpenses.map((expense) => Number(expense.date)))
@@ -69,6 +70,10 @@ export const useGetChartData = () => {
 
     return { x: day, y: recurringExpenseSum };
   });
+
+  const recurringIncomes = recurringTransactions.filter(
+    (transaction) => transaction.type === TRANSACTION_TYPES.INCOME
+  );
 
   const uniqueRecurringIncomeDates = Array.from(
     new Set(recurringIncomes.map((income) => Number(income.date)))

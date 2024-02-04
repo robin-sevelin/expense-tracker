@@ -1,15 +1,15 @@
 import React from 'react';
-import { useGetTransactions } from '../../hooks/useGetTransactions';
-import { useGetFilteredSum } from '../../hooks/useGetfilteredSum';
-import { useGetExpenseSum } from '@/app/hooks/useGetExpenseSum';
-import { useGetIncomeSum } from '@/app/hooks/useGetIncomeSum';
-import { useGetCurrentSum } from '@/app/hooks/useGetCurrentSum';
+import { useGetTransactions } from '@/hooks/useGetTransactions';
+import { useGetFilteredSum } from '@/hooks/useGetfilteredSum';
+import { useGetRecurringExpenseSum } from '@/hooks/useGetRecurringExpenseSum';
+import { useGetRecurringIncomeSum } from '@/hooks/useGetRecurringIncomeSum';
+import { useGetCurrentSum } from '@/hooks/useGetCurrentSum';
 
 const FilteredSummary = () => {
   const { incomeSum, expenseSum } = useGetFilteredSum();
   const { sum } = useGetCurrentSum();
-  const { reccuringExpensesSum } = useGetExpenseSum();
-  const { reccuringIncomesSum } = useGetIncomeSum();
+  const { recurringExpenseSum } = useGetRecurringExpenseSum();
+  const { recurringIncomeSum } = useGetRecurringIncomeSum();
   useGetTransactions();
   return (
     <div className='overflow-x-auto'>
@@ -27,7 +27,7 @@ const FilteredSummary = () => {
           </tr>
           <tr>
             <th>Reccuring incomes</th>
-            <td>{reccuringIncomesSum} kr</td>
+            <td>{recurringIncomeSum} kr</td>
           </tr>
           <tr>
             <th>One time expenses</th>
@@ -35,7 +35,7 @@ const FilteredSummary = () => {
           </tr>
           <tr>
             <th>Reccuring expenses</th>
-            <td>{reccuringExpensesSum} kr</td>
+            <td>{recurringExpenseSum} kr</td>
           </tr>
           <tr>
             <th>Balance</th>

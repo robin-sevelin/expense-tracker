@@ -1,16 +1,15 @@
-import { ITransaction } from '@/app/models/ITransaction';
-import { IUser } from '@/app/models/IUser';
-import { doc, setDoc, collection, arrayUnion } from 'firebase/firestore';
+import { ITransaction } from '@/models/ITransaction';
+import { IUser } from '@/models/IUser';
+import { doc, setDoc, collection, arrayUnion } from '../firestore';
 import { db } from '../firestore';
 import { v4 as uuidv4 } from 'uuid';
+import { TRANSACTIONS, USER_TRANSACTIONS } from '@/constants/constants';
 
 export const createTransactionDocument = async (
   userAuth: IUser,
   transaction: ITransaction,
   date: Date
 ) => {
-  console.log(transaction);
-
   const updatedTransaction = {
     ...transaction,
     date: date.toString(),
@@ -19,9 +18,9 @@ export const createTransactionDocument = async (
 
   const transactionsCollectionRef = collection(
     db,
-    'users',
+    USER_TRANSACTIONS,
     userAuth?.uid,
-    'transactions'
+    TRANSACTIONS
   );
 
   const transactionDocRef = doc(transactionsCollectionRef, userAuth.uid);

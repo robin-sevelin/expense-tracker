@@ -20,27 +20,30 @@ input {
   @apply mb-3;
 }
 
-button {
-  @apply ml-1;
-}
-
 main {
-  @apply w-1/2 m-auto mt-2 flex flex-col justify-center items-center bg-base-100 min-h-[calc(100vh-170px)] p-5 rounded-xl;
+  @apply max-w-[1200px] m-auto  min-h-[calc(100vh-320px)]  p-5 rounded-xl bg-base-100 mt-20;
 }
 
 footer {
-  @apply flex justify-center bg-base-100 items-center gap-5 py-5 absolute w-full mb-0 pt-96;
+  @apply flex justify-center flex-col bg-base-100 items-center gap-5 py-5 absolute w-full mb-0;
 }
 
 header {
-  @apply bg-base-100 flex justify-between navbar;
+  @apply bg-base-100 flex justify-between navbar  m-auto;
 }
 
 .theme-dropdown {
-  max-height: 600px;
-  width: 220px;
-  margin-left: -130px;
-  overflow-y: scroll;
+  @apply shadow menu dropdown-content z-[1] bg-base-100 rounded-box max-h-[600px] w-[220px]  overflow-y-scroll;
+}
 
-  @apply shadow menu dropdown-content z-[1] bg-base-100 rounded-box;
+.with-border {
+  @apply border-solid border-2 border-red-600;
+}
+
+.user-values {
+  @apply flex flex-col justify-center items-center bg-base-100  gap-5 p-10;
+}
+
+.centered-container {
+  @apply flex flex-col m-5 p-5 justify-center items-center;
 }

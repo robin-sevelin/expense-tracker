@@ -6,28 +6,28 @@ import {
 } from '../constants/constants';
 import { useAtom } from 'jotai';
 import {
-  balanceAtom,
-  reccuringExpenseAtom,
-  reccuringIncomeAtom,
+  recurringTransactionAtom,
+  submitAtom,
   sumAtom,
   transactionsAtom,
 } from '../store/atoms';
-import { useGetExpenseSum } from './useGetExpenseSum';
-import { useGetIncomeSum } from './useGetIncomeSum';
+
+import { useGetRecurringExpenseSum } from './useGetRecurringExpenseSum';
+import { useGetBalance } from './useGetBalance';
+import { useGetRecurringIncomeSum } from './useGetRecurringIncomeSum';
 
 export const useGetCurrentSum = () => {
-  const [reccuringIncomes] = useAtom(reccuringIncomeAtom);
-  const [reccuringExpenses] = useAtom(reccuringExpenseAtom);
+  const [recurringTransactions] = useAtom(recurringTransactionAtom);
   const [transactions] = useAtom(transactionsAtom);
-  const [balance] = useAtom(balanceAtom);
   const [sum, setSum] = useAtom(sumAtom);
-  const { reccuringExpensesSum } = useGetExpenseSum();
-  const { reccuringIncomesSum } = useGetIncomeSum();
-
-  const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
+  const [dataFetched, setDataFetched] = useState(false);
+  const { balance } = useGetBalance();
+  const { recurringIncomeSum } = useGetRecurringIncomeSum();
+  const { recurringExpenseSum } = useGetRecurringExpenseSum();
 
   useEffect(() => {
-    if (transactions) {
+    if (isSubmitted || !dataFetched || balance) {
       const currentMonthTransactions = transactions.filter((transaction) => {
         const transactionDate = new Date(transaction.date);
         return (
@@ -46,20 +46,24 @@ export const useGetCurrentSum = () => {
       const expenseSum = expenses.reduce((a, b) => a + b.amount, 0);
       const incomeSum = incomes.reduce((a, b) => a + b.amount, 0);
       const diffSum =
-        incomeSum - expenseSum - reccuringExpensesSum + reccuringIncomesSum;
+        incomeSum - expenseSum - recurringExpenseSum + recurringIncomeSum;
 
       setSum(diffSum + balance);
-      setIsLoading(false);
+      setIsSubmitted(false);
+      setDataFetched(true);
     }
   }, [
     balance,
     setSum,
     transactions,
-    reccuringExpenses,
-    reccuringIncomes,
-    reccuringExpensesSum,
-    reccuringIncomesSum,
+    recurringTransactions,
+    recurringExpenseSum,
+    recurringIncomeSum,
+    isSubmitted,
+    dataFetched,
+    setIsSubmitted,
+    sum,
   ]);
 
-  return { sum, isLoading } as const;
+  return { sum } as const;
 };

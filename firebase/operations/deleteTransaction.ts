@@ -1,14 +1,15 @@
-import { ITransaction } from '@/app/models/ITransaction';
-import { IUser } from '@/app/models/IUser';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { ITransaction } from '@/models/ITransaction';
+import { IUser } from '@/models/IUser';
+import { doc, getDoc, updateDoc } from '../firestore';
 import { db } from '../firestore';
+import { TRANSACTIONS, USER_TRANSACTIONS } from '@/constants/constants';
 
 export const deleteTransactionObject = async (userAuth: IUser, id: string) => {
   const transactionCollectionRef = doc(
     db,
-    'users',
+    USER_TRANSACTIONS,
     userAuth?.uid,
-    'transactions',
+    TRANSACTIONS,
     userAuth?.uid
   );
 

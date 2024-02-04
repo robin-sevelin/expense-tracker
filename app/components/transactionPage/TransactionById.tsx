@@ -1,15 +1,17 @@
 'use client';
 
 import React from 'react';
-import { ITransaction } from '../../models/ITransaction';
-import Loading from '../sharedComponents/Loading';
+import Loading from '@/components/sharedComponents/Loading';
+import { useGetTransactionById } from '@/hooks/useGetTransactionById';
+import { TRANSACTION_TYPES } from '@/constants/constants';
 
 interface Props {
-  transaction: ITransaction;
+  id: string;
 }
 
-const TransactionById = ({ transaction }: Props) => {
-  if (!transaction) {
+const TransactionById = ({ id }: Props) => {
+  const { isLoading, transaction } = useGetTransactionById(id);
+  if (!isLoading) {
     return <Loading />;
   }
   return (
@@ -17,7 +19,8 @@ const TransactionById = ({ transaction }: Props) => {
       <div className='card-body items-center text-center'>
         <h2 className='card-title'>{transaction.title}</h2>
         <p>
-          Amount: {transaction.type === 'expense' && <span>-</span>}
+          Amount:{' '}
+          {transaction.type === TRANSACTION_TYPES.EXPENSE && <span>-</span>}
           {transaction.amount} kr
         </p>
         <p>Type: {transaction.type}</p>

@@ -1,8 +1,8 @@
 import { useAtom } from 'jotai';
-import { monthAtom } from '../store/atoms';
-import { ITransaction } from '../models/ITransaction';
+import { monthAtom } from '@/store/atoms';
+import { ITransaction } from '@/models/ITransaction';
 import { useEffect, useState } from 'react';
-import { TRANSACTIONS_BASE_VALUES } from '../constants/constants';
+import { TRANSACTIONS_BASE_VALUES } from '@/constants/baseValues';
 
 export const useGetFilteredTransactions = (transactions: ITransaction[]) => {
   const [currentMonth] = useAtom(monthAtom);

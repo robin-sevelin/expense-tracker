@@ -11,7 +11,3 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-
-// firebase login
-// firebase init
-// firebase deploy

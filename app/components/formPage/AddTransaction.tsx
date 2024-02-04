@@ -1,31 +1,29 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAuthUser } from '../../hooks/useAuthUser';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { transactionSchema } from '../../models/FormSchema';
-import ExpenseCategories from '../sharedComponents/ExpenseCategories';
-import IncomeCategories from '../sharedComponents/IncomeCategories';
-import { IUser } from '../../models/IUser';
+import { transactionSchema } from '@/models/FormSchema';
+import ExpenseCategories from '@/components/sharedComponents/ExpenseCategories';
+import IncomeCategories from '@/components/sharedComponents/IncomeCategories';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { submitAtom } from '../../store/atoms';
+import { submitAtom, userAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
-import { CURRENT_DATE } from '../../constants/constants';
-import ModalDialog from '../sharedComponents/ModalDialog';
-import { ITransaction } from '@/app/models/ITransaction';
+import { CURRENT_DATE, TRANSACTION_TYPES } from '@/constants/constants';
+import ModalDialog from '@/components/sharedComponents/ModalDialog';
+import { ITransaction } from '@/models/ITransaction';
+import { useGetTransactions } from '@/hooks/useGetTransactions';
+import { createTransactionDocument } from '../../../firebase/operations/createTransaction';
+import Loading from '../sharedComponents/Loading';
 
-interface Props {
-  onHandleSubmit: (user: IUser, data: ITransaction, date: Date) => void;
-}
-
-const AddTransaction = ({ onHandleSubmit }: Props) => {
+const AddTransaction = () => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [date, setDate] = useState(CURRENT_DATE);
-  const [type, setType] = useState('expense');
-  const { user } = useAuthUser();
+  const [type, setType] = useState(TRANSACTION_TYPES.EXPENSE);
+  const [user] = useAtom(userAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isLoading } = useGetTransactions();
 
   const {
     register,
@@ -37,20 +35,24 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
   });
 
   const submitData = async (data: ITransaction) => {
-    onHandleSubmit(user, data, date);
+    await createTransactionDocument(user, data, date);
     setIsSubmitted(true);
-    reset();
     setIsModalOpen(true);
+    reset();
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const handleClick = (type: string) => {
     setType(type);
   };
 
   return (
-    <section>
+    <>
       <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-5xl font-bold'>ADD TRANSACTION</h2>
+        <h2 className='text-3xl font-bold'>SET TRANSACTION</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <div>
             <legend>Select date</legend>
@@ -70,9 +72,9 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
                 aria-label='EXPENSE'
                 type='radio'
                 {...register('type')}
-                onClick={() => handleClick('expense')}
+                onClick={() => handleClick(TRANSACTION_TYPES.EXPENSE)}
                 name='type'
-                value={'expense'}
+                value={TRANSACTION_TYPES.EXPENSE}
                 defaultChecked
               />
               <input
@@ -80,16 +82,16 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
                 aria-label='INCOME'
                 type='radio'
                 {...register('type')}
-                onClick={() => handleClick('income')}
+                onClick={() => handleClick(TRANSACTION_TYPES.INCOME)}
                 name='type'
-                value={'income'}
+                value={TRANSACTION_TYPES.INCOME}
               />
             </div>
           </fieldset>
 
           <fieldset>
             <legend className='input-label'>Transaction Category</legend>
-            {type === 'expense' ? (
+            {type === TRANSACTION_TYPES.EXPENSE ? (
               <ExpenseCategories register={register} />
             ) : (
               <IncomeCategories register={register} />
@@ -138,7 +140,7 @@ const AddTransaction = ({ onHandleSubmit }: Props) => {
           isModalOpen={isModalOpen}
         />
       )}
-    </section>
+    </>
   );
 };
 

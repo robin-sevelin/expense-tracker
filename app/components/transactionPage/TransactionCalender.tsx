@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useGetCalenderDays } from '../../hooks/useGetCalenderDays';
-import { useGetFilteredTransactions } from '../../hooks/useGetFIlteredTransaction';
-import { ITransaction } from '../../models/ITransaction';
-import ModalTransactionDay from '../sharedComponents/ModalTransactionDay';
-import { DAY_BASE_VALUES } from '@/app/constants/constants';
+import { useGetCalenderDays } from '@/hooks/useGetCalenderDays';
+import { useGetFilteredTransactions } from '@/hooks/useGetFIlteredTransaction';
+import { ITransaction } from '@/models/ITransaction';
+import ModalTransactionDay from '@/components/sharedComponents/ModalTransactionDay';
+import { DAY_BASE_VALUES } from '@/constants/constants';
 
 interface Props {
   transactions: ITransaction[];
@@ -25,15 +25,18 @@ const TransactionCalender = ({ transactions }: Props) => {
   };
 
   return (
-    <section className='flex w-3/5 m-auto justify-center items-center flex-wrap gap-4'>
+    <div className='flex w-3/5 m-auto justify-center items-center flex-wrap gap-4'>
       {calenderArray.map((day, index) => (
         <button
           key={index}
           onClick={() => handleClick(day.expenseSum, day.incomeSum, day.day)}
         >
-          <div className='bg-base-300 w-20 h-20 p-1 m-1 card cursor-pointer'>
+          <div
+            className={`bg-base-300 w-20 h-20 p-1 m-1 card cursor-pointer ${
+              day.incomeSum !== 0 || day.expenseSum !== 0 ? 'with-border' : ''
+            }`}
+          >
             <h3>{day.day} </h3>
-            {(day.incomeSum !== 0 || day.expenseSum !== 0) && <span>💵</span>}
           </div>
         </button>
       ))}
@@ -44,7 +47,7 @@ const TransactionCalender = ({ transactions }: Props) => {
           onHandleChange={() => setIsModalOpen(false)}
         />
       )}
-    </section>
+    </div>
   );
 };
 
