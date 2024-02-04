@@ -1,10 +1,11 @@
 import { atom } from 'jotai';
+import {} from '@/constants/constants';
 import {
-  RECURRING_TRANSACTIONS_BASE_VALUES,
+  USER_BASE_VALUES,
   TRANSACTIONS_BASE_VALUES,
   TRANSACTION_BASE_VALUES,
-  USER_BASE_VALUES,
-} from '@/constants/constants';
+  RECURRING_TRANSACTIONS_BASE_VALUES,
+} from '@/constants/baseValues';
 
 export const loadingAtom = atom(false);
 export const loggedInAtom = atom(false);

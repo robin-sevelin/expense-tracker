@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { recurringExpenseSumAtom, submitAtom } from '@/store/atoms';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useGetRecurringTransactions } from './useGetRecurringTransactions';
 import { TRANSACTION_TYPES } from '@/constants/constants';
 

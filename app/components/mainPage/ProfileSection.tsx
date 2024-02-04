@@ -3,9 +3,9 @@
 import React from 'react';
 import { userAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
-import { USER_BASE_VALUES } from '@/constants/constants';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/../firebase/auth';
+import { USER_BASE_VALUES } from '@/constants/baseValues';
 
 const ProfileSection = () => {
   const [user] = useAtom(userAtom);

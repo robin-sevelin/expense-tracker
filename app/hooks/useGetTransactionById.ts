@@ -4,7 +4,7 @@ import { db } from '@/../firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
-import { TRANSACTION_BASE_VALUES } from '@/constants/constants';
+import { TRANSACTION_BASE_VALUES } from '@/constants/baseValues';
 
 export const useGetTransactionById = (id: string) => {
   const [user] = useAtom(userAtom);

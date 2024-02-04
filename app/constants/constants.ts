@@ -1,7 +1,3 @@
-import { IUser } from '../models/IUser';
-import { ITransaction } from '../models/ITransaction';
-import { IRecurringTransaction } from '@/models/IRecurringTransaction';
-
 export const ROUTES = [
   { id: 0, url: '/', text: 'Home' },
   { id: 1, url: '/pages/profile', text: 'Profile' },
@@ -22,29 +18,6 @@ export const DAYS_IN_MONTH = new Date(
   CURRENT_DATE.getMonth() + 1,
   0
 ).getDate();
-
-export const DAY_BASE_VALUES = {
-  incomeSum: 0,
-  expenseSum: 0,
-  day: 0,
-};
-
-export const USER_BASE_VALUES: IUser = {
-  uid: '',
-  email: '',
-  displayName: '',
-  photoURL: '',
-};
-
-export const TRANSACTION_BASE_VALUES: ITransaction = {
-  id: '',
-  title: '',
-  amount: 0,
-  date: CURRENT_DATE,
-};
-
-export const RECURRING_TRANSACTIONS_BASE_VALUES: IRecurringTransaction[] = [];
-export const TRANSACTIONS_BASE_VALUES: ITransaction[] = [];
 
 export const TRANSACTION_TYPES = {
   BUDGET: 'budget',
@@ -92,29 +65,6 @@ export const INCOME_CATEGORIES = [
   },
 ];
 
-export const LINECHART_COLORS = {
-  INCOME: {
-    border: 'rgb(0, 128, 0)',
-    bg: 'rgba(0, 128, 0, 0.5)',
-  },
-  EXPENSE: {
-    border: 'rgb(255, 99, 132)',
-    bg: 'rgba(255, 99, 132, 0.5)',
-  },
-  BALANCE: {
-    border: 'rgb(75, 192, 192)',
-    bg: 'rgba(75, 192, 192, 0.5)',
-  },
-  RECCURING_EXPENSES: {
-    border: 'rgb(235, 82, 52)',
-    bg: 'rgb(154, 30, 166)',
-  },
-  RECCURING_INCOMES: {
-    border: 'rgb(52, 52, 2352)',
-    bg: 'rgb(87, 87, 186)',
-  },
-};
-
 export const FOOTER_NAV_IMGS = [
   {
     id: 0,
@@ -135,10 +85,6 @@ export const FOOTER_NAV_IMGS = [
     url: 'mailto:robin.sevelin@medieinstitutet.se',
   },
 ];
-
-export const EXPENSE_TRACKER_LOGO = '/expense-tracker.svg';
-
-export const VIDEO_BG = '/pexels-kindel-media-7055354 (Original).mp4';
 
 export const BALANCE = 'balance';
 export const TRANSACTIONS = 'transactions';

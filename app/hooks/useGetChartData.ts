@@ -1,12 +1,8 @@
 import { recurringTransactionAtom } from './../store/atoms';
 import { balanceAtom, monthAtom, transactionsAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
-import { chartOptions } from '@/constants/chartOptions';
-import {
-  DAYS_IN_MONTH,
-  LINECHART_COLORS,
-  TRANSACTION_TYPES,
-} from '@/constants/constants';
+import { LINECHART_COLORS, chartOptions } from '@/constants/chartOptions';
+import { DAYS_IN_MONTH, TRANSACTION_TYPES } from '@/constants/constants';
 import { useGetFilteredTransactions } from './useGetFIlteredTransaction';
 import { ITransaction } from '@/models/ITransaction';
 
