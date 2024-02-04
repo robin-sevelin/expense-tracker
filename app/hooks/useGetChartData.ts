@@ -5,29 +5,32 @@ import { LINECHART_COLORS, chartOptions } from '@/constants/chartOptions';
 import { DAYS_IN_MONTH, TRANSACTION_TYPES } from '@/constants/constants';
 import { useGetFilteredTransactions } from './useGetFIlteredTransaction';
 import { ITransaction } from '@/models/ITransaction';
+import { useGetDaysInMonthArray } from './useGetDaysInMonthArray';
 
 export const useGetChartData = () => {
   const [transactions] = useAtom(transactionsAtom);
   const [balance] = useAtom(balanceAtom);
   const [currentMonth] = useAtom(monthAtom);
   const [recurringTransactions] = useAtom(recurringTransactionAtom);
-
+  const { daysInMonthArray } = useGetDaysInMonthArray();
   const { filtredTransactions } = useGetFilteredTransactions(transactions);
 
-  const getSumByType = (day: number, type: string) =>
-    getTransactionsUntilDay(day)
-      ?.filter(
-        (transaction: ITransaction) =>
-          transaction.type === type &&
-          new Date(transaction.date).getMonth() === currentMonth.getMonth() &&
-          new Date(transaction.date).getFullYear() ===
-            currentMonth.getFullYear()
-      )
-      .reduce((a, b) => a + b.amount, 0);
+  const getSumByType = (day: number, type: string) => {
+    const transactions = getTransactionsUntilDay(day);
+
+    const filteredTransactions = transactions.filter(
+      (transaction: ITransaction) =>
+        transaction.type === type &&
+        new Date(transaction.date).getMonth() === currentMonth.getMonth() &&
+        new Date(transaction.date).getFullYear() === currentMonth.getFullYear()
+    );
+
+    return filteredTransactions.reduce((a, b) => a + b.amount, 0);
+  };
 
   const getTransactionsUntilDay = (day: number) => {
     const updatedTransactionList = filtredTransactions?.filter(
-      (transaction) => {
+      (transaction: ITransaction) => {
         const transactionDate = transaction.date
           ? new Date(transaction.date)
           : null;
@@ -44,7 +47,10 @@ export const useGetChartData = () => {
     return updatedTransactionList;
   };
 
-  const labels = Array.from({ length: DAYS_IN_MONTH }, (_, index) => index + 1);
+  const labels = Array.from(
+    { length: daysInMonthArray.length },
+    (_, index) => index + 1
+  );
 
   const recurringExpenses = recurringTransactions.filter(
     (transaction) => transaction.type === TRANSACTION_TYPES.EXPENSE
