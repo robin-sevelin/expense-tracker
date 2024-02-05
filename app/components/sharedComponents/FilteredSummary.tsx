@@ -12,7 +12,7 @@ const FilteredSummary = () => {
   const { recurringIncomeSum } = useGetRecurringIncomeSum();
   useGetTransactions();
   return (
-    <div className='overflow-x-auto'>
+    <div className='overflow-x-auto max-w-[600px] m-auto'>
       <table className='table'>
         <thead>
           <tr>

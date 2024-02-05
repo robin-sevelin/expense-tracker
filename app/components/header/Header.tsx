@@ -14,16 +14,15 @@ const Header = () => {
   return (
     <>
       <header className='flex justify-between w-full'>
-        <div>
+        <div className='flex gap-2'>
           {user.uid && <Navigation />}
           {user.uid && <ThemeSelector />}
         </div>
-        <Link href={'/'} className='btn btn-ghost text-xl'>
-          EXPENSE TRACKER
+        <Link href={'/'} className='btn btn-ghost text-xl m-auto'>
+          <h1> EXPENSE TRACKER</h1>
         </Link>
-        <MediaQuery minWidth={1225}>
-          {user.uid && <ProfileSection />}
-        </MediaQuery>
+
+        {user.uid && <ProfileSection />}
       </header>
     </>
   );

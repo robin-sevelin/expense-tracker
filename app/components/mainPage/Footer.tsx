@@ -15,10 +15,6 @@ const Footer = () => {
     <>
       <footer>
         {user.uid && <ProgressBar />}
-        <MediaQuery maxWidth={1224}>
-          <div>{user.uid && <ProfileSection />}</div>
-        </MediaQuery>
-        <h2>HOW TO REACH ME</h2>
         <div className='flex gap-5'>
           {FOOTER_NAV_IMGS.map((img) => (
             <Link href={img.url} key={img.id} target='blank'>

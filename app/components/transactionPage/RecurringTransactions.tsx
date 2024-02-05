@@ -28,7 +28,7 @@ const RecurringTransactions = () => {
         {recurringTransactions?.map((transaction) => (
           <div
             key={transaction.id}
-            className='card w-50 bg-neutral text-neutral-content mb-3'
+            className='card  bg-neutral text-neutral-content mb-3'
           >
             <div className='card-body  items-center text-center'>
               <h3>{transaction.title}</h3>
