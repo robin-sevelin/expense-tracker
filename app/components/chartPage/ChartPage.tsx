@@ -19,9 +19,7 @@ const ChartPage = () => {
     <>
       <MonthPicker />
       <FilteredSummary />
-      <section className='min-h-4/5'>
-        <Line options={chartOptions} data={data} />
-      </section>
+      <Line options={chartOptions} data={data} />
     </>
   );
 };

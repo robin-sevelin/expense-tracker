@@ -3,11 +3,9 @@
 import { FOOTER_NAV_IMGS } from '@/constants/constants';
 import Link from 'next/link';
 import React from 'react';
-import ProgressBar from '../ProgressBar';
+import ProgressBar from '../sharedComponents/ProgressBar';
 import { userAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
-import ProfileSection from './ProfileSection';
-import MediaQuery from 'react-responsive';
 
 const Footer = () => {
   const [user] = useAtom(userAtom);

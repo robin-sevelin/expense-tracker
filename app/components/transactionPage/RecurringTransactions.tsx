@@ -24,7 +24,7 @@ const RecurringTransactions = () => {
   return (
     <>
       <FilteredSummary />
-      <div className=' flex max-w-3/4 flex-wrap gap-5 justify-center '>
+      <div className=' flex max-w-3/4 flex-wrap gap-5 justify-center mt-10'>
         {recurringTransactions?.map((transaction) => (
           <div
             key={transaction.id}
