@@ -17,7 +17,7 @@ const chartOptions = {
     },
     title: {
       display: true,
-      text: 'HEADING',
+      text: 'TRANSACTIONS',
     },
   },
   scales: {

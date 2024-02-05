@@ -34,19 +34,19 @@ const UserPage = () => {
         <Link href='/pages/editUserValues' className='btn btn-primary py-3'>
           <span>Edit budget</span>
         </Link>
-        <div className='overflow-x-auto py-10'>
+        <div className='overflow-x-auto mt-[100px] '>
           <table className='table'>
-            <thead>
-              <tr>
-                <th>Budget amount</th>
-                <th>Reccuring expenses amount</th>
-                <th>Reccuring incomes amount</th>
-              </tr>
-            </thead>
             <tbody>
               <tr>
+                <th>Budget amount</th>
                 <td>{balance} SEK</td>
+              </tr>
+              <tr>
+                <th>Reccuring expenses amount</th>
                 <td>{recurringExpenseSum} SEK</td>
+              </tr>
+              <tr>
+                <th>Reccuring incomes amount</th>
                 <td>{recurringIncomeSum} SEK</td>
               </tr>
             </tbody>
