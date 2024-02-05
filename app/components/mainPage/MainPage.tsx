@@ -1,11 +1,13 @@
 'use client';
 
+import { useAuthUser } from '@/hooks/useAuthUser';
 import { userAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 
 const MainPage = () => {
   const [user] = useAtom(userAtom);
+  useAuthUser();
 
   return (
     <section className='card max-w-xl m-auto bg-base-200 p-2 my-5 z-30 mt-20'>

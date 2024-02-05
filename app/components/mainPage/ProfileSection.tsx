@@ -6,6 +6,8 @@ import { useAtom } from 'jotai';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/../firebase/auth';
 import { USER_BASE_VALUES } from '@/constants/baseValues';
+import { RiLogoutCircleRLine } from 'react-icons/ri';
+import MediaQuery from 'react-responsive';
 
 const ProfileSection = () => {
   const [user] = useAtom(userAtom);
@@ -17,21 +19,27 @@ const ProfileSection = () => {
   };
 
   return (
-    <>
-      <picture>
+    <div className='flex justify-center items-center'>
+      <picture className='m-2'>
         <img
           src={user.photoURL}
           alt={user.displayName}
-          width={20}
-          height={20}
+          width={50}
+          height={50}
           loading='lazy'
           className=' rounded-full shadow-2xl '
         />
       </picture>
+
       <button aria-label='sign out' onClick={logOut} className='btn btn-error'>
-        Sign out
+        <MediaQuery maxWidth={1224}>
+          <RiLogoutCircleRLine />
+        </MediaQuery>
+        <MediaQuery minWidth={1225}>
+          <span>Sign out</span>
+        </MediaQuery>
       </button>
-    </>
+    </div>
   );
 };
 

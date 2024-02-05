@@ -3,13 +3,15 @@
 import React, { useState } from 'react';
 import AddTransaction from './AddTransaction';
 import AddRecurringTransaction from './AddRecurrningTransaction';
+import { useAuthUser } from '@/hooks/useAuthUser';
 
 const TransactionTypeSelect = () => {
   const [form, setForm] = useState('one time');
+  useAuthUser();
   return (
-    <div className=' flex flex-col m-5 p-5 justify-center items-center'>
+    <div className='flex flex-col justify-center items-center'>
       <fieldset>
-        <legend>Select transaction type</legend>
+        <legend>Select Recurrancy</legend>
         <div className='join'>
           <input
             className='join-item btn'

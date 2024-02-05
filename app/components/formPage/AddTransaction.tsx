@@ -51,8 +51,8 @@ const AddTransaction = () => {
 
   return (
     <>
-      <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-3xl font-bold'>SET TRANSACTION</h2>
+      <div>
+        <h2 className='font-bold'>SET TRANSACTION</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <div>
             <legend>Select date</legend>

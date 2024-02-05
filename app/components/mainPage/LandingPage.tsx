@@ -8,6 +8,7 @@ import MainPage from './MainPage';
 import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
 import { useCookies } from 'react-cookie';
 import CookieBanner from '@/components/sharedComponents/CookieBanner';
+import { useAuthUser } from '@/hooks/useAuthUser';
 
 const LandingPage = () => {
   const [cookies, setCookie] = useCookies(['expense-tracker']);

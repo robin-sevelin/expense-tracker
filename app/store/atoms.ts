@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
-import {} from '@/constants/constants';
+
 import {
   USER_BASE_VALUES,
   TRANSACTIONS_BASE_VALUES,

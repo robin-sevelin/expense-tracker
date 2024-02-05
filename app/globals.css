@@ -33,7 +33,7 @@ header {
 }
 
 .theme-dropdown {
-  @apply shadow menu dropdown-content z-[999] bg-base-100 rounded-box max-h-[600px] w-[220px]  overflow-y-scroll;
+  @apply shadow menu dropdown-content relative z-[999] bg-base-100 rounded-box max-h-[600px] w-[220px]  overflow-y-scroll;
 }
 
 .with-border {

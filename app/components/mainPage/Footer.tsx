@@ -6,13 +6,18 @@ import React from 'react';
 import ProgressBar from '../ProgressBar';
 import { userAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
+import ProfileSection from './ProfileSection';
+import MediaQuery from 'react-responsive';
 
 const Footer = () => {
   const [user] = useAtom(userAtom);
   return (
     <>
-      {user.uid && <ProgressBar />}
       <footer>
+        {user.uid && <ProgressBar />}
+        <MediaQuery maxWidth={1224}>
+          <div>{user.uid && <ProfileSection />}</div>
+        </MediaQuery>
         <h2>HOW TO REACH ME</h2>
         <div className='flex gap-5'>
           {FOOTER_NAV_IMGS.map((img) => (

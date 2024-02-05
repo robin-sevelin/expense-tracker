@@ -5,6 +5,7 @@ import { useAtom } from 'jotai';
 import { userAtom } from '@/store/atoms';
 import Link from 'next/link';
 import ThemeSelector from './ThemeSelector';
+import MediaQuery from 'react-responsive';
 import ProfileSection from '../mainPage/ProfileSection';
 
 const Header = () => {
@@ -13,16 +14,16 @@ const Header = () => {
   return (
     <>
       <header className='flex justify-between w-full'>
-        <div className='nav-section w-[164px] h-[74px]'>
+        <div>
           {user.uid && <Navigation />}
-          <ThemeSelector />
+          {user.uid && <ThemeSelector />}
         </div>
-        <Link href={'/'} className='btn btn-ghost text-xl '>
+        <Link href={'/'} className='btn btn-ghost text-xl'>
           EXPENSE TRACKER
         </Link>
-        <div className='w-[164px] h-[74px]'>
+        <MediaQuery minWidth={1225}>
           {user.uid && <ProfileSection />}
-        </div>
+        </MediaQuery>
       </header>
     </>
   );

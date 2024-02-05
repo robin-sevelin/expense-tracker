@@ -7,7 +7,7 @@ const RecurringTransactions = () => {
   const [view, setView] = useState(TRANSACTION_TYPES.EXPENSE);
 
   return (
-    <section className='centered-container'>
+    <div>
       <fieldset>
         <legend>Select View</legend>
         <div className='join'>
@@ -32,7 +32,7 @@ const RecurringTransactions = () => {
           />
         </div>
       </fieldset>
-    </section>
+    </div>
   );
 };
 
