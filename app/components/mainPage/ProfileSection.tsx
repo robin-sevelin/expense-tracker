@@ -18,21 +18,17 @@ const ProfileSection = () => {
 
   return (
     <>
-      <picture className=' p-2 m-1'>
+      <picture>
         <img
           src={user.photoURL}
           alt={user.displayName}
-          width={50}
-          height={50}
+          width={20}
+          height={20}
           loading='lazy'
           className=' rounded-full shadow-2xl '
         />
       </picture>
-      <button
-        aria-label='sign out'
-        onClick={logOut}
-        className='btn btn-error w-20 m-1'
-      >
+      <button aria-label='sign out' onClick={logOut} className='btn btn-error'>
         Sign out
       </button>
     </>
