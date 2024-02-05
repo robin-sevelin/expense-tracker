@@ -18,7 +18,7 @@ const ProgressBar = () => {
   }
 
   if (percent <= 0) {
-    percent = 0;
+    percent == 0;
   }
 
   useGetTransactions();

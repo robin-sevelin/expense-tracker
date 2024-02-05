@@ -24,7 +24,6 @@ const AddTransaction = () => {
   const [type, setType] = useState(TRANSACTION_TYPES.EXPENSE);
   const [user] = useAtom(userAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [transactionById] = useAtom(transactionByIdAtom);
   const { isLoading } = useGetTransactions();
 
   const {
@@ -37,13 +36,8 @@ const AddTransaction = () => {
   });
 
   const submitData = async (data: ITransaction) => {
-    console.log('id', transactionById);
+    await createTransactionDocument(user, data, date);
 
-    if (transactionById) {
-      await updateTransaction(user, transactionById, transactionById.id, date);
-    } else {
-      await createTransactionDocument(user, data, date);
-    }
     setIsSubmitted(true);
     setIsModalOpen(true);
     reset();
