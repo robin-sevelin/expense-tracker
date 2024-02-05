@@ -10,6 +10,11 @@ export const ROUTES = [
     text: 'Recurring transactions',
   },
 ];
+
+export const RECCURANCY_TYPES = {
+  ONCE: 'Once',
+  RECURRANT: 'Recurrant',
+};
 export const CURRENT_DATE = new Date();
 export const CURRENT_YEAR = CURRENT_DATE.getFullYear();
 export const CURRENT_MONTH = CURRENT_DATE.getMonth();
