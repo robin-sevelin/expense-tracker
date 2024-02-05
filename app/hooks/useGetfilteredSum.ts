@@ -25,7 +25,7 @@ export const useGetFilteredSum = () => {
   const [recurringIncomeSum] = useAtom(recurringIncomeSumAtom);
 
   useEffect(() => {
-    if (recurringIncomeSum || recurringExpenseSum || incomeSum) {
+    if (transactions) {
       const countSum = () => {
         const currentMonthTransactions = transactions.filter((transaction) => {
           const transactionDate = new Date(transaction.date);
@@ -38,6 +38,7 @@ export const useGetFilteredSum = () => {
         const expenses = currentMonthTransactions.filter(
           (transaction) => transaction.type === TRANSACTION_TYPES.EXPENSE
         );
+
         const incomes = currentMonthTransactions.filter(
           (transaction) => transaction.type === TRANSACTION_TYPES.INCOME
         );
