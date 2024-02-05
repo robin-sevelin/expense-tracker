@@ -17,6 +17,10 @@ const ProgressBar = () => {
     percent = 100;
   }
 
+  if (percent <= 0) {
+    percent = 0;
+  }
+
   useGetTransactions();
 
   const progressBarStyle = {

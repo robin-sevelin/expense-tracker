@@ -4,13 +4,13 @@ import { doc, getDoc, updateDoc } from '../firestore';
 import { db } from '../firestore';
 import { TRANSACTIONS, USER_TRANSACTIONS } from '@/constants/constants';
 
-export const deleteTransactionObject = async (userAuth: IUser, id: string) => {
+export const deleteTransactionObject = async (user: IUser, id: string) => {
   const transactionCollectionRef = doc(
     db,
     USER_TRANSACTIONS,
-    userAuth?.uid,
+    user.uid,
     TRANSACTIONS,
-    userAuth?.uid
+    user.uid
   );
 
   try {
