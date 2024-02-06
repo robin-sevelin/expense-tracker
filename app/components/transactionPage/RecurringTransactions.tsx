@@ -37,7 +37,7 @@ const RecurringTransactions = () => {
                 {transaction.type === TRANSACTION_TYPES.EXPENSE && (
                   <span>-</span>
                 )}
-                {transaction.amount} kr
+                {transaction.amount} SEK
               </p>
               <p>Day of month: {transaction.date}</p>
               <div className='card-actions justify-end'>

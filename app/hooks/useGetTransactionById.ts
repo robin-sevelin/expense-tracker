@@ -5,10 +5,11 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
 import { TRANSACTION_BASE_VALUES } from '@/constants/baseValues';
+import { TRANSACTIONS, USER_TRANSACTIONS } from '@/constants/constants';
 
 export const useGetTransactionById = (id: string) => {
   const [user] = useAtom(userAtom);
-  const [transaction, setTransaction] = useAtom(transactionByIdAtom);
+  const [transactionById, setTransactionById] = useAtom(transactionByIdAtom);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useAtom(submitAtom);
 
@@ -16,7 +17,13 @@ export const useGetTransactionById = (id: string) => {
     if (id || isSubmitted) {
       try {
         const getData = async () => {
-          const docRef = doc(db, 'transactions', user.uid);
+          const docRef = doc(
+            db,
+            USER_TRANSACTIONS,
+            user.uid,
+            TRANSACTIONS,
+            user.uid
+          );
           const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {
@@ -25,10 +32,9 @@ export const useGetTransactionById = (id: string) => {
             const filteredData = data.transactions.filter(
               (transaction: ITransaction) => transaction.id === id
             );
-
-            setTransaction(filteredData[0]);
+            setTransactionById(filteredData[0]);
           } else {
-            setTransaction(TRANSACTION_BASE_VALUES);
+            setTransactionById(TRANSACTION_BASE_VALUES);
           }
 
           setIsSubmitted(false);
@@ -42,7 +48,9 @@ export const useGetTransactionById = (id: string) => {
         setIsLoading(false);
       }
     }
-  }, [user, setTransaction, isSubmitted, setIsSubmitted, id]);
+  }, [user, setTransactionById, isSubmitted, setIsSubmitted, id]);
 
-  return { isLoading, transaction } as const;
+  console.log(transactionById);
+
+  return { isLoading, transactionById } as const;
 };

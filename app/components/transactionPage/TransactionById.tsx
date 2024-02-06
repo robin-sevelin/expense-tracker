@@ -10,21 +10,21 @@ interface Props {
 }
 
 const TransactionById = ({ id }: Props) => {
-  const { isLoading, transaction } = useGetTransactionById(id);
-  if (!isLoading) {
+  const { isLoading, transactionById } = useGetTransactionById(id);
+  if (isLoading) {
     return <Loading />;
   }
   return (
-    <section className='card w-96 bg-neutral text-neutral-content mb-5 mt-5'>
+    <section className='card bg-neutral text-neutral-content mb-5 mt-5'>
       <div className='card-body items-center text-center'>
-        <h2 className='card-title'>{transaction.title}</h2>
+        <h2 className='card-title'>{transactionById.title}</h2>
         <p>
           Amount:{' '}
-          {transaction.type === TRANSACTION_TYPES.EXPENSE && <span>-</span>}
-          {transaction.amount} kr
+          {transactionById.type === TRANSACTION_TYPES.EXPENSE && <span>-</span>}
+          {transactionById.amount} SEK
         </p>
-        <p>Type: {transaction.type}</p>
-        <p>Category: {transaction.category}</p>
+        <p>Type: {transactionById.type}</p>
+        <p>Category: {transactionById.category}</p>
         <div className='card-actions justify-end'></div>
       </div>
     </section>

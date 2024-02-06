@@ -1,29 +1,28 @@
 'use client';
 
-import React, { useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { transactionSchema } from '@/models/FormSchema';
-import ExpenseCategories from '@/components/sharedComponents/ExpenseCategories';
-import IncomeCategories from '@/components/sharedComponents/IncomeCategories';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { submitAtom, transactionByIdAtom, userAtom } from '@/store/atoms';
-import { useAtom } from 'jotai';
 import { CURRENT_DATE, TRANSACTION_TYPES } from '@/constants/constants';
-import ModalDialog from '@/components/sharedComponents/ModalDialog';
-import { ITransaction } from '@/models/ITransaction';
 import { useGetTransactions } from '@/hooks/useGetTransactions';
-import { createTransactionDocument } from '@/../firebase/operations/createTransaction';
-import Loading from '../sharedComponents/Loading';
+import { transactionSchema } from '@/models/FormSchema';
+import { ITransaction } from '@/models/ITransaction';
+import { submitAtom, transactionByIdAtom, userAtom } from '@/store/atoms';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useAtom } from 'jotai';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { updateTransaction } from '../../../firebase/operations/updateTransaction';
+import ExpenseCategories from '../sharedComponents/ExpenseCategories';
+import IncomeCategories from '../sharedComponents/IncomeCategories';
+import Loading from '../sharedComponents/Loading';
+import ModalDialog from '../sharedComponents/ModalDialog';
+import DatePicker from 'react-datepicker';
 
-const AddTransaction = () => {
+const UpdateTransaction = () => {
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [date, setDate] = useState(CURRENT_DATE);
   const [type, setType] = useState(TRANSACTION_TYPES.EXPENSE);
   const [user] = useAtom(userAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [transactionById] = useAtom(transactionByIdAtom);
   const { isLoading } = useGetTransactions();
 
   const {
@@ -36,7 +35,7 @@ const AddTransaction = () => {
   });
 
   const submitData = async (data: ITransaction) => {
-    await createTransactionDocument(user, data, date);
+    await updateTransaction(user, data, transactionById.id, date);
 
     setIsSubmitted(true);
     setIsModalOpen(true);
@@ -54,7 +53,7 @@ const AddTransaction = () => {
   return (
     <>
       <div>
-        <h3 className='font-bold'>SET TRANSACTION</h3>
+        <h2 className='font-bold'>SET TRANSACTION</h2>
         <form onSubmit={handleSubmit(submitData)}>
           <div>
             <legend>Select date</legend>
@@ -146,4 +145,4 @@ const AddTransaction = () => {
   );
 };
 
-export default AddTransaction;
+export default UpdateTransaction;

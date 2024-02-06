@@ -97,3 +97,5 @@ export const RECURRING_TRANSACTIONS = 'recurringTransactions';
 export const USER_TRANSACTIONS = 'userTransactions';
 export const USER_BUDGETS = 'userBudgets';
 export const USERS = 'users';
+
+export const DAYS_LIMIT = 28;

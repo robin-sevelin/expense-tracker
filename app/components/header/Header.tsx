@@ -17,7 +17,10 @@ const Header = () => {
           {user.uid && <Navigation />}
           {user.uid && <ThemeSelector />}
         </div>
-        <Link href={'/'} className='btn btn-ghost text-xl m-auto'>
+        <Link
+          href={'/'}
+          className='btn btn-ghost text-xl max-w-20  h-auto m-auto'
+        >
           <h1> EXPENSE TRACKER</h1>
         </Link>
         {user.uid && <ProfileSection />}

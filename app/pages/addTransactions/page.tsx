@@ -4,7 +4,7 @@ const AddTransactions = () => {
   return (
     <>
       <h2 className='text-3xl font-bold flex justify-center'>
-        ADD TRANSACTIONS
+        ADD TRANSACTION
       </h2>
       <TransactionTypeSelect />
     </>
