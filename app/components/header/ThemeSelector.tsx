@@ -25,14 +25,14 @@ const ThemeSelector = () => {
 
   return (
     <div className='dropdown'>
-      <button className='btn bg-base-100'>
+      <div tabIndex={0} role='button' className='btn m-1 bg-base-100'>
         <span>
           <MediaQuery maxWidth={1224}>
             <HiColorSwatch />
           </MediaQuery>
           <MediaQuery minWidth={1225}>Themes</MediaQuery>
         </span>
-      </button>
+      </div>
       <ul tabIndex={0} className='theme-dropdown'>
         {THEMES.map((theme) => (
           <li key={theme.id}>
