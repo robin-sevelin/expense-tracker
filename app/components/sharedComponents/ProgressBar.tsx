@@ -29,7 +29,7 @@ const ProgressBar = () => {
 
   return (
     <>
-      {balance && (
+      {balance === 0 && (
         <div className='flex flex-col justify-center items-center mt-5'>
           <div className=' p-2 m-1'>
             <h3 className='font-bold'>
