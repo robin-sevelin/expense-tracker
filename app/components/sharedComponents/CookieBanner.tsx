@@ -37,12 +37,8 @@ const CookieBanner = ({ onHandleChange }: Props) => {
                 deleting when you close your browser.
               </p>
               <p>
-                When you log in with your Google account, we collect and store
-                your name, email, and profile picture for user authentication
-                and a personalized experience. Your data security and privacy
-                are paramount, and we comply with relevant regulations. If you
-                have questions, contact our support team. By clicking ACCEPT or
-                continuing to use our site, you confirm acceptance of our cookie
+                If you have questions, contact the admin. By clicking ACCEPT or
+                continuing to use the site, you confirm acceptance of our cookie
                 policy and Google user information storage. Thanks for choosing
                 our platform; we hope you have a great experience!
               </p>
