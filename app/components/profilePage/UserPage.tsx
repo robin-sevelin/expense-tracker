@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useAuthUser } from '@/hooks/useAuthUser';
-import Link from 'next/link';
 import { useAtom } from 'jotai';
 import { balanceAtom } from '@/store/atoms';
 import { useGetRecurringExpenseSum } from '@/hooks/useGetRecurringExpenseSum';
