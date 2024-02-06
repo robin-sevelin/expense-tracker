@@ -18,19 +18,26 @@ const MainPage = () => {
               Hello there {user.displayName}
             </h1>
             <p className='py-6'>
-              Lets add some transactions but dont forget to set your budget in
-              the profile section.
+              Lets add some transactions but dont forget to set your budget
             </p>
-            <Link href={'/pages/addTransactions'} className='btn btn-primary'>
-              Add transactions
-            </Link>
+            <div className='flex justify-between'>
+              <Link
+                href={'/pages/profile'}
+                className='btn btn-ghost btn-outline'
+              >
+                Set budget
+              </Link>
+              <Link href={'/pages/addTransactions'} className='btn btn-primary'>
+                Add transactions
+              </Link>
+            </div>
           </div>
         </div>
       </section>
       <picture>
         <img
           src='/Wavy_Gen-03_Single-12.jpg'
-          alt=''
+          alt='money image'
           className='rounded-full m-auto mt-20'
           width={300}
           height={300}

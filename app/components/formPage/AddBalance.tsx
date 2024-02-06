@@ -63,9 +63,6 @@ const AddBalance = () => {
                 )}
               </div>
               <button className='btn btn-primary mr-5'>Submit</button>
-              <Link href='/pages/profile'>
-                <button className='btn btn-secondary'>Return</button>
-              </Link>
             </fieldset>
           </div>
         </form>

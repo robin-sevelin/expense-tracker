@@ -8,6 +8,7 @@ import { auth } from '@/../firebase/auth';
 import { USER_BASE_VALUES } from '@/constants/baseValues';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 import MediaQuery from 'react-responsive';
+import Link from 'next/link';
 
 const ProfileSection = () => {
   const [user] = useAtom(userAtom);
@@ -20,17 +21,18 @@ const ProfileSection = () => {
 
   return (
     <div className='flex justify-center items-center'>
-      <picture className='m-2'>
-        <img
-          src={user.photoURL}
-          alt={user.displayName}
-          width={50}
-          height={50}
-          loading='lazy'
-          className=' rounded-full shadow-2xl '
-        />
-      </picture>
-
+      <Link href='/pages/profile' className='mr-2'>
+        <picture className='m-2'>
+          <img
+            src={user.photoURL}
+            alt={user.displayName}
+            width={50}
+            height={50}
+            loading='lazy'
+            className=' rounded-full shadow-2xl '
+          />
+        </picture>
+      </Link>
       <button aria-label='sign out' onClick={logOut} className='btn btn-error'>
         <MediaQuery maxWidth={1224}>
           <RiLogoutCircleRLine />
