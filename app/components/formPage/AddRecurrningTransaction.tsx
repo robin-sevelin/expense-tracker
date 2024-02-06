@@ -10,7 +10,7 @@ import { useGetDaysInMonthArray } from '@/hooks/useGetDaysInMonthArray';
 import { recurringTransactionSchema } from '@/models/FormSchema';
 import { createRecurringTransactionDocument } from '../../../firebase/operations/createRecurringTransaction';
 import { IRecurringTransaction } from '@/models/IRecurringTransaction';
-import { TRANSACTION_TYPES } from '@/constants/constants';
+import { DAYS_LIMIT, TRANSACTION_TYPES } from '@/constants/constants';
 
 const AddRecurringTransaction = () => {
   const [user] = useAtom(userAtom);
@@ -102,7 +102,11 @@ const AddRecurringTransaction = () => {
             {...register('date')}
           >
             {daysInMonthArray.map((days, index) => (
-              <option key={index} value={days.day} disabled={days.day > 28}>
+              <option
+                key={index}
+                value={days.day}
+                disabled={days.day > DAYS_LIMIT}
+              >
                 {days.day}
               </option>
             ))}

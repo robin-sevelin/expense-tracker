@@ -54,7 +54,7 @@ const AddTransaction = () => {
   return (
     <>
       <div>
-        <h2 className='font-bold'>SET TRANSACTION</h2>
+        <h3 className='font-bold'>SET TRANSACTION</h3>
         <form onSubmit={handleSubmit(submitData)}>
           <div>
             <legend>Select date</legend>

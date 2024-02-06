@@ -15,13 +15,13 @@ const TransactionById = ({ id }: Props) => {
     return <Loading />;
   }
   return (
-    <section className='card w-96 bg-neutral text-neutral-content mb-5 mt-5'>
+    <section className='card bg-neutral text-neutral-content mb-5 mt-5'>
       <div className='card-body items-center text-center'>
         <h2 className='card-title'>{transactionById.title}</h2>
         <p>
           Amount:{' '}
           {transactionById.type === TRANSACTION_TYPES.EXPENSE && <span>-</span>}
-          {transactionById.amount} kr
+          {transactionById.amount} SEK
         </p>
         <p>Type: {transactionById.type}</p>
         <p>Category: {transactionById.category}</p>

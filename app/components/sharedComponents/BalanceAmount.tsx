@@ -18,7 +18,7 @@ const BalanceAmount = () => {
           {CURRENT_DATE.toLocaleString('en-US', {
             month: 'long',
           })}
-          : {sum} kr
+          : {sum} SEK
         </div>
       )}
     </>

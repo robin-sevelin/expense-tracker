@@ -23,23 +23,23 @@ const FilteredSummary = () => {
         <tbody>
           <tr>
             <th>One time incomes</th>
-            <td>{incomeSum} kr</td>
+            <td>{incomeSum} SEK</td>
           </tr>
           <tr>
             <th>Reccuring incomes</th>
-            <td>{recurringIncomeSum} kr</td>
+            <td>{recurringIncomeSum} SEK</td>
           </tr>
           <tr>
             <th>One time expenses</th>
-            <td>{expenseSum} kr</td>
+            <td>{expenseSum} SEK</td>
           </tr>
           <tr>
             <th>Reccuring expenses</th>
-            <td>{recurringExpenseSum} kr</td>
+            <td>{recurringExpenseSum} SEK</td>
           </tr>
           <tr>
             <th>Balance</th>
-            <td>{sum} kr</td>
+            <td>{sum} SEK</td>
           </tr>
         </tbody>
       </table>
