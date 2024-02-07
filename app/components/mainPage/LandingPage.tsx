@@ -12,8 +12,8 @@ import CookieBanner from '@/components/sharedComponents/CookieBanner';
 const LandingPage = () => {
   const [cookies, setCookie] = useCookies(['expense-tracker']);
   const { 'expense-tracker': expenseTrackerCookie } = cookies;
-  const { isLoading } = useGetRedirect();
-  const { user } = useIsLoggedIn();
+  const { isLoading, user } = useGetRedirect();
+  useIsLoggedIn();
 
   const handleCookie = () => {
     setCookie('expense-tracker', user);

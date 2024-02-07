@@ -21,7 +21,7 @@ const CookieBanner = ({ onHandleChange }: Props) => {
           <p>You must accept cookies to use this page</p>
           <div className='collapse bg-base-200'>
             <input type='checkbox' />
-            <div className='collapse-title text-xl font-medium btn btn-secondary'>
+            <div className='collapse-title text-xl font-medium '>
               Toggle me to read more
             </div>
             <div className='collapse-content'>
@@ -41,7 +41,7 @@ const CookieBanner = ({ onHandleChange }: Props) => {
               </p>
             </div>
           </div>
-          <div className='modal-action flex-col justify-center'>
+          <div className='modal-action flex'>
             <label
               htmlFor='my_modal_6'
               className='btn btn-primary'
