@@ -41,11 +41,22 @@ const CookieBanner = ({ onHandleChange }: Props) => {
               </p>
             </div>
           </div>
-          <button className='modal-action flex-col justify-center'>
-            <label htmlFor='my_modal_6' className='btn btn-primary'>
+          <div className='modal-action flex-col justify-center'>
+            <label
+              htmlFor='my_modal_6'
+              className='btn btn-primary'
+              role='button'
+              tabIndex={0}
+              onClick={handleCheckboxChange}
+              onKeyDown={(e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                  handleCheckboxChange();
+                }
+              }}
+            >
               Accept
             </label>
-          </button>
+          </div>
         </div>
       </div>
     </div>

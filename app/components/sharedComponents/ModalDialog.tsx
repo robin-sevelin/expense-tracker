@@ -23,7 +23,18 @@ const ModalDialog = ({ onHandleChange, isModalOpen }: Props) => {
           <h3 className='font-bold text-lg'>Success!</h3>
           <p className='py-4'>Done and done</p>
           <div className='modal-action'>
-            <label htmlFor='my_modal_6' className='btn'>
+            <label
+              htmlFor='my_modal_6'
+              className='btn'
+              role='button'
+              tabIndex={0}
+              onClick={handleCheckboxChange}
+              onKeyDown={(e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                  handleCheckboxChange();
+                }
+              }}
+            >
               Close
             </label>
           </div>

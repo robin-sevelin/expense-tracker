@@ -66,11 +66,11 @@ Tailwind CSS
 
 ## Images
 
-![image](image.png)
-![image](image-1.png)
-![image](image-2.png)
-![image](image-3.png)
-![image](image-4.png)
+![image](/documentation/image-1.png)
+![image](/documentation/image-1.png)
+![image](/documentation/image-2.png)
+![image](/documentation/image-3.png)
+![image](/documentation/image-4.png)
 
 ## Live Demo
 
