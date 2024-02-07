@@ -15,6 +15,7 @@ export const useGetRedirect = () => {
         const response = await getRedirectResult(auth);
         if (response) {
           setUser(response.user as IUser);
+          setIsLoading(false);
         }
       } catch (error) {
         console.error('Error during login:', error);
