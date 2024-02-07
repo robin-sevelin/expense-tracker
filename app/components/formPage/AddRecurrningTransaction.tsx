@@ -37,83 +37,81 @@ const AddRecurringTransaction = () => {
 
   return (
     <>
-      <div>
-        <h2 className='font-bold'>SET RECCURING TRANSACTION</h2>
-        <form onSubmit={handleSubmit(submitData)}>
+      <h2 className='font-bold'>SET RECCURING TRANSACTION</h2>
+      <form onSubmit={handleSubmit(submitData)}>
+        <fieldset>
+          <legend className='input-label'>Transaction Type</legend>
+          <div className='join'>
+            <input
+              className='join-item btn'
+              aria-label='EXPENSE'
+              type='radio'
+              {...register('type')}
+              name='type'
+              value={TRANSACTION_TYPES.EXPENSE}
+              defaultChecked
+            />
+            <input
+              className='join-item btn'
+              aria-label='INCOME'
+              type='radio'
+              {...register('type')}
+              name='type'
+              value={TRANSACTION_TYPES.INCOME}
+            />
+          </div>
+        </fieldset>
+        <div className='join'>
           <fieldset>
-            <legend className='input-label'>Transaction Type</legend>
-            <div className='join'>
-              <input
-                className='join-item btn'
-                aria-label='EXPENSE'
-                type='radio'
-                {...register('type')}
-                name='type'
-                value={TRANSACTION_TYPES.EXPENSE}
-                defaultChecked
-              />
-              <input
-                className='join-item btn'
-                aria-label='INCOME'
-                type='radio'
-                {...register('type')}
-                name='type'
-                value={TRANSACTION_TYPES.INCOME}
-              />
+            <label htmlFor='title' className='input-label'>
+              Title:
+            </label>
+            <input
+              type='text'
+              className='input input-bordered input-primary w-full max-w-xs'
+              aria-label='Title'
+              {...register('title')}
+            />
+            <div className='error-container'>
+              {errors.title && (
+                <p style={{ color: 'red' }}>{errors.title.message}</p>
+              )}
+            </div>
+            <label htmlFor='amount' className='input-label'>
+              Amount:
+            </label>
+            <input
+              className='input input-bordered input-primary w-full max-w-xs'
+              type='number'
+              id='amount'
+              {...register('amount', { valueAsNumber: true })}
+              name='amount'
+            />
+            <div className='error-container'>
+              {errors.amount && (
+                <p style={{ color: 'red' }}>{errors.amount.message}</p>
+              )}
             </div>
           </fieldset>
-          <div className='join'>
-            <fieldset>
-              <label htmlFor='title' className='input-label'>
-                Title:
-              </label>
-              <input
-                type='text'
-                className='input input-bordered input-primary w-full max-w-xs'
-                aria-label='Title'
-                {...register('title')}
-              />
-              <div className='error-container'>
-                {errors.title && (
-                  <p style={{ color: 'red' }}>{errors.title.message}</p>
-                )}
-              </div>
-              <label htmlFor='amount' className='input-label'>
-                Amount:
-              </label>
-              <input
-                className='input input-bordered input-primary w-full max-w-xs'
-                type='number'
-                id='amount'
-                {...register('amount', { valueAsNumber: true })}
-                name='amount'
-              />
-              <div className='error-container'>
-                {errors.amount && (
-                  <p style={{ color: 'red' }}>{errors.amount.message}</p>
-                )}
-              </div>
-            </fieldset>
-          </div>
-          <legend>Pick day of the month</legend>
-          <select
-            className='select select-bordered select-primary w-full max-w-xs mb-3'
-            id='day'
-            {...register('date')}
-          >
-            {daysInMonthArray.map((days, index) => (
-              <option
-                key={index}
-                value={days.day}
-                disabled={days.day > DAYS_LIMIT}
-              >
-                {days.day}
-              </option>
-            ))}
-          </select>
-          <button className='btn btn-primary'>Submit</button>
-        </form>
-      </div>
+        </div>
+        <legend>Pick day of the month</legend>
+        <select
+          className='select select-bordered select-primary w-full max-w-xs mb-3'
+          id='day'
+          {...register('date')}
+        >
+          {daysInMonthArray.map((days, index) => (
+            <option
+              key={index}
+              value={days.day}
+              disabled={days.day > DAYS_LIMIT}
+            >
+              {days.day}
+            </option>
+          ))}
+        </select>
+        <button className='btn btn-primary'>Submit</button>
+      </form>
       {isModalOpen && (
         <ModalDialog
           onHandleChange={() => setIsModalOpen(false)}

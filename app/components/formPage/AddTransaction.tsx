@@ -53,89 +53,87 @@ const AddTransaction = () => {
 
   return (
     <>
-      <div>
-        <h3 className='font-bold'>SET TRANSACTION</h3>
-        <form onSubmit={handleSubmit(submitData)}>
-          <div>
-            <legend>Select date</legend>
-            <DatePicker
-              id='datepicker'
-              className='input input-bordered input-primary w-full max-w-xs'
-              selected={date}
-              onChange={(date) => setDate(date as Date)}
-              shouldCloseOnSelect={false}
+      <h3 className='font-bold'>SET TRANSACTION</h3>
+      <form onSubmit={handleSubmit(submitData)}>
+        <div>
+          <legend>Select date</legend>
+          <DatePicker
+            id='datepicker'
+            className='input input-bordered input-primary w-full max-w-xs'
+            selected={date}
+            onChange={(date) => setDate(date as Date)}
+            shouldCloseOnSelect={false}
+          />
+        </div>
+        <fieldset>
+          <legend className='input-label'>Transaction Type</legend>
+          <div className='join'>
+            <input
+              className='join-item btn'
+              aria-label='EXPENSE'
+              type='radio'
+              {...register('type')}
+              onClick={() => handleClick(TRANSACTION_TYPES.EXPENSE)}
+              name='type'
+              value={TRANSACTION_TYPES.EXPENSE}
+              defaultChecked
+            />
+            <input
+              className='join-item btn'
+              aria-label='INCOME'
+              type='radio'
+              {...register('type')}
+              onClick={() => handleClick(TRANSACTION_TYPES.INCOME)}
+              name='type'
+              value={TRANSACTION_TYPES.INCOME}
             />
           </div>
-          <fieldset>
-            <legend className='input-label'>Transaction Type</legend>
-            <div className='join'>
-              <input
-                className='join-item btn'
-                aria-label='EXPENSE'
-                type='radio'
-                {...register('type')}
-                onClick={() => handleClick(TRANSACTION_TYPES.EXPENSE)}
-                name='type'
-                value={TRANSACTION_TYPES.EXPENSE}
-                defaultChecked
-              />
-              <input
-                className='join-item btn'
-                aria-label='INCOME'
-                type='radio'
-                {...register('type')}
-                onClick={() => handleClick(TRANSACTION_TYPES.INCOME)}
-                name='type'
-                value={TRANSACTION_TYPES.INCOME}
-              />
-            </div>
-          </fieldset>
+        </fieldset>
 
-          <fieldset>
-            <legend className='input-label'>Transaction Category</legend>
-            {type === TRANSACTION_TYPES.EXPENSE ? (
-              <ExpenseCategories register={register} />
-            ) : (
-              <IncomeCategories register={register} />
-            )}
-          </fieldset>
-          <div className='error-container'>
-            {errors.category && (
-              <p style={{ color: 'red' }}>{errors.category.message}</p>
-            )}
-          </div>
-          <label htmlFor='title' className='input-label'>
-            Title:
-          </label>
-          <input
-            type='text'
-            className='input input-bordered input-primary w-full max-w-xs'
-            aria-label='Title'
-            {...register('title')}
-          />
-          <div className='error-container'>
-            {errors.title && (
-              <p style={{ color: 'red' }}>{errors.title.message}</p>
-            )}
-          </div>
-          <label htmlFor='amount' className='input-label'>
-            Amount:
-          </label>
-          <input
-            className='input input-bordered input-primary w-full max-w-xs'
-            aria-label='Amount'
-            type='number'
-            min={0}
-            {...register('amount', { valueAsNumber: true })}
-          />
-          <div className='error-container'>
-            {errors.amount && (
-              <p style={{ color: 'red' }}>{errors.amount.message}</p>
-            )}
-          </div>
-          <button className='btn btn-primary'>Submit</button>
-        </form>
-      </div>
+        <fieldset>
+          <legend className='input-label'>Transaction Category</legend>
+          {type === TRANSACTION_TYPES.EXPENSE ? (
+            <ExpenseCategories register={register} />
+          ) : (
+            <IncomeCategories register={register} />
+          )}
+        </fieldset>
+        <div className='error-container'>
+          {errors.category && (
+            <p style={{ color: 'red' }}>{errors.category.message}</p>
+          )}
+        </div>
+        <label htmlFor='title' className='input-label'>
+          Title:
+        </label>
+        <input
+          type='text'
+          className='input input-bordered input-primary w-full max-w-xs'
+          aria-label='Title'
+          {...register('title')}
+        />
+        <div className='error-container'>
+          {errors.title && (
+            <p style={{ color: 'red' }}>{errors.title.message}</p>
+          )}
+        </div>
+        <label htmlFor='amount' className='input-label'>
+          Amount:
+        </label>
+        <input
+          className='input input-bordered input-primary w-full max-w-xs'
+          aria-label='Amount'
+          type='number'
+          min={0}
+          {...register('amount', { valueAsNumber: true })}
+        />
+        <div className='error-container'>
+          {errors.amount && (
+            <p style={{ color: 'red' }}>{errors.amount.message}</p>
+          )}
+        </div>
+        <button className='btn btn-primary'>Submit</button>
+      </form>
       {isModalOpen && (
         <ModalDialog
           onHandleChange={() => setIsModalOpen(false)}

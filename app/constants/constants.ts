@@ -11,6 +11,8 @@ export const ROUTES = [
   },
 ];
 
+export const TEAM = '/developer-team.svg';
+
 export const RECCURANCY_TYPES = {
   ONCE: 'Once',
   RECURRANT: 'Recurrant',
@@ -97,5 +99,4 @@ export const RECURRING_TRANSACTIONS = 'recurringTransactions';
 export const USER_TRANSACTIONS = 'userTransactions';
 export const USER_BUDGETS = 'userBudgets';
 export const USERS = 'users';
-
 export const DAYS_LIMIT = 28;

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Comic Sans MS';
+}
+
 h1,
 h2,
 h3,
@@ -21,7 +25,7 @@ input {
 }
 
 main {
-  @apply max-w-[1200px] m-auto  min-h-[calc(100vh-200px)]  p-5 rounded-xl bg-base-100 mt-20;
+  @apply max-w-[980px] m-auto  min-h-[calc(100vh-200px)]  p-5 rounded-xl bg-base-100 mt-20;
 }
 
 footer {

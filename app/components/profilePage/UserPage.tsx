@@ -34,15 +34,15 @@ const UserPage = () => {
           <table className='table'>
             <tbody>
               <tr>
-                <th>Budget amount</th>
+                <th>Budget</th>
                 <td>{balance} SEK</td>
               </tr>
               <tr>
-                <th>Reccuring expenses amount</th>
+                <th>Reccuring expenses</th>
                 <td>{recurringExpenseSum} SEK</td>
               </tr>
               <tr>
-                <th>Reccuring incomes amount</th>
+                <th>Reccuring incomes</th>
                 <td>{recurringIncomeSum} SEK</td>
               </tr>
             </tbody>

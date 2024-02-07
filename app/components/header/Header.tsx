@@ -21,7 +21,7 @@ const Header = () => {
           href={'/'}
           className='btn btn-ghost text-xl max-w-20  h-auto m-auto'
         >
-          <h1> EXPENSE TRACKER</h1>
+          EXPENSE TRACKER
         </Link>
         {user.uid && <ProfileSection />}
       </header>

@@ -18,13 +18,11 @@ const CookieBanner = ({ onHandleChange }: Props) => {
       <div role='dialog '>
         <div className='modal-box bg-base-200 '>
           <h3 className='font-bold text-lg'>Cookie conscent</h3>
+          <p>You must accept cookies to use this page</p>
           <div className='collapse bg-base-200'>
             <input type='checkbox' />
-            <div className='collapse-title text-xl font-medium'>
-              <p>
-                You must accept cookies to use this site, click HERE to read
-                more ..or just click accept if you agree.
-              </p>
+            <div className='collapse-title text-xl font-medium btn btn-secondary'>
+              Toggle me to read more
             </div>
             <div className='collapse-content'>
               <p>
@@ -39,8 +37,7 @@ const CookieBanner = ({ onHandleChange }: Props) => {
               <p>
                 If you have questions, contact the admin. By clicking ACCEPT or
                 continuing to use the site, you confirm acceptance of our cookie
-                policy and Google user information storage. Thanks for choosing
-                our platform; we hope you have a great experience!
+                policy and Google user information storage.
               </p>
             </div>
           </div>

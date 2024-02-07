@@ -25,7 +25,7 @@ const TransactionCalender = ({ transactions }: Props) => {
   };
 
   return (
-    <div className='flex w-3/5 m-auto justify-center items-center flex-wrap gap-4'>
+    <div className='flex w-3/4 m-auto justify-center items-center flex-wrap gap-4'>
       {calenderArray.map((day, index) => (
         <button
           key={index}

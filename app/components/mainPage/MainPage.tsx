@@ -11,12 +11,19 @@ const MainPage = () => {
 
   return (
     <>
-      <section className='card max-w-xl m-auto bg-base-200 p-2 my-5 z-30 mt-20'>
-        <div className='hero-content text-center'>
-          <div className='max-w-md'>
-            <h1 className='text-5xl font-bold'>
-              Hello there {user.displayName}
-            </h1>
+      <section>
+        <div className='hero-content flex-col lg:flex-row-reverse bg-base-200 rounded-md py-10'>
+          <picture>
+            <img
+              src='/Wavy_Gen-03_Single-12.jpg'
+              alt='money image'
+              className='max-w-sm rounded-full shadow-2xl'
+              width={200}
+              height={200}
+            />
+          </picture>
+          <div>
+            <h1 className='text-5xl font-bold'>Hello {user.displayName}</h1>
             <p className='py-6'>
               Lets add some transactions but dont forget to set your budget
             </p>
@@ -34,15 +41,6 @@ const MainPage = () => {
           </div>
         </div>
       </section>
-      <picture>
-        <img
-          src='/Wavy_Gen-03_Single-12.jpg'
-          alt='money image'
-          className='rounded-full m-auto mt-20'
-          width={300}
-          height={300}
-        />
-      </picture>
     </>
   );
 };

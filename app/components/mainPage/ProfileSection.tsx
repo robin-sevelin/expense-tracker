@@ -11,8 +11,7 @@ import MediaQuery from 'react-responsive';
 import Link from 'next/link';
 
 const ProfileSection = () => {
-  const [user] = useAtom(userAtom);
-  const [, setUser] = useAtom(userAtom);
+  const [user, setUser] = useAtom(userAtom);
 
   const logOut = async () => {
     await signOut(auth);
@@ -21,19 +20,23 @@ const ProfileSection = () => {
 
   return (
     <div className='flex justify-center items-center'>
-      <Link href='/pages/profile' className='mr-2'>
-        <picture className='m-2'>
+      <Link href='/pages/profile'>
+        <picture className='m-1'>
           <img
             src={user.photoURL}
             alt={user.displayName}
             width={50}
             height={50}
             loading='lazy'
-            className=' rounded-full shadow-2xl '
+            className=' rounded-full shadow-2xl m-1 '
           />
         </picture>
       </Link>
-      <button aria-label='sign out' onClick={logOut} className='btn btn-error'>
+      <button
+        aria-label='sign out'
+        onClick={logOut}
+        className='btn btn-secondary m-1'
+      >
         <MediaQuery maxWidth={1224}>
           <RiLogoutCircleRLine />
         </MediaQuery>

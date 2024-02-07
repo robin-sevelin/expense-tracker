@@ -25,7 +25,7 @@ const ThemeSelector = () => {
 
   return (
     <div className='dropdown'>
-      <div tabIndex={0} role='button' className='btn m-1 bg-base-100'>
+      <div tabIndex={0} role='button' className='btn bg-base-100'>
         <span>
           <MediaQuery maxWidth={1224}>
             <HiColorSwatch />
