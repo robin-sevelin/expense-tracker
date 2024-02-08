@@ -14,12 +14,8 @@ export const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 
 export const signinWithGoogleRedirect = async () => {
-  // signInWithRedirect(auth, googleProvider);
-
   try {
-    const result = await signInWithPopup(auth, googleProvider);
-
-    console.log(result.user);
+    await signInWithPopup(auth, googleProvider);
   } catch (error) {
     console.error('error', error);
   }
