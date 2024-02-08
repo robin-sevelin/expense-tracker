@@ -50,7 +50,5 @@ export const useGetTransactionById = (id: string) => {
     }
   }, [user, setTransactionById, isSubmitted, setIsSubmitted, id]);
 
-  console.log(transactionById);
-
   return { isLoading, transactionById } as const;
 };

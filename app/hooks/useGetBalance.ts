@@ -22,7 +22,7 @@ export const useGetBalance = () => {
             const balanceData = docData.amount;
             setBalance(balanceData);
           } else {
-            // console.log('No such document!');
+            console.log('No such document!');
           }
         } catch (error) {
           console.log('something went wrong', error);

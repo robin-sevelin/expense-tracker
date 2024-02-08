@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="13" failures="0" errors="0" time="1.13">
-  <testsuite name="Add transaction" errors="0" failures="0" skipped="0" timestamp="2024-02-06T13:16:56" time="0.316" tests="1">
-    <testcase classname="Add transaction should render add transaction component" name="Add transaction should render add transaction component" time="0.011">
+<testsuites name="jest tests" tests="13" failures="0" errors="0" time="1.277">
+  <testsuite name="RecurringTransactions" errors="0" failures="0" skipped="0" timestamp="2024-02-08T06:56:22" time="0.36" tests="2">
+    <testcase classname="RecurringTransactions should render RecurringTransactions if user is logged in" name="RecurringTransactions should render RecurringTransactions if user is logged in" time="0.011">
+    </testcase>
+    <testcase classname="RecurringTransactions should not  render RecurringTransactions if user is not logged in" name="RecurringTransactions should not  render RecurringTransactions if user is not logged in" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="header" errors="0" failures="0" skipped="0" timestamp="2024-02-06T13:16:56" time="0.131" tests="4">
-    <testcase classname="header should render header " name="header should render header " time="0.01">
+  <testsuite name="header" errors="0" failures="0" skipped="0" timestamp="2024-02-08T06:56:22" time="0.143" tests="4">
+    <testcase classname="header should render header " name="header should render header " time="0.009">
     </testcase>
-    <testcase classname="header should render profile section" name="header should render profile section" time="0.004">
+    <testcase classname="header should render profile section" name="header should render profile section" time="0.003">
     </testcase>
     <testcase classname="header should render theme selector" name="header should render theme selector" time="0.006">
     </testcase>
-    <testcase classname="header should not render navigation if no user id" name="header should not render navigation if no user id" time="0.005">
+    <testcase classname="header should not render navigation if no user id" name="header should not render navigation if no user id" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="footer" errors="0" failures="0" skipped="0" timestamp="2024-02-06T13:16:56" time="0.075" tests="1">
-    <testcase classname="footer should render footer" name="footer should render footer" time="0.003">
-    </testcase>
-  </testsuite>
-  <testsuite name="transactions list" errors="0" failures="0" skipped="0" timestamp="2024-02-06T13:16:56" time="0.069" tests="1">
+  <testsuite name="transactions list" errors="0" failures="0" skipped="0" timestamp="2024-02-08T06:56:22" time="0.086" tests="1">
     <testcase classname="transactions list should render TransactionList component" name="transactions list should render TransactionList component" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="balance amount" errors="0" failures="0" skipped="0" timestamp="2024-02-06T13:16:56" time="0.066" tests="1">
-    <testcase classname="balance amount should render balance amount component" name="balance amount should render balance amount component" time="0.002">
+  <testsuite name="User Values" errors="0" failures="0" skipped="0" timestamp="2024-02-08T06:56:22" time="0.081" tests="1">
+    <testcase classname="User Values should render budget form" name="User Values should render budget form" time="0.005">
     </testcase>
   </testsuite>
-  <testsuite name="User Values" errors="0" failures="0" skipped="0" timestamp="2024-02-06T13:16:57" time="0.067" tests="1">
-    <testcase classname="User Values should render budget form" name="User Values should render budget form" time="0.003">
+  <testsuite name="footer" errors="0" failures="0" skipped="0" timestamp="2024-02-08T06:56:22" time="0.072" tests="1">
+    <testcase classname="footer should render footer" name="footer should render footer" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="RecurringTransactions" errors="0" failures="0" skipped="0" timestamp="2024-02-06T13:16:57" time="0.062" tests="2">
-    <testcase classname="RecurringTransactions should render RecurringTransactions if user is logged in" name="RecurringTransactions should render RecurringTransactions if user is logged in" time="0.002">
-    </testcase>
-    <testcase classname="RecurringTransactions should not  render RecurringTransactions if user is not logged in" name="RecurringTransactions should not  render RecurringTransactions if user is not logged in" time="0.001">
+  <testsuite name="balance amount" errors="0" failures="0" skipped="0" timestamp="2024-02-08T06:56:23" time="0.066" tests="1">
+    <testcase classname="balance amount should render balance amount component" name="balance amount should render balance amount component" time="0.003">
     </testcase>
   </testsuite>
-  <testsuite name="useAuthUser" errors="0" failures="0" skipped="0" timestamp="2024-02-06T13:16:57" time="0.061" tests="2">
+  <testsuite name="viewmode component" errors="0" failures="0" skipped="0" timestamp="2024-02-08T06:56:23" time="0.06" tests="1">
+    <testcase classname="viewmode component should render viewMode component" name="viewmode component should render viewMode component" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="useAuthUser" errors="0" failures="0" skipped="0" timestamp="2024-02-08T06:56:23" time="0.06" tests="2">
     <testcase classname="useAuthUser redirects to &quot;/&quot; when user is not authenticated" name="useAuthUser redirects to &quot;/&quot; when user is not authenticated" time="0.001">
     </testcase>
     <testcase classname="useAuthUser returns the authenticated user when user is authenticated" name="useAuthUser returns the authenticated user when user is authenticated" time="0.001">

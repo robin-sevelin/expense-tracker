@@ -9,9 +9,10 @@ import { deleteReccuringTransaction } from '@/../firebase/operations/deleteRecur
 import { useGetRecurringTransactions } from '@/hooks/useGetRecurringTransactions';
 import { TRANSACTION_TYPES } from '@/constants/constants';
 import FilteredSummary from '../sharedComponents/FilteredSummary';
+import Loading from '../sharedComponents/Loading';
 
 const RecurringTransactions = () => {
-  const { recurringTransactions } = useGetRecurringTransactions();
+  const { recurringTransactions, isLoading } = useGetRecurringTransactions();
   const { user } = useAuthUser();
   const [, setIsSubmitted] = useAtom(submitAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,6 +22,10 @@ const RecurringTransactions = () => {
     setIsSubmitted(true);
     setIsModalOpen(true);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <>
       <FilteredSummary />

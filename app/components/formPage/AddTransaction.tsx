@@ -16,7 +16,6 @@ import { ITransaction } from '@/models/ITransaction';
 import { useGetTransactions } from '@/hooks/useGetTransactions';
 import { createTransactionDocument } from '@/../firebase/operations/createTransaction';
 import Loading from '../sharedComponents/Loading';
-import { updateTransaction } from '../../../firebase/operations/updateTransaction';
 
 const AddTransaction = () => {
   const [, setIsSubmitted] = useAtom(submitAtom);

@@ -7,12 +7,17 @@ import { balanceAtom } from '@/store/atoms';
 import { useGetRecurringExpenseSum } from '@/hooks/useGetRecurringExpenseSum';
 import { useGetRecurringIncomeSum } from '@/hooks/useGetRecurringIncomeSum';
 import AddBalance from '../formPage/AddBalance';
+import Loading from '../sharedComponents/Loading';
 
 const UserPage = () => {
   const [balance] = useAtom(balanceAtom);
   const { recurringExpenseSum } = useGetRecurringExpenseSum();
   const { recurringIncomeSum } = useGetRecurringIncomeSum();
   const { user } = useAuthUser();
+
+  if (!recurringExpenseSum || !recurringIncomeSum) {
+    return <Loading />;
+  }
 
   return (
     <>
