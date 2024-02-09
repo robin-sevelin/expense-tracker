@@ -15,10 +15,6 @@ const UserPage = () => {
   const { recurringIncomeSum } = useGetRecurringIncomeSum();
   const { user } = useAuthUser();
 
-  if (!recurringExpenseSum || !recurringIncomeSum) {
-    return <Loading />;
-  }
-
   return (
     <>
       <div className='flex flex-col justify-center items-center'>
