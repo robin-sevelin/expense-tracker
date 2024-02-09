@@ -20,6 +20,8 @@ Node.js
 npm or yarn
 Firebase account (for backend services)
 
+git clone https://github.com/robin-sevelin/expense-tracker
+cd expense-tracker
 Install dependencies:
 
 npm install
