@@ -14,9 +14,7 @@ Form Handling: Leverages React Hook Form for efficient and flexible form handlin
 
 Responsive Design: Utilizes React Responsive and Tailwind CSS for a responsive and mobile-friendly design, ensuring a seamless experience across devices.
 
-## Prerequisites
-
-Before you start, ensure you have the following installed:
+## Before you start
 
 Node.js
 npm or yarn
@@ -67,11 +65,11 @@ Tailwind CSS
 ## Images
 
 ![image](/documentation/image-1.png)
-![image](/documentation/image-1.png)
 ![image](/documentation/image-2.png)
 ![image](/documentation/image-3.png)
 ![image](/documentation/image-4.png)
+![image](/documentation/image-5.png)
 
 ## Live Demo
 
-[demo](https://expense-tracker-robin-sevelins-projects.vercel.app/)
+[Demo](https://expense-tracker-robin-sevelins-projects.vercel.app/)
