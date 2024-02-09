@@ -19,11 +19,7 @@ Responsive Design: Utilizes React Responsive and Tailwind CSS for a responsive a
 Node.js
 npm or yarn
 Firebase account (for backend services)
-Getting Started
-Clone the repository:
 
-git clone https://github.com/your-username/expense-tracker.git
-cd expense-tracker
 Install dependencies:
 
 npm install
