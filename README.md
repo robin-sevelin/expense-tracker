@@ -22,7 +22,7 @@ Firebase account (for backend services)
 Getting Started
 Clone the repository:
 
-git clone https://github.com/your-username/expense-tracker.git
+git clone https://github.com/robin-sevelin/expense-tracker
 cd expense-tracker
 Install dependencies:
 
