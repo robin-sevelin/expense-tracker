@@ -6,8 +6,8 @@ import { useGetRecurringIncomeSum } from '@/hooks/useGetRecurringIncomeSum';
 import { useGetCurrentSum } from '@/hooks/useGetCurrentSum';
 
 const FilteredSummary = () => {
-  const { incomeSum, expenseSum } = useGetFilteredSum();
-  const { sum } = useGetCurrentSum();
+  const { incomeSum, expenseSum, sum } = useGetFilteredSum();
+  // const { sum } = useGetCurrentSum();
   const { recurringExpenseSum } = useGetRecurringExpenseSum();
   const { recurringIncomeSum } = useGetRecurringIncomeSum();
   useGetTransactions();
