@@ -8,7 +8,7 @@ import ExpenseCategories from '@/components/sharedComponents/ExpenseCategories';
 import IncomeCategories from '@/components/sharedComponents/IncomeCategories';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { submitAtom, transactionByIdAtom, userAtom } from '@/store/atoms';
+import { submitAtom, userAtom } from '@/store/atoms';
 import { useAtom } from 'jotai';
 import { CURRENT_DATE, TRANSACTION_TYPES } from '@/constants/constants';
 import ModalDialog from '@/components/sharedComponents/ModalDialog';

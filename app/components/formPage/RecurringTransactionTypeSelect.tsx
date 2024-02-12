@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { TRANSACTION_TYPES } from '@/constants/constants';
 
 const RecurringTransactions = () => {
-  const [view, setView] = useState(TRANSACTION_TYPES.EXPENSE);
+  const [, setView] = useState(TRANSACTION_TYPES.EXPENSE);
 
   return (
     <div>
