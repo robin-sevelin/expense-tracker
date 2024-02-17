@@ -29,11 +29,11 @@ footer {
 }
 
 header {
-  @apply bg-base-100 flex justify-between navbar  m-auto;
+  @apply bg-base-100 flex justify-between navbar m-auto max-w-[1700px];
 }
 
 .theme-dropdown {
-  @apply shadow menu dropdown-content relative z-[999] bg-base-100 rounded-box max-h-[600px] w-[220px]  overflow-y-scroll;
+  @apply shadow menu dropdown-content relative z-[999] bg-base-100 rounded-box max-h-[600px] w-[230px]  overflow-y-scroll;
 }
 
 .with-border {
