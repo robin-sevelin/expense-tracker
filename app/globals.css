@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Comic Sans MS', cursive, system-ui, -apple-system,
-    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-}
-
 h1,
 h2,
 h3,
@@ -34,11 +29,11 @@ footer {
 }
 
 header {
-  @apply bg-base-100 flex justify-between navbar  m-auto;
+  @apply bg-base-100 flex justify-between navbar m-auto max-w-[1700px];
 }
 
 .theme-dropdown {
-  @apply shadow menu dropdown-content relative z-[999] bg-base-100 rounded-box max-h-[600px] w-[220px]  overflow-y-scroll;
+  @apply shadow menu dropdown-content relative z-[999] bg-base-100 rounded-box max-h-[600px] w-[230px]  overflow-y-scroll;
 }
 
 .with-border {
@@ -51,4 +46,8 @@ header {
 
 .centered-container {
   @apply flex flex-col m-5 p-5 justify-center items-center;
+}
+
+.navigation-ul {
+  @apply menu p-4 w-80 min-h-full bg-base-200 text-base-content z-[999];
 }

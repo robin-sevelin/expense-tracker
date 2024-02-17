@@ -9,29 +9,10 @@ import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
-type CustomMetadata = Metadata & {
-  author?: string;
-};
-
-export const metadata: CustomMetadata = {
+export const metadata = {
   title: 'Expense Tracker',
   description: 'App that keeps track of your expenses',
   author: 'Robin Sevelin',
-  openGraph: {
-    title: 'Expense Tracker',
-    description: 'App that keeps track of your expenses',
-    images: [
-      {
-        url: '/og-image.jpg', // Update with the correct path to your image
-        width: 1200,
-        height: 630,
-        alt: 'Alternate text for the image',
-      },
-    ],
-    url: 'https://expense-tracker-robin-sevelins-projects.vercel.app/',
-    type: 'website',
-  },
-
   icons: {
     icon: '/app/favicon/favicon.ico',
   },

@@ -11,21 +11,19 @@ const Header = () => {
   const [user] = useAtom(userAtom);
 
   return (
-    <>
-      <header className='flex justify-between w-full'>
-        <div className='flex gap-2'>
-          {user.uid && <Navigation />}
-          {user.uid && <ThemeSelector />}
-        </div>
-        <Link
-          href={'/'}
-          className='btn btn-ghost text-xl max-w-20  h-auto m-auto'
-        >
-          EXPENSE TRACKER
-        </Link>
-        {user.uid && <ProfileSection />}
-      </header>
-    </>
+    <header className='flex justify-between max-w-1440px'>
+      <div className='flex gap-2'>
+        {user.uid && <Navigation />}
+        {user.uid && <ThemeSelector />}
+      </div>
+      <Link
+        href={'/'}
+        className='btn btn-ghost text-xl max-w-20  h-auto m-auto'
+      >
+        EXPENSE TRACKER
+      </Link>
+      {user.uid && <ProfileSection />}
+    </header>
   );
 };
 
